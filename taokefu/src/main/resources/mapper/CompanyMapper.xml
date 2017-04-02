@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.taokefu.mapper.CompanyMapper">
+	<select id="addcompany" resultType="java.util.List"
+		parameterType="User">
+		insert into company (comp_id,comp_email) values(${comp_id},'${comp_email}')
+	</select>
+</mapper>

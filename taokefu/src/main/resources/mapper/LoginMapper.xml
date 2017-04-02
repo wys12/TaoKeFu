@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.taokefu.mapper.LoginMapper">
+	<select id="findUser" parameterType="Login" resultType="Login">
+		select *
+		from login where l_pwd=#{l_pwd} and l_email=#{l_email}
+	</select>
+
+	<select id="findEmail" parameterType="Login" resultType="Login">
+		select *
+		from login where l_email=#{l_email}
+	</select>
+
+	<!-- 注册 -->
+	<insert id="addUser" parameterType="Login">
+	insert into login (l_id,l_pwd,l_email,l_type) values
+		(login_sql.nextval,#{l_pwd},#{l_email},#{l_type})
+	</insert>
+
+</mapper>
