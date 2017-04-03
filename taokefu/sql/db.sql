@@ -46,7 +46,8 @@ create table admin(
   ad_name varchar2(10) not null,
   ad_pwd varchar2(10) not null
 );
-select * from login;
+
+select * from admin;
 insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');
 update LOGIN set l_type=0 where l_id=1041
 create table login(
