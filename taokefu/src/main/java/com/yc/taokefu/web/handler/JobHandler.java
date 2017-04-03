@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.taokefu.entity.Company;
@@ -35,38 +36,47 @@ public class JobHandler {
 	private CompanyAllService companyAllServics;
 	@Autowired
 	private JobService jobService;
-	/*@Autowired
-	private CompanyService companyService;
-	@Autowired
-	private TagService tagService;
-	@Autowired
-	private CompanyTeamService companyTeamService;
-	@Autowired
-	private Product croductTeamService;*/
 
 	private Map<String,String> search_Info = new HashMap<String,String>();
 	private List<CompanyAll> jobList = null;
 	private String type = null;
 	private String input = null;
+
+
 	//查询职位信息
 	@RequestMapping(value="sendInfo",method=RequestMethod.POST)
-	@ResponseBody
-	public String find(HttpServletRequest request) {
+	public void find(HttpServletRequest request) {
 		type=request.getParameter("searchType");
 		input=request.getParameter("search_input");
-		LogManager.getLogger().debug("职位信息查询条件   ==>input "+input+" type "+type);
 		search_Info.put("type", request.getParameter("searchType"));
 		search_Info.put("input", request.getParameter("search_input"));
 		LogManager.getLogger().debug("职位信息查询条件   ==>input "+search_Info.get("input")+" type "+type);
 		//return "redirect:/list.html";action="list.html"
-		return null;
 	}
-	//查询职位信息
-	@RequestMapping(value="findJob",method=RequestMethod.POST)
+	//分条件查询查询职位信息
+	@RequestMapping(value="findJobs",method=RequestMethod.POST)
 	@ResponseBody
 	public List<CompanyAll> findCompany() {
-		jobList = companyAllServics.findCompenyName(search_Info.get("input"));
-		LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
+		if(search_Info.get("type")=="0"){
+			jobList = companyAllServics.findJobName(search_Info.get("input"));
+			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
+			return jobList;
+		}else if(search_Info.get("type")=="1"){
+			jobList = companyAllServics.findCompenyName(search_Info.get("input"));
+			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
+			return jobList;
+		}else{
+			return null;
+		}
+	}
+
+
+	//查询职位信息
+	@RequestMapping(value="list",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> findJob(CompanyAll companyAll) {
+		jobList = companyAllServics.findCompenyName(companyAll.getJob_name());
+		LogManager.getLogger().debug("companyAll   ==> " + companyAll.getJob_name()+"   jobList  " +jobList);
 		return jobList;
 	}
 

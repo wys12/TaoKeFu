@@ -14,6 +14,8 @@ function logins(){
 }
 $(".logout").click(function(){
 	$.post("users/outlogins",function(data){
-		alert("outlogins");
+		//alert("outlogins");
+		$(".collapsible_menu").hide();
+		$(".loginTop").show();
 	});
 });

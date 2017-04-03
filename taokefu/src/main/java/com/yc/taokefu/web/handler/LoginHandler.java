@@ -32,11 +32,18 @@ public class LoginHandler {
 	private CompanyService companyService;
 	@Autowired
 	private UserService userService;
-	
-	
+
+	/**
+	 *用户登录，存入session
+	 * @param logins
+	 * @param user
+	 * @param company
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public Map<String , String> login(@RequestBody Login logins,User user,Company company,HttpSession session){
+	public Map<String , String> login(@RequestBody Login logins,HttpSession session){
 		Map<String,String > map=new HashMap<String,String>();
 		LogManager.getLogger().debug("进来了"+logins);
 		logins=loginService.login(logins);
@@ -51,7 +58,13 @@ public class LoginHandler {
 			return map;
 		}
 	}
-
+	
+	/**
+	 * 注册
+	 * @param logins
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("register")
 	public Map<String,String> register(@RequestBody Login logins,HttpSession session){
@@ -84,8 +97,12 @@ public class LoginHandler {
 			return map;
 		}	
 	}
-	
-	
+
+	/**
+	 * session中获取用户信息
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="logins",method=RequestMethod.POST)
 	public Object logins(HttpSession session){
@@ -97,9 +114,13 @@ public class LoginHandler {
 		return null;
 
 	}
-
+	
+	/**
+	 * 退出操作
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="outlogins",method=RequestMethod.POST)
-	@ResponseBody
 	public String outlogins(HttpSession session){
 		session.removeAttribute(ServletUtil.LOGIN_USER);
 		LogManager.getLogger().debug("退出后==>" +session.getAttribute(ServletUtil.LOGIN_USER));

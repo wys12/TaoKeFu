@@ -8,4 +8,6 @@ public interface CompanyAllService {
 
 	List<CompanyAll> findCompenyName(String string);
 
+	List<CompanyAll> findJobName(String string);
+
 }

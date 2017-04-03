@@ -20,6 +20,13 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	public List<CompanyAll> findCompenyName(String string) {
 		CompanyAll companyAll = new CompanyAll();
 		companyAll.setJob_name(string);
+		return companyAllMapper.findJobAllMapper(companyAll);
+	}
+
+	@Override
+	public List<CompanyAll> findJobName(String string) {
+		CompanyAll companyAll = new CompanyAll();
+		companyAll.setJob_name(string);
 		return companyAllMapper.findCompanyAllMapper(companyAll);
 	}
 	
