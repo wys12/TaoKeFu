@@ -2,6 +2,7 @@ package com.yc.taokefu.mapper;
 
 import java.util.List;
 
+import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 /**
@@ -11,7 +12,7 @@ import com.yc.taokefu.entity.PaginationBean;
  */
 public interface JobMapper {
 
-	List<Job> jobFind(Job job);
+	List<CompanyAll> jobFind(CompanyAll job);
 
 	Integer jobAdd(Job job);
 	

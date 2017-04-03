@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.mapper.JobMapper;
@@ -21,11 +22,11 @@ public class JobServiceImpl implements JobService{
 		return jobMapper.jobAdd(job);
 	}
 	@Override
-	public List<Job> jobFind(String jobName) {
-		Job job = new Job();
-		job.setJob_name(jobName);
-		LogManager.getLogger().debug("job === >"+job);
-		return jobMapper.jobFind(job);
+	public List<CompanyAll> jobFind(String jobName) {
+		CompanyAll companyAll = new CompanyAll();
+		companyAll.setJob_name(jobName);
+		LogManager.getLogger().debug("companyAll === >"+companyAll);
+		return jobMapper.jobFind(companyAll);
 	}
 	@Override
 	public PaginationBean<Job> listPartUsers(String page, String rows) {

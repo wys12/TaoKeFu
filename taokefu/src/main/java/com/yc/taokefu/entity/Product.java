@@ -1,6 +1,7 @@
 package com.yc.taokefu.entity;
 
 public class Product {
+	private Integer c_id;
 	private Integer pro_id;
 	private String pro_name;
 	private String pro_link;
@@ -10,6 +11,12 @@ public class Product {
 	}
 	public void setPro_id(Integer pro_id) {
 		this.pro_id = pro_id;
+	}
+	public Integer getC_id() {
+		return c_id;
+	}
+	public void setC_id(Integer c_id) {
+		this.c_id = c_id;
 	}
 	public String getPro_name() {
 		return pro_name;
@@ -31,9 +38,10 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "Product [pro_id=" + pro_id + ", pro_name=" + pro_name + ", pro_link=" + pro_link + ", pro_picPath="
-				+ pro_picPath + "]";
+		return "Product [c_id=" + c_id + ", pro_id=" + pro_id + ", pro_name=" + pro_name + ", pro_link=" + pro_link
+				+ ", pro_picPath=" + pro_picPath + "]";
 	}
+	
 	
 	
 }
