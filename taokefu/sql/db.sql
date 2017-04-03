@@ -1,10 +1,3 @@
-insert into tkfuser(us_id,us_email) values (login_sql.currval,'1122@qq.com')
-org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
-
-select * from educationa where tkf_id=1061
-
-SELECT * FROM TKFUSER
-SELECT * FROM login
 --删除
 drop table admin
 drop table login
@@ -33,12 +26,17 @@ select * from company--公司
 select * from job_class--职位分类
 	select * from job--职位信息
 	
---创建序列
-create sequence login_sql INCREMENT BY 1 START WITH 1001 ;
 	
+select * from educationa where tkf_id=1061
+SELECT * FROM TKFUSER
+SELECT * FROM login
+select * from job where job_name='前端开发'
+--创建序列
+--select sequence
+create sequence login_sql INCREMENT BY 1 START WITH 1001 ;--登录序列
+create sequence edu_sql INCREMENT BY 1 START WITH 1001 ;--学历序列
 --select tkfuser_sql.nextval from dual;
 --drop sequence login_sql--用户信息序列
-
 
 ---admin
 create table admin(
@@ -46,20 +44,16 @@ create table admin(
   ad_name varchar2(10) not null,
   ad_pwd varchar2(10) not null
 );
-select * from login;
-insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');
-update LOGIN set l_type=0 where l_id=1041
+--insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');
 create table login(
   l_id number primary key ,
   l_email varchar2(20) not null UNIQUE,
   l_pwd varchar2(100) not null,
   l_type varchar2(10) check (l_type in('0','1')) not null
 );
-SELECT login_sql.currval from dual;
-SELECT login_sql.nextval from dual;
-SELECT L.l_type FROM LOGIN L WHERE L.l_type=login_sql.currval
 
-insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
+
+--insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --  个人信息user--个人介绍
 create table tkfuser(
   us_id number primary key,
@@ -72,8 +66,8 @@ create table tkfuser(
   us_phone varchar2(11) ,       --联系方式
   us_email varchar2(50) not null UNIQUE   --邮箱 
 );
-create sequence edu_sql INCREMENT BY 1 START WITH 1001 ;
-insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
+
+--insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
 --教育经验表
 create table educationa(
   edu_id number primary key,
@@ -130,7 +124,7 @@ create table company(
   tag_id number primary key,
   c_id number not null,
   tag_name varchar2(50),
-  foreign key (tag_id) references company(comp_id)
+  foreign key (c_id) references company(comp_id)
  );
 
 --公司管理团队
@@ -152,7 +146,7 @@ create table product(
   pro_link varchar2(50) not null,
   pro_picPath varchar2(50) ,
   pro_pdesc varchar2(100),
-  foreign key (pro_id) references company(comp_id)
+  foreign key (c_id) references company(comp_id)
 );
 
 
@@ -163,6 +157,7 @@ insert into job values(job_sql.nextval,c_id,job_name,job_department，job_nature
 create table job(
   job_id number primary key,
   c_id number not null,
+  job_tags varchar2(30)  not null,
   job_name varchar2(20) not null,
   job_department  varchar2(10) not null, --职位部门 
   job_nature varchar2(20) not null, --职位性质
@@ -170,6 +165,7 @@ create table job(
   job_max_salary varchar2(10) not null,
   job_ftime varchar2(10) not null ,--发布时间
   job_request varchar2(50) not null,  --职位要求
+   foreign key (c_id) references company(comp_id)
 );
 
 --职位分类表
