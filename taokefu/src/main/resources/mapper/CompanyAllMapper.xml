@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.taokefu.mapper.CompanyAllMapper">
+	<select id="findCompanyAllMapper" resultType="com.yc.taokefu.entity.CompanyAll"
+		parameterType="CompanyAll">
+		select *
+		from job j
+		join company comp
+		on j.c_id = comp.comp_id
+		join product pr
+		on pr.c_id = comp.comp_id
+		join product pro
+		on pro.c_id = pr.c_id
+		join tag t
+		on pro.c_id=t.c_id
+		where j.job_name = #{job_name}
+
+	</select>
+</mapper>

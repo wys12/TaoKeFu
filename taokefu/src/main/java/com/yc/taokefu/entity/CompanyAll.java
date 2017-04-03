@@ -34,6 +34,7 @@ public class CompanyAll {
 	
 	private Integer tag_id;
 	private String tag_name;
+	
 	public Integer getComp_id() {
 		return comp_id;
 	}

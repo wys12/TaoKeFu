@@ -26,17 +26,38 @@ select * from company--公司
 select * from job_class--职位分类
 	select * from job--职位信息
 	
+select *
+  from job j
+  join company comp
+    on j.c_id = comp.comp_id
+  join product pr
+    on pr.c_id = comp.comp_id
+  join product pro
+    on pro.c_id = pr.c_id
+ where j.job_id = 1001
+	
 	
 select * from educationa where tkf_id=1061
-SELECT * FROM TKFUSER
-SELECT * FROM login
 select * from job where job_name='前端开发'
 --创建序列
 --select sequence
+create sequence admin_sql INCREMENT BY 1 START WITH 1001 ;--管理员序列序列
 create sequence login_sql INCREMENT BY 1 START WITH 1001 ;--登录序列
-create sequence edu_sql INCREMENT BY 1 START WITH 1001 ;--学历序列
+create sequence tkfuser_sql INCREMENT BY 1 START WITH 1001 ;--个人信息序列
+	create sequence edu_sql INCREMENT BY 1 START WITH 1001 ;--学历序列
+	create sequence project_sql INCREMENT BY 1 START WITH 1001 ;--项目经验序列
+	create sequence hope_job_sql INCREMENT BY 1 START WITH 1001 ;--期望序列
+create sequence com_sql INCREMENT BY 1 START WITH 1001 ;--公司序列
+	create sequence tag_sql INCREMENT BY 1 START WITH 1001 ;--公司标签序列
+	create sequence company_team_sql INCREMENT BY 1 START WITH 1001 ;--公司团队序列
+	create sequence product_sql INCREMENT BY 1 START WITH 1001 ;--公司产品序列
+create sequence jobClass_sql INCREMENT BY 1 START WITH 1001 ;--职位类别序列
+	create sequence job_sql INCREMENT BY 1 START WITH 1001 ;--职位序列
+
+
+
 --select tkfuser_sql.nextval from dual;
---drop sequence login_sql--用户信息序列
+--drop sequence jobcalss_sql--用户信息序列
 
 ---admin
 create table admin(
@@ -57,7 +78,7 @@ create table login(
 
 
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
---  个人信息user--个人介绍
+--  个人信息user  --个人介绍
 create table tkfuser(
   us_id number primary key,
   us_name varchar2(10) ,
@@ -69,6 +90,8 @@ create table tkfuser(
   us_phone varchar2(11) ,       --联系方式
   us_email varchar2(50) not null UNIQUE   --邮箱 
 );
+
+
 
 --insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
 --教育经验表
@@ -108,7 +131,7 @@ create table hope_job(
   foreign key (tkf_id) references tkfuser(us_id)
 );
 
-
+insert into company (comp_id,comp_name,comp_email ) values(com_sql.nextval,'百度','666666.qq.com')
 --公司 company
 create table company(
   comp_id number primary key,
@@ -121,7 +144,12 @@ create table company(
   comp_city varchar2(20)
 );
 
-
+ insert into tag values(tag_sql.nextval,1001,'网络')
+ insert into tag values(tag_sql.nextval,1001,'客服')
+ insert into tag values(tag_sql.nextval,1001,'计算机')
+select * from tag
+update tag set c_id=1002 where tag_id=1002
+delete tag where tag_id=1003
 --公司标签
  create table tag(
   tag_id number primary key,
@@ -130,17 +158,21 @@ create table company(
   foreign key (c_id) references company(comp_id)
  );
 
+ 
+ insert into COMPANY_team (ct_id,c_id,ct_name,ct_tdesc) values (company_team_sql.nextval,1001,'编程开发','计算机行业的领头羊')
 --公司管理团队
 --drop table company_team
 create table company_team(
   ct_id number primary key,
   c_id number not null,
   ct_name varchar2(20) not  null,  --
-  ct_picPath varchar2(50) not null,
-  ct_job varchar2(20) not null,   
-  ct_tdesc varchar2(100) not null,  --描述
+  ct_picPath varchar2(50),
+  ct_job varchar2(20),   
+  ct_tdesc varchar2(100),  --描述
   foreign key (ct_id) references company(comp_id)
 );
+
+insert into product (pro_id,c_id,pro_name,pro_link) values (product_sql.nextval,1001,'百度搜索','https://www.baidu.com')
 --产品product
 create table product(
   pro_id number  primary key,
@@ -152,10 +184,15 @@ create table product(
   foreign key (c_id) references company(comp_id)
 );
 
+select * from company where comp_id=1001
 
-create sequence job_sql INCREMENT BY 1 START WITH 1001 ;
 select * from job where c_id=1001
-insert into job values(job_sql.nextval,c_id,job_name,job_department，job_nature，job_min_salary,job_max_salary,job_request)
+insert into job values(job_id,c_id,job_tags,job_name,job_department,job_nature,job_min_salary,job_max_salary,job_request)
+insert into job values(job_sql.nextval,1001,'编程','qq客服','网络客服','初级客服','3k','3.5k','2017-4-3','清华硕士')
+insert into job values(job_sql.nextval,1001,'编程','微信客服','网络客服','初级客服','3k','5k','2017-4-3','本科')
+
+update job set job_request='清华硕士' where job_id=1001
+select * from COMPANY
 --职位表
 create table job(
   job_id number primary key,
@@ -170,8 +207,9 @@ create table job(
   job_request varchar2(50) not null,  --职位要求
    foreign key (c_id) references company(comp_id)
 );
-
+insert into JOB_CLASS values(jobClass_sql.nextval,'编程')
 --职位分类表
+select * from JOB_CLASS
 create table job_class(
   jc_id number primary key ,
   jc_name varchar2(20) not null

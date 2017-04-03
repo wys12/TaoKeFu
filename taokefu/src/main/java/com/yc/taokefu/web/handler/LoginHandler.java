@@ -99,6 +99,7 @@ public class LoginHandler {
 	}
 
 	@RequestMapping(value="outlogins",method=RequestMethod.POST)
+	@ResponseBody
 	public String outlogins(HttpSession session){
 		session.removeAttribute(ServletUtil.LOGIN_USER);
 		LogManager.getLogger().debug("退出后==>" +session.getAttribute(ServletUtil.LOGIN_USER));

@@ -22,4 +22,6 @@
 
 	<!-- 文件上传处理器配制 -->
 	<bean id="multipartResolve" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	
 </beans>

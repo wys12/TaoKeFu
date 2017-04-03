@@ -2,6 +2,7 @@ package com.yc.taokefu.entity;
 
 public class CompanyTeam {
 	private Integer ct_id;
+	private Integer c_id;
 	private String ct_name;
 	private String ct_picPath;
 	private String ct_job;
@@ -11,6 +12,12 @@ public class CompanyTeam {
 	}
 	public void setCt_id(Integer ct_id) {
 		this.ct_id = ct_id;
+	}
+	public Integer getC_id() {
+		return c_id;
+	}
+	public void setC_id(Integer c_id) {
+		this.c_id = c_id;
 	}
 	public String getCt_name() {
 		return ct_name;
@@ -38,10 +45,10 @@ public class CompanyTeam {
 	}
 	@Override
 	public String toString() {
-		return "CompanyTeam [ct_id=" + ct_id + ", ct_name=" + ct_name + ", ct_picPath=" + ct_picPath + ", ct_job="
-				+ ct_job + ", ct_tdesc=" + ct_tdesc + "]";
+		return "CompanyTeam [ct_id=" + ct_id + ", c_id=" + c_id + ", ct_name=" + ct_name + ", ct_picPath=" + ct_picPath
+				+ ", ct_job=" + ct_job + ", ct_tdesc=" + ct_tdesc + "]";
 	}
-	
+
 	
 	
 }
