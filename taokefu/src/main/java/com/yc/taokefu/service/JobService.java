@@ -5,7 +5,7 @@ import java.util.List;
 import com.yc.taokefu.entity.Job;
 
 public interface JobService {
-	List<Job> jobFind(Job job);
+	List<Job> jobFind(String job);
 	
 	Integer jobAdd(Job job);
 }

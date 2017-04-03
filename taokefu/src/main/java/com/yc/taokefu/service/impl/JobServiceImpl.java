@@ -20,8 +20,10 @@ public class JobServiceImpl implements JobService{
 		return jobMapper.jobAdd(job);
 	}
 	@Override
-	public List<Job> jobFind(Job job) {
-		LogManager.getLogger().debug("educationa === >"+job);
+	public List<Job> jobFind(String jobName) {
+		Job job = new Job();
+		job.setJob_name(jobName);
+		LogManager.getLogger().debug("job === >"+job);
 		return jobMapper.jobFind(job);
 	}
 }

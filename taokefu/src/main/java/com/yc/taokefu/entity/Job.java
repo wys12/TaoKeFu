@@ -19,6 +19,13 @@ public class Job {
 	public String getJob_name() {
 		return job_name;
 	}
+	
+	public Integer getC_id() {
+		return c_id;
+	}
+	public void setC_id(Integer c_id) {
+		this.c_id = c_id;
+	}
 	public void setJob_name(String job_name) {
 		this.job_name = job_name;
 	}
@@ -58,12 +65,12 @@ public class Job {
 	public void setJob_request(String job_request) {
 		this.job_request = job_request;
 	}
-	public Integer getC_id() {
-		return c_id;
-	}
-	public void setC_id(Integer c_id) {
-		this.c_id = c_id;
-	}
 
-	
+	@Override
+	public String toString() {
+		return "Job [job_id=" + job_id + ", c_id=" + c_id + ", job_name=" + job_name + ", job_department="
+				+ job_department + ", job_nature=" + job_nature + ", job_min_salary=" + job_min_salary
+				+ ", job_max_salary=" + job_max_salary + ", job_ftime=" + job_ftime + ", job_request=" + job_request
+				+ "]";
+	}
 }
