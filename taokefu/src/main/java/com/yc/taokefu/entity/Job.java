@@ -2,6 +2,7 @@ package com.yc.taokefu.entity;
 
 public class Job {
 	private Integer job_id;
+	private Integer c_id;
 	private String job_name;
 	private String job_department; //职位部门 
 	private String job_nature;   //职位性质
@@ -57,12 +58,12 @@ public class Job {
 	public void setJob_request(String job_request) {
 		this.job_request = job_request;
 	}
-	@Override
-	public String toString() {
-		return "Job [job_id=" + job_id + ", job_name=" + job_name + ", job_department=" + job_department
-				+ ", job_nature=" + job_nature + ", job_min_salary=" + job_min_salary + ", job_max_salary="
-				+ job_max_salary + ", job_ftime=" + job_ftime + ", job_request=" + job_request + "]";
+	public Integer getC_id() {
+		return c_id;
 	}
-	
+	public void setC_id(Integer c_id) {
+		this.c_id = c_id;
+	}
+
 	
 }
