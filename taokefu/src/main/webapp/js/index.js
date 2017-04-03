@@ -17,6 +17,7 @@ $("#searchType li").click(function(){
 	var b=$(this).attr("data-searchtype");
 	1==b?($("#search_input").attr("placeholder","请输入职位名称，如：产品经理"),$(".placeholder").val("请输入职位名称，如：产品经理")):($("#search_input").attr("placeholder","请输入公司名称，如：拉勾"),$(".placeholder").val("请输入公司名称，如：拉勾")),$("#spcInput").val(b),$(this).children("li").not(".type_selected").hide(),$(this).siblings(".searchtype_arrow").removeClass("transform")});
 
+
 $("#searchType").hover(
 		function(){
 			$(this).children("li").show(),

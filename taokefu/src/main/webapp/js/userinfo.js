@@ -14,4 +14,5 @@ function logins(){
 }
 $(".logout").click(function(){
 	$.post("users/outlogins");
+	
 	});

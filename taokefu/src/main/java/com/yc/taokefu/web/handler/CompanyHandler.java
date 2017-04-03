@@ -13,6 +13,7 @@ import com.yc.taokefu.service.CompanyService;
 @Controller("companyHandler")
 @RequestMapping("company")
 public class CompanyHandler {
+	
 	@Autowired
 	private CompanyService companyService;
 	

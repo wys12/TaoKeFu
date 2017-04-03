@@ -6,4 +6,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="addUser" resultType="java.util.List"  parameterType="User" >
 		insert into tkfuser (us_id,us_email) values(${us_id},'${us_email}')
 	</select>
+	
+	
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<collection property="rows" column="{pageSize=pageSize,currPage=currPage}" ofType="User" select="getUser"/>
+	</resultMap>
+	
+	<!-- 213 -->
+	<select id="findPartUsers" parameterType="PaginationBean" resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) / ${pageSize}) totalPage,${pageSize} pageSize,${currPage} currPage from tkfuser
+	</select>
+	
+	<select id="getUser" resultType="User">
+		select * from (select n.*,rownum rn from 
+		(select * from tkfuser order by 1) n where ${pageSize}*${currPage} >= rownum)
+		where rn > ${pageSize}*(${currPage}-1)
+	</select>
+	
+	
+	
 </mapper>

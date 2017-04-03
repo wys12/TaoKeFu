@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.User;
 import com.yc.taokefu.mapper.LoginMapper;
 import com.yc.taokefu.mapper.UserMapper;
@@ -27,6 +28,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> addUsers(Integer us_id, String us_email) {
 		return userMapper.addUser(us_id,us_email);
+	}
+	//后台用户信息
+	@Override
+	public PaginationBean<User> listPartUsers(String page, String rows) {
+		PaginationBean<User> pb=new PaginationBean<>();
+		if(page != null){
+			pb.setCurrPage(Integer.parseInt(page));
+		}
+		if(rows != null){
+			pb.setPageSize(Integer.parseInt(rows));
+		}
+		
+		return userMapper.findPartUsers(pb);
 	}
 	
 

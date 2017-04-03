@@ -17,8 +17,8 @@
 	<div id="loginDiv">
 		<form action="admin/login" id="loginForm">
 			<p><label>${errorMsg }</label></p><c:remove var="errorMsg" scope="session"/>
-			<p><input name="uname" placeholder="请输入用户名" required="required" id="uname"></p>
-			<p><input type="password" name="upwd" placeholder="请输入密码" required="required" id="upwd"></p>
+			<p><input name="ad_name" placeholder="请输入用户名" required="required" id="uname"></p>
+			<p><input type="password" name="ad_pwd" placeholder="请输入密码" required="required" id="upwd"></p>
 			<p><img src="vcode.jpg" title="看不清,换一张"/>&nbsp;<input name="vcode" placeholder="请输入验证码"  id="vcode" required="required"></p>
 			<p><input type="submit" value="登陆" id="loginBtn"></p>
 		</form>

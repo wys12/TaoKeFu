@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.Job;
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.service.JobService;
 /**
  * 工作职位
@@ -40,5 +40,14 @@ public class JobHandler {
 	public List<Job> findCompany(Job job) {
 		return null;
 	}
-
+		
+	//查询所有职位
+	@RequestMapping("list")
+	@ResponseBody //响应Json数据
+	public PaginationBean<Job> list(String rows,String page){
+		System.out.println("rows==>"+rows +",page==>"+page);
+		return jobService.listPartUsers(page,rows);
+	}
+	
 }
+

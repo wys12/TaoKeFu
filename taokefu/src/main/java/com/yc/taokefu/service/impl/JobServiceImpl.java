@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.taokefu.entity.Job;
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.mapper.JobMapper;
 import com.yc.taokefu.service.JobService;
 
@@ -25,5 +26,18 @@ public class JobServiceImpl implements JobService{
 		job.setJob_name(jobName);
 		LogManager.getLogger().debug("job === >"+job);
 		return jobMapper.jobFind(job);
+	}
+	@Override
+	public PaginationBean<Job> listPartUsers(String page, String rows) {
+		PaginationBean<Job> pb=new PaginationBean<>();
+		if(page != null){
+			pb.setCurrPage(Integer.parseInt(page));
+		}
+		if(rows != null){
+			pb.setPageSize(Integer.parseInt(rows));
+		}
+		
+		
+		return jobMapper.listJob(pb);
 	}
 }

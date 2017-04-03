@@ -44,9 +44,12 @@ create table admin(
   ad_name varchar2(10) not null,
   ad_pwd varchar2(10) not null
 );
-select * from admin;
+insert  into admin values(1,'aaa','a')
+
+select * from login;
 insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');
 update LOGIN set l_type=0 where l_id=1041
+
 --insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');
 create table login(
   l_id number primary key ,
@@ -56,8 +59,10 @@ create table login(
 );
 
 
---insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --  个人信息user--个人介绍
+create sequence  tkfuser_sql INCREMENT BY 1 START WITH 1001 ;
+ 
+select sequence  tkfuser_sql.nextval
 create table tkfuser(
   us_id number primary key,
   us_name varchar2(10) ,
@@ -69,6 +74,11 @@ create table tkfuser(
   us_phone varchar2(11) ,       --联系方式
   us_email varchar2(50) not null UNIQUE   --邮箱 
 );
+insert into TKFUSER (us_id,us_name,us_picpath,us_intro,us_sex,us_educationa,us_work_year,us_phone,us_email)
+values (tkfuser_sql.nextval,'测试','','这是一个测试','男','本科','两年','1234567890','111@qq.com')
+
+select * from TKFUSER;
+
 
 --insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
 --教育经验表
@@ -120,7 +130,7 @@ create table company(
   comp_link varchar2(255), 
   comp_city varchar2(20)
 );
-
+insert into company (comp_id,comp_email) values (1002,'qaz@163.com')
 
 --公司标签
  create table tag(
@@ -141,6 +151,7 @@ create table company_team(
   ct_tdesc varchar2(100) not null,  --描述
   foreign key (ct_id) references company(comp_id)
 );
+
 --产品product
 create table product(
   pro_id number  primary key,
@@ -170,7 +181,7 @@ create table job(
   job_request varchar2(50) not null,  --职位要求
    foreign key (c_id) references company(comp_id)
 );
-
+insert into job values ( 1001, 1002,'前端开发','名称','测试','全职','3k','5k','2017-4-1','这是要求')
 --职位分类表
 create table job_class(
   jc_id number primary key ,
