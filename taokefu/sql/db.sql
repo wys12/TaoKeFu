@@ -65,7 +65,7 @@ create table admin(
   ad_name varchar2(10) not null,
   ad_pwd varchar2(10) not null
 );
-insert into admin values(1,'aaa','a')
+insert into admin values(1,'aaa','a');
 
 select * from login;
 insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');

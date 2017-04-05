@@ -1,7 +1,7 @@
 loadInfo();
 var str="";
 function loadInfo(){
-	setTimeout("outLoadInfo()", 200);
+	setTimeout("outLoadInfo()", 300);
 }
 function outLoadInfo(){
 	$.post("job/findJobs",function(data){
