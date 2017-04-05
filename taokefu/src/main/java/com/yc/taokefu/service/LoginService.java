@@ -10,5 +10,7 @@ public interface LoginService {
 
 	Login findEmail(Login logins);
 
+	boolean updatePwd(Login logins );
+
 
 }

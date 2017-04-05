@@ -6,11 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.taokefu.entity.Login;
-import com.yc.taokefu.entity.User;
 import com.yc.taokefu.mapper.LoginMapper;
-import com.yc.taokefu.mapper.UserMapper;
 import com.yc.taokefu.service.LoginService;
-import com.yc.taokefu.service.UserService;
 
 
 //@Component   一般bean
@@ -41,6 +38,14 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Login findEmail(Login logins) {
 		return loginMapper.findEmail(logins);
+	}
+
+	
+	//修改密码
+	@Override
+	public boolean updatePwd(Login logins) {
+		
+		return loginMapper.updatePwd(logins)>0;
 	}
 
 	

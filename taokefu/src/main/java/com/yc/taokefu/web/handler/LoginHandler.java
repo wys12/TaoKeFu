@@ -20,6 +20,7 @@ import com.yc.taokefu.entity.User;
 import com.yc.taokefu.service.CompanyService;
 import com.yc.taokefu.service.LoginService;
 import com.yc.taokefu.service.UserService;
+import com.yc.taokefu.util.Encrypt;
 import com.yc.taokefu.util.ServletUtil;
 
 @Controller("loginHandler")
@@ -95,8 +96,8 @@ public class LoginHandler {
 			return object;
 		}
 		return null;
-
 	}
+	
 
 	@RequestMapping(value="outlogins",method=RequestMethod.POST)
 	@ResponseBody
@@ -105,4 +106,33 @@ public class LoginHandler {
 		LogManager.getLogger().debug("退出后==>" +session.getAttribute(ServletUtil.LOGIN_USER));
 		return "/index.html";
 	}
+	
+	
+	//密码修改
+	@ResponseBody
+	@RequestMapping("updatePwd")
+	public String updatePwd(Login login, HttpSession session,HttpServletRequest request){
+		Login logins = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
+		String oldpassword=request.getParameter("oldpassword");
+		String newpassword=request.getParameter("newpassword");
+		String comfirmpassword=request.getParameter("comfirmpassword");
+		String email=logins.getL_email();
+		oldpassword=Encrypt.md5AndSha(oldpassword);
+		LogManager.getLogger().debug("进行密码修改！！！logins==>" +login +oldpassword);
+		if(logins.getL_pwd().equals(oldpassword)){
+			LogManager.getLogger().debug("进行密码修改！！！logins==>" +newpassword +comfirmpassword);
+			if(newpassword.equals(comfirmpassword)){
+				login.setL_pwd(comfirmpassword);
+				login.setL_email(email);
+				loginService.updatePwd(login);
+				LogManager.getLogger().debug("修改成功");
+				return "login.html";
+			}
+			LogManager.getLogger().debug("两次输入密码不正确");
+		}
+		return "updatePwd.html";
+
+	}
+	
+	
 }

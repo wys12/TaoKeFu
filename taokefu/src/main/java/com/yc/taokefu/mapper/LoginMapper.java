@@ -1,7 +1,6 @@
 package com.yc.taokefu.mapper;
 
 import com.yc.taokefu.entity.Login;
-import com.yc.taokefu.entity.User;
 
 public interface LoginMapper {
 	//用户登录
@@ -10,4 +9,6 @@ public interface LoginMapper {
 	int addUser(Login logins);
 	//防止重注入
 	Login findEmail(Login logins);
+	//用户修改
+	int updatePwd(Login logins);
 }

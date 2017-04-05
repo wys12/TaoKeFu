@@ -18,16 +18,23 @@ public class EncryptAspect {
 	@Before("execution(* com.yc.taokefu.service.impl.LoginServiceImpl.login(..))")
 	public void beforeLoginMethod(JoinPoint jpoint){
 		Login user=(Login) jpoint.getArgs()[0];
-		LogManager.getLogger().debug("对密码加密前===>"+user);
+		LogManager.getLogger().debug("对登陆密码加密前===>"+user);
 		user.setL_pwd(Encrypt.md5AndSha(user.getL_pwd()));
-		LogManager.getLogger().debug("对密码加密后===>"+user);
+		LogManager.getLogger().debug("对登陆密码加密后===>"+user);
 	}
 	@Before("execution(* com.yc.taokefu.service.impl.LoginServiceImpl.addUser(..))")
 	public void beforeRegisterMethod(JoinPoint jpoint){
 		Login user=(Login) jpoint.getArgs()[0];
-		LogManager.getLogger().debug("对密码加密前===>"+user);
+		LogManager.getLogger().debug("对添加用户密码加密前===>"+user);
 		user.setL_pwd(Encrypt.md5AndSha(user.getL_pwd()));
-		LogManager.getLogger().debug("对密码加密后===>"+user);
+		LogManager.getLogger().debug("对添加用户密密码加密后===>"+user);
+	}
+	@Before("execution(* com.yc.taokefu.service.impl.LoginServiceImpl.updatePwd(..))")
+	public void beforeUpdatePwdMethod(JoinPoint jpoint){
+		Login user=(Login) jpoint.getArgs()[0];
+		LogManager.getLogger().debug("对修改密码加密前===>"+user);
+		user.setL_pwd(Encrypt.md5AndSha(user.getL_pwd()));
+		LogManager.getLogger().debug("对修改密码加密后===>"+user);
 	}
 
 }

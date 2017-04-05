@@ -9,6 +9,7 @@ function logins(){
 			$(".loginTop").hide();
 			$(".collapsible_menu").show();
 			$("#usname").text(data.l_email);
+			
 		}
 	});
 }

@@ -18,5 +18,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into login (l_id,l_pwd,l_email,l_type) values
 		(login_sql.nextval,#{l_pwd},#{l_email},#{l_type})
 	</insert>
-
+	<!--  修改密码  -->
+	<update id="updatePwd" parameterType="Login" >
+		 update login set l_pwd= #{l_pwd} where l_email= #{l_email}
+	</update>
+	
 </mapper>

@@ -11,4 +11,6 @@ public interface UserService {
 
 	//后台用户信息
 	PaginationBean<User> listPartUsers(String page, String rows);
+	
+	
 }

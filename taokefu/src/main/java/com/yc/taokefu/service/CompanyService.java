@@ -8,4 +8,5 @@ public interface CompanyService {
 	//公司邮箱绑定
 	List<Company> addCompany(Integer l_id, String l_email);
 
+
 }

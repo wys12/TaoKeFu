@@ -18,19 +18,21 @@ $('#jobInfo').datagrid({
 	          {field : 'opr',title : '操作',width : 100,align : 'center',
 	        	  formatter: function(value,row,index){
 	        		  var oprStr = '<a class="detailBtn" href="javascript:void(0)" onclick="openDatail('+ index +')">详情</a>&nbsp;&nbsp;' + 
-	        		  '<a class="modifyBtn" href="javascript:void(0)" onclick="openUpdate(' + index + ')"></a>' +
+	        		  '<a class="modifyBtn" href="javascript:void(0)" onclick="openUpdate(' + index + ')">修改</a>' +
 	        		  '<script>$(".detailBtn").linkbutton({iconCls: "icon-search"});' +
 	        		  '$(".modifyBtn").linkbutton({iconCls: "icon-edit"});</script>'; 
 	        		  return oprStr;
-	        	  }}
-	        	  ]] 
+	        	  }
+	          }]] 
 });
+
+$("#jobDetail").dialog("close");
 
 $("#jobDetail").dialog({
 	title:"职位预览",
-	left:10,
 	closed:true,
 });
+
 
 function  openDatail(index){
 	$("#jobDetail").dialog("open");
@@ -40,4 +42,11 @@ function  openDatail(index){
 	$("#job_ftime").val(row.job_ftime);
 	$("#job_request").val(row.job_request);
 }
+$(".closeBtn").linkbutton({
+	iconCls: "icon-cancel",
+	onClick: function(){
+		$("#modifyDiv").dialog("close");
+	} 	
+});
+
 

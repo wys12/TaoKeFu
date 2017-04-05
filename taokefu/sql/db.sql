@@ -72,6 +72,7 @@ insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f
 update LOGIN set l_type=0 where l_id=1041
 
 --insert into login values (login_sql.nextval,'123@qq.com','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1');
+
 create table login(
   l_id number primary key ,
   l_email varchar2(20) not null UNIQUE,
@@ -153,7 +154,6 @@ create table company(
 select * from tag
 update tag set c_id=1002 where tag_id=1002
 delete tag where tag_id=1003
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 --公司标签
  create table tag(
   tag_id number primary key,
