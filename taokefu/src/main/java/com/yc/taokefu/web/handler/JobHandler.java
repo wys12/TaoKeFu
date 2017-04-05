@@ -13,23 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
-=======
-import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
-import com.yc.taokefu.entity.CompanyTeam;
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 import com.yc.taokefu.entity.Job;
-<<<<<<< HEAD
 import com.yc.taokefu.entity.PaginationBean;
-=======
-import com.yc.taokefu.entity.Product;
 import com.yc.taokefu.service.CompanyAllService;
-import com.yc.taokefu.service.CompanyService;
-import com.yc.taokefu.service.CompanyTeamService;
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 import com.yc.taokefu.service.JobService;
-import com.yc.taokefu.service.TagService;
 /**
  * 工作职位
  * @author wys
