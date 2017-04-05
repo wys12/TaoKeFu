@@ -12,6 +12,7 @@ function logins(){
 		}
 	});
 }
+
 $(".logout").click(function(){
 	$.post("users/outlogins",function(data){
 		//alert("outlogins");

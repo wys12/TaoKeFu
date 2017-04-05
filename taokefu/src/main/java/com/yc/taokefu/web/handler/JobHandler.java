@@ -1,5 +1,6 @@
 package com.yc.taokefu.web.handler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,37 +38,48 @@ public class JobHandler {
 	@Autowired
 	private JobService jobService;
 
-	private Map<String,String> search_Info = new HashMap<String,String>();
-	private List<CompanyAll> jobList = null;
+	private List<CompanyAll> jobList = new ArrayList<CompanyAll>();
 	private String type = null;
-	private String input = null;
+	private Integer types = null;
 
 
 	//查询职位信息
 	@RequestMapping(value="sendInfo",method=RequestMethod.POST)
-	public void find(HttpServletRequest request) {
+	//@ResponseBody
+	public void find(CompanyAll companyAll,HttpServletRequest request) {
 		type=request.getParameter("searchType");
-		input=request.getParameter("search_input");
+		if(type!=null){
+			types=Integer.valueOf(type);
+		}
+		/*
+		 * input=request.getParameter("search_input");
 		search_Info.put("type", request.getParameter("searchType"));
-		search_Info.put("input", request.getParameter("search_input"));
-		LogManager.getLogger().debug("职位信息查询条件   ==>input "+search_Info.get("input")+" type "+type);
-		//return "redirect:/list.html";action="list.html"
+		search_Info.put("input", request.getParameter("search_input"));*/
+		//LogManager.getLogger().debug("job_name "+companyAll.getJob_name());
+		//LogManager.getLogger().debug("职位信息查询条件   ==>input "+companyAll.getJob_name()+" types "+types);
+		if(types.equals(0)){
+			jobList = companyAllServics.findJobName(companyAll.getJob_name());
+			LogManager.getLogger().debug("返回界面职位信息   ==> "+jobList);
+		}else if(types.equals(1)){
+			jobList = companyAllServics.findCompenyName(companyAll.getJob_name());
+			LogManager.getLogger().debug("返回界面公司信息   ==> "+jobList);
+		}else{
+			jobList = null;
+		}
+		//return "redirect:/list.html";
 	}
 	//分条件查询查询职位信息
 	@RequestMapping(value="findJobs",method=RequestMethod.POST)
 	@ResponseBody
 	public List<CompanyAll> findCompany() {
-		if(search_Info.get("type")=="0"){
-			jobList = companyAllServics.findJobName(search_Info.get("input"));
-			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
-			return jobList;
-		}else if(search_Info.get("type")=="1"){
-			jobList = companyAllServics.findCompenyName(search_Info.get("input"));
+		if(jobList!=null){
 			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
 			return jobList;
 		}else{
+			
 			return null;
 		}
+		
 	}
 
 

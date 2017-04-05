@@ -1,21 +1,23 @@
 loadInfo();
+var str="";
 function loadInfo(){
-	var str="";
+	setTimeout("outLoadInfo()", 200);
+}
+function outLoadInfo(){
 	$.post("job/findJobs",function(data){
 		shouInfo(data);
 		$("#jobInfo").html(str);
 	},"json");
 }
-
 $("#search_button").click(function(){
-	var job_name = $('#search_input').val();
-	$.post("job/list",{job_name:job_name},function(data){
-		shouInfo(data);
-		$("#jobInfo").html(str);
-	},"json");
+	var search_input = $('#search_input').val();
+	$.post("job/sendInfo",{job_name:search_input},"json");
+	loadInfo();
 });
 
 function shouInfo(data){
+	//alert(JSON.stringify(data));
+	str="";
 	for(var i=0;i<data.length;i++){
 		str+='<li class="clearfix"><div class="hot_pos_l"><div class="mb10"><a href="h/jobs/114177.html" title="'+data[i].job_name+'" target="_blank">'+data[i].job_name+'</a>&nbsp; <span class="c9">[北京]</span></div>'
 		+'<span><em class="c7">月薪：</em>'+data[i].job_min_salary+'-'+data[i].job_max_salary+'</span> <span><em class="c7">经验：</em> 3-5年</span> <span><em class="c7">最低学历：'
