@@ -17,10 +17,16 @@ public class JobServiceImpl implements JobService{
 	@Autowired
 	private JobMapper jobMapper;
 	
+	/**
+	 * wys
+	 */
 	@Override
 	public Integer jobAdd(Job job) {
 		return jobMapper.jobAdd(job);
 	}
+	/**
+	 * wys
+	 */
 	@Override
 	public List<CompanyAll> jobFind(String jobName) {
 		CompanyAll companyAll = new CompanyAll();
@@ -28,6 +34,11 @@ public class JobServiceImpl implements JobService{
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.jobFind(companyAll);
 	}
+	
+	
+	/**
+	 * fv
+	 */
 	@Override
 	public PaginationBean<Job> listPartUsers(String page, String rows) {
 		PaginationBean<Job> pb=new PaginationBean<>();
