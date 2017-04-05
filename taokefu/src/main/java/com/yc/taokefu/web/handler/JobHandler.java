@@ -51,8 +51,7 @@ public class JobHandler {
 		if(type!=null){
 			types=Integer.valueOf(type);
 		}
-		/*
-		 * input=request.getParameter("search_input");
+		/* input=request.getParameter("search_input");
 		search_Info.put("type", request.getParameter("searchType"));
 		search_Info.put("input", request.getParameter("search_input"));*/
 		//LogManager.getLogger().debug("job_name "+companyAll.getJob_name());

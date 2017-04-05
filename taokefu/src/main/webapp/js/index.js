@@ -2,8 +2,7 @@ $("#search_button").click(function(){
 	var searchType = $('#searchType li').val(); //查询类型 0 1
 	var search_input = $('#search_input').val();//输入查询
 	$.post("job/sendInfo",{searchType:searchType,job_name:search_input},"json");
-	//$("#searchForm").submit();
-	setTimeout("submit()", 800);
+	setTimeout("submit()", 900);
 });
 function submit(){
 	$("#searchForm").submit()
