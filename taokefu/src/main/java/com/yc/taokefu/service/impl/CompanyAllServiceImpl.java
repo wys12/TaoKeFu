@@ -15,12 +15,31 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	@Autowired //相当配置中的 <property name="userMapper" ref="userMapper"/>
 	private CompanyAllMapper companyAllMapper;
 	//公司邮箱绑定
-
+	
+	
+	/**
+	 * wys
+	 * @param string
+	 * @return
+	 */
 	@Override
 	public List<CompanyAll> findCompenyName(String string) {
 		CompanyAll companyAll = new CompanyAll();
 		companyAll.setJob_name(string);
 		return companyAllMapper.findCompanyAllMapper(companyAll);
+		
+	}
+
+	/**
+	 * wys
+	 * @param string
+	 * @return
+	 */
+	@Override
+	public List<CompanyAll> findJobName(String string) {
+		CompanyAll companyAll = new CompanyAll();
+		companyAll.setJob_name(string);
+		return companyAllMapper.findJobAllMapper(companyAll);
 	}
 	
 

@@ -7,5 +7,7 @@ import com.yc.taokefu.entity.CompanyAll;
 public interface CompanyAllMapper {
 	
 	List<CompanyAll> findCompanyAllMapper(CompanyAll companyAll);
+
+	List<CompanyAll> findJobAllMapper(CompanyAll companyAll);
 	
 }

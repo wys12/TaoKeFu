@@ -9,13 +9,14 @@ function logins(){
 			$(".loginTop").hide();
 			$(".collapsible_menu").show();
 			$("#usname").text(data.l_email);
-			
 		}
 	});
 }
-$(".logout").click(function(){
 
+$(".logout").click(function(){
 	$.post("users/outlogins",function(data){
-		alert("outlogins");
+		//alert("outlogins");
+		$(".collapsible_menu").hide();
+		$(".loginTop").show();
 	});
 });
