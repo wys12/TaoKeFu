@@ -1,4 +1,4 @@
-<script src="js/toudi.js" type="text/javascript"></script>jQuery.noConflict(true);
+jQuery.noConflict(true);
 $(function(){
 	$('.popup .filePrew').hover(function(){
 		$(this).parent('.btn_addPic').addClass('btn_addPic_hover');
