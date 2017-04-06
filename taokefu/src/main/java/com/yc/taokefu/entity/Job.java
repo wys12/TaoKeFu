@@ -18,6 +18,13 @@ public class Job {
 		this.job_id = job_id;
 	}
 	
+	
+	public String getJob_tags() {
+		return job_tags;
+	}
+	public void setJob_tags(String job_tags) {
+		this.job_tags = job_tags;
+	}
 	public String getJob_name() {
 		return job_name;
 	}
@@ -69,10 +76,11 @@ public class Job {
 	}
 	@Override
 	public String toString() {
-		return "Job [job_id=" + job_id + ", c_id=" + c_id  + ", job_name=" + job_name
+		return "Job [job_id=" + job_id + ", c_id=" + c_id + ", job_tags=" + job_tags + ", job_name=" + job_name
 				+ ", job_department=" + job_department + ", job_nature=" + job_nature + ", job_min_salary="
 				+ job_min_salary + ", job_max_salary=" + job_max_salary + ", job_ftime=" + job_ftime + ", job_request="
 				+ job_request + "]";
 	}
+	
 
 }

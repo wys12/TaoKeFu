@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
@@ -30,10 +31,11 @@ public class JobHandler {
 	private JobService jobService;
 
 	private List<CompanyAll> jobList = new ArrayList<CompanyAll>();
+	private List<CompanyAll> jobLists = new ArrayList<CompanyAll>();
 	private Integer type =0;
 	private Integer currPage = 1;//当前页
 	private Integer pageSize = 8;//每页显示的数据条数
-	
+	private Integer job_id;
 	
 	/**
 	 * index查询职位信息
@@ -96,7 +98,24 @@ public class JobHandler {
 			return null;
 		}
 	}
+	/**
+	 * 点击投递简历显示公司详情
+	 * @param job_id
+	 */
+	@RequestMapping(value="sendCompany",method=RequestMethod.POST)
+	public void getCompany(String job_id) {
+		this.job_id=Integer.valueOf(job_id);
+		LogManager.getLogger().debug("公司id === " +job_id);
+	}
 	
+	@RequestMapping(value="findCompany")
+	@ResponseBody
+	public List<CompanyAll> findCompany(CompanyAll job) {
+		job.setJob_id(this.job_id);
+		jobLists = jobService.findCompany(job);
+		LogManager.getLogger().debug("查找公司   === " +job);
+		return jobLists;
+	}
 	
 	//查询所有职位
 	@RequestMapping("list")

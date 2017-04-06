@@ -16,11 +16,18 @@ public class CompanyHandler {
 	
 	@Autowired
 	private CompanyService companyService;
+	private String comp_id;
+	@RequestMapping(value="sendCompany",method=RequestMethod.POST)
+	public void getCompany(String comp_id) {
+		this.comp_id=comp_id;
+		LogManager.getLogger().debug("公司id === " +comp_id);
+	}
 	
-	@RequestMapping(value="findCompany",method=RequestMethod.POST)
+	/*@RequestMapping(value="findCompany")
 	@ResponseBody
 	public Company findCompany(Company company) {
+		companyService.findCompany(company);
 		LogManager.getLogger().debug("查找公司   === " +company);
-		return company;
-	}
+		return null;
+	}*/
 }
