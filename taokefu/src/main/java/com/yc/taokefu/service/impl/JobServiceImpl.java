@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
@@ -49,5 +50,10 @@ public class JobServiceImpl implements JobService{
 			pb.setPageSize(Integer.parseInt(rows));
 		}
 		return jobMapper.listJob(pb);
+	}
+	@Override
+	public List<CompanyAll> findCompany(CompanyAll companyAll) {
+		LogManager.getLogger().debug("companyAll === >"+companyAll);
+		return jobMapper.findCompany(companyAll);
 	}
 }

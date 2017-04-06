@@ -6,12 +6,12 @@ drop table tkfuser--用户基本信息
 	drop table project--项目经验
 	drop table hope_job	--工作期望
 drop table company--公司基本信息
+select * from job where job_id=1001
 	drop table tag--公司标签
 	drop table company_team--公司团队
 	drop table product--公司产品（项目）
 drop table job_class --职位类别
 	drop table job--职位信息
-	
 --查询
 select * from admin--管理员
 select * from login
@@ -25,6 +25,10 @@ select * from company--公司
 	select * from product--公司产品（项目）
 select * from job_class--职位分类
 	select * from job--职位信息
+	
+	
+	
+	select * from job j join company comp on j.c_id = comp.comp_id join product pr on pr.c_id = comp.comp_id join product pro on pro.c_id = pr.c_id join tag t on pro.c_id=t.c_id where j.job_id=1001
 	
 select *
   from job j

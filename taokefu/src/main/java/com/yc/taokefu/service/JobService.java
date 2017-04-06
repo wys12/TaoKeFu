@@ -12,4 +12,6 @@ public interface JobService {
 	Integer jobAdd(Job job);
 
 	PaginationBean<Job> listPartUsers(String page, String rows);
+
+	List<CompanyAll> findCompany(CompanyAll companyAll);
 }
