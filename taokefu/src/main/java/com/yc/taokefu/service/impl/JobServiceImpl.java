@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
@@ -17,7 +16,7 @@ import com.yc.taokefu.service.JobService;
 public class JobServiceImpl implements JobService{
 	@Autowired
 	private JobMapper jobMapper;
-	
+
 	/**
 	 * wys
 	 */
@@ -35,10 +34,9 @@ public class JobServiceImpl implements JobService{
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.jobFind(companyAll);
 	}
-	
-	
+
 	/**
-	 * fv
+	 * 职位数据分页
 	 */
 	@Override
 	public PaginationBean<Job> listPartUsers(String page, String rows) {
@@ -50,6 +48,25 @@ public class JobServiceImpl implements JobService{
 			pb.setPageSize(Integer.parseInt(rows));
 		}
 		return jobMapper.listJob(pb);
+	}
+
+	/**
+	 * 根据id删除job
+	 */
+	@Override
+	public Boolean deleteJob(Integer id) {
+
+		return jobMapper.deleteJob(id)>0;
+	}
+	/**
+	 * 根据job_id修改
+	 * @param job
+	 * @return
+	 */
+	@Override
+	public Boolean editJob(Job job) {
+
+		return jobMapper.editJob(job)>0;
 	}
 	@Override
 	public List<CompanyAll> findCompany(CompanyAll companyAll) {

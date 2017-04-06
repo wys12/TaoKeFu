@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -121,10 +122,35 @@ public class JobHandler {
 	@RequestMapping("list")
 	@ResponseBody //响应Json数据
 	public PaginationBean<Job> list(String rows,String page){
-		System.out.println("rows==>"+rows +",page==>"+page);
+		LogManager.getLogger().debug("职位  --> rows==>"+rows +",page==>"+page);
 		return jobService.listPartUsers(page,rows);
+	}
+	/**
+	 * 根据ids[job_id]删除
+	 */
+	@RequestMapping("deleteById")
+	public Boolean doDelete(HttpServletRequest request){
+		String ids = request.getParameter("ids");
+		String[] id = ids.split(",");
+			for (int i = 0; i < id.length;i++) {
+				LogManager.getLogger().debug("进行删除"+id[i]);
+				 return jobService.deleteJob(Integer.parseInt(id[i]));
+				
+				
+			}
+			 return true;
+	} 
+	/**
+	 * 根据job_id修改
+	 */
+	@RequestMapping("edit")
+	@ResponseBody 
+	public Boolean doEdit( Job job){
+		LogManager.getLogger().debug("进行修改"+job.getJob_id()+job.getJob_request());
+		return jobService.editJob(job);
 	}
 
 
 }
+
 

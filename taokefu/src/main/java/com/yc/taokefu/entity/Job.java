@@ -1,5 +1,7 @@
 package com.yc.taokefu.entity;
 
+import java.util.List;
+
 public class Job {
 	private Integer job_id;
 	private Integer c_id;
@@ -9,6 +11,7 @@ public class Job {
 	private String job_nature;   //职位性质
 	private String job_min_salary;
 	private String job_max_salary;
+	private String job_attract;//职位诱惑
 	private String job_ftime;
 	private String job_request;
 	public Integer getJob_id() {
@@ -74,12 +77,18 @@ public class Job {
 	public void setJob_request(String job_request) {
 		this.job_request = job_request;
 	}
+	public String getJob_attract() {
+		return job_attract;
+	}
+	public void setJob_attract(String job_attract) {
+		this.job_attract = job_attract;
+	}
 	@Override
 	public String toString() {
 		return "Job [job_id=" + job_id + ", c_id=" + c_id + ", job_tags=" + job_tags + ", job_name=" + job_name
 				+ ", job_department=" + job_department + ", job_nature=" + job_nature + ", job_min_salary="
-				+ job_min_salary + ", job_max_salary=" + job_max_salary + ", job_ftime=" + job_ftime + ", job_request="
-				+ job_request + "]";
+				+ job_min_salary + ", job_max_salary=" + job_max_salary + ", job_attract=" + job_attract
+				+ ", job_ftime=" + job_ftime + ", job_request=" + job_request + "]";
 	}
 	
 

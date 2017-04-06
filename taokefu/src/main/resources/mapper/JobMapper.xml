@@ -7,7 +7,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from job where job_name=#{job_name}
 	</select>
 	
-	
 	<select id="findCompany"  parameterType="CompanyAll" resultType="CompanyAll">
 		select *
 		from job j
@@ -28,15 +27,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows" column="{pageSize=pageSize,currPage=currPage}" ofType="Job" select="getJOb"/>
 	</resultMap>
-	
-	<!-- 213 -->
+
+	<!-- 职位数据分页 -->
 	<select id="listJob" parameterType="PaginationBean" resultMap="PaginationBeanMap">
-		select count(1) total, ceil(count(1) / ${pageSize}) totalPage,${pageSize} pageSize,${currPage} currPage from job
+		select count(1) total, ceil(count(1) / ${pageSize})
+		totalPage,${pageSize} pageSize,${currPage} currPage from job
 	</select>
-	
+
 	<select id="getJOb" resultType="Job">
-		select * from (select n.*,rownum rn from 
+		select * from (select n.*,rownum
+		rn from
 		(select * from job order by 1) n where ${pageSize}*${currPage} >= rownum)
 		where rn > ${pageSize}*(${currPage}-1)
 	</select>
+
+	<!-- 职位删除 -->
+	<delete id="deleteJob" parameterType="Integer">
+		delete from job where
+		job_id=#{id}
+	</delete>
+	<!-- 职位修改 -->
+	<update id="editJob" parameterType="Job">
+		update job set job_name=#{job_name},
+		job_department=#{job_department}, job_nature=#{job_nature},
+		job_min_salary=#{job_min_salary} ,job_max_salary=#{job_max_salary}
+		,job_attract=#{job_attract},
+		job_ftime=#{job_ftime}, job_request=#{job_request}
+		where job_id=#{job_id}
+	</update>
+
 </mapper>

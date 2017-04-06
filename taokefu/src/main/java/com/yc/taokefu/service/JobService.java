@@ -10,8 +10,25 @@ public interface JobService {
 	List<CompanyAll> jobFind(String job);
 	
 	Integer jobAdd(Job job);
-
+	/**
+	 * 职位数据分页
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
 	PaginationBean<Job> listPartUsers(String page, String rows);
+	/**
+	 * 职位id
+	 * @param id
+	 * @return
+	 */
+	Boolean deleteJob(Integer id);
+	/**
+	 * 根据job_id修改
+	 * @param job
+	 * @return
+	 */
+	Boolean editJob(Job job);
 
 	List<CompanyAll> findCompany(CompanyAll companyAll);
 }
