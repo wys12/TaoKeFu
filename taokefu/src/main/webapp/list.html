@@ -56,6 +56,31 @@
 					<li>|</li>
 					<li><a href="register.html" rel="nofollow">注册</a></li>
 				</ul>
+				<dl class="collapsible_menu">
+					<dt>
+						<span id="usname"></span> <span class="red dn" id="noticeDot-0"></span>
+						<i></i>
+					</dt>
+					<dd>
+						<a rel="nofollow" href="jianli.html">我的简历</a>
+					</dd>
+					<dd>
+						<a href="collections.html">我收藏的职位</a>
+					</dd>
+					<dd>
+						<a href="delivery.html">我投递的职位 <span id="noticeNo"
+							class="red dn">(0)</span></a>
+					</dd>
+					<dd>
+						<a href="subscribe.html">我的订阅</a>
+					</dd>
+					<dd>
+						<a href="accountBind.html">帐号设置</a>
+					</dd>
+					<dd class="logout">
+						<a rel="nofollow">退出</a>
+					</dd>
+				</dl>
 			</div>
 		</div>
 		<!-- end #header -->
@@ -158,8 +183,7 @@
 
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" name="searchForm"
-						method="post">
+					<form id="searchForm" name="searchForm" method="post">
 						<ul id="searchType">
 							<li data-searchtype="1" class="type_selected">职位</li>
 							<li data-searchtype="4">公司</li>
@@ -331,7 +355,15 @@
 				<ul id="jobInfo" class="hot_pos reset">
 
 				</ul>
-				
+				<form id="listForm"  method="post">
+					<p align="right">
+						当前页数:&nbsp; <a
+							href="javascript:void(0)" onclick="number(0)">首页</a> <a
+							href="javascript:void(0)" onclick="number(1)">上一页</a> <a
+							href="javascript:void(0)" onclick="number(2)">下一页</a> <a
+							href="javascript:void(0)" onclick="number(3)">末页</a>
+					</p>
+				</form>
 				<div class="Pagination"></div>
 			</div>
 			<script type="text/javascript" src="js/list.js"></script>
@@ -356,6 +388,7 @@
 	</div>
 	<script type="text/javascript" src="style/js/core.min.js"></script>
 	<script type="text/javascript" src="style/js/popup.min.js"></script>
+	<script type="text/javascript" src="js/userinfo.js"></script>
 	<!--  -->
 
 </body>

@@ -48,8 +48,6 @@ public class JobServiceImpl implements JobService{
 		if(rows != null){
 			pb.setPageSize(Integer.parseInt(rows));
 		}
-		
-		
 		return jobMapper.listJob(pb);
 	}
 }

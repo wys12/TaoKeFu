@@ -17,48 +17,75 @@ import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.JobService;
+import com.yc.taokefu.util.Page;
 /**
- * 工作职位
  * @author wys
- *
  */
 @Controller("jobHandler")
 @RequestMapping("job")
 public class JobHandler {
 	@Autowired
 	private CompanyAllService companyAllServics;
-	@Autowired
+	@Autowired 
 	private JobService jobService;
 
 	private List<CompanyAll> jobList = new ArrayList<CompanyAll>();
-	private String type = null;
-	private Integer types = null;
-	//查询职位信息
-	@RequestMapping(value="sendInfo",method=RequestMethod.POST)
-	//@ResponseBody
-	public void find(CompanyAll companyAll,HttpServletRequest request) {
-		type=request.getParameter("searchType");
-		if(type!=null){
-			types=Integer.valueOf(type);
-		}
-		/*
-		 * input=request.getParameter("search_input");
-			search_Info.put("type", request.getParameter("searchType"));
-			search_Info.put("input", request.getParameter("search_input"));*/
-		//LogManager.getLogger().debug("job_name "+companyAll.getJob_name());
-		//LogManager.getLogger().debug("职位信息查询条件   ==>input "+companyAll.getJob_name()+" types "+types);
-		if(types.equals(0)){
-			jobList = companyAllServics.findJobName(companyAll.getJob_name());
-			LogManager.getLogger().debug("返回界面职位信息   ==> "+jobList);
-		}else if(types.equals(1)){
-			jobList = companyAllServics.findCompenyName(companyAll.getJob_name());
-			LogManager.getLogger().debug("返回界面公司信息   ==> "+jobList);
+	private Integer type =0;
+	private Integer currPage = 1;//当前页
+	private Integer pageSize = 8;//每页显示的数据条数
+	
+	
+	/**
+	 * index查询职位信息
+	 * @param companyAll
+	 * @return
+	 */
+	@RequestMapping(value="index",method=RequestMethod.POST)
+	public String findJob(String searchTypes,String search_input,CompanyAll companyAll,PaginationBean<CompanyAll> paginationBean) {
+		paginationBean.setCurrPage(currPage);
+		paginationBean.setPageSize(pageSize);
+		type=Integer.valueOf(searchTypes);
+		companyAll.setJob_name(search_input);
+		if(searchTypes.intern() == "0"){
+			jobList = companyAllServics.findJobName(companyAll,currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面职位信息   ==> "+jobList+"  type  ==> "+type);
+		//	page.name(paginationBean,jobList);
+		}else if(searchTypes.intern() == "1"){
+			jobList = companyAllServics.findCompenyName(search_input,currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面公司信息   ==> "+jobList);
 		}else{
 			jobList = null;
 		}
-		//return "redirect:/list.html";
+		return "redirect:/list.html";
 	}
-	//分条件查询查询职位信息
+	
+	
+	/**
+	 * list查询信息
+	 * @param <T>
+	 * @param companyAll
+	 * @param request
+	 */
+	@RequestMapping(value="lists",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> find(CompanyAll companyAll) {
+		LogManager.getLogger().debug("type  ==> "+type);
+		if(type.equals(0)){
+			jobList = companyAllServics.findJobName(companyAll,currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面职位信息   ==> "+jobList);
+		}else if(type.equals(1)){
+			jobList = companyAllServics.findCompenyName(companyAll.getJob_name(),currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面公司信息   ==> "+jobList);
+		}else{
+			jobList = null;
+		}
+		return jobList;
+	}
+	
+	/**
+	 * 返回信息
+	 * @return
+	 */
 	@RequestMapping(value="findJobs",method=RequestMethod.POST)
 	@ResponseBody
 	public List<CompanyAll> findCompany() {
@@ -66,19 +93,11 @@ public class JobHandler {
 			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
 			return jobList;
 		}else{
-
 			return null;
 		}
-
 	}
-	//查询职位信息
-	@RequestMapping(value="list",method=RequestMethod.POST)
-	@ResponseBody
-	public List<CompanyAll> findJob(CompanyAll companyAll) {
-		jobList = companyAllServics.findCompenyName(companyAll.getJob_name());
-		LogManager.getLogger().debug("companyAll   ==> " + companyAll.getJob_name()+"   jobList  " +jobList);
-		return jobList;
-	}	
+	
+	
 	//查询所有职位
 	@RequestMapping("list")
 	@ResponseBody //响应Json数据
@@ -86,6 +105,7 @@ public class JobHandler {
 		System.out.println("rows==>"+rows +",page==>"+page);
 		return jobService.listPartUsers(page,rows);
 	}
+
 
 }
 

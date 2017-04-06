@@ -1,13 +1,12 @@
 $("#search_button").click(function(){
 	var searchType = $('#searchType li').val(); //查询类型 0 1
-	var search_input = $('#search_input').val();//输入查询
-	$.post("job/sendInfo",{searchType:searchType,job_name:search_input},"json");
-	//$("#searchForm").submit();
-	setTimeout("submit()", 800);
+	$("#searchTypes").val(searchType);
+	$("#searchForm").attr("action","job/index");
+	$("#searchForm").submit();
+	//$.post("job/sendInfo",{searchType:searchType,job_name:search_input,currPage:i},"json");
+	//setTimeout("submit()", 800);
 });
-function submit(){
-	$("#searchForm").submit()
-}
+
 $("#searchType li").click(function(){
 	$(this).siblings("li").hide(),
 	$(this).hasClass("type_selected")||($("#searchType li").removeClass("type_selected")),

@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.AdminMapper">
-		<select id="findAdmin" parameterType="com.yc.taokefu.entity.Admin"  resultType="Admin">
+		<select id="findAdmin" parameterType="Admin"  resultType="Admin">
 			select * from  admin where ad_name=#{ad_name} and ad_pwd=#{ad_pwd} 
 		</select>
 </mapper>
