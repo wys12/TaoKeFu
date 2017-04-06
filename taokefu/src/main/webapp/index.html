@@ -74,7 +74,7 @@
 						<a href="accountBind.html">帐号设置</a>
 					</dd>
 					<dd class="logout">
-						<a rel="nofollow" href="index.html">退出</a>
+						<a rel="nofollow">退出</a>
 					</dd>
 				</dl>
 			</div>
@@ -139,14 +139,15 @@
 
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" action="job/sendInfo" name="searchForm">
+					<form id="searchForm" name="searchForm" method="post">
 						<ul id="searchType">
 							<li value="0" class="type_selected">类型</li>
 							<li value="1">公司</li>
 						</ul>
 						<div class="searchtype_arrow"></div>
-						<input type="text" id="search_input" name="kd" tabindex="1"
-							value="" placeholder="请输入职位名称，如：淘宝客服" /> <input type="button"
+						<input type="text" id="search_input" name="search_input" tabindex="1"
+							value="" placeholder="请输入职位名称，如：淘宝客服" /> <input type="hidden"
+							id="searchTypes" name="searchTypes" value="" /> <input type="button"
 							id="search_button" value="搜索" />
 					</form>
 				</div>
@@ -444,8 +445,8 @@
 							<a href="http://www.eoeandroid.com/" target="_blank">安卓开发论坛</a> <a
 								href="http://hao.360.cn/" target="_blank">360安全网址导航</a> <span>|</span>
 							<a href="http://se.360.cn/" target="_blank">360安全浏览器</a> <span>|</span>
-							<a href="http://www.hao123.com/" target="_blank">hao123上网导航</a>
-							<span>|</span> <a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
+							<a href="http://www.hao123.com/" target="_blank">hao123上网导航</a> <span>|</span>
+							<a href="http://www.ycpai.com" target="_blank">互联网创业</a><span>|</span>
 							<a href="http://www.zhongchou.cn" target="_blank">众筹网</a><span>|</span>
 							<a href="http://www.marklol.com/" target="_blank">马克互联网</a><span>|</span>
 							<a href="http://www.chaohuhr.com/" target="_blank">巢湖英才网</a> <a

@@ -26,7 +26,7 @@ public class AdminHandler {
 			session.setAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!!!!");
 			return "/back/login.jsp"; //转发处理
 		}else{
-			return "redirect:/manage.html"; //重定向
+			return "redirect:/back/manage.jsp"; //重定向
 		}
 	}
 }

@@ -1,21 +1,11 @@
 $("#search_button").click(function(){
 	var searchType = $('#searchType li').val(); //查询类型 0 1
-	var search_input = $('#search_input').val();//输入查询
-	$.post("job/sendInfo",{searchType:searchType,search_input:search_input},"json");
-	/*	$.post("job/sendInfo",{searchType:searchType,search_input:search_input},function(data){
-		alert(data);
-	},"json");*/
-//	$(function () {
-//	setTimeout(sub, 800);
-//	})
-
-
-
-	//alert("searchType:"+searchType+",search_input:"+search_input);
-});
-function sub(){
+	$("#searchTypes").val(searchType);
+	$("#searchForm").attr("action","job/index");
 	$("#searchForm").submit();
-}
+	//$.post("job/sendInfo",{searchType:searchType,job_name:search_input,currPage:i},"json");
+	//setTimeout("submit()", 800);
+});
 
 $("#searchType li").click(function(){
 	$(this).siblings("li").hide(),
@@ -23,7 +13,6 @@ $("#searchType li").click(function(){
 	$(this).addClass("type_selected").prependTo("#searchType");
 	var b=$(this).attr("data-searchtype");
 	1==b?($("#search_input").attr("placeholder","请输入职位名称，如：产品经理"),$(".placeholder").val("请输入职位名称，如：产品经理")):($("#search_input").attr("placeholder","请输入公司名称，如：拉勾"),$(".placeholder").val("请输入公司名称，如：拉勾")),$("#spcInput").val(b),$(this).children("li").not(".type_selected").hide(),$(this).siblings(".searchtype_arrow").removeClass("transform")});
-
 
 $("#searchType").hover(
 		function(){

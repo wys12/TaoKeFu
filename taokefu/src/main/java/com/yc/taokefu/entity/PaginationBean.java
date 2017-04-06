@@ -6,12 +6,24 @@ public class PaginationBean<T> {
 	//请求参数
 	private Integer currPage;//当前页
 	private Integer pageSize;//每页显示的数据条数
+	private Integer searchType;
 	
 	//响应的数据
 	private Integer totalPage;//总页数
 	private Integer total;//总数据条数
 	private List<T> rows;//要显示的数据集合
 	
+	
+	public Integer getSearchType() {
+		return searchType;
+	}
+
+
+	public void setSearchType(Integer searchType) {
+		this.searchType = searchType;
+	}
+
+
 	public PaginationBean() {}
 	
 	
@@ -54,11 +66,14 @@ public class PaginationBean<T> {
 	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
+
+
 	@Override
 	public String toString() {
-		return "PaginationBean [currPage=" + currPage + ", pageSize=" + pageSize + ", totalPage=" + totalPage
-				+ ", total=" + total + ", rows=" + rows + "]";
+		return "PaginationBean [currPage=" + currPage + ", pageSize=" + pageSize + ", searchType=" + searchType
+				+ ", totalPage=" + totalPage + ", total=" + total + ", rows=" + rows + "]";
 	}
+
 	
 	
 }

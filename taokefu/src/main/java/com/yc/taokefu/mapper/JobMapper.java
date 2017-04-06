@@ -2,6 +2,7 @@ package com.yc.taokefu.mapper;
 
 import java.util.List;
 
+import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
@@ -22,5 +23,7 @@ public interface JobMapper {
 	int deleteJob(Integer id);
 	//职位修改
 	int editJob(Job job);
+	
+	List<CompanyAll> findCompany(CompanyAll companyAll);//点击投递简历显示详情
 
 }

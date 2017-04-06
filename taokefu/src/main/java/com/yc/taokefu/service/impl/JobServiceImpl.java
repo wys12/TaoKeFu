@@ -17,10 +17,16 @@ public class JobServiceImpl implements JobService{
 	@Autowired
 	private JobMapper jobMapper;
 	
+	/**
+	 * wys
+	 */
 	@Override
 	public Integer jobAdd(Job job) {
 		return jobMapper.jobAdd(job);
 	}
+	/**
+	 * wys
+	 */
 	@Override
 	public List<CompanyAll> jobFind(String jobName) {
 		CompanyAll companyAll = new CompanyAll();
@@ -28,6 +34,7 @@ public class JobServiceImpl implements JobService{
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.jobFind(companyAll);
 	}
+	
 	/**
 	 * 职位数据分页
 	 */
@@ -40,8 +47,6 @@ public class JobServiceImpl implements JobService{
 		if(rows != null){
 			pb.setPageSize(Integer.parseInt(rows));
 		}
-		
-		
 		return jobMapper.listJob(pb);
 	}
 	
@@ -62,5 +67,10 @@ public class JobServiceImpl implements JobService{
 	public Boolean editJob(Job job) {
 		
 		return jobMapper.editJob(job)>0;
+	}
+		@Override
+	public List<CompanyAll> findCompany(CompanyAll companyAll) {
+		LogManager.getLogger().debug("companyAll === >"+companyAll);
+		return jobMapper.findCompany(companyAll);
 	}
 }

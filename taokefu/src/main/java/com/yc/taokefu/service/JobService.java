@@ -30,4 +30,6 @@ public interface JobService {
 	 * @return
 	 */
 	Boolean editJob(Job job);
+
+	List<CompanyAll> findCompany(CompanyAll companyAll);
 }

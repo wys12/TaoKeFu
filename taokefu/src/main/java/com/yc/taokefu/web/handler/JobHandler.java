@@ -1,8 +1,7 @@
 package com.yc.taokefu.web.handler;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,61 +13,112 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.JobService;
+import com.yc.taokefu.util.Page;
 /**
- * 工作职位
  * @author wys
- *
  */
 @Controller("jobHandler")
 @RequestMapping("job")
 public class JobHandler {
 	@Autowired
 	private CompanyAllService companyAllServics;
-	@Autowired
+	@Autowired 
 	private JobService jobService;
-	/*@Autowired
-	private CompanyService companyService;
-	@Autowired
-	private TagService tagService;
-	@Autowired
-	private CompanyTeamService companyTeamService;
-	@Autowired
-	private Product croductTeamService;*/
 
-	private Map<String,String> search_Info = new HashMap<String,String>();
-	private List<CompanyAll> jobList = null;
-	private String type = null;
-	private String input = null;
-	//查询职位信息
-	@RequestMapping(value="sendInfo",method=RequestMethod.POST)
-	@ResponseBody
-	public String find(HttpServletRequest request) {
-		type=request.getParameter("searchType");
-		input=request.getParameter("search_input");
-		LogManager.getLogger().debug("职位信息查询条件   ==>input "+input+" type "+type);
-		search_Info.put("type", request.getParameter("searchType"));
-		search_Info.put("input", request.getParameter("search_input"));
-		LogManager.getLogger().debug("职位信息查询条件   ==>input "+search_Info.get("input")+" type "+type);
-		//return "redirect:/list.html";action="list.html"
-		return null;
+	private List<CompanyAll> jobList = new ArrayList<CompanyAll>();
+	private List<CompanyAll> jobLists = new ArrayList<CompanyAll>();
+	private Integer type =0;
+	private Integer currPage = 1;//当前页
+	private Integer pageSize = 8;//每页显示的数据条数
+	private Integer job_id;
+	
+	/**
+	 * index查询职位信息
+	 * @param companyAll
+	 * @return
+	 */
+	@RequestMapping(value="index",method=RequestMethod.POST)
+	public String findJob(String searchTypes,String search_input,CompanyAll companyAll,PaginationBean<CompanyAll> paginationBean) {
+		paginationBean.setCurrPage(currPage);
+		paginationBean.setPageSize(pageSize);
+		type=Integer.valueOf(searchTypes);
+		companyAll.setJob_name(search_input);
+		if(searchTypes.intern() == "0"){
+			jobList = companyAllServics.findJobName(companyAll,currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面职位信息   ==> "+jobList+"  type  ==> "+type);
+		//	page.name(paginationBean,jobList);
+		}else if(searchTypes.intern() == "1"){
+			jobList = companyAllServics.findCompenyName(search_input,currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面公司信息   ==> "+jobList);
+		}else{
+			jobList = null;
+		}
+		return "redirect:/list.html";
 	}
-	//查询职位信息
-	@RequestMapping(value="findJob",method=RequestMethod.POST)
+	
+	
+	/**
+	 * list查询信息
+	 * @param <T>
+	 * @param companyAll
+	 * @param request
+	 */
+	@RequestMapping(value="lists",method=RequestMethod.POST)
 	@ResponseBody
-	public List<CompanyAll> findCompany() {
-		jobList = companyAllServics.findCompenyName(search_Info.get("input"));
-		LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
+	public List<CompanyAll> find(CompanyAll companyAll) {
+		LogManager.getLogger().debug("type  ==> "+type);
+		if(type.equals(0)){
+			jobList = companyAllServics.findJobName(companyAll,currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面职位信息   ==> "+jobList);
+		}else if(type.equals(1)){
+			jobList = companyAllServics.findCompenyName(companyAll.getJob_name(),currPage,pageSize);
+			LogManager.getLogger().debug("index查询返回界面公司信息   ==> "+jobList);
+		}else{
+			jobList = null;
+		}
 		return jobList;
 	}
-
+	
 	/**
-	 * 查询所有职位
+	 * 返回信息
+	 * @return
 	 */
+	@RequestMapping(value="findJobs",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> findCompany() {
+		if(jobList!=null){
+			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
+			return jobList;
+		}else{
+			return null;
+		}
+	}
+	/**
+	 * 点击投递简历显示公司详情
+	 * @param job_id
+	 */
+	@RequestMapping(value="sendCompany",method=RequestMethod.POST)
+	public void getCompany(String job_id) {
+		this.job_id=Integer.valueOf(job_id);
+		LogManager.getLogger().debug("公司id === " +job_id);
+	}
+	
+	@RequestMapping(value="findCompany")
+	@ResponseBody
+	public List<CompanyAll> findCompany(CompanyAll job) {
+		job.setJob_id(this.job_id);
+		jobLists = jobService.findCompany(job);
+		LogManager.getLogger().debug("查找公司   === " +job);
+		return jobLists;
+	}
+	
+	//查询所有职位
 	@RequestMapping("list")
 	@ResponseBody //响应Json数据
 	public PaginationBean<Job> list(String rows,String page){
@@ -99,7 +149,8 @@ public class JobHandler {
 		LogManager.getLogger().debug("进行修改"+job.getJob_id()+job.getJob_request());
 		return jobService.editJob(job);
 	}
-	
+
+
 }
 
 

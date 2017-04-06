@@ -3,9 +3,39 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.CompanyAllMapper">
-	<select id="findCompanyAllMapper" resultType="com.yc.taokefu.entity.CompanyAll"
+	<select id="findJobAllMapper" resultType="com.yc.taokefu.entity.CompanyAll"
 		parameterType="CompanyAll">
 		select *
+		from job j
+		join company comp
+		on j.c_id =
+		comp.comp_id
+		join product pr
+		on pr.c_id = comp.comp_id
+		join product pro
+		on pro.c_id = pr.c_id
+		join tag t
+		on pro.c_id=t.c_id
+		where j.job_name like
+		'%${job_name}%'
+	</select>
+
+	<!-- <resultMap id="PaginationBeanMap" type="PaginationBean" >
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="CompanyAll"
+			select="getJOb" />
+	</resultMap>
+
+	213
+	<select id="findJobAllMapper" parameterType="PaginationBean"
+		resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) / ${pageSize})
+		totalPage,${pageSize} pageSize,${currPage} currPage from job
+	</select>
+
+	<select id="getJOb" resultType="CompanyAll">
+		select * from (select n.*,rownum rn from
+		(select *
 		from job j
 		join company comp
 		on j.c_id = comp.comp_id
@@ -15,7 +45,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on pro.c_id = pr.c_id
 		join tag t
 		on pro.c_id=t.c_id
-		where j.job_name = #{job_name}
-
-	</select>
+		where j.job_name like '%${job_name}%' order by 1) n where ${pageSize}*${currPage} >= rownum ) where rn >${pageSize}*(${currPage}-1)
+	</select> -->
 </mapper>

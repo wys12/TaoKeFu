@@ -21,6 +21,13 @@ public class Job {
 		this.job_id = job_id;
 	}
 	
+	
+	public String getJob_tags() {
+		return job_tags;
+	}
+	public void setJob_tags(String job_tags) {
+		this.job_tags = job_tags;
+	}
 	public String getJob_name() {
 		return job_name;
 	}
@@ -70,12 +77,6 @@ public class Job {
 	public void setJob_request(String job_request) {
 		this.job_request = job_request;
 	}
-	public String getJob_tags() {
-		return job_tags;
-	}
-	public void setJob_tags(String job_tags) {
-		this.job_tags = job_tags;
-	}
 	public String getJob_attract() {
 		return job_attract;
 	}
@@ -90,5 +91,5 @@ public class Job {
 				+ ", job_ftime=" + job_ftime + ", job_request=" + job_request + "]";
 	}
 	
-	
+
 }
