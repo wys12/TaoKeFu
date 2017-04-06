@@ -16,6 +16,11 @@ public interface JobMapper {
 
 	Integer jobAdd(Job job);
 	
+	//职位数据分页
 	PaginationBean<Job> listJob(PaginationBean<Job> pb);
+	//职位删除
+	int deleteJob(Integer id);
+	//职位修改
+	int editJob(Job job);
 
 }

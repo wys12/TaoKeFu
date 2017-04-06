@@ -28,6 +28,9 @@ public class JobServiceImpl implements JobService{
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.jobFind(companyAll);
 	}
+	/**
+	 * 职位数据分页
+	 */
 	@Override
 	public PaginationBean<Job> listPartUsers(String page, String rows) {
 		PaginationBean<Job> pb=new PaginationBean<>();
@@ -40,5 +43,24 @@ public class JobServiceImpl implements JobService{
 		
 		
 		return jobMapper.listJob(pb);
+	}
+	
+	/**
+	 * 根据id删除job
+	 */
+	@Override
+	public Boolean deleteJob(Integer id) {
+		
+		return jobMapper.deleteJob(id)>0;
+	}
+	/**
+	 * 根据job_id修改
+	 * @param job
+	 * @return
+	 */
+	@Override
+	public Boolean editJob(Job job) {
+		
+		return jobMapper.editJob(job)>0;
 	}
 }

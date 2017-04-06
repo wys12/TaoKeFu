@@ -109,7 +109,6 @@ public class LoginHandler {
 	
 	
 	//密码修改
-	@ResponseBody
 	@RequestMapping("updatePwd")
 	public String updatePwd(Login login, HttpSession session,HttpServletRequest request){
 		Login logins = (Login) session.getAttribute(ServletUtil.LOGIN_USER);

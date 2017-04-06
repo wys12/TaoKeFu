@@ -1,3 +1,5 @@
+
+findEmail();
 function findEmail(){	
 	$.ajax({
 		type:"POST",
