@@ -144,7 +144,6 @@ public class JobHandler {
 	 * 根据job_id修改
 	 */
 	@RequestMapping("edit")
-	@ResponseBody 
 	public Boolean doEdit( Job job){
 		LogManager.getLogger().debug("进行修改"+job.getJob_id()+job.getJob_request());
 		return jobService.editJob(job);
