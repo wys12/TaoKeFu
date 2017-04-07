@@ -139,16 +139,16 @@
 
 			<div class="content">
 				<div id="search_box">
-					<form id="searchForm" action="list.html" name="searchForm"
-						method="get">
+					<form id="searchForm" name="searchForm" method="post">
 						<ul id="searchType">
 							<li value="0" class="type_selected">类型</li>
 							<li value="1">公司</li>
 						</ul>
 						<div class="searchtype_arrow"></div>
-						<input type="text" id="search_input" name="kd" tabindex="1"
-							value="" placeholder="请输入职位名称，如：淘宝客服" />  <input
-							type="button" id="search_button" value="搜索" />
+						<input type="text" id="search_input" name="search_input" tabindex="1"
+							value="" placeholder="请输入职位名称，如：淘宝客服" /> <input type="hidden"
+							id="searchTypes" name="searchTypes" value="" /> <input type="button"
+							id="search_button" value="搜索" />
 					</form>
 				</div>
 				<style>

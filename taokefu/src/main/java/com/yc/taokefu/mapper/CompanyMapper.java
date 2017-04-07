@@ -11,5 +11,7 @@ public interface CompanyMapper {
 	//Company addcompany(Integer l_id, String l_email);
 	List<Company> addcompany(@Param("comp_id") Integer comp_id,@Param("comp_email") String comp_email);
 
+	//Company findCompany(Company company);
+
 
 }

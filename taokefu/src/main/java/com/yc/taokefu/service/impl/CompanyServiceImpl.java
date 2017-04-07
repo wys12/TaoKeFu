@@ -17,5 +17,9 @@ public class CompanyServiceImpl implements CompanyService{
 	public List<Company> addCompany(Integer l_id, String l_email) {
 		return companyMapper.addcompany(l_id,l_email);
 	}
+/*	@Override
+	public Company findCompany(Company company) {
+		return companyMapper.findCompany(company);
+	}*/
 
 }
