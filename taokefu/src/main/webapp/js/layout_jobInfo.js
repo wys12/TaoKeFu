@@ -19,10 +19,12 @@
 	
 	/**
 	* Name 修改记录
+	* 
 	*/
+	
 	function edit(){
 		$('#wu-form-2').form('submit', {
-			url:'',
+			url:'job/edit',
 			success:function(data){
 				if(data){
 					$.messager.alert('信息提示','提交成功！','info');
@@ -95,6 +97,7 @@
 	function openEdit(){
 		$('#wu-form-2').form('clear');
 		var item = $('#wu-datagrid-2').datagrid('getSelected');
+		$("#jid").val(item.job_id);
 		$("#jname").val(item.job_name);
 		$("#jdepartment").val(item.job_department);
 		$("#jnature").val(item.job_nature);
@@ -103,7 +106,19 @@
 		$("#jattract").val(item.job_attract);
 		$("#jftime").val(item.job_ftime);
 		$("#jrequest").val(item.job_request);
-		//alert(item.job_id);return;		
+		//alert(item.job_id);return;	
+	/*	$.ajax({
+			url:'',
+			success:function(data){
+				if(data){
+					$('#wu-dialog-2').dialog('close');	
+				}
+				else{
+					//绑定值
+					$('#wu-form-2').form('load', data)
+				}
+			}	
+		});	*/
 		$('#wu-dialog-2').dialog({
 			closed: false,
 			modal:true,
@@ -111,24 +126,7 @@
             buttons: [{
                 text: '确定',
                 iconCls: 'icon-ok',
-                handler: function(){
-                	param={"job_id":item.job_id,"job_request":item.job_request},
-                	alert(JSON.stringify(param))
-                	$.ajax({
-            			url:'job/edit',
-            			data:param,
-            			contentType:'application/json;charset=UTF-8',
-            			success:function(data){
-            				if(data){
-            					$('#wu-dialog-2').dialog('close');	
-            				}
-            				else{
-            					//绑定值
-            					$('#wu-form-2').form('load', data)
-            				}
-            			}	
-            		});
-                }
+                handler: edit
             }, {
                 text: '取消',
                 iconCls: 'icon-cancel',

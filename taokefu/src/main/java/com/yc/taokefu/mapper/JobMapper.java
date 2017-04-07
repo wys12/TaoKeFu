@@ -23,7 +23,7 @@ public interface JobMapper {
 	int deleteJob(Integer id);
 	//职位修改
 	int editJob(Job job);
-	
-	List<CompanyAll> findCompany(CompanyAll companyAll);//点击投递简历显示详情
+	//点击投递简历显示详情
+	List<CompanyAll> findCompany(CompanyAll companyAll);
 
 }

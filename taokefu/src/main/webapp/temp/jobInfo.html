@@ -2,9 +2,10 @@
 	<!-- Begin of toolbar -->
 	<div id="wu-toolbar-2">
 		<div class="wu-toolbar-button">
-			<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="openAdd()" plain="true">添加</a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()" plain="true">修改</a>
-			 <a href="#" class="easyui-linkbutton"
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+				onclick="openAdd()" plain="true">添加</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()"
+				plain="true">修改</a> <a href="#" class="easyui-linkbutton"
 				iconCls="icon-remove" onclick="remove()" plain="true">删除</a> <a
 				href="#" class="easyui-linkbutton" iconCls="icon-cancel"
 				onclick="cancel()" plain="true">取消</a> <a href="#"
@@ -28,7 +29,8 @@
 		</div>
 		<div class="wu-toolbar-search">
 			<label>起始时间：</label><input class="easyui-datebox"
-				style="width: 100px"> <label>结束时间：</label><!-- <input
+				style="width: 100px"> <label>结束时间：</label>
+			<!-- <input
 				class="easyui-datebox" style="width: 100px"> <label>用户组：</label>
 			<select class="easyui-combobox" panelHeight="auto"
 				style="width: 100px">
@@ -52,37 +54,49 @@
 	<form id="wu-form-2" method="post">
 		<table>
 			<tr>
+				<td width="60" align="right">职位编号</td>
+				<td><input type="text" name="job_id" id="jid"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
 				<td width="60" align="right">职位名称</td>
-				<td><input type="text" name="job_name"  id="jname"class="wu-text" /></td>
+				<td><input type="text" name="job_name" id="jname"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">所属部门:</td>
-				<td><input type="text" name="job_department" id="jdepartment" class="wu-text"  /></td>
+				<td><input type="text" name="job_department" id="jdepartment"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">职位性质:</td>
-				<td><input type="text" name="job_nature" id="jnature" class="wu-text" /></td>
+				<td><input type="text" name="job_nature" id="jnature"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">最小薪资:</td>
-				<td><input type="text" name="job_min_salary" id="jminsalary" class="wu-text" /></td>
+				<td><input type="text" name="job_min_salary" id="jminsalary"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">最大薪资:</td>
-				<td><input type="text" name="job_max_salary" id="jmaxsalary" class="wu-text" /></td>
+				<td><input type="text" name="job_max_salary" id="jmaxsalary"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">职位诱惑:</td>
-				<td><input type="text" name="job_attract" id="jattract" class="wu-text" /></td>
+				<td><input type="text" name="job_attract" id="jattract"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">发布时间:</td>
-				<td><input type="text" name="job_ftime" id="jftime" class="wu-text" /></td>
+				<td><input type="text" name="job_ftime" id="jftime"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td valign="top" align="right">职位要求:</td>
-				<td><textarea name="job_request" id="jrequest" rows="6" class="wu-textarea"
-						style="width: 260px"></textarea></td>
+				<td><textarea name="job_request" id="jrequest" rows="6"
+						class="wu-textarea" style="width: 260px"></textarea></td>
 			</tr>
 		</table>
 	</form>
