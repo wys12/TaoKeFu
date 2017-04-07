@@ -7,7 +7,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from job where job_name=#{job_name}
 	</select>
 	
-	
 	<select id="findCompany"  parameterType="CompanyAll" resultType="CompanyAll">
 		select *
 		from job j
@@ -26,8 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
-		<collection property="rows"
-			column="{pageSize=pageSize,currPage=currPage}" ofType="Job" select="getJOb" />
+		<collection property="rows" column="{pageSize=pageSize,currPage=currPage}" ofType="Job" select="getJOb"/>
 	</resultMap>
 
 	<!-- 职位数据分页 -->

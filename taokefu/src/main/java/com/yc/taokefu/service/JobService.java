@@ -17,7 +17,6 @@ public interface JobService {
 	 * @return
 	 */
 	PaginationBean<Job> listPartUsers(String page, String rows);
-	
 	/**
 	 * 职位id
 	 * @param id

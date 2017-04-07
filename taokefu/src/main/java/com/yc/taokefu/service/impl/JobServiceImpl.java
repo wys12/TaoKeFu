@@ -16,7 +16,7 @@ import com.yc.taokefu.service.JobService;
 public class JobServiceImpl implements JobService{
 	@Autowired
 	private JobMapper jobMapper;
-	
+
 	/**
 	 * wys
 	 */
@@ -34,7 +34,7 @@ public class JobServiceImpl implements JobService{
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.jobFind(companyAll);
 	}
-	
+
 	/**
 	 * 职位数据分页
 	 */
@@ -49,13 +49,13 @@ public class JobServiceImpl implements JobService{
 		}
 		return jobMapper.listJob(pb);
 	}
-	
+
 	/**
 	 * 根据id删除job
 	 */
 	@Override
 	public Boolean deleteJob(Integer id) {
-		
+
 		return jobMapper.deleteJob(id)>0;
 	}
 	/**
@@ -65,10 +65,10 @@ public class JobServiceImpl implements JobService{
 	 */
 	@Override
 	public Boolean editJob(Job job) {
-		
+
 		return jobMapper.editJob(job)>0;
 	}
-		@Override
+	@Override
 	public List<CompanyAll> findCompany(CompanyAll companyAll) {
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.findCompany(companyAll);
