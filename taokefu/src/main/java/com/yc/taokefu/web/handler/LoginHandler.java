@@ -43,7 +43,7 @@ public class LoginHandler {
 		logins=loginService.login(logins);
 		if(logins == null){
 			session.setAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!!!!");
-			map.put("page", "index.html");
+			map.put("page", "login.html");
 			return map;
 		}else{
 			LogManager.getLogger().debug("登录成功"+logins);
