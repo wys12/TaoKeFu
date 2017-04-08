@@ -13,6 +13,7 @@ create table login(
   l_pwd varchar2(100) not null,
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
+select * from login
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 create table tkfuser(
@@ -638,9 +639,11 @@ create table tkfuser(
   us_educationa varchar2(10) ,  -- 学历
   us_work_year  varchar2(20) ,  --工作年限
   us_phone varchar2(11) ,       --联系方式
-  us_email varchar2(50)   --邮箱 
+  us_email varchar2(50),   --邮箱 
+  openId varchar2(50) 
 );
-
+select * from tkfuser where openId = 'B74616B0E1E0AB1DA413995D5EE8C101'
+delete tkfuser where us_id = '1001'
 
 --insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
 --教育经验表
