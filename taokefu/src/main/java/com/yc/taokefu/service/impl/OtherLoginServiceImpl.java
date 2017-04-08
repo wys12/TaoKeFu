@@ -38,9 +38,7 @@ public class OtherLoginServiceImpl  implements OtherLoginService {
 	//检测用户是否绑定过第三方
 	@Override
 	public List<Qqlogin> findOpenId(Qqlogin qqlogins){
-		System.out.println("==");
-		List<Qqlogin> q = otherLoginMapper.findOpenId(qqlogins);
-		System.out.println("bdacbuipsdciabc "+ q );
-		return (List<Qqlogin>) q;
+		List<Qqlogin> qqlogin = otherLoginMapper.findOpenId(qqlogins);
+		return qqlogin;
 	}
 }

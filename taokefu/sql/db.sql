@@ -12,11 +12,22 @@ create table login(
   l_pwd varchar2(100) not null,
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
-
-
-
+--insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
+--  个人信息user  --个人介绍
+create table tkfuser(
+  us_id varchar2(50) primary key,
+  us_name varchar2(20) ,
+  us_picpath varchar2(50),      --图片路径
+  us_intro varchar2(100),       --简介
+  us_sex  varchar2(3) ,         --性别
+  us_educationa varchar2(10) ,  -- 学历
+  us_work_year  varchar2(20) ,  --工作年限
+  us_phone varchar2(11) ,       --联系方式
+  us_email varchar2(50)    --邮箱 
+);
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
+
 create table tkfuser(
   us_id number primary key,	--id等于 login id
   us_name varchar2(10) ,	--名称
@@ -26,12 +37,12 @@ create table tkfuser(
   us_educationa varchar2(10) ,  -- 学历
   us_work_year  varchar2(20) ,  --工作年限
   us_phone varchar2(10) ,       --联系方式
-  us_email varchar2(30) UNIQUE   --邮箱 
+  us_email varchar2(30) UNIQUE ,  --邮箱 
+  openId varchar2(50) UNIQUE
 );
 --insert into company values
---(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.163.com','www.baidu.com','北京',
+--(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.1603.com','www.baidu.com','北京',
 --'500-1000','你来就好','百度公司','-1');
-
 
 --company 公司 
 create table company(
@@ -153,7 +164,6 @@ create table  invest(
 	inv_name varchar2(20),	--投资机构名称
 	inv_state varchar2(20)	--投资机构发展阶段
 ) ;
-select * from job
 insert into job 
 values(job_sql.nextval,'1001','五险一金','qq客服','客服联系','全职','3k','5k','2017-04-05','本科','休息时间多','工作职责','任职要求',
 '其他','0','-1');
@@ -188,10 +198,6 @@ create table job_class(
   jc_name varchar2(20) not null
 );
 insert into JOB_CLASS values(jobClass_sql.nextval,'编程');
-
-----------------------------------------------------------------------------------
-
-----------------------------------------------------------------------------------
 
 ----------------------------------------------------------------------------------
 
@@ -253,3 +259,4 @@ create sequence comResume_sql INCREMENT BY 1 START WITH 1001 ;--公司简历/信
 	create sequence invest_sql INCREMENT BY 1 START WITH 1001 ;--投资结构序列
 create sequence jobClass_sql INCREMENT BY 1 START WITH 1001 ;--职位类别序列
 	create sequence job_sql INCREMENT BY 1 START WITH 1001 ;--职位序列
+----------------------------------------------------------------------------------
