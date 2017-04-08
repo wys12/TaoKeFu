@@ -12,8 +12,14 @@ public interface UserMapper {
 	//用户邮箱绑定
 	List<User> addUser(@Param("us_id") Integer us_id,@Param("us_email") String us_email);
 
-	
+	//第三方绑定
+	List<User> addOtherUser(@Param("openId")String us_id,@Param("nickname")String us_name);
+
 	//后台用户信息
 	PaginationBean<User> findPartUsers(PaginationBean<User> pb);
+
+
+
+	
 	
 }

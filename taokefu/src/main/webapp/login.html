@@ -68,7 +68,27 @@ QC.Login({
 var paras = {};
 QC.api("get_user_info", paras)
 	.success(function(s){//成功回调
-		alert("获取用户信息成功！当前用户昵称为："+s.data.nickname);
+		//alert("获取用户信息成功！当前用户昵称为："+s.data.nickname+"openId为："+s.data.openId+",accessToken为："+s.data.accessToken);
+		if(QC.Login.check()){//如果已登录
+			QC.Login.getMe(function(openId, accessToken){		
+			var param={nickname:s.data.nickname,openId:openId,accessToken:accessToken};
+				alert(JSON.stringify(param));
+				$.ajax({
+					type:"POST",
+					url:"otherusers/qqlogin",
+					//async:false, //同步请求
+					data:JSON.stringify(param),
+					dataType:"json",//指定返回参数为json格式
+					contentType:"application/json;charset=utf-8",  //指定请求数据为json格式
+					success:function(data){
+						//直接跳转到upload.jsp
+						alert(data.page);
+						//location.href=data.page; //在当前页面跳转
+						//open(data.page);  //打开新的页面
+					} 
+				});
+			});	
+		};
 	})
 	.error(function(f){//失败回调
 		alert("获取用户信息失败！");
@@ -76,13 +96,6 @@ QC.api("get_user_info", paras)
 	.complete(function(c){//完成请求回调
 		alert("获取用户信息完成！");
 });
-if(QC.Login.check()){//如果已登录
-	QC.Login.getMe(function(openId, accessToken){
-		alert(["当前登录用户的", "openId为："+openId, "accessToken为："+accessToken].join("\n"));
-	});
-	//这里可以调用自己的保存接口
-	//...
-};
 WB2.anyWhere(function(W){
     W.widget.connectButton({
         id: "wb_connect_btn",	

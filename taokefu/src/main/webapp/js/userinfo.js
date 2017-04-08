@@ -5,13 +5,24 @@ function logins(){
 		//alert("logins "+data.l_email+";");
 		if(data==null || data==""){
 			$(".collapsible_menu").hide();
+			loadUrl(data);
 		}else{
 			$(".loginTop").hide();
 			$(".collapsible_menu").show();
 			$("#usname").text(data.l_email);
+			loadUrl(data);
 		}
 	});
 }
+function loadUrl(number){
+	var url = (window.location.pathname);
+	//alert(url);
+	if(url=="/taokefu/toudi.html" || url=="/taokefu/preview.html"){
+		loadInfo(number);
+	}
+}
+
+
 
 $(".logout").click(function(){
 	$.post("users/outlogins",function(data){
