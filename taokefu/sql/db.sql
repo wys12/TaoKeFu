@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 insert into admin values(1,'aaa','a');
 ---admin管理员
 create table admin(
@@ -13,11 +12,38 @@ create table login(
   l_pwd varchar2(100) not null,
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
+<<<<<<< HEAD
 select * from login
+=======
+
+
+create table otherlogin(
+  ol_id varchar2(50) primary key ,
+  ol_name varchar2(50),
+  ol_email varchar2(20)
+);
+--drop table otherlogin
+select * from otherlogin
+
+--insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
+--  个人信息user  --个人介绍
+drop table tkfuser
+create table tkfuser(
+  us_id varchar2(50) primary key,
+  us_name varchar2(20) ,
+  us_picpath varchar2(50),      --图片路径
+  us_intro varchar2(100),       --简介
+  us_sex  varchar2(3) ,         --性别
+  us_educationa varchar2(10) ,  -- 学历
+  us_work_year  varchar2(20) ,  --工作年限
+  us_phone varchar2(11) ,       --联系方式
+  us_email varchar2(50)    --邮箱 
+);
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 create table tkfuser(
-  us_id number primary key,	--id等于 login id
+  us_id varchar2(30) primary key,	--id等于 login id
   us_name varchar2(10) ,	--名称
   us_picpath varchar2(50),      --图片路径
   us_intro varchar2(100),       --简介
@@ -51,7 +77,7 @@ create table company(
  --resume	用户简历表(详情)
 create table usResume(
 	usr_id number primary key,
-	tkf_id number constraint tkf_id references tkfuser(us_id),
+	tkf_id varchar2(30) constraint tkf_id references tkfuser(us_id),
 	c_id number constraint fk_usR_id references company(comp_id),
 	usr_name varchar2(10),	--简历名称
 	usr_state varchar2(10) check(usr_state in('-0','-1','-2','-3','-4')),	--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
@@ -90,14 +116,14 @@ create table coResume(
  --succeed	作品展示
 create table succeed(
 	suc_id number primary key,
-	usr_id number constraint fk_suc_id references usResume(usr_id),
+	usr_id varchar2(30) constraint fk_suc_id references usResume(usr_id),
 	suc_name varchar2(10) not null,	--作品名称
 	suc_link varchar2(10) not null	--作品链接
 );
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,
-	usr_id number constraint fk_exp_id references usResume(usr_id),
+	usr_id varchar2(30) constraint fk_exp_id references usResume(usr_id),
 	exp_company_name varchar2(10) not null,	--工作公司
 	exp_job_name varchar2(10) not null,	--工作职位
 	exp_start_year varchar2(20) not null,	--起始时间
@@ -106,7 +132,7 @@ create table experience(
  --educationa 个人学历
 create table educationa(
 	edu_id number primary key,
-	usr_id number constraint fk_edu_id references usResume(usr_id),
+	usr_id varchar2(30) constraint fk_edu_id references usResume(usr_id),
 	edu_shool_name varchar2(20) not null,  --学校名称
 	edu_major varchar2(10) not null, --所学专业
 	edu_educationa varchar2(20) not null, --学历
@@ -117,13 +143,13 @@ create table educationa(
 --收藏职位
 create table collect(
 	  col_id number primary key,
-	  tkf_id number constraint fk_col_id references tkfuser(us_id),
+	  tkf_id varchar2(30) constraint fk_col_id references tkfuser(us_id),
 	  col_job_id varchar2(10) not null	--职位id
 );
 --订阅职位
 create table take(
 	  tak_id number primary key,
-	  tkf_id number constraint fk_tak_id references tkfuser(us_id),
+	  tkf_id varchar2(30) constraint fk_tak_id references tkfuser(us_id),
 	  col_job_id varchar2(10) not null,	--职位id
 	  col_email varchar2(50) not null UNIQUE,   --邮箱 
 	  col_time varchar2(10) not null,	--接收时间
@@ -177,6 +203,7 @@ create table job(
   job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
    foreign key (c_id) references company(comp_id) --外键关联
 );
+select * from job
 
 --职位分类表
 create table job_class(
@@ -199,7 +226,7 @@ insert into job values(job_sql.nextval,1001,'编程','微信客服','网络客�
 update job set job_request='清华硕士' where job_id=1001
 --select tkfuser_sql.nextval from dual;
 --drop sequence jobcalss_sql--用户信息序列
-
+alter table tkfuser modify (us_id varchar2(30));
 --删除表
 drop table admin;
 drop table login;
@@ -249,6 +276,7 @@ create sequence comResume_sql INCREMENT BY 1 START WITH 1001 ;--公司简历/信
 	create sequence invest_sql INCREMENT BY 1 START WITH 1001 ;--投资结构序列
 create sequence jobClass_sql INCREMENT BY 1 START WITH 1001 ;--职位类别序列
 	create sequence job_sql INCREMENT BY 1 START WITH 1001 ;--职位序列
+<<<<<<< HEAD
 =======
 --删除序列
   drop sequence admin_sql;
@@ -773,3 +801,5 @@ create table job_class(
   jc_name varchar2(20) not null
 >>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 );
+=======
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu

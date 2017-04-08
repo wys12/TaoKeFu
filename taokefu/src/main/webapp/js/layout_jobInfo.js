@@ -129,11 +129,11 @@ function openEdit(){
 	$("#jattract").val(item.job_tags);
 	$("#jname").val(item.job_name);
 	$("#jdepartment").val(item.job_department);
-	$("#jnature").val(item.job_nature);
+	$("#jnature1").val(item.job_nature);
 	$("#jminsalary").val(item.job_min_salary);
 	$("#jmaxsalary").val(item.job_max_salary);
 	$("#jftime").val(item.job_ftime);
-	$("#jrequest").val(item.need);
+	$("#jneed").val(item.job_need);
 	$('#wu-dialog-2').dialog({
 		closed: false,
 		modal:true,

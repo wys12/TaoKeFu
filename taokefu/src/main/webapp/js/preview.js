@@ -7,7 +7,7 @@ function loadInfo(number){
 	}
 }
 function shouInfo(number){
-	alert(JSON.stringify(number));
+	alert(JSON.stringify(number.l_id));
 	$.post("",function(){
 		
 	},"json");
