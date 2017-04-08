@@ -4,6 +4,7 @@ public class Qqlogin {
 	private String nickname;
 	private String openId;
 	private String accessToken;
+	
 	public String getNickname() {
 		return nickname;
 	}
@@ -22,12 +23,11 @@ public class Qqlogin {
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
 	}
-	
 	@Override
 	public String toString() {
-		return "Qquser [nickname=" + nickname + ", openId=" + openId + ", accessToken=" + accessToken + "]";
+		return "Qqlogin [nickname=" + nickname + ", openId=" + openId + ", accessToken=" + accessToken + "]";
 	}
 	
 	
-	
+ 
 }

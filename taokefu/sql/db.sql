@@ -81,22 +81,30 @@ create table login(
   l_id number primary key ,
   l_email varchar2(20) not null UNIQUE,
   l_pwd varchar2(100) not null,
-  l_type varchar2(10) check (l_type in('0','1')) not null
+  l_type varchar2(10) check (l_type in('0','1'))  not null
+  other_l_id varchar2(50),
 );
 
+create table otherlogin(
+  ol_id varchar2(50) primary key ,
+  ol_name varchar2(50),
+  ol_email varchar2(20)
+);
+drop table otherlogin
+select * from otherlogin
 
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --  个人信息user  --个人介绍
 create table tkfuser(
-  us_id number primary key,
-  us_name varchar2(10) ,
+  us_id varchar2(50) primary key,
+  us_name varchar2(20) ,
   us_picpath varchar2(50),      --图片路径
   us_intro varchar2(100),       --简介
   us_sex  varchar2(3) ,         --性别
   us_educationa varchar2(10) ,  -- 学历
   us_work_year  varchar2(20) ,  --工作年限
   us_phone varchar2(11) ,       --联系方式
-  us_email varchar2(50) not null UNIQUE   --邮箱 
+  us_email varchar2(50)   --邮箱 
 );
 
 
@@ -110,7 +118,7 @@ create table educationa(
   edu_major varchar2(10) not null, --所学专业
   edu_educationa varchar2(20) not null, --学历
   edu_graduation_year varchar2(20) not null, --毕业年份
-  foreign key (tkf_id) references tkfuser(us_id)
+  foreign key (tkf_id) references tkfuser(us_id),
 );
 
 

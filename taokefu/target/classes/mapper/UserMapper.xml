@@ -3,9 +3,13 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.UserMapper">
-	<select id="addUser" resultType="java.util.List"  parameterType="User" >
+	<insert id="addUser"   parameterType="User" >
 		insert into tkfuser (us_id,us_email) values(${us_id},'${us_email}')
-	</select>
+	</insert>
+	
+	<insert id="addOtherUser"   parameterType="Qqlogin" >
+		insert into tkfuser (us_id,us_name) values(#{openId},#{nickname})
+	</insert>
 	
 	
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
