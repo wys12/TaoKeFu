@@ -2,7 +2,6 @@ package com.yc.taokefu.mapper;
 
 import java.util.List;
 
-import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
@@ -25,5 +24,8 @@ public interface JobMapper {
 	int editJob(Job job);
 	//点击投递简历显示详情
 	List<CompanyAll> findCompany(CompanyAll companyAll);
+	//多条件查询
+	List<Job> search(Job job);
+
 
 }

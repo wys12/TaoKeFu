@@ -8,18 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.JobService;
-import com.yc.taokefu.util.Page;
 /**
  * @author wys
  */
@@ -134,22 +131,47 @@ public class JobHandler {
 		String[] id = ids.split(",");
 			for (int i = 0; i < id.length;i++) {
 				LogManager.getLogger().debug("进行删除"+id[i]);
-				 return jobService.deleteJob(Integer.parseInt(id[i]));
+				jobService.deleteJob(Integer.parseInt(id[i]));
 				
 				
 			}
-			 return true;
+			return null;
+			
 	} 
 	/**
 	 * 根据job_id修改
 	 */
 	@RequestMapping("edit")
 	public Boolean doEdit( Job job){
-		LogManager.getLogger().debug("进行修改"+job.getJob_id()+job.getJob_request());
+		LogManager.getLogger().debug("进行修改"+job.getJob_id()+job.getJob_need());
 		return jobService.editJob(job);
 	}
-
-
+	/**
+	 * 
+	 * 多条件查询职位
+	 */
+	@RequestMapping("search")
+	@ResponseBody
+	public List<Job> doSearch( Job job){
+		LogManager.getLogger().debug("多条件查询"+job.getJob_nature()+job.getJob_start_time()+job.getJob_end_time());
+		if(job.getJob_nature()=="1"){
+			job.setJob_nature("全职");
+			return (List<Job>) jobService.search(job);
+			//System.out.println(job.getJob_nature());
+		}else{
+			job.setJob_nature("兼职");
+			return (List<Job>) jobService.search(job);
+			//System.out.println(job.getJob_nature());
+		}
+	}
+	/**
+	 * 添加职位
+	 */
+	@RequestMapping("add")
+	public int doAdd(Job job){
+		LogManager.getLogger().debug("添加"+job);
+		return jobService.jobAdd(job);
+	}
 }
 
 
