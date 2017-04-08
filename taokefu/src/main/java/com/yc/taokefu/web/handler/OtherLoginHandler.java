@@ -26,8 +26,8 @@ import com.yc.taokefu.util.ServletUtil;
 @Controller("otherLoginHandler")
 @RequestMapping("otherusers")
 public class OtherLoginHandler {
-/*	@Autowired
-	private OtherLoginService otherLoginService;*/
+	@Autowired
+	private OtherLoginService otherLoginService;
 	
 	@Autowired
 	private UserService userService;
@@ -39,8 +39,8 @@ public class OtherLoginHandler {
 		Map<String,String > map=new HashMap<String,String>();
 		String openId = qqlogins.getOpenId();
 		String nickname = qqlogins.getNickname();
-		//System.out.println("2314264572386794387"+otherLoginService.findOpenId(qqlogins));
-
+		LogManager.getLogger().debug("id == >"+otherLoginService.findOpenId(qqlogins));
+		LogManager.getLogger().debug("map  ===> " +map);
 		/*if(otherLoginService.findOpenId(qqlogins) == null){
 			LogManager.getLogger().debug("该QQ未绑定过");
 			System.out.println("-==-=-==-=-"+otherLoginService.addQqlogin(qqlogins));
@@ -61,6 +61,7 @@ public class OtherLoginHandler {
 			map.put("page", "index.html");
 			return map;
 		}*/
+		
 		return map;
 	}
 }

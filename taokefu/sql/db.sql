@@ -176,6 +176,7 @@ create table job(
   job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
    foreign key (c_id) references company(comp_id) --外键关联
 );
+select * from job
 
 --职位分类表
 create table job_class(
