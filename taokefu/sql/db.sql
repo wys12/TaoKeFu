@@ -108,7 +108,6 @@ create table tkfuser(
 );
 
 
-
 --insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
 --教育经验表
 create table educationa(
@@ -173,7 +172,6 @@ delete tag where tag_id=1003
   tag_name varchar2(50),
   foreign key (c_id) references company(comp_id)
  );
-
  
  insert into COMPANY_team (ct_id,c_id,ct_name,ct_tdesc) values (company_team_sql.nextval,1001,'编程开发','计算机行业的领头羊')
 --公司管理团队
@@ -220,10 +218,17 @@ create table job(
   job_min_salary varchar2(10) not null,
   job_max_salary varchar2(10) not null,
   job_ftime varchar2(10) not null ,--发布时间
-  job_request varchar2(50) not null,  --职位要求
+  job_request varchar2(50) not null,  --职位要求,
+  
+  job_tempt varchat2(100) not null,	--职位诱惑
+  job_responsibility varchat2(100) not null,--工作职责
+  job_need varchat2(100) not null,--职位需求详情
+  jon_rests varchat2(100) not null,--其他
+  jon_number varchat2(100) not null--点击量
    foreign key (c_id) references company(comp_id)
 );
 insert into JOB_CLASS values(jobClass_sql.nextval,'编程')
+
 --职位分类表
 select * from JOB_CLASS
 create table job_class(
