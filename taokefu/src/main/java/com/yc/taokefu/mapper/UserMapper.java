@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.User;
+import com.yc.taokefu.entity.UserAll;
 
 public interface UserMapper {
 
@@ -15,5 +16,6 @@ public interface UserMapper {
 	
 	//后台用户信息
 	PaginationBean<User> findPartUsers(PaginationBean<User> pb);
+
 	
 }

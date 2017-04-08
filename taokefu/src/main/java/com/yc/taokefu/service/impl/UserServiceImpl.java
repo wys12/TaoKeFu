@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.User;
+import com.yc.taokefu.entity.UserAll;
+import com.yc.taokefu.mapper.UserAllMapper;
 import com.yc.taokefu.mapper.UserMapper;
 import com.yc.taokefu.service.UserService;
 
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired //相当配置中的 <property name="userMapper" ref="userMapper"/>
 	private UserMapper userMapper;
+	@Autowired //相当配置中的 <property name="userMapper" ref="userMapper"/>
+	private UserAllMapper userAllMapper;
 	//个人邮箱绑定
 	@Override
 	public List<User> addUsers(Integer us_id, String us_email) {
@@ -37,5 +41,11 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return userMapper.findPartUsers(pb);
+	}
+	
+	
+	@Override
+	public List<UserAll> findAll(UserAll userAll) {
+		return userAllMapper.findAllUser(userAll);
 	}
 }

@@ -19,13 +19,13 @@ import com.yc.taokefu.util.ServletUtil;
 @Controller("otherLoginHandler")
 @RequestMapping("otherusers")
 public class OtherLoginHandler {
-	@Autowired
-	private OtherLoginService otherLoginService;
+/*	@Autowired
+	private OtherLoginService otherLoginService;*/
 	
 	@ResponseBody
 	@RequestMapping("qqlogin")
 	public String qqlogin(@RequestBody Qqlogin qqlogins, HttpSession session){
-		qqlogins=otherLoginService.qqlogin(qqlogins);
+	//	qqlogins=otherLoginService.qqlogin(qqlogins);
 		System.out.println("login:qqlogins==>"+qqlogins);
 		if(qqlogins == null){
 			session.setAttribute(ServletUtil.ERROR_MESSAGE,"用户名或密码错误!!!!");
