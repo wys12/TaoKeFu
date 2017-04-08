@@ -73,4 +73,11 @@ public class JobServiceImpl implements JobService{
 		LogManager.getLogger().debug("companyAll === >"+companyAll);
 		return jobMapper.findCompany(companyAll);
 	}
+	/**
+	 * 多条件查询
+	 */
+	@Override
+	public  List<Job> search(Job job) {
+		return jobMapper.search(job);
+	}
 }

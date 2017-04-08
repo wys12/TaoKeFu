@@ -31,4 +31,11 @@ public interface JobService {
 	Boolean editJob(Job job);
 
 	List<CompanyAll> findCompany(CompanyAll companyAll);
+
+	/**
+	 * 多条件查询
+	 * @param job
+	 * @return
+	 */
+	List<Job> search(Job job);
 }

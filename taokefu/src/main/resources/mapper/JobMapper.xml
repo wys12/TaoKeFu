@@ -59,10 +59,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		job_nature=#{job_nature},
 		job_min_salary=#{job_min_salary}
 		,job_max_salary=#{job_max_salary}
-		,job_attract=#{job_attract},
-		job_ftime=#{job_ftime}, job_request=#{job_request}
+		,job_ftime=#{job_ftime}, job_need=#{job_need}
 		where
 		job_id=#{job_id}
 	</update>
+	<!--职位多条件查询 -->
+	<select id="search" parameterType="Job" resultType="Job">
+		select * from
+		job where job_nature=#{job_nature} and
+		job_ftime between #{job_start_time} and #{job_end_time}
+	</select>
+	<!-- 职位添加 -->
+	<insert id="jobAdd" parameterType="Job">
+		insert into job (job_id,c_id,job_name,job_tags,job_department,job_nature,job_min_salary, job_max_salary,job_ftime, job_need)
+		values(job_sql.nextval,#{c_id},#{job_name},#{job_tags},#{job_department},#{job_nature},#{job_min_salary},#{job_max_salary},#{job_ftime},#{job_need})
+	</insert>
 
 </mapper>
