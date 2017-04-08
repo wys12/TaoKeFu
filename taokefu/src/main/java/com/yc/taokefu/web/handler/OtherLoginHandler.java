@@ -1,6 +1,8 @@
 package com.yc.taokefu.web.handler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,14 +41,17 @@ public class OtherLoginHandler {
 		Map<String,String > map=new HashMap<String,String>();
 		String openId = qqlogins.getOpenId();
 		String nickname = qqlogins.getNickname();
+		List<Qqlogin> sq = new ArrayList<Qqlogin>();
 		LogManager.getLogger().debug("id == >"+otherLoginService.findOpenId(qqlogins));
 		LogManager.getLogger().debug("map  ===> " +map);
-		/*if(otherLoginService.findOpenId(qqlogins) == null){
+		LogManager.getLogger().debug("123321 ===  "+otherLoginService.addQqlogin(qqlogins));
+		if(otherLoginService.findOpenId(qqlogins) == null){
 			LogManager.getLogger().debug("该QQ未绑定过");
 			System.out.println("-==-=-==-=-"+otherLoginService.addQqlogin(qqlogins));
-			if(otherLoginService.addQqlogin(qqlogins)!= null){
-				qqlogins = otherLoginService.findOpenId(qqlogins);				
+			if(otherLoginService.addQqlogin(qqlogins)!= 0){
+				sq = otherLoginService.findOpenId(qqlogins);				
 				LogManager.getLogger().debug("QQ绑定成功,openID == " +openId);
+				LogManager.getLogger().debug("sq ===  "+sq);
 				map.put("page", "index.html");
 				return map;
 			}else{//注册失败
@@ -60,8 +65,8 @@ public class OtherLoginHandler {
 			session.setAttribute(ServletUtil.LOGIN_USER,qqlogins);
 			map.put("page", "index.html");
 			return map;
-		}*/
+		}
 		
-		return map;
+		//return map;
 	}
 }
