@@ -16,7 +16,7 @@ import com.yc.taokefu.entity.UserAll;
 import com.yc.taokefu.service.UserService;
 
 @Controller("userHandler")
-@RequestMapping("/tkfuser")
+@RequestMapping("tkfuser")
 public class UserHandler {
 	
 	@Autowired
@@ -33,11 +33,17 @@ public class UserHandler {
 		LogManager.getLogger().debug("用户-->  rows==>"+rows +",page==>"+page);
 		return userService.listPartUsers(page,rows);
 	}
-	
-	
-	@RequestMapping("")
+	/**
+	 * wys
+	 * 查看简历信息
+	 * @param userAll
+	 * @return
+	 */
+	@RequestMapping("findUser")
+	@ResponseBody //响应Json数据
 	public List<UserAll> findUser(UserAll userAll){
-		return userService.findAll(userAll);
+		LogManager.getLogger().debug("用户userAll  "+userAll );
+		return userService.findUser(userAll);
 	}
 
 }

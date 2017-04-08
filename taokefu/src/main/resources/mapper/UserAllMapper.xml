@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.taokefu.mapper.UserAllMapper">
+	<select id="findUser" parameterType="UserAll" resultType="UserAll">
+		select
+		* from tkfuser tkf
+		join usResume usr
+		on usr.tkf_id=tkf.us_id
+		join educationa edu
+		on edu.tkf_id=usr.tkf_id
+		join experience expe
+		on expe.tkf_id=edu.tkf_id
+		join succeed suc
+		on suc.tkf_id=expe.tkf_id
+		where tkf.us_id='${us_id}'
+	</select>
+</mapper>

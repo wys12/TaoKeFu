@@ -34,7 +34,14 @@ public class LoginHandler {
 	@Autowired
 	private UserService userService;
 	
-	
+	/**
+	 * fv,wys
+	 * @param logins
+	 * @param user
+	 * @param company
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public Map<String , String> login(@RequestBody Login logins,User user,Company company,HttpSession session){
@@ -53,6 +60,12 @@ public class LoginHandler {
 		}
 	}
 
+	/**
+	 * fv,wys
+	 * @param logins
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("register")
 	public Map<String,String> register(@RequestBody Login logins,HttpSession session){
@@ -86,7 +99,11 @@ public class LoginHandler {
 		}	
 	}
 	
-	
+	/**
+	 * wys
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="logins",method=RequestMethod.POST)
 	public Object logins(HttpSession session){

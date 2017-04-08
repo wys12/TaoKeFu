@@ -1,9 +1,11 @@
 package com.yc.taokefu.util;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Login;
 
 public class ServletUtil {
@@ -14,7 +16,9 @@ public class ServletUtil {
 	public static final String VARTUAL_UPLOAD_DIR = "/upload/";
 	public static String UPLOAD_DIR;//文件上传目录 
 	public static Map<String, String> userMap;
-	
+	public static List<CompanyAll> JOB_LIST = new ArrayList<CompanyAll>();//返回界面信息
+	public static Integer type =0;
+	public static Integer job_id;
 	public static File getUploadFile(String fileName){
 
 		File file=new File(UPLOAD_DIR,fileName); //上传文件

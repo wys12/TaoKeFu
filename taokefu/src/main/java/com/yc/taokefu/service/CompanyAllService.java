@@ -9,7 +9,7 @@ public interface CompanyAllService {
 
 	List<CompanyAll> findCompenyName(String string, Integer currPage, Integer pageSize);
 
-	List<CompanyAll> findJobName(CompanyAll companyAll,Integer currPage, Integer pageSize);
+	List<CompanyAll> findJobName(CompanyAll companyAll);
 	
 	
 }

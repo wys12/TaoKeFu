@@ -15,8 +15,11 @@ public interface UserService {
 
 	//后台用户信息
 	PaginationBean<User> listPartUsers(String page, String rows);
-
+	// wys
 	List<UserAll> findAll(UserAll userAll);
+	
+	//查询用户信息（建简历信息）wys
+	List<UserAll> findUser(UserAll userAll);
 	
 	
 }

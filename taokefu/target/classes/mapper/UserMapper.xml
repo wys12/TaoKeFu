@@ -11,7 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into tkfuser (us_id,us_name) values(#{openId},#{nickname})
 	</insert>
 	
-	
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows" column="{pageSize=pageSize,currPage=currPage}" ofType="User" select="getUser"/>
 	</resultMap>

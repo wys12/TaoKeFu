@@ -14,32 +14,11 @@ create table login(
 );
 
 
-create table otherlogin(
-  ol_id varchar2(50) primary key ,
-  ol_name varchar2(50),
-  ol_email varchar2(20)
-);
---drop table otherlogin
-select * from otherlogin
 
---insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
---  个人信息user  --个人介绍
-drop table tkfuser
-create table tkfuser(
-  us_id varchar2(50) primary key,
-  us_name varchar2(20) ,
-  us_picpath varchar2(50),      --图片路径
-  us_intro varchar2(100),       --简介
-  us_sex  varchar2(3) ,         --性别
-  us_educationa varchar2(10) ,  -- 学历
-  us_work_year  varchar2(20) ,  --工作年限
-  us_phone varchar2(11) ,       --联系方式
-  us_email varchar2(50)    --邮箱 
-);
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 create table tkfuser(
-  us_id varchar2(30) primary key,	--id等于 login id
+  us_id number primary key,	--id等于 login id
   us_name varchar2(10) ,	--名称
   us_picpath varchar2(50),      --图片路径
   us_intro varchar2(100),       --简介
@@ -52,6 +31,8 @@ create table tkfuser(
 --insert into company values
 --(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.163.com','www.baidu.com','北京',
 --'500-1000','你来就好','百度公司','-1');
+
+
 --company 公司 
 create table company(
   comp_id number primary key,
@@ -70,10 +51,12 @@ create table company(
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
 );
 
+select * from login tkfuser
+insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
  --resume	用户简历表(详情)
 create table usResume(
 	usr_id number primary key,
-	tkf_id varchar2(30) constraint tkf_id references tkfuser(us_id),
+	tkf_id number constraint tkf_id references tkfuser(us_id),
 	c_id number constraint fk_usR_id references company(comp_id),
 	usr_name varchar2(10),	--简历名称
 	usr_state varchar2(10) check(usr_state in('-0','-1','-2','-3','-4')),	--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
@@ -86,8 +69,6 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(100) --描述内容
 );
-insert into company values();
-insert into coResume values();
 
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
@@ -112,49 +93,49 @@ create table coResume(
  --succeed	作品展示
 create table succeed(
 	suc_id number primary key,
-	usr_id varchar2(30) constraint fk_suc_id references usResume(usr_id),
-	suc_name varchar2(10) not null,	--作品名称
-	suc_link varchar2(10) not null	--作品链接
+	tkf_id number constraint fk_suc_id references usResume(usr_id),
+	suc_name varchar2(10),	--作品名称
+	suc_link varchar2(10)	--作品链接
 );
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,
-	usr_id varchar2(30) constraint fk_exp_id references usResume(usr_id),
-	exp_company_name varchar2(10) not null,	--工作公司
-	exp_job_name varchar2(10) not null,	--工作职位
-	exp_start_year varchar2(20) not null,	--起始时间
-	exp_end_year varchar2(20) not null   --结束时间
+	tkf_id number constraint fk_exp_id references usResume(usr_id),
+	exp_company_name varchar2(10),	--工作公司
+	exp_job_name varchar2(10),	--工作职位
+	exp_start_year varchar2(20),	--起始时间
+	exp_end_year varchar2(20)   --结束时间
 );
  --educationa 个人学历
 create table educationa(
 	edu_id number primary key,
-	usr_id varchar2(30) constraint fk_edu_id references usResume(usr_id),
-	edu_shool_name varchar2(20) not null,  --学校名称
-	edu_major varchar2(10) not null, --所学专业
-	edu_educationa varchar2(20) not null, --学历
-	edu_start_year varchar2(20) not null,-- 开始年份
-	edu_end_year varchar2(20) not null --毕业年份
+	tkf_id number constraint fk_edu_id references usResume(usr_id),
+	edu_shool_name varchar2(20),  --学校名称
+	edu_major varchar2(10), --所学专业
+	edu_educationa varchar2(20), --学历
+	edu_start_year varchar2(20),-- 开始年份
+	edu_end_year varchar2(20) --毕业年份
 );
 
 --收藏职位
 create table collect(
 	  col_id number primary key,
-	  tkf_id varchar2(30) constraint fk_col_id references tkfuser(us_id),
-	  col_job_id varchar2(10) not null	--职位id
+	  tkf_id number constraint fk_col_id references tkfuser(us_id),
+	  col_job_id varchar2(10) 	--职位id
 );
 --订阅职位
 create table take(
 	  tak_id number primary key,
-	  tkf_id varchar2(30) constraint fk_tak_id references tkfuser(us_id),
-	  col_job_id varchar2(10) not null,	--职位id
-	  col_email varchar2(50) not null UNIQUE,   --邮箱 
-	  col_time varchar2(10) not null,	--接收时间
-	  col_job_name varchar2(20) not null, --职位名称
-	  col_job_city varchar2(20) not null,	--工作城市
-	  col_state varchar2(50) not null,	--发展状态
-	  col_territory varchar2(50) not null,	--行业领域
-	  col_min_salary varchar2(10) not null,	--工资
-	  col_max_salary varchar2(10) not null	--工资
+	  tkf_id number constraint fk_tak_id references tkfuser(us_id),
+	  tak_job_id varchar2(10) ,	--职位id
+	  tak_email varchar2(50) UNIQUE,   --邮箱 
+	  tak_time varchar2(10),	--接收时间
+	  tak_job_name varchar2(20), --职位名称
+	  tak_job_city varchar2(20),	--工作城市
+	  tak_state varchar2(50),	--发展状态
+	  tak_territory varchar2(50),	--行业领域
+	  tak_min_salary varchar2(10),	--工资
+	  tak_max_salary varchar2(10)	--工资
 );
 
 insert into tag values(tag_sql.nextval,'1001','五险一金');
@@ -246,9 +227,9 @@ drop sequence tkfuser_sql;
 	drop sequence usResume_sql;
 	  drop sequence succeed_sql; 
 	  drop sequence experience_job_sql;        
-		drop sequence educationa_sql;
-		drop sequence collect_sql;
-		drop sequence take_job_sql;
+	  drop sequence educationa_sql;
+	  drop sequence collect_sql;
+	  drop sequence take_job_sql;
 drop sequence company_sql;
 	  drop sequence comResume_sql;
 		drop sequence tag_sql;
