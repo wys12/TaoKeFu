@@ -32,8 +32,35 @@ function find(){
 			//alert(JSON.stringify(param));
 			return;
 		},    
-		success:function(data){    
-			// alert(data)    
+		success:function(data){
+			var ships = eval('(' + data + ')');//转换接收json字符串为json对象
+			//console.info(JSON.stringify(ships));
+			for(var i=0 ; i<ships.length ;i++ ){
+				alert(i+"--"+ships[i].job_tags);
+			}			
+		/*	$('#wu-datagrid-2').datagrid({
+				rownumbers:true,
+				singleSelect:false,
+				pagination:true,
+				multiSort:true,
+				fitColumns:true,
+				fit:true,
+				pageList:[5,10,15,20,30],
+				columns:[[
+				          { checkbox:true},
+				          { field:'job_id',title:'职位ID',width:100,sortable:true},
+				          { field:'c_id',title:'公司编号',width:100,sortable:true},
+				          { field:'job_tags',title:'职位标签',width:100,sortable:true},
+				          { field:'job_name',title:'职位名称',width:100,sortable:true},
+				          { field:'job_department',title:'所属部门',width:100},
+				          { field:'job_nature',title:'职位性质',width:100},
+				          { field:'job_min_salary',title:'最小薪资',width:100},
+				          { field:'job_max_salary',title:'最大薪资',width:100},
+				          { field:'job_ftime',title:'发布时间',width:100},
+				          { field:'job_need',title:'职位要求',width:100}
+				          ]]
+			});*/
+			 
 		}    
 	});    
 	$('#wu-form-3').submit();  
@@ -73,7 +100,7 @@ function remove(){
 				ids.push(this.job_id);	
 			});
 			//alert(ids);
-			if(ids.lenght>0){
+			if(ids.length>0){
 				$.ajax({
 					url:'job/deleteById',
 					data:{"ids":ids.toString()},
@@ -88,10 +115,7 @@ function remove(){
 						}
 					}	
 				});
-			}else{
-				$.messager.alert('信息提示','请选择要删除的数据','info');		
 			}
-			
 		}	
 	});
 }
@@ -129,11 +153,11 @@ function openEdit(){
 	$("#jattract").val(item.job_tags);
 	$("#jname").val(item.job_name);
 	$("#jdepartment").val(item.job_department);
-	$("#jnature").val(item.job_nature);
+	$("#jnature1").val(item.job_nature);
 	$("#jminsalary").val(item.job_min_salary);
 	$("#jmaxsalary").val(item.job_max_salary);
 	$("#jftime").val(item.job_ftime);
-	$("#jrequest").val(item.need);
+	$("#jneed").val(item.need);
 	$('#wu-dialog-2').dialog({
 		closed: false,
 		modal:true,

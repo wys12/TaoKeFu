@@ -1,7 +1,12 @@
+body {
+	background-image: url(../images/bg.jpg) ;
+	background-size:cover;
+}
+
 #loginForm {
 	width: 240px;
 	margin: 0px auto;
-	text-align:center;
+	text-align: center;
 }
 
 #loginForm input {
@@ -11,26 +16,30 @@
 
 #loginForm input#vcode {
 	width: 65%;
-	margin-left:6px;
+	margin-right: 6px;
 }
 
 #loginForm p img {
 	width: 30%;
 	vertical-align: top;
-	float:left;
+	float: right;
 }
 
-#loginForm input#loginBtn {
-	color: gray;
-	width: 80%;
-	height: 200%;
-	clear: both;
-	marign-top:320px;
-	font-size:150%;
-	letter-spacing: 10px;
-	padding-left:20px;
+#loginForm p a {
+	font-size: 120%;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #767676;
 }
 
-#loginForm p label{
-	color:red;
+#loginForm p a:HOVER {
+	color: purple;
+}
+
+#loginForm p label {
+	color: red;
+}
+
+.l-btn-text {
+	font-size: 100%
 }

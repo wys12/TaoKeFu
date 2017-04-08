@@ -19,6 +19,13 @@ public class UserHandler {
 	@Autowired
 	private  UserService userService;
 	
+	
+	/**
+	 * fv
+	 * @param rows
+	 * @param page
+	 * @return
+	 */
 	@RequestMapping("list")
 	@ResponseBody //响应Json数据
 	public PaginationBean<User> list(String rows,String page){

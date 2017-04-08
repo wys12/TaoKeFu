@@ -64,9 +64,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!--职位多条件查询 -->
 	<select id="search" parameterType="Job" resultType="Job">
-		select * from
-		job where job_nature=#{job_nature} and
-		job_ftime between #{job_start_time} and #{job_end_time}
+		select * from job where job_nature=#{job_nature} and 
+		(to_date(job_ftime, 'yyyy-MM-dd') 
+		between to_date(#{job_start_time}, 'yyyy-MM-dd') and 
+		to_date(#{job_end_time}, 'yyyy-MM-dd'))
 	</select>
 	<!-- 职位添加 -->
 	<insert id="jobAdd" parameterType="Job">
