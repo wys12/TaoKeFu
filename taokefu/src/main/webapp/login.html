@@ -72,7 +72,7 @@ QC.api("get_user_info", paras)
 		if(QC.Login.check()){//如果已登录
 			QC.Login.getMe(function(openId, accessToken){		
 			var param={nickname:s.data.nickname,openId:openId,accessToken:accessToken};
-				alert(JSON.stringify(param));
+				//alert(JSON.stringify(param));
 				$.ajax({
 					type:"POST",
 					url:"otherusers/qqlogin",
@@ -82,8 +82,8 @@ QC.api("get_user_info", paras)
 					contentType:"application/json;charset=utf-8",  //指定请求数据为json格式
 					success:function(data){
 						//直接跳转到upload.jsp
-						alert(data.page);
-						//location.href=data.page; //在当前页面跳转
+						//alert(data.page);
+						location.href=data.page; //在当前页面跳转
 						//open(data.page);  //打开新的页面
 					} 
 				});
@@ -91,10 +91,10 @@ QC.api("get_user_info", paras)
 		};
 	})
 	.error(function(f){//失败回调
-		alert("获取用户信息失败！");
+		//alert("获取用户信息失败！");
 	})
 	.complete(function(c){//完成请求回调
-		alert("获取用户信息完成！");
+		//alert("获取用户信息完成！");
 });
 WB2.anyWhere(function(W){
     W.widget.connectButton({

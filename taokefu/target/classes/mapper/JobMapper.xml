@@ -13,14 +13,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join company comp
 		on j.c_id =
 		comp.comp_id
-		join product
-		pr
-		on pr.c_id = comp.comp_id
-		join product pro
-		on pro.c_id = pr.c_id
 		join
-		tag t
-		on pro.c_id=t.c_id
+		coResume cor
+		on cor.c_id = comp.comp_id
+		join tag t
+		on
+		cor.c_id=t.c_id
+		join
+		invest inv
+		on inv.c_id = t.c_id
 		where j.job_id=${job_id}
 	</select>
 

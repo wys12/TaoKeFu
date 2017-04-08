@@ -157,7 +157,7 @@ function openEdit(){
 	$("#jminsalary").val(item.job_min_salary);
 	$("#jmaxsalary").val(item.job_max_salary);
 	$("#jftime").val(item.job_ftime);
-	$("#jneed").val(item.need);
+	$("#jneed").val(item.job_need);
 	$('#wu-dialog-2').dialog({
 		closed: false,
 		modal:true,

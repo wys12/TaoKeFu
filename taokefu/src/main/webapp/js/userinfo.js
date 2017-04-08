@@ -9,11 +9,16 @@ function logins(){
 		}else{
 			$(".loginTop").hide();
 			$(".collapsible_menu").show();
-			$("#usname").text(data.l_email);
+			if(data.l_email==null){
+				$("#usname").text(data.nickname);
+			}else{
+				$("#usname").text(data.l_email);
+			}
 			loadUrl(data);
 		}
 	});
 }
+
 function loadUrl(number){
 	var url = (window.location.pathname);
 	//alert(url);
