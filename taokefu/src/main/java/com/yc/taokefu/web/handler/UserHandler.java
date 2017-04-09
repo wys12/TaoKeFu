@@ -39,11 +39,23 @@ public class UserHandler {
 	 * @param userAll
 	 * @return
 	 */
+	@RequestMapping("findAllUser")
+	@ResponseBody //响应Json数据
+	public List<UserAll> findAllUser(UserAll userAll){
+		LogManager.getLogger().debug("用户userAll  "+userAll );
+		return userService.findAllUser(userAll);
+	}
+	
+	/**
+	 * wys
+	 * 查看简历信息
+	 * @param userAll
+	 * @return
+	 */
 	@RequestMapping("findUser")
 	@ResponseBody //响应Json数据
-	public List<UserAll> findUser(UserAll userAll){
-		LogManager.getLogger().debug("用户userAll  "+userAll );
-		return userService.findUser(userAll);
+	public List<UserAll> findUser(UserAll user){
+		LogManager.getLogger().debug("用户user  "+user );
+		return userService.findUser(user);
 	}
-
 }

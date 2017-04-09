@@ -11,7 +11,7 @@ public class UserAll {
 	private String us_work_year;//工作年限
 	private String us_phone;//联系方式
 	private String us_email;//邮箱
-
+	private String openId;//邮箱
 	/*----------------个人简历表---------------------*/
 	private Integer tkf_id;
 	private Integer c_id;
@@ -113,6 +113,14 @@ public class UserAll {
 	}
 	public void setUs_email(String us_email) {
 		this.us_email = us_email;
+	}
+	
+	
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 	public Integer getTkf_id() {
 		return tkf_id;
@@ -340,20 +348,21 @@ public class UserAll {
 	public String toString() {
 		return "UserAll [us_id=" + us_id + ", us_name=" + us_name + ", us_picpath=" + us_picpath + ", us_intro="
 				+ us_intro + ", us_sex=" + us_sex + ", us_educationa=" + us_educationa + ", us_work_year="
-				+ us_work_year + ", us_phone=" + us_phone + ", us_email=" + us_email + ", tkf_id=" + tkf_id + ", c_id="
-				+ c_id + ", usr_id=" + usr_id + ", usr_name=" + usr_name + ", usr_state=" + usr_state + ", hj_name="
-				+ hj_name + ", hj_city=" + hj_city + ", hj_min_salary=" + hj_min_salary + ", hj_max_salary="
-				+ hj_max_salary + ", hj_nature=" + hj_nature + ", des_content=" + des_content + ", suc_id=" + suc_id
-				+ ", suc_name=" + suc_name + ", suc_link=" + suc_link + ", exp_id=" + exp_id + ", exp_company_name="
-				+ exp_company_name + ", exp_job_name=" + exp_job_name + ", exp_start_year=" + exp_start_year
-				+ ", exp_end_year=" + exp_end_year + ", edu_id=" + edu_id + ", edu_shool_name=" + edu_shool_name
-				+ ", edu_major=" + edu_major + ", edu_educationa=" + edu_educationa + ", edu_start_year="
-				+ edu_start_year + ", edu_end_year=" + edu_end_year + ", col_id=" + col_id + ", col_job_id="
-				+ col_job_id + ", tak_id=" + tak_id + ", tak_job_id=" + tak_job_id + ", tak_email=" + tak_email
-				+ ", tak_time=" + tak_time + ", tak_job_name=" + tak_job_name + ", tak_job_city=" + tak_job_city
-				+ ", tak_state=" + tak_state + ", tak_territory=" + tak_territory + ", tak_min_salary=" + tak_min_salary
-				+ ", tak_max_salary=" + tak_max_salary + "]";
+				+ us_work_year + ", us_phone=" + us_phone + ", us_email=" + us_email + ", openId=" + openId
+				+ ", tkf_id=" + tkf_id + ", c_id=" + c_id + ", usr_id=" + usr_id + ", usr_name=" + usr_name
+				+ ", usr_state=" + usr_state + ", hj_name=" + hj_name + ", hj_city=" + hj_city + ", hj_min_salary="
+				+ hj_min_salary + ", hj_max_salary=" + hj_max_salary + ", hj_nature=" + hj_nature + ", des_content="
+				+ des_content + ", suc_id=" + suc_id + ", suc_name=" + suc_name + ", suc_link=" + suc_link + ", exp_id="
+				+ exp_id + ", exp_company_name=" + exp_company_name + ", exp_job_name=" + exp_job_name
+				+ ", exp_start_year=" + exp_start_year + ", exp_end_year=" + exp_end_year + ", edu_id=" + edu_id
+				+ ", edu_shool_name=" + edu_shool_name + ", edu_major=" + edu_major + ", edu_educationa="
+				+ edu_educationa + ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + ", col_id="
+				+ col_id + ", col_job_id=" + col_job_id + ", tak_id=" + tak_id + ", tak_job_id=" + tak_job_id
+				+ ", tak_email=" + tak_email + ", tak_time=" + tak_time + ", tak_job_name=" + tak_job_name
+				+ ", tak_job_city=" + tak_job_city + ", tak_state=" + tak_state + ", tak_territory=" + tak_territory
+				+ ", tak_min_salary=" + tak_min_salary + ", tak_max_salary=" + tak_max_salary + "]";
 	}
+	
 	
 	
 }

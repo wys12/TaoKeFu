@@ -37,7 +37,5 @@ public class VcodeFilter extends AbstractFilter{
 			session.setAttribute("errorMsg", "验证码错误！！！");
 			((HttpServletResponse) response).sendRedirect("/taokefu/back/login.jsp");
 		}
-		
-		
 	}
 }

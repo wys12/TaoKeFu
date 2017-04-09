@@ -8,7 +8,8 @@ function loadInfo(number){
 }
 function shouInfo(number){
 	alert(JSON.stringify(number.l_id));
-	$.post("tkfuser/findUser",{us_id:number.l_id},function(data){
+	var params={us_id:number.l_id};
+	$.post("tkfuser/findUser",params,function(data){
 		alert(JSON.stringify(data));
 	},"json");
 }

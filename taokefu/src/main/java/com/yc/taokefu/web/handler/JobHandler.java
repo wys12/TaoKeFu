@@ -40,8 +40,9 @@ public class JobHandler {
 		companyAll.setJob_name(search_input);
 		if(searchTypes.intern() == "0"){
 			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
+			//LogManager.getLogger().debug("index ===>  "+ServletUtil.JOB_LIST);
 		}else if(searchTypes.intern() == "1"){
-			//ServletUtil.JOB_LIST = companyAllServics.findCompenyName(search_input,currPage,pageSize);
+			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(search_input,0,0);
 		}else{
 			ServletUtil.JOB_LIST = null;
 		}
@@ -59,9 +60,12 @@ public class JobHandler {
 	@ResponseBody
 	public List<CompanyAll> find(CompanyAll companyAll) {
 		if(ServletUtil.type.equals(0)){
-			return companyAllServics.findJobName(companyAll);
+			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
+			//LogManager.getLogger().debug("lists ===>  "+ServletUtil.JOB_LIST);
+			return ServletUtil.JOB_LIST;
 		}else if(ServletUtil.type.equals(1)){
-			return companyAllServics.findCompenyName(companyAll.getJob_name(),0,0);
+			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(companyAll.getJob_name(),0,0);
+			return ServletUtil.JOB_LIST;
 		}else{
 			return null;
 		}
@@ -106,7 +110,7 @@ public class JobHandler {
 		return jobService.listPartUsers(page,rows);
 	}
 	/**
-	 * 根据ids[job_id]删除 fv
+	 * 根据ids[job_id]删除  fv
 	 */
 	@RequestMapping("deleteById")
 	public Boolean doDelete(HttpServletRequest request){
