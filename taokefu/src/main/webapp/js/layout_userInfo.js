@@ -131,11 +131,14 @@ function openEdit(){
 }	
 
 /**
+<<<<<<< HEAD
  * Name 分页过滤器
  */
 
 
 /**
+=======
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
  * reload()刷新数据
  * 
  */
@@ -148,10 +151,8 @@ function reload(){
 load();
 function load(){$('#wu-datagrid-2').datagrid({
 	url:"tkfuser/list",
-	//loadFilter:pagerFilter,		
 	rownumbers:true,
 	singleSelect:false,
-	//pageSize:20,           
 	pagination:true,
 	multiSort:true,
 	fitColumns:true,

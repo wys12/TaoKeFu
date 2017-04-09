@@ -147,7 +147,7 @@ public class JobHandler {
 		return jobService.editJob(job);
 	}
 	/**
-	 * 
+	 * fv
 	 * 多条件查询职位
 	 */
 	@RequestMapping("search")
@@ -156,15 +156,18 @@ public class JobHandler {
 		LogManager.getLogger().debug("多条件查询"+job.getJob_nature()+job.getJob_start_time()+job.getJob_end_time());
 		if(job.getJob_nature()=="1"){
 			job.setJob_nature("全职");
-			return (List<Job>) jobService.search(job);
+			return jobService.search(job);
 			//System.out.println(job.getJob_nature());
 		}else{
 			job.setJob_nature("兼职");
-			return (List<Job>) jobService.search(job);
-			//System.out.println(job.getJob_nature());
+			List<Job> list = new ArrayList<Job>();
+			list= jobService.search(job);
+			LogManager.getLogger().debug("list ========  >"+list);
+			return list;//jobService.search(job);
 		}
 	}
 	/**
+	 * fv
 	 * 添加职位
 	 */
 	@RequestMapping("add")

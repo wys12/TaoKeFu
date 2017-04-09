@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body, body#layoutBody {
+	font: 12px/20px Tahoma;
+	width: 960px;
+	margin: 0px auto;
+}
+
+#leftSider li {
+	margin-top: 10px;
+}
+
+#main h1 {
+	width: 100%;
+	margin: 80px auto;
+	text-align: center;
+	letter-spacing: 10px;
+	font-size: 40px;
+	color:#022F5F;	
+}
