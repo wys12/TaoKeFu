@@ -53,6 +53,8 @@ create table tkfuser(
   us_phone varchar2(10) ,       --联系方式
   us_email varchar2(30) UNIQUE   --邮箱 
 );
+
+select *from tkfuser
 --insert into company values
 --(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.163.com','www.baidu.com','北京',
 --'500-1000','你来就好','百度公司','-1');
@@ -671,7 +673,7 @@ create table tkfuser(
   openId varchar2(50) 
 );
 select * from tkfuser where openId = 'B74616B0E1E0AB1DA413995D5EE8C101'
-delete tkfuser where us_id = '1001'
+delete tkfuser where us_id = '1023'
 
 --insert into educationa values(edu_sql.nextval,tkf_id,edu_shoolname,edu_major,edu_educationa,edu_graduation_year);
 --教育经验表

@@ -43,6 +43,20 @@ public class UserServiceTest {
 		user.setL_pwd("a");
 		assertNotNull(loginServices.addUser(user));
 	}
+	//后台添加测试
+	@Test
+	public void tsetBackUserAdd() {
+		User user=new User();
+		user.setUs_name("小哈哈");
+		user.setUs_picpath("/upload/079BB8F8-5A26-4580-83CF-81C4CA2BF013.JPG");
+		user.setUs_sex("");
+		user.setUs_educationa("");
+		user.setUs_work_year("");
+		user.setUs_phone("");
+		user.setUs_email("123312221@qq.com");
+		user.setUs_intro("");
+		assertNotNull(userService.BackUserAdd(user));
+	}
 	
 	@Test
 	public void testRegister0() {

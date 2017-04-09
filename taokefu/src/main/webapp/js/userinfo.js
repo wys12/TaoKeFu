@@ -30,6 +30,7 @@ function loadUrl(number){
 
 
 $(".logout").click(function(){
+	QC.Login.signOut();
 	$.post("users/outlogins",function(data){
 		//alert("outlogins");
 		$(".collapsible_menu").hide();

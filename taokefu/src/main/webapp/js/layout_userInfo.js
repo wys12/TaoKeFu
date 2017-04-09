@@ -2,9 +2,10 @@
  * Name 添加记录
  */
 function add(){
-	$('#wu-form-2').form('submit', {
-		url:'',
+	$('#wu-form-1').form('submit', {
+		url:'tkfuser/add',
 		success:function(data){
+			alert(data);
 			if(data){
 				$.messager.alert('信息提示','提交成功！','info');
 				$('#wu-dialog-2').dialog('close');
@@ -16,13 +17,16 @@ function add(){
 		}
 	});
 }
+function chgPic(obj){
+	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
+}
 
 /**
  * Name 修改记录
  */
 function edit(){
 	$('#wu-form-2').form('submit', {
-		url:'',
+		url:'tkfuser/edit',
 		success:function(data){
 			if(data){
 				$.messager.alert('信息提示','提交成功！','info');
@@ -69,8 +73,8 @@ function remove(){
  * Name 打开添加窗口
  */
 function openAdd(){
-	$('#wu-form-2').form('clear');
-	$('#wu-dialog-2').dialog({
+	$('#wu-form-1').form('clear');
+	$('#wu-dialog-1').dialog({
 		closed: false,
 		modal:true,
 		title: "添加信息",
@@ -82,7 +86,7 @@ function openAdd(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-2').dialog('close');                    
+				$('#wu-dialog-1').dialog('close');                    
 			}
 		}]
 	});
@@ -94,20 +98,20 @@ function openAdd(){
 function openEdit(){
 	$('#wu-form-2').form('clear');
 	var item = $('#wu-datagrid-2').datagrid('getSelected');
-	//alert(item.productid);return;
-	$.ajax({
-		url:'',
-		data:'',
-		success:function(data){
-			if(data){
-				$('#wu-dialog-2').dialog('close');	
-			}
-			else{
-				//绑定值
-				$('#wu-form-2').form('load', data)
-			}
-		}	
-	});
+	$("#uid").val(item.us_id);
+	$("#uname").val(item.us_name);
+	$("#upicpath").val("");
+	if(row.picPath){
+		$("#pic").attr("src", row.picPath);
+	}else{
+		$("#pic").attr("src", "style/images/default_headpic.png");
+	}
+	$("#uex").val(item.us_sex);
+	$("#ueducationa").val(item.us_educationa);
+	$("#uwork_year").val(item.us_work_year);
+	$("#uphone").val(item.us_phone);
+	$("#uemail").val(item.us_email);
+	$("#uintro").val(item.us_intro);
 	$('#wu-dialog-2').dialog({
 		closed: false,
 		modal:true,
@@ -129,32 +133,7 @@ function openEdit(){
 /**
  * Name 分页过滤器
  */
-/*function pagerFilter(data){            
-	if (typeof data.length == 'number' && typeof data.splice == 'function'){// is array                
-		data = {                   
-				total: data.length,                   
-				rows: data               
-		}            
-	}        
-	var dg = $(this);         
-	var opts = dg.datagrid('options');          
-	var pager = dg.datagrid('getPager');          
-	pager.pagination({                
-		onSelectPage:function(pageNum, pageSize){                 
-			opts.pageNumber = pageNum;                   
-			opts.pageSize = pageSize;                
-			pager.pagination('refresh',{pageNumber:pageNum,pageSize:pageSize});                  
-			dg.datagrid('loadData',data);                
-		}          
-	});           
-	if (!data.originalRows){               
-		data.originalRows = (data.rows);       
-	}         
-	var start = (opts.pageNumber-1)*parseInt(opts.pageSize);          
-	var end = start + parseInt(opts.pageSize);        
-	data.rows = (data.originalRows.slice(start, end));         
-	return data;       
-}*/
+
 
 /**
  * reload()刷新数据
@@ -180,15 +159,24 @@ function load(){$('#wu-datagrid-2').datagrid({
 	pageList:[5,10,15,20,30],
 	columns:[[
 	          { checkbox:true},
-	          { field:'us_id',title:'用户ID',width:30,sortable:true},
-	          { field:'us_name',title:'用户姓名',width:100,sortable:true},
-	          { field:'us_picpath',title:'用户图片',width:100},
-	          { field:'us_sex',title:'sex',width:50},
-	          { field:'us_intro',title:'用户简介',width:100},
-	          { field:'us_educationa',title:'用户学历',width:30},
-	          { field:'us_work_year',title:'用户工龄',width:30},
-	          { field:'us_phone',title:'用户电话',width:100},
-	          { field:'us_email',title:'用户邮箱',width:100}
+	          { field:'us_id',title:'用户ID',width:30,align : 'center',sortable:true},
+	          { field:'us_name',title:'用户姓名',width:60,align : 'center',sortable:true},
+	          { field:'us_picpath',title:'用户头像',align : 'center',
+	        	  formatter: function(value,row,index){
+	      			if(value == null){
+	      				return "<img width='60' src='style/images/default_headpic.png'/>"
+	      			}else{
+	      				return "<img width='60' src='" + value + "'/>"
+	      			}
+	        	  }
+	          },
+	          { field:'us_sex',title:'性别',align : 'center',width:30},
+	          { field:'us_intro',title:'用户简介',align : 'center',width:100},
+	          { field:'us_educationa',title:'学历',align : 'center',width:50},
+	          { field:'us_work_year',title:'工作年限',align : 'center',width:50},
+	          { field:'us_phone',title:'联系方式',align : 'center',width:100},
+	          { field:'us_email',title:'电子邮箱',align : 'center',width:120},
+	          { field:'openId',title:'第三方id',align : 'center',width:150}
 	          ]]
 });
 }
