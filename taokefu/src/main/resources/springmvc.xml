@@ -21,7 +21,7 @@
 	<mvc:annotation-driven /> 
 
 	<!-- 文件上传处理器配制 -->
-	<bean id="multipartResolve" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	
 	
 </beans>

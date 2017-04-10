@@ -43,6 +43,131 @@ create table company(
   comp_introduces varchar2(100),	--公司详情介绍
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
 );
+<<<<<<< HEAD
+insert into company(comp_id,comp_email) 
+values(company_sql.nextval,'123@qq.com')
+
+ --resume	用户简历表(详情)
+create table usResume(
+	usr_id number primary key,
+	tkf_id number constraint tkf_id references tkfuser(us_id),
+	c_id number constraint fk_usR_id references company(comp_id),
+	usr_name varchar2(10),	--简历名称
+	usr_state varchar2(10) check(usr_state in('-0','-1','-2','-3','-4')),	--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
+ --hope_job	期望工作
+	hj_name varchar2(10) ,	--职位名称
+	hj_city varchar2(10) ,	--工作地址
+	hj_min_salary varchar2(10),	--期望月薪 
+	hj_max_salary varchar2(10),	--期望月薪 
+  	hj_nature varchar2(20) check(hj_nature in('-0','-1','-2')), --职位性质（全职/兼职/实习）
+  --description	自我描述
+	des_content varchar2(100) --描述内容
+);
+
+ --resume	公司简历表(详情)
+create table coResume(
+	cor_id number primary key,
+	c_id number constraint fk_coR_id references company(comp_id),
+ --company_team 公司管理团队
+	ct_name varchar2(20),  --团队名称
+	ct_picPath varchar2(20),	--图片路径
+	ct_job varchar2(20),	--团队职位
+	ct_tdesc varchar2(100),	--团队描述
+ --product 产品
+	pro_name varchar2(10),	--公司产品
+	pro_link varchar2(20),	--产品链接
+	pro_picPath varchar2(20),	--图片路径
+	pro_pdesc varchar2(100), --产品描述
+ --deepness 公司深度
+ 	de_name varchar2(20),	--公司深度名称
+ 	dee_link varchar2(20)	--公司深度链接
+);
+
+ --succeed	作品展示
+create table succeed(
+	suc_id number primary key,
+	usr_id number constraint fk_suc_id references usResume(usr_id),
+	suc_name varchar2(10) not null,	--作品名称
+	suc_link varchar2(10) not null	--作品链接
+);
+ --experience	工作经历
+create table experience(
+	exp_id number  primary key,
+	usr_id number constraint fk_exp_id references usResume(usr_id),
+	exp_company_name varchar2(10) not null,	--工作公司
+	exp_job_name varchar2(10) not null,	--工作职位
+	exp_start_year varchar2(20) not null,	--起始时间
+	exp_end_year varchar2(20) not null   --结束时间
+);
+ --educationa 个人学历
+create table educationa(
+	edu_id number primary key,
+	usr_id number constraint fk_edu_id references usResume(usr_id),
+	edu_shool_name varchar2(20) not null,  --学校名称
+	edu_major varchar2(10) not null, --所学专业
+	edu_educationa varchar2(20) not null, --学历
+	edu_start_year varchar2(20) not null,-- 开始年份
+	edu_end_year varchar2(20) not null --毕业年份
+);
+
+--收藏职位
+create table collect(
+	  col_id number primary key,
+	  tkf_id number constraint fk_col_id references tkfuser(us_id),
+	  col_job_id varchar2(10) not null	--职位id
+);
+--订阅职位
+create table take(
+	  tak_id number primary key,
+	  tkf_id varchar2(30) constraint fk_tak_id references tkfuser(us_id),
+	  tak_job_id varchar2(10) not null,	--职位id
+	  tak_email varchar2(50) not null UNIQUE,   --邮箱 
+	  tak_time varchar2(10) not null,	--接收时间
+	  tak_job_name varchar2(20) not null, --职位名称
+	  tak_job_city varchar2(20) not null,	--工作城市
+	  tak_state varchar2(50) not null,	--发展状态
+	  tak_territory varchar2(50) not null,	--行业领域
+	  tak_min_salary varchar2(10) not null,	--工资
+	  tak_max_salary varchar2(10) not null	--工资
+);
+---------
+--tag公司标签
+create table tag(
+	tag_id number primary key,
+	c_id number constraint fk_tag_id references company(comp_id),	--外键关联
+	tag_name varchar2(20)	--标签名称
+);
+--invest 投资机构
+create table  invest(
+	inv_id number primary key,
+	c_id number constraint fk_inv_id references company(comp_id),	--外键关联
+	inv_name varchar2(20),	--投资机构名称
+	inv_state varchar2(20)	--投资机构发展阶段
+) ;
+--职位表
+drop table job
+create table job(
+  job_id number primary key,
+  c_id number not null,
+  job_tags varchar2(30)  ,  --标签 （股票期权/五险一金）
+  job_name varchar2(20),  --名称
+  job_department  varchar2(20), --职位部门 
+  job_nature varchar2(20), --职位性质（全职/兼职/实习）
+  job_min_salary varchar2(10) ,  --最少工资
+  job_max_salary varchar2(10) ,  --最多工资
+  job_ftime varchar2(10)  ,--发布时间
+  job_education varchar2(50),  --学历要求,
+  job_tempt varchar2(100) ,  --职位诱惑
+  job_responsibility varchar2(100) ,--工作职责
+  job_need varchar2(100) ,--任职要求
+  job_rests varchar2(100) ,--其他
+  job_number varchar2(100) , --点击量
+  job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
+   foreign key (c_id) references company(comp_id) --外键关联
+);
+insert into job(job_id,c_id,job_tags,job_name,job_department,job_nature,job_min_salary,job_max_salary,job_ftime,job_need) 
+values(job_sql.nextval,1002,'编程','微信客服','网络客服','兼职','3k','5k','2017-4-8','研究生')
+=======
 
  --resume	用户简历表(详情)
 create table usResume(
@@ -164,6 +289,7 @@ create table job(
 );
 insert into job(job_id,c_id,job_tags,job_name,job_department,job_nature,job_min_salary,job_max_salary,job_ftime,job_need) 
 values(job_sql.nextval,1002,'编程','微信客服','网络客服','兼职','3k','3.5k','2017-4-8','研究生')
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 --职位分类表
 select * from JOB_CLASS
 create table job_class(

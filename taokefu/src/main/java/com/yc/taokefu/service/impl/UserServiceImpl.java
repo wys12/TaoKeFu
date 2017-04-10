@@ -29,11 +29,6 @@ public class UserServiceImpl implements UserService {
 	public List<User> addUsers(Integer us_id, String us_email) {
 		return userMapper.addUser(us_id,us_email);
 	}
-	//第三方绑定绑定
-		@Override
-		public List<User> addOtherUsers(String us_id, String us_name) {
-			return userMapper.addOtherUser(us_id,us_name);
-		}
 	//后台用户信息
 	@Override
 	public PaginationBean<User> listPartUsers(String page, String rows) {
@@ -52,5 +47,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserAll> findAll(UserAll userAll) {
 		return userAllMapper.findAllUser(userAll);
+	}
+	@Override
+	public boolean BackUserAdd(User user) {
+		return userMapper.BackUserAdd(user)>0;
 	}
 }

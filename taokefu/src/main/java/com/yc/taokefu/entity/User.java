@@ -12,6 +12,7 @@ public class User {
 	private String us_work_year;
 	private String us_phone;
 	private String us_email;
+	private String openId;
 	public Integer getUs_id() {
 		return us_id;
 	}
@@ -72,12 +73,21 @@ public class User {
 	public void setUs_email(String us_email) {
 		this.us_email = us_email;
 	}
+	
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
 	@Override
 	public String toString() {
 		return "User [us_id=" + us_id + ", us_name=" + us_name + ", us_pwd=" + us_pwd + ", us_picpath=" + us_picpath
 				+ ", us_intro=" + us_intro + ", us_sex=" + us_sex + ", us_educationa=" + us_educationa
-				+ ", us_work_year=" + us_work_year + ", us_phone=" + us_phone + ", us_email=" + us_email + "]";
+				+ ", us_work_year=" + us_work_year + ", us_phone=" + us_phone + ", us_email=" + us_email + ", openId="
+				+ openId + "]";
 	}
 
+	
 	
 }
