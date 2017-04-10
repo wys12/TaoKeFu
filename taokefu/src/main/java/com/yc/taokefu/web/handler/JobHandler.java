@@ -17,6 +17,7 @@ import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.JobService;
+import com.yc.taokefu.util.ServletUtil;
 /**
  * @author wys
  */
@@ -27,13 +28,6 @@ public class JobHandler {
 	private CompanyAllService companyAllServics;
 	@Autowired 
 	private JobService jobService;
-
-	private List<CompanyAll> jobList = new ArrayList<CompanyAll>();
-	private List<CompanyAll> jobLists = new ArrayList<CompanyAll>();
-	private Integer type =0;
-	private Integer currPage = 1;//当前页
-	private Integer pageSize = 8;//每页显示的数据条数
-	private Integer job_id;
 	
 	/**
 	 * index查询职位信息
@@ -42,26 +36,22 @@ public class JobHandler {
 	 */
 	@RequestMapping(value="index",method=RequestMethod.POST)
 	public String findJob(String searchTypes,String search_input,CompanyAll companyAll,PaginationBean<CompanyAll> paginationBean) {
-		paginationBean.setCurrPage(currPage);
-		paginationBean.setPageSize(pageSize);
-		type=Integer.valueOf(searchTypes);
+		ServletUtil.type=Integer.valueOf(searchTypes);
 		companyAll.setJob_name(search_input);
 		if(searchTypes.intern() == "0"){
-			jobList = companyAllServics.findJobName(companyAll,currPage,pageSize);
-			LogManager.getLogger().debug("index查询返回界面职位信息   ==> "+jobList+"  type  ==> "+type);
-		//	page.name(paginationBean,jobList);
+			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
+			//LogManager.getLogger().debug("index ===>  "+ServletUtil.JOB_LIST);
 		}else if(searchTypes.intern() == "1"){
-			jobList = companyAllServics.findCompenyName(search_input,currPage,pageSize);
-			LogManager.getLogger().debug("index查询返回界面公司信息   ==> "+jobList);
+			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(search_input,0,0);
 		}else{
-			jobList = null;
+			ServletUtil.JOB_LIST = null;
 		}
 		return "redirect:/list.html";
 	}
 	
 	
 	/**
-	 * list查询信息
+	 * list查询信息   wys
 	 * @param <T>
 	 * @param companyAll
 	 * @param request
@@ -69,50 +59,47 @@ public class JobHandler {
 	@RequestMapping(value="lists",method=RequestMethod.POST)
 	@ResponseBody
 	public List<CompanyAll> find(CompanyAll companyAll) {
-		LogManager.getLogger().debug("type  ==> "+type);
-		if(type.equals(0)){
-			jobList = companyAllServics.findJobName(companyAll,currPage,pageSize);
-			LogManager.getLogger().debug("index查询返回界面职位信息   ==> "+jobList);
-		}else if(type.equals(1)){
-			jobList = companyAllServics.findCompenyName(companyAll.getJob_name(),currPage,pageSize);
-			LogManager.getLogger().debug("index查询返回界面公司信息   ==> "+jobList);
+		if(ServletUtil.type.equals(0)){
+			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
+			//LogManager.getLogger().debug("lists ===>  "+ServletUtil.JOB_LIST);
+			return ServletUtil.JOB_LIST;
+		}else if(ServletUtil.type.equals(1)){
+			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(companyAll.getJob_name(),0,0);
+			return ServletUtil.JOB_LIST;
 		}else{
-			jobList = null;
+			return null;
 		}
-		return jobList;
 	}
 	
-	/**
+	/**  wys
 	 * 返回信息
 	 * @return
 	 */
 	@RequestMapping(value="findJobs",method=RequestMethod.POST)
 	@ResponseBody
 	public List<CompanyAll> findCompany() {
-		if(jobList!=null){
-			LogManager.getLogger().debug("返回界面信息   ==> "+jobList);
-			return jobList;
+		if(ServletUtil.JOB_LIST!=null){
+			LogManager.getLogger().debug("返回界面信息   ==> "+ServletUtil.JOB_LIST);
+			return ServletUtil.JOB_LIST;
 		}else{
 			return null;
 		}
 	}
 	/**
-	 * 点击投递简历显示公司详情
+	 * 点击投递简历显示公司详情   wys
 	 * @param job_id
 	 */
 	@RequestMapping(value="sendCompany",method=RequestMethod.POST)
 	public void getCompany(String job_id) {
-		this.job_id=Integer.valueOf(job_id);
+		ServletUtil.job_id=Integer.valueOf(job_id);
 		LogManager.getLogger().debug("公司id === " +job_id);
 	}
 	
 	@RequestMapping(value="findCompany")
 	@ResponseBody
 	public List<CompanyAll> findCompany(CompanyAll job) {
-		job.setJob_id(this.job_id);
-		jobLists = jobService.findCompany(job);
-		LogManager.getLogger().debug("查找公司   === " +job);
-		return jobLists;
+		job.setJob_id(ServletUtil.job_id);
+		return jobService.findCompany(job);
 	}
 	
 	//查询所有职位
@@ -123,7 +110,7 @@ public class JobHandler {
 		return jobService.listPartUsers(page,rows);
 	}
 	/**
-	 * 根据ids[job_id]删除
+	 * 根据ids[job_id]删除  fv
 	 */
 	@RequestMapping("deleteById")
 	public Boolean doDelete(HttpServletRequest request){
@@ -132,14 +119,12 @@ public class JobHandler {
 			for (int i = 0; i < id.length;i++) {
 				LogManager.getLogger().debug("进行删除"+id[i]);
 				jobService.deleteJob(Integer.parseInt(id[i]));
-				
-				
 			}
 			return null;
 			
 	} 
 	/**
-	 * 根据job_id修改
+	 * 根据job_id修改 fv
 	 */
 	@RequestMapping("edit")
 	public Boolean doEdit( Job job){
@@ -147,8 +132,8 @@ public class JobHandler {
 		return jobService.editJob(job);
 	}
 	/**
+	 * 多条件查询职位 fv
 	 * fv
-	 * 多条件查询职位
 	 */
 	@RequestMapping("search")
 	@ResponseBody
@@ -166,9 +151,11 @@ public class JobHandler {
 			return list;//jobService.search(job);
 		}
 	}
+	
+	
 	/**
+	 * 添加职位 fv
 	 * fv
-	 * 添加职位
 	 */
 	@RequestMapping("add")
 	public int doAdd(Job job){

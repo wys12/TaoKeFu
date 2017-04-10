@@ -34,7 +34,14 @@ public class LoginHandler {
 	@Autowired
 	private UserService userService;
 	
-	
+	/**
+	 * fv,wys
+	 * @param logins
+	 * @param user
+	 * @param company
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	public Map<String , String> login(@RequestBody Login logins,User user,Company company,HttpSession session){
@@ -53,40 +60,56 @@ public class LoginHandler {
 		}
 	}
 
+	/**
+	 * fv,wys
+	 * @param logins
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("register")
 	public Map<String,String> register(@RequestBody Login logins,HttpSession session){
 		Map<String,String > map=new HashMap<String,String>();
 		String type = logins.getL_type();
 		String l_email = logins.getL_email();
-		if(loginService.findEmail(logins) ==null){
-			LogManager.getLogger().debug("该邮箱未注册");
-			if(loginService.addUser(logins)== true){
-				logins = loginService.findEmail(logins);
-				Integer l_id = logins.getL_id();
-				LogManager.getLogger().debug("注册邮箱成功,ID == " +l_id);
-				if(type.equals("0")){
-					userService.addUsers(l_id,l_email);
-				}else if(type.equals("1")){
-					companyService.addCompany(l_id,l_email);
+		if(type!=null && type!="" && l_email!=null && l_email!=""){
+			if(loginService.findEmail(logins) ==null){
+				LogManager.getLogger().debug("该邮箱未注册");
+				if(loginService.addUser(logins)== true){
+					logins = loginService.findEmail(logins);
+					Integer l_id = logins.getL_id();
+					if(type.equals("0")){
+						userService.addUsers(l_id,l_email);
+					}else if(type.equals("1")){
+						companyService.addCompany(l_id,l_email);
+					}
+					LogManager.getLogger().debug("注册邮箱成功,ID == " +l_id);
+					map.put("page", "index.html");
+					return map;
+				}else{//注册失败
+					LogManager.getLogger().debug("注册失败");
+					session.setAttribute(ServletUtil.ERROR_MESSAGE,"注册失败!!!!");
+					map.put("page", "register.html");
+					return map;
 				}
-				map.put("page", "index.html");
+			}else{//邮箱已注册
+				LogManager.getLogger().debug("已注册");
+				//session.setAttribute(ServletUtil.ERROR_MESSAGE,"该邮箱已被注册!!!!");
+				map.put("msg", "该邮箱已被注册");
 				return map;
-			}else{//注册失败
-				LogManager.getLogger().debug("注册失败");
-				session.setAttribute(ServletUtil.ERROR_MESSAGE,"注册失败!!!!");
-				map.put("page", "register.html");
-				return map;
-			}
-		}else{//邮箱已注册
-			LogManager.getLogger().debug("已注册");
-			//session.setAttribute(ServletUtil.ERROR_MESSAGE,"该邮箱已被注册!!!!");
-			map.put("msg", "该邮箱已被注册");
+			}	
+		}else{
+			map.put("msg", "请选择类型");
 			return map;
-		}	
+		}
+		
 	}
 	
-	
+	/**
+	 * wys
+	 * @param session
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="logins",method=RequestMethod.POST)
 	public Object logins(HttpSession session){

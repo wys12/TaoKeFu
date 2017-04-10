@@ -39,13 +39,31 @@ public class UserHandler {
 		LogManager.getLogger().debug("用户-->  rows==>"+rows +",page==>"+page);
 		return userService.listPartUsers(page,rows);
 	}
-	
-	
-	@RequestMapping("")
-	public List<UserAll> findUser(UserAll userAll){
-		return userService.findAll(userAll);
+	/**
+	 * wys
+	 * 查看简历信息
+	 * @param userAll
+	 * @return
+	 */
+	@RequestMapping("findAllUser")
+	@ResponseBody //响应Json数据
+	public List<UserAll> findAllUser(UserAll userAll){
+		LogManager.getLogger().debug("用户userAll  "+userAll );
+		return userService.findAllUser(userAll);
 	}
 	
+	/**
+	 * wys
+	 * 查看简历信息
+	 * @param userAll
+	 * @return
+	 */
+	@RequestMapping("findUser")
+	@ResponseBody //响应Json数据
+	public List<UserAll> findUser(UserAll user){
+		LogManager.getLogger().debug("用户user  "+user );
+		return userService.findUser(user);
+	}
 	@RequestMapping(value="add",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean doAdd(@RequestParam("us_picdata")MultipartFile us_picdata,User user){
