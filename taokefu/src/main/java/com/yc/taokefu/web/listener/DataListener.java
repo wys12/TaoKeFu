@@ -25,7 +25,7 @@ public class DataListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce)  { 
     	String deployName=sce.getServletContext().getContextPath();
     	ServletUtil.DEPLOY_NAME = sce.getServletContext().getContextPath()+"/";
-    	sce.getServletContext().setAttribute("deployName", ServletUtil.DEPLOY_NAME);
+    	sce.getServletContext().setAttribute("deployname", ServletUtil.DEPLOY_NAME);
     	LogManager.getLogger().debug("项目发布名：" + ServletUtil.DEPLOY_NAME);
     	ServletUtil.UPLOAD_DIR=sce.getServletContext().getRealPath(ServletUtil.VARTUAL_UPLOAD_DIR).replace(deployName.substring(1)+File.separator, "");//文件上传目录
     	

@@ -8,10 +8,11 @@ import com.yc.taokefu.entity.Login;
 
 public class ServletUtil {
 	public static String ERROR_MESSAGE="errorMsg";
-	public static String DEPLOY_NAME;//项目发布名
+	public static String DEPLOY_NAME="deployname";//项目发布名
 	public static String LOGIN_USER="loginUser";//登录用户
 	public static String UPLOAD_DIR_PATH;
 	public static final String VARTUAL_UPLOAD_DIR = "/upload/";
+	public static final String LOGIN_ADMIN = "adminLogin";  //管理员登陆
 	public static String UPLOAD_DIR;//文件上传目录 
 	public static Map<String, String> userMap;
 	

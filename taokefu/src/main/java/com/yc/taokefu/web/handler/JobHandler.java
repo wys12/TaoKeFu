@@ -152,9 +152,9 @@ public class JobHandler {
 	 */
 	@RequestMapping("search")
 	@ResponseBody
-	public List<Job> doSearch( Job job){
+	public List<Job> doSearch(Job job){
 		LogManager.getLogger().debug("多条件查询"+job.getJob_nature()+job.getJob_start_time()+job.getJob_end_time());
-		if(job.getJob_nature()=="1"){
+		if(job.getJob_nature().equals("1")){
 			job.setJob_nature("全职");
 			return jobService.search(job);
 			//System.out.println(job.getJob_nature());

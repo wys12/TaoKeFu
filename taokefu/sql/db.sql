@@ -1,5 +1,8 @@
 insert into admin values(1,'aaa','a');
+update admin set ad_pwd='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where ad_id=1
+select * from admin;
 ---admin管理员
+alert table admin add (ad_email varchar2(50));
 create table admin(
   ad_id number primary key ,
   ad_name varchar2(10) not null,
@@ -21,22 +24,6 @@ create table otherlogin(
 );
 --drop table otherlogin
 select * from otherlogin
-
---insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
---  个人信息user  --个人介绍
-drop table tkfuser
-create table tkfuser(
-  us_id varchar2(50) primary key,
-  us_name varchar2(20) ,
-  us_picpath varchar2(50),      --图片路径
-  us_intro varchar2(100),       --简介
-  us_sex  varchar2(3) ,         --性别
-  us_educationa varchar2(10) ,  -- 学历
-  us_work_year  varchar2(20) ,  --工作年限
-  us_phone varchar2(11) ,       --联系方式
-  us_email varchar2(50)    --邮箱 
-);
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 create table tkfuser(
@@ -273,8 +260,6 @@ create sequence comResume_sql INCREMENT BY 1 START WITH 1001 ;--公司简历/信
 	create sequence invest_sql INCREMENT BY 1 START WITH 1001 ;--投资结构序列
 create sequence jobClass_sql INCREMENT BY 1 START WITH 1001 ;--职位类别序列
 	create sequence job_sql INCREMENT BY 1 START WITH 1001 ;--职位序列
-<<<<<<< HEAD
-=======
 --删除序列
   drop sequence admin_sql;
 drop sequence login_sql;
@@ -313,12 +298,14 @@ create sequence jobClass_sql INCREMENT BY 1 START WITH 1001 ;--职位类别序�
 
 
 
-insert into admin values(1,'aaa','a');
+insert into admin values(1,'admin','3207c5b7f39532e0ca9008b428ed420e54e91227');
 ---admin管理员
+select * from admin
+drop table admin
 create table admin(
   ad_id number primary key ,
-  ad_name varchar2(10) not null,
-  ad_pwd varchar2(10) not null
+  ad_name varchar2(30) not null,
+  ad_pwd varchar2(50) not null
 );
 --login	登录
 create table login(
@@ -622,6 +609,7 @@ create sequence jobClass_sql INCREMENT BY 1 START WITH 1001 ;--职位类别序�
 --drop sequence jobcalss_sql--用户信息序列
 
 ---admin
+select * from admin;
 create table admin(
   ad_id number primary key ,
   ad_name varchar2(10) not null,

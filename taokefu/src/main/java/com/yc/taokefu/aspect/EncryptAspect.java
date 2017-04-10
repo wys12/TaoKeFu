@@ -6,8 +6,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+import com.yc.taokefu.entity.Admin;
 import com.yc.taokefu.entity.Login;
-import com.yc.taokefu.entity.User;
 import com.yc.taokefu.util.Encrypt;
 
 
@@ -35,6 +35,13 @@ public class EncryptAspect {
 		LogManager.getLogger().debug("对修改密码加密前===>"+user);
 		user.setL_pwd(Encrypt.md5AndSha(user.getL_pwd()));
 		LogManager.getLogger().debug("对修改密码加密后===>"+user);
+	}
+	@Before("execution(* com.yc.taokefu.service.impl.AdminServiceImpl.login(..))")
+	public void beforeAdminLoginMethod(JoinPoint jpoint){
+		Admin admin=(Admin) jpoint.getArgs()[0];
+		LogManager.getLogger().debug("管理员登陆之前===>"+admin);
+		admin.setAd_pwd(Encrypt.md5AndSha(admin.getAd_pwd()));
+		LogManager.getLogger().debug("管理员登陆密码之后===>"+admin);
 	}
 
 }

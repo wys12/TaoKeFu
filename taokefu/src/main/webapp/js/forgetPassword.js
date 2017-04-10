@@ -1,0 +1,10 @@
+$("#forgetDiv").dialog({
+	title:"",
+	top:80,
+	width:400,
+	height:230,
+	border:false,
+	modal:true
+});
+$.post("点击发送邮箱");
+$.post("点击找回,照这个请求中判断验证码是否一致");
