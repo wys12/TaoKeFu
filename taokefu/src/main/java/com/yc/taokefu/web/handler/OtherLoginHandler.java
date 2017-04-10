@@ -42,6 +42,7 @@ public class OtherLoginHandler {
 			if (boo > 0) {
 				// qqlogins = otherLoginService.findOpenId(qqlogins);
 				LogManager.getLogger().debug("QQ绑定成功,openID == " + openId);
+				session.setAttribute(ServletUtil.LOGIN_USER, qqlogins);
 				map.put("page", "index.html");
 				return map;
 			} else {// 注册失败

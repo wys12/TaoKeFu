@@ -1,4 +1,4 @@
-package com.yc.taokefu.web.handler;
+package com.yc.taokefu.web.filter;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,21 +8,33 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.logging.log4j.LogManager;
 
 /**
- * 生成验证码的Servlet
+ * 生成验证码的Filter
  */
-@WebServlet("/vcode.jpg")
-public class VcodeHandler extends HttpServlet {
-	private static final long serialVersionUID = 4348904329267330103L;
+@WebFilter("/vcode.jpg")
+public class VcodeImageFilter extends AbstractFilter {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	public void init(FilterConfig fConfig) throws ServletException {
+		LogManager.getLogger().debug("初始验证码生成的过滤器VcodeImageFilter.....");
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpServletResponse response = (HttpServletResponse) resp;
 		// 设置页面不缓存
 		response.setHeader("Pragma", "No-cache");
 		response.setHeader("Cache-Control", "no-cache");
@@ -68,9 +80,10 @@ public class VcodeHandler extends HttpServlet {
 			g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));// 调用函数出来的颜色相同，可能是因为种子太接近，所以只能直接生成
 			g.drawString(rand, 13 * i + 6, 16);
 		}
+		System.out.println("随机的验证码是" + sRand);
 
 		// 将******存入SESSION
-		request.getSession().setAttribute("rand", sRand);
+		session.setAttribute("rand", sRand);
 
 		// 图象生效
 		g.dispose();

@@ -174,4 +174,9 @@ public class UserServiceImpl implements UserService {
 	public Integer insertTake(UserAll user) {
 		return userMapper.insertTake(user);
 	}
+	
+	@Override
+	public boolean BackUserAdd(User user) {
+		return userMapper.BackUserAdd(user)>0;
+	}
 }

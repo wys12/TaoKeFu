@@ -21,23 +21,12 @@ function add(){
  */
 
 function find(){
-	$('#wu-form-3').form({    
-		url:'job/search', 
-		onSubmit: function(){    
-			var job_start_time = $("#job_start_time").datebox("getValue"); 
-			var joob_end_time = $("#job_end_time").datebox("getValue");
-			var job_nature=$("#jnature").combobox("getValue");
-			alert(job_nature);
-			param={job_start_time:job_start_time,joob_end_time:joob_end_time,job_nature:job_nature};
-			//alert(JSON.stringify(param));
-			return;
-		},    
-		success:function(data){    
-			// alert(data)    
-		}    
-	});    
-	$('#wu-form-3').submit();  
-
+	alert("00");
+	var value1 = $("#job_start_time").datebox("getValue"); 
+	var value2 = $("#job_end_time").datebox("getValue");
+	var value3 = $("#job_nature").combobox("getValue");
+	var urlStr= "job/search?job_start_time="+value1+"&job_end_time="+value2+"&job_nature="+value3;
+	load(urlStr);
 }
 
 /**
@@ -73,7 +62,7 @@ function remove(){
 				ids.push(this.job_id);	
 			});
 			//alert(ids);
-			if(ids.lenght>0){
+			if(ids.length>0){
 				$.ajax({
 					url:'job/deleteById',
 					data:{"ids":ids.toString()},
@@ -88,10 +77,7 @@ function remove(){
 						}
 					}	
 				});
-			}else{
-				$.messager.alert('信息提示','请选择要删除的数据','info');		
 			}
-			
 		}	
 	});
 }
@@ -162,10 +148,11 @@ function reload(){
 /**
  * Name 载入数据
  */
-load();
-function load(){
+load("job/list");
+function load(urlStr){
+	//alert(urlStr);
 	$('#wu-datagrid-2').datagrid({
-		url:"job/list",
+		url:urlStr,
 		rownumbers:true,
 		singleSelect:false,
 		pagination:true,

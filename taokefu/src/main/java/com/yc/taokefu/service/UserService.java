@@ -16,7 +16,9 @@ public interface UserService {
 	 */
 	//第三方openid和nickname绑定
 	List<User> addOtherUsers(String us_id, String us_name);
-
+	boolean BackUserAdd(User user);
+	
+	
 	/**
 	 * fengwei
 	 * @param page
@@ -59,5 +61,7 @@ public interface UserService {
 	Integer modifiCollect(UserAll user);//收藏职位
 	Integer modifiTake(UserAll user);//订阅职位
 
-
+	
+	
+	
 }

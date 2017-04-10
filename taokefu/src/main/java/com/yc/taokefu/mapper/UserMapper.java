@@ -25,6 +25,9 @@ public interface UserMapper {
 	 */
 	//后台用户信息
 	PaginationBean<User> findPartUsers(PaginationBean<User> pb);
+	
+	//后台添加用户
+	int BackUserAdd(User user);
 
 	/**
 	 * wys
