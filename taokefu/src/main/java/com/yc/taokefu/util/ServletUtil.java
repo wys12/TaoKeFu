@@ -15,7 +15,7 @@ public class ServletUtil {
 	public static final String LOGIN_ADMIN = "adminLogin";  //管理员登陆
 	public static String UPLOAD_DIR;//文件上传目录 
 	public static Map<String, String> userMap;
-	
+	public static int CODE;
 	public static File getUploadFile(String fileName){
 
 		File file=new File(UPLOAD_DIR,fileName); //上传文件

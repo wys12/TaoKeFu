@@ -43,5 +43,13 @@ public class EncryptAspect {
 		admin.setAd_pwd(Encrypt.md5AndSha(admin.getAd_pwd()));
 		LogManager.getLogger().debug("管理员登陆密码之后===>"+admin);
 	}
+	
+	@Before("execution(* com.yc.taokefu.service.impl.AdminServiceImpl.modifiAdminPwd(..))")
+	public void beforeAdminModifiAdminPwd(JoinPoint jpoint){
+		Admin admin=(Admin) jpoint.getArgs()[0];
+		LogManager.getLogger().debug("密码修改之前===>"+admin);
+		admin.setAd_pwd(Encrypt.md5AndSha(admin.getAd_pwd()));
+		LogManager.getLogger().debug("密码修改之后===>"+admin);
+	}
 
 }
