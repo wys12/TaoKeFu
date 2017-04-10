@@ -59,9 +59,9 @@ create table company(
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
 );
 
-select * from login tkfuser
+select * from usResume login tkfuser
 insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
-drop table usResume
+--drop table usResume
  --resume	用户简历表(详情)
 create table usResume(
 	usr_id number primary key,
@@ -106,15 +106,15 @@ create table company_team(
 create table succeed(
 	suc_id number primary key,
 	tkf_id number constraint fk_suc_id references usResume(usr_id),
-	suc_name varchar2(10),	--作品名称
-	suc_link varchar2(10)	--作品链接
+	suc_name varchar2(20),	--作品名称
+	suc_link varchar2(30)	--作品链接
 );
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,
 	tkf_id number constraint fk_exp_id references usResume(usr_id),
-	exp_company_name varchar2(10),	--工作公司
-	exp_job_name varchar2(10),	--工作职位
+	exp_company_name varchar2(30),	--工作公司
+	exp_job_name varchar2(30),	--工作职位
 	exp_start_year varchar2(20),	--起始时间
 	exp_end_year varchar2(20)   --结束时间
 );
@@ -122,8 +122,8 @@ create table experience(
 create table educationa(
 	edu_id number primary key,
 	tkf_id number constraint fk_edu_id references usResume(usr_id),
-	edu_shool_name varchar2(20),  --学校名称
-	edu_major varchar2(10), --所学专业
+	edu_shool_name varchar2(30),  --学校名称
+	edu_major varchar2(30), --所学专业
 	edu_educationa varchar2(20), --学历
 	edu_start_year varchar2(20),-- 开始年份
 	edu_end_year varchar2(20) --毕业年份
@@ -135,6 +135,7 @@ create table collect(
 	  tkf_id number constraint fk_col_id references tkfuser(us_id),
 	  col_job_id varchar2(10) 	--职位id
 );
+
 --订阅职位
 create table take(
 	  tak_id number primary key,
@@ -142,7 +143,7 @@ create table take(
 	  tak_job_id varchar2(10) ,	--职位id
 	  tak_email varchar2(50) UNIQUE,   --邮箱 
 	  tak_time varchar2(10),	--接收时间
-	  tak_job_name varchar2(20), --职位名称
+	  tak_job_name varchar2(30), --职位名称
 	  tak_job_city varchar2(20),	--工作城市
 	  tak_state varchar2(50),	--发展状态
 	  tak_territory varchar2(50),	--行业领域
@@ -162,7 +163,7 @@ insert into invest values(invest_sql.nextval,1001,'支付宝金融','上市公�
 create table  invest(
 	inv_id number primary key,
 	c_id number constraint fk_inv_id references company(comp_id),	--外键关联
-	inv_name varchar2(20),	--投资机构名称
+	inv_name varchar2(30),	--投资机构名称
 	inv_state varchar2(20)	--投资机构发展阶段
 ) ;
 insert into job 
@@ -172,6 +173,7 @@ insert into job
 values(job_sql.nextval,'1001','年终奖金翻倍','微信客服','客服联系','全职','4k','6k','2017-04-07','本科','休息时间少','工作职责','任职要求',
 '其他','0','-1');
 --职位表
+select * from job
 create table job(
   job_id number primary key,
   c_id number not null,

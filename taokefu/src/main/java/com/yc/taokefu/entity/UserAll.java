@@ -47,7 +47,7 @@ public class UserAll {
 
 	/*---------------收藏职位----------------------*/
 	private Integer col_id;
-	private String col_job_id;//收藏职位id
+	private Integer col_job_id;//收藏职位id
 	
 	/*---------------订阅职位----------------------*/
 	private Integer tak_id;
@@ -278,10 +278,10 @@ public class UserAll {
 	public void setCol_id(Integer col_id) {
 		this.col_id = col_id;
 	}
-	public String getCol_job_id() {
+	public Integer getCol_job_id() {
 		return col_job_id;
 	}
-	public void setCol_job_id(String col_job_id) {
+	public void setCol_job_id(Integer col_job_id) {
 		this.col_job_id = col_job_id;
 	}
 	public Integer getTak_id() {

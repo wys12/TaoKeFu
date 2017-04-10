@@ -48,32 +48,32 @@ public interface UserMapper {
 		//订阅
 		List<UserAll> findTake(UserAll user);
 	//添加用户信息
-		Integer insertUser(UserAll user);
+		int insertUser(UserAll user);
 		//简历
-		Integer insertUsResume(UserAll user);
+		int insertUsResume(UserAll user);
 		//作品
-		Integer insertSucceed(UserAll user);
+		int insertSucceed(UserAll user);
 		//经历
-		Integer insertExperience(UserAll user);
+		int insertExperience(UserAll user);
 		//学历
-		Integer insertEducationa(UserAll user);
+		int insertEducationa(UserAll user);
 		//收藏
-		Integer insertCollect(UserAll user);
+		int insertCollect(UserAll user);
 		//订阅
-		Integer insertTake(UserAll user);
+		int insertTake(UserAll user);
 	//修改用户信息
-		Integer modifiUser(UserAll user);
+		int modifiUser(UserAll user);
 		//简历
-		Integer modifiUsResume(UserAll user);
+		int modifiUsResume(UserAll user);
 		//作品
-		Integer modifiSucceed(UserAll user);
+		int modifiSucceed(UserAll user);
 		//经历
-		Integer modifiExperience(UserAll user);
+		int modifiExperience(UserAll user);
 		//学历
 		Integer modifiEducationa(UserAll user);
 		//收藏
-		Integer modifiCollect(UserAll user);
+		int modifiCollect(UserAll user);
 		//订阅
-		Integer modifiTake(UserAll user);
+		int modifiTake(UserAll user);
 
 }
