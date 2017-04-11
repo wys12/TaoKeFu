@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join tag t
 		on
 		cor.c_id=t.c_id
-		join invest inv
-		on inv.c_id = t.c_id
+		<!-- join invest inv
+		on inv.c_id = t.c_id -->
 		where j.job_name
 		like
 		'%${job_name}%'

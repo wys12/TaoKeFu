@@ -70,6 +70,11 @@ public class UserServiceTest {
 		UserAll user = new UserAll();
 		user.setUsr_id(1001);
 		user.setUsr_name("简历修改");
+		user.setHj_min_salary("4k");
+		user.setHj_max_salary("7k");
+		user.setHj_name("java工程开发 ");
+		user.setHj_city("广州");;
+		user.setHj_nature("-0");
 		System.out.println(user);
 		Integer list = UserService.modifiUsResume(user);
 		System.out.println(list);
@@ -122,8 +127,8 @@ public class UserServiceTest {
 		user.setTkf_id(1001);
 		user.setExp_company_name("百度公司");
 		user.setExp_job_name("CEO");
-		user.setExp_start_year("2017-1-1");
-		user.setExp_end_year("2017-3-1");
+		user.setExp_start_year("2017.1");
+		user.setExp_end_year("2017.3");
 		System.out.println(user);
 		Integer list = UserService.insertExperience(user);
 		System.out.println(list);

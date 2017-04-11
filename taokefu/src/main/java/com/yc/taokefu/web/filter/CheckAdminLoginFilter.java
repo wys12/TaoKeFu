@@ -34,9 +34,8 @@ public class CheckAdminLoginFilter extends AbstractFilter  {
   		if(reqUriStr.endsWith("manage.html")){
   			Object admin=req.getSession().getAttribute("adminLogin");
   			if(admin==null){
-  				String uri=ServletUtil.DEPLOY_NAME+"adminLogin.jsp";
   				req.getSession().setAttribute("errorMsg","想走捷径，没门儿！！！");
-  	  			resp.sendRedirect(uri);
+  	  			resp.sendRedirect(ServletUtil.DEPLOY_NAME+"adminLogin.jsp");
   	  			return;
   			}
   		}

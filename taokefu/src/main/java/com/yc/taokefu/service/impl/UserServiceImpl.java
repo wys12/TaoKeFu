@@ -74,13 +74,11 @@ public class UserServiceImpl implements UserService {
 	// 基础信息
 	@Override
 	public List<UserAll> findUser(UserAll user) {
-		LogManager.getLogger().debug("基础信息 ==》 "+user);
 		return userMapper.findUser(user);
 	}
 	//简历信息
 	@Override
 	public List<UserAll> findUsResume(UserAll user) {
-		LogManager.getLogger().debug("简历操作 ==》 "+user);
 		return userMapper.findUsResume(user);
 	}
 	//作品展示

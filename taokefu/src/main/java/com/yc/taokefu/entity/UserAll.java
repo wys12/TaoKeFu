@@ -36,7 +36,21 @@ public class UserAll {
 	private String exp_job_name;//工作职位
 	private String exp_start_year;//起始时间
 	private String exp_end_year;//结束时间
+	private String exp_work;
+	private String  exp_city;
 
+	public String getExp_work() {
+		return exp_work;
+	}
+	public String getExp_city() {
+		return exp_city;
+	}
+	public void setExp_city(String exp_city) {
+		this.exp_city = exp_city;
+	}
+	public void setExp_work(String exp_work) {
+		this.exp_work = exp_work;
+	}
 	/*---------------个人学历----------------------*/
 	private Integer edu_id;
 	private String edu_shool_name;//
@@ -354,13 +368,14 @@ public class UserAll {
 				+ hj_min_salary + ", hj_max_salary=" + hj_max_salary + ", hj_nature=" + hj_nature + ", des_content="
 				+ des_content + ", suc_id=" + suc_id + ", suc_name=" + suc_name + ", suc_link=" + suc_link + ", exp_id="
 				+ exp_id + ", exp_company_name=" + exp_company_name + ", exp_job_name=" + exp_job_name
-				+ ", exp_start_year=" + exp_start_year + ", exp_end_year=" + exp_end_year + ", edu_id=" + edu_id
-				+ ", edu_shool_name=" + edu_shool_name + ", edu_major=" + edu_major + ", edu_educationa="
-				+ edu_educationa + ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + ", col_id="
-				+ col_id + ", col_job_id=" + col_job_id + ", tak_id=" + tak_id + ", tak_job_id=" + tak_job_id
-				+ ", tak_email=" + tak_email + ", tak_time=" + tak_time + ", tak_job_name=" + tak_job_name
-				+ ", tak_job_city=" + tak_job_city + ", tak_state=" + tak_state + ", tak_territory=" + tak_territory
-				+ ", tak_min_salary=" + tak_min_salary + ", tak_max_salary=" + tak_max_salary + "]";
+				+ ", exp_start_year=" + exp_start_year + ", exp_end_year=" + exp_end_year + ", exp_work=" + exp_work
+				+ ", exp_city=" + exp_city + ", edu_id=" + edu_id + ", edu_shool_name=" + edu_shool_name
+				+ ", edu_major=" + edu_major + ", edu_educationa=" + edu_educationa + ", edu_start_year="
+				+ edu_start_year + ", edu_end_year=" + edu_end_year + ", col_id=" + col_id + ", col_job_id="
+				+ col_job_id + ", tak_id=" + tak_id + ", tak_job_id=" + tak_job_id + ", tak_email=" + tak_email
+				+ ", tak_time=" + tak_time + ", tak_job_name=" + tak_job_name + ", tak_job_city=" + tak_job_city
+				+ ", tak_state=" + tak_state + ", tak_territory=" + tak_territory + ", tak_min_salary=" + tak_min_salary
+				+ ", tak_max_salary=" + tak_max_salary + "]";
 	}
 	
 	

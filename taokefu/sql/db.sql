@@ -11,6 +11,7 @@ create table admin(
   ad_name varchar2(10) not null,
   ad_pwd varchar2(50) not null
 );
+select * from LOGIN
 --login	登录
 create table login(
   l_id number primary key ,
@@ -18,10 +19,13 @@ create table login(
   l_pwd varchar2(100) not null,
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
+<<<<<<< HEAD
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 select * from LOGIN
 select * from tkfuser
 select * from LOGIN
+=======
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 
 
 create table otherlogin(
@@ -29,13 +33,17 @@ create table otherlogin(
   ol_name varchar2(50),
   ol_email varchar2(20)
 );
+<<<<<<< HEAD
 --drop table otherlogin
 select * from otherlogin
+=======
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 update set tkfuser us_name=${us_name},us_picpath=${us_picpath},us_intro=${us_intro},
 		us_sex=${us_sex},us_educationa=${us_educationa},us_work_year=${us_work_year},us_phone=${us_phone}
 		 where us_id=${us_id} or openId=${openId} or us_email=${us_email}
+		 
 insert into tkfuser us_name=${us_name},us_picpath=${us_picpath},us_picpath=${us_picpath},us_intro=${us_intro},
 us_sex=${us_sex},us_educationa=${us_educationa},us_work_year=${us_work_year},us_phone=${us_phone} 
 where us_id=${us_id} or us_email=${us_email} or openId=${openId}  
@@ -78,15 +86,16 @@ select * from usResume login tkfuser
 insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
 --drop table usResume
  --resume	用户简历表(详情)
+ alter table usResume modify  hj_city varchar2(30)
 create table usResume(
 	usr_id number primary key,
 	tkf_id number constraint tkf_id references tkfuser(us_id),
 	c_id number constraint fk_usR_id references company(comp_id),
-	usr_name varchar2(10),	--简历名称
+	usr_name varchar2(30),	--简历名称
 	usr_state varchar2(10) check(usr_state in('-0','-1','-2','-3','-4')),	--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
  --hope_job	期望工作
-	hj_name varchar2(10) ,	--职位名称
-	hj_city varchar2(10) ,	--工作地址
+	hj_name varchar2(30) ,	--职位名称
+	hj_city varchar2(30) ,	--工作地址
 	hj_min_salary varchar2(10),	--期望月薪 
 	hj_max_salary varchar2(10),	--期望月薪 
   	hj_nature varchar2(20) check(hj_nature in('-0','-1','-2')), --职位性质（全职/兼职/实习）
@@ -99,7 +108,6 @@ insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队�
 create table coResume(
 	cor_id number primary key,
 	c_id number constraint fk_coR_id references company(comp_id),
- 
  --product 产品
 	pro_name varchar2(10),	--公司产品
 	pro_link varchar2(20),	--产品链接
@@ -130,9 +138,13 @@ create table experience(
 	tkf_id number constraint fk_exp_id references usResume(usr_id),
 	exp_company_name varchar2(30),	--工作公司
 	exp_job_name varchar2(30),	--工作职位
+	exp_work varchar2(20),--工作年纪
+	exp_city varchar2(20),--city
 	exp_start_year varchar2(20),	--起始时间
 	exp_end_year varchar2(20)   --结束时间
 );
+select * from experience
+--alter table experience add exp_city varchar2(20)
  --educationa 个人学历
 create table educationa(
 	edu_id number primary key,
@@ -165,8 +177,8 @@ create table take(
 	  tak_min_salary varchar2(10),	--工资
 	  tak_max_salary varchar2(10)	--工资
 );
-select * from tkfuser
 insert into tag values(tag_sql.nextval,'1001','五险一金');
+select * from invest
 --tag公司标签
 create table tag(
 	tag_id number primary key,
@@ -174,6 +186,7 @@ create table tag(
 	tag_name varchar2(20)	--标签名称
 );
 insert into invest values(invest_sql.nextval,1001,'支付宝金融','上市公司');
+
 --invest 投资机构
 create table  invest(
 	inv_id number primary key,
@@ -208,7 +221,7 @@ create table job(
   job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
    foreign key (c_id) references company(comp_id) --外键关联
 );
-select * from job
+select * from job_class
 
 --职位分类表
 create table job_class(

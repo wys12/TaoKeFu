@@ -10,13 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{openId},#{nickname})
 	</select>
 
-	
 	<!-- 后台用户添加 -->
 	<insert id="BackUserAdd" parameterType="User">
-		insert into tkfuser (us_id,us_name,us_picpath,us_sex,us_educationa,us_work_year,us_phone,us_email,us_intro)
+		insert into tkfuser
+		(us_id,us_name,us_picpath,us_sex,us_educationa,us_work_year,us_phone,us_email,us_intro)
 		values(tkfuser_sql.nextval,#{us_name},#{us_picpath},#{us_sex},#{us_educationa},#{us_work_year},#{us_phone},#{us_email},#{us_intro})
 	</insert>
-	
+
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage}" ofType="User" select="getUser" />
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="addUser" resultType="java.util.List" parameterType="User">
 		insert into tkfuser (us_id,us_email) values(${us_id},'${us_email}')
 	</select>
-	<insert id="insertUser" parameterType="UserAll" >
+	<insert id="insertUser" parameterType="UserAll">
 		insert into tkfuser values(tkfuser_sql.nextval
 		<if test="us_name==null or us_name==''">,''</if>
 		<if test="us_name!=null">,'${us_name}'</if>
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	<!-- 简历信息 -->
-	<insert id="insertUsResume" parameterType="User" >
+	<insert id="insertUsResume" parameterType="User">
 		insert into usResume values(usResume_sql.nextval
 		<if test="tkf_id==null or tkf_id==''">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
@@ -93,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	<!-- 作品信息 -->
-	<insert id="insertSucceed" parameterType="UserAll" >
+	<insert id="insertSucceed" parameterType="UserAll">
 		insert into succeed values(succeed_sql.nextval
 		<if test="tkf_id==null or tkf_id==''">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
@@ -116,6 +116,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="exp_start_year !=null">,'${exp_start_year}'</if>
 		<if test="exp_end_year ==null or exp_end_year ==''">,''</if>
 		<if test="exp_end_year !=null">,'${exp_end_year}'</if>
+		<if test="exp_work ==null or exp_work ==''">,''</if>
+		<if test="exp_work !=null">,'${exp_work}'</if>
+		<if test="exp_city ==null or exp_city ==''">,''</if>
+		<if test="exp_city !=null">,'${exp_city}'</if>
 		)
 	</insert>
 	<!--学历信息 -->
@@ -145,7 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	<!-- 订阅信息 -->
-	<insert id="insertTake" parameterType="UserAll" >
+	<insert id="insertTake" parameterType="UserAll">
 		insert into take values(take_job_sql.nextval
 		<if test="tkf_id==null or tkf_id==''">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
@@ -174,7 +178,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- ***********************查询用户信息 *********************** -->
 	<select id="findUser" parameterType="UserAll" resultType="UserAll">
 		select
-		* from tkfuser where us_id=#{us_id}
+		* from tkfuser where
+		<if test="us_id !=null">us_id=#{us_id}</if>
+		<if test="tkf_id !=null">tkf_id=#{tkf_id}</if>
 	</select>
 	<!-- 查询简历信息 -->
 	<select id="findUsResume" parameterType="UserAll" resultType="UserAll">
@@ -235,7 +241,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</update>
 	<!-- 简历信息 -->
-	<update id="modifiUsResume" parameterType="UserAll" >
+	<update id="modifiUsResume" parameterType="UserAll">
 		update usResume
 		<set>
 			<if test="c_id !=null">c_id='${c_id}',</if>
@@ -255,7 +261,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</update>
 	<!-- 作品信息 -->
-	<update id="modifiSucceed" parameterType="UserAll" >
+	<update id="modifiSucceed" parameterType="UserAll">
 		update succeed
 		<set>
 			<if test="suc_name !=null">suc_name='${suc_name}',</if>
@@ -273,6 +279,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<set>
 			<if test="exp_company_name !=null">exp_company_name='${exp_company_name}',</if>
 			<if test="exp_job_name !=null">exp_job_name='${exp_job_name}',</if>
+			<if test="exp_work !=null">exp_work='${exp_work}',</if>
+			<if test="exp_city !=null">exp_city='${exp_city}',</if>
 			<if test="exp_start_year !=null">exp_start_year='${exp_start_year}',</if>
 			<if test="exp_end_year !=null">exp_end_year='${exp_end_year}',</if>
 		</set>
@@ -293,7 +301,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="tkf_id !=null"> tkf_id='${tkf_id}'</if>
 	</update>
 	<!-- 收藏信息 -->
-	<update id="modifiCollect" parameterType="UserAll" >
+	<update id="modifiCollect" parameterType="UserAll">
 		update collect
 		<set>
 			<if test="col_job_id !=null">col_job_id='${col_job_id}',</if>
@@ -302,7 +310,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="tkf_id !=null"> tkf_id='${tkf_id}'</if>
 	</update>
 	<!-- 订阅信息 -->
-	<update id="modifiTake" parameterType="UserAll" >
+	<update id="modifiTake" parameterType="UserAll">
 		update take
 		<set>
 			<if test="tak_job_id !=null">tak_job_id='${tak_job_id}',</if>
