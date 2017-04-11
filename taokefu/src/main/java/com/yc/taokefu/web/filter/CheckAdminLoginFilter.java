@@ -13,12 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 
+import com.yc.taokefu.util.ServletUtil;
+
 
 /**
  * AaminLogin验证
  */
 
-@WebFilter("/*")
+@WebFilter("/manage.html")
 public class CheckAdminLoginFilter extends AbstractFilter  {
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
@@ -33,7 +35,7 @@ public class CheckAdminLoginFilter extends AbstractFilter  {
   			Object admin=req.getSession().getAttribute("adminLogin");
   			if(admin==null){
   				req.getSession().setAttribute("errorMsg","想走捷径，没门儿！！！");
-  	  			resp.sendRedirect(req.getServletContext().getContextPath()+"/adminLogin.jsp");
+  	  			resp.sendRedirect(ServletUtil.DEPLOY_NAME+"adminLogin.jsp");
   	  			return;
   			}
   		}

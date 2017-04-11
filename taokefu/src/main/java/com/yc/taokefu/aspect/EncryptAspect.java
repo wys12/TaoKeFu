@@ -43,5 +43,9 @@ public class EncryptAspect {
 		admin.setAd_pwd(Encrypt.md5AndSha(admin.getAd_pwd()));
 		LogManager.getLogger().debug("管理员登陆密码之后===>"+admin);
 	}
+	@Before("execution(* com.yc.taokefu.service.impl.UserServiceImpl..*(..))")
+	public void beforeUserHandler(JoinPoint jpoint){
+		LogManager.getLogger().debug("对用户信息的操作");
+	}
 
 }

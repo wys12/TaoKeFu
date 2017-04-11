@@ -9,13 +9,13 @@ import com.yc.taokefu.service.AdminService;
 
 @Service("adminService")
 public class AdminServiceImpl  implements AdminService {
-	
+
 	@Autowired
 	private AdminMapper adminMapper;
-	
+
+
 	@Override
 	public Admin login(Admin admin) {
-		
 		return adminMapper.findAdmin(admin);
 	}
 
