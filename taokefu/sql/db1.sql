@@ -1,10 +1,12 @@
 insert into admin values(1,'aaa','a');
+select * from admin
 ---admin管理员
 create table admin(
   ad_id number primary key ,
   ad_name varchar2(10) not null,
   ad_pwd varchar2(10) not null
 );
+     1 admin  1441605117@qq.com
 --login	登录
 create table login(
   l_id number primary key ,

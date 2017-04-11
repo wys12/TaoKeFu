@@ -6,4 +6,7 @@ public interface AdminMapper {
 
 	Admin findAdmin(Admin admin);
 
+	Admin searchAdmin(Admin admin);
+	Integer modifiAdminPwd(Admin admin);
+
 }

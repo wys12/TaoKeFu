@@ -17,6 +17,7 @@ public class ServletUtil {
 	public static final String LOGIN_ADMIN = "adminLogin";  //管理员登陆
 	public static String UPLOAD_DIR;//文件上传目录 
 	public static Map<String, String> userMap;
+	public static int CODE;
 	public static List<CompanyAll> JOB_LIST = new ArrayList<CompanyAll>();//返回界面信息
 	public static Integer type =0;
 	public static Integer job_id;

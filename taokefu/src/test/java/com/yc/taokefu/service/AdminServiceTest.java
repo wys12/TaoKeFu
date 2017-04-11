@@ -1,4 +1,4 @@
-package com.yc.taokefu.service.impl;
+package com.yc.taokefu.service;
 
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -6,18 +6,20 @@ import java.util.ResourceBundle;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yc.taokefu.entity.Admin;
 import com.yc.taokefu.mapper.AdminMapper;
-import com.yc.taokefu.service.AdminService;
 import com.yc.taokefu.util.ServletUtil;
-
-@Service("adminService")
-public class AdminServiceImpl  implements AdminService {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring.xml")
+public class AdminServiceTest {
 
 	@Autowired
 	private AdminMapper adminMapper;
@@ -25,17 +27,12 @@ public class AdminServiceImpl  implements AdminService {
 	@Autowired
 	private  JavaMailSender mailSender;
 
-	@Override
-	public Admin login(Admin admin) {
-		return adminMapper.findAdmin(admin);
-	}
 
-	/**
-	 * 更具邮箱找回密码
-	 */
-	@Override
-	public Boolean findAdminPwd(Admin admin) {
-		//校验用户名与邮箱
+	@Test
+	public void testFindAdminPwd() {
+		Admin admin=new Admin();
+		admin.setAd_email("1441605117@qq.com");
+		admin.setAd_name("admin");
 		if(adminMapper.searchAdmin(admin)!=null){
 			admin=adminMapper.searchAdmin(admin);
 			//发送邮件
@@ -46,16 +43,19 @@ public class AdminServiceImpl  implements AdminService {
 				helper.setFrom(ResourceBundle.getBundle("data").getString("mail.smtp.from"));
 				helper.setTo(admin.getAd_email());
 				helper.setSubject("忘记密码");
+				System.out.println(admin.getAd_email());
+				System.out.println(admin.getAd_pwd());
 				helper.setText(String.valueOf(ServletUtil.CODE));
 				mailSender.send(message);
-				return true;
 			} catch (MessagingException e) {
 				e.printStackTrace();
 			}
 		}
-		return false;
 	}
-	public static int random() {
+	/*	public static void main(String[] args) {
+		random();
+	}*/
+	private static int random() {
 		Random rd = new Random();
 		int random=0;
 		for(int i =0;i<10;i++){
@@ -64,10 +64,5 @@ public class AdminServiceImpl  implements AdminService {
 			else i--;
 		}
 		return 0;
-	}
-
-	@Override
-	public Integer modifiAdminPwd(Admin admin) {
-		return adminMapper.modifiAdminPwd(admin);
 	}
 }

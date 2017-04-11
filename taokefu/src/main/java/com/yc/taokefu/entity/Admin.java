@@ -4,6 +4,7 @@ public class Admin {
 	private Integer ad_id;
 	private String ad_name;
 	private String ad_pwd;
+	private String ad_email;
 	public Integer getAd_id() {
 		return ad_id;
 	}
@@ -22,10 +23,15 @@ public class Admin {
 	public void setAd_pwd(String ad_pwd) {
 		this.ad_pwd = ad_pwd;
 	}
+	public String getAd_email() {
+		return ad_email;
+	}
+	public void setAd_email(String ad_email) {
+		this.ad_email = ad_email;
+	}
 	@Override
 	public String toString() {
-		return "Admin [ad_id=" + ad_id + ", ad_name=" + ad_name + ", ad_pwd=" + ad_pwd + "]";
+		return "Admin [ad_id=" + ad_id + ", ad_name=" + ad_name + ", ad_pwd=" + ad_pwd + ", ad_email=" + ad_email + "]";
 	}
-
 	
 }

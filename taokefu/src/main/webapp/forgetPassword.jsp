@@ -12,23 +12,15 @@
 </head>
 <body>
 	<div id="forgetDiv">
-		<form action="admin/forget" id="forgetForm" method="post">
-			<p>
-				<input name="ad_namae" required="required" placeholder="请求输入用户名" />
-			</p>
-			<p>
-				<input type="email" name="ad_email" required="required"
-					placeholder="请求输入找出密码邮箱" />
-			</p>
-			<p>
-				<input type="email" name="yzm" required="required"
-					placeholder="请求输入找出密码邮箱" style="width: 150px;"/>
-					<button>发送邮箱</button>
-					
-			</p>
-			<p>
-				<button type="submit" id="but">找回密码</button>
-			</p>
+		<form action="admin/forgets" id="forgetForm" method="post">
+				<input id="ad_name"  placeholder="请求输入用户名" required="required" />
+				<input type="text" id="ad_email" placeholder="请求输入找出密码邮箱" required="required" style="width: 160px;"/>
+				<a href="javascript:void(0)" onclick="forget()">忘记密码</a>	
+				<input type="password" id="new_pwd1" name="ad_pwd" required="required" placeholder="请输入新密码" />		
+				<label id="msg"></label>
+				<input type="password" id="new_pwd2" onchange="new_pwd()" name="ad_pwd" required="required" placeholder="确认新密码" />
+				<input type="text" name="code" required="required" placeholder="请输入验证码" style="width: 100px;"/>
+				<button type="button" id="sbm" onclick="sbm()">提交</button>		
 		</form>
 	</div>
 	<script type="text/javascript" src="easyui/1.3.3/jquery.min.js"></script>

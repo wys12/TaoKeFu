@@ -14,7 +14,7 @@ import com.yc.taokefu.util.Encrypt;
 @Component("encryptAspect")
 @Aspect
 public class EncryptAspect {
-	
+
 	@Before("execution(* com.yc.taokefu.service.impl.LoginServiceImpl.login(..))")
 	public void beforeLoginMethod(JoinPoint jpoint){
 		Login user=(Login) jpoint.getArgs()[0];
@@ -46,6 +46,14 @@ public class EncryptAspect {
 	@Before("execution(* com.yc.taokefu.service.impl.UserServiceImpl..*(..))")
 	public void beforeUserHandler(JoinPoint jpoint){
 		LogManager.getLogger().debug("对用户信息的操作");
+	}
+
+	@Before("execution(* com.yc.taokefu.service.impl.AdminServiceImpl.modifiAdminPwd(..))")
+	public void beforeAdminModifiAdminPwd(JoinPoint jpoint){
+		Admin admin=(Admin) jpoint.getArgs()[0];
+		LogManager.getLogger().debug("密码修改之前===>"+admin);
+		admin.setAd_pwd(Encrypt.md5AndSha(admin.getAd_pwd()));
+		LogManager.getLogger().debug("密码修改之后===>"+admin);
 	}
 
 }

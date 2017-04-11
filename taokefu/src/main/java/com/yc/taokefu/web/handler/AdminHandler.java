@@ -5,9 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.taokefu.entity.Admin;
@@ -34,9 +34,22 @@ public class AdminHandler {
 			return "redirect:/manage.html"; //重定向
 		}
 	}
-	@RequestMapping(value="sendEmail",method=RequestMethod.POST)
+	
+	@RequestMapping(value="forget",method=RequestMethod.POST)
 	@ResponseBody
-	public void  froget(){
-		LogManager.getLogger().debug("这是根据邮箱找回密码...");
+	public Boolean   froget(Admin admin){
+		LogManager.getLogger().debug("这是根据邮箱找回密码..."+admin);
+		return adminService.findAdminPwd(admin);
+		
+	}
+	@RequestMapping(value="forgets",method=RequestMethod.POST)
+	@ResponseBody
+	public Integer frogets(Admin admin,@RequestParam("code")String code){
+		LogManager.getLogger().debug(code+"这是根据邮箱修改密码..."+admin);
+		if(Integer.valueOf(code)==ServletUtil.CODE){
+			return adminService.modifiAdminPwd(admin);
+		}
+		return null;
+		
 	}
 }
