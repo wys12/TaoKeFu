@@ -1,12 +1,15 @@
-insert into admin values(1,'aaa','a');
-update admin set ad_pwd='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where ad_id=1
+insert into admin values('1441605117@qq.com','admin','a');
+update admin set ad_pwd='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where ad_email='1441605117@qq.com'
 select * from admin;
+update admin set ad_pwd='3b3690fba8bd08059eae130425396eb05ded1b7d' where ad_email='1441605117@qq.com'
+
 ---admin管理员
 alert table admin add (ad_email varchar2(50));
+drop table  admin;
 create table admin(
-  ad_id number primary key ,
+  ad_email varchar2(50) primary key ,
   ad_name varchar2(10) not null,
-  ad_pwd varchar2(10) not null
+  ad_pwd varchar2(50) not null
 );
 --login	登录
 create table login(
@@ -15,12 +18,10 @@ create table login(
   l_pwd varchar2(100) not null,
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
-<<<<<<< HEAD
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 select * from LOGIN
 select * from tkfuser
 select * from LOGIN
-=======
 
 
 create table otherlogin(
@@ -30,7 +31,6 @@ create table otherlogin(
 );
 --drop table otherlogin
 select * from otherlogin
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 update set tkfuser us_name=${us_name},us_picpath=${us_picpath},us_intro=${us_intro},

@@ -34,6 +34,11 @@ public class AdminHandler {
 			return "redirect:/manage.html"; //重定向
 		}
 	}
+	/**
+	 * 请求发送验证码
+	 * @param admin
+	 * @return
+	 */
 	
 	@RequestMapping(value="forget",method=RequestMethod.POST)
 	@ResponseBody
@@ -42,14 +47,25 @@ public class AdminHandler {
 		return adminService.findAdminPwd(admin);
 		
 	}
-	@RequestMapping(value="forgets",method=RequestMethod.POST)
+	
+	/**
+	 * 修改密码
+	 * @param admin
+	 * @param code
+	 * @return 1441605117@qq.com
+	 */
 	@ResponseBody
-	public Integer frogets(Admin admin,@RequestParam("code")String code){
-		LogManager.getLogger().debug(code+"这是根据邮箱修改密码..."+admin);
+	@RequestMapping(value="forgets",method=RequestMethod.POST)
+	public String frogets(Admin admin,@RequestParam("code")String code,HttpSession session){
+		LogManager.getLogger().debug("这是根据邮箱修改密码..."+":验证码："+code+",用户更改的密码"+admin.getAd_pwd());
 		if(Integer.valueOf(code)==ServletUtil.CODE){
-			return adminService.modifiAdminPwd(admin);
-		}
-		return null;
-		
+			LogManager.getLogger().debug("验证码输入正确...");
+			session.removeAttribute(ServletUtil.ERROR_MESSAGE);
+			adminService.modifiAdminPwd(admin);
+			return "0";//"adminLogin.jsp";
+		}  
+		LogManager.getLogger().debug("验证码输入错误...");
+		session.setAttribute(ServletUtil.ERROR_MESSAGE,"验证码输入错误!!!!");
+		return "1";//"redirect:/forgetPassword.jsp";
 	}
 }

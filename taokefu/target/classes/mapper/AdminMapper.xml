@@ -10,6 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select * from admin where ad_name=#{ad_name} and ad_email=#{ad_email}
 		</select>
 		<update id="modifiAdminPwd" parameterType="com.yc.taokefu.entity.Admin">
-			update admin set ad_pwd=${ad_pwd} where ad_email=${ad_email}
+			update admin set ad_pwd='${ad_pwd}' where ad_email='${ad_email}'
 		</update>
 </mapper>

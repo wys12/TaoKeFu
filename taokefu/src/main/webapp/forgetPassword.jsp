@@ -12,15 +12,18 @@
 </head>
 <body>
 	<div id="forgetDiv">
-		<form action="admin/forgets" id="forgetForm" method="post">
+		<form id="forgetForm" action="admin/forgets" method="post">
+				<label id="msg1" style="color:red;  font-size: 16px;"></label>
 				<input id="ad_name"  placeholder="请求输入用户名" required="required" />
+				<label id="msg2" style="color:red;  font-size: 16px;"></label>
 				<input type="text" id="ad_email" placeholder="请求输入找出密码邮箱" required="required" style="width: 160px;"/>
 				<a href="javascript:void(0)" onclick="forget()">忘记密码</a>	
 				<input type="password" id="new_pwd1" name="ad_pwd" required="required" placeholder="请输入新密码" />		
-				<label id="msg"></label>
-				<input type="password" id="new_pwd2" onchange="new_pwd()" name="ad_pwd" required="required" placeholder="确认新密码" />
-				<input type="text" name="code" required="required" placeholder="请输入验证码" style="width: 100px;"/>
-				<button type="button" id="sbm" onclick="sbm()">提交</button>		
+				<label id="msg3" style="color:red;  font-size: 16px;"></label>
+				<input type="password" id="new_pwd2" onkeyup="new_pwd()" name="ad_pwd" required="required" placeholder="确认新密码" />
+				<label id="msg4" style="color:red;  font-size: 16px;">${errorMsg}</label>
+				<input type="text" name="code" id="code" required="required" placeholder="请输入验证码" style="width: 100px;"/>
+				<button type="button" id="sbm" >提交</button>		
 		</form>
 	</div>
 	<script type="text/javascript" src="easyui/1.3.3/jquery.min.js"></script>
