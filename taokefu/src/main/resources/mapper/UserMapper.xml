@@ -16,7 +16,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(us_id,us_name,us_picpath,us_sex,us_educationa,us_work_year,us_phone,us_email,us_intro)
 		values(tkfuser_sql.nextval,#{us_name},#{us_picpath},#{us_sex},#{us_educationa},#{us_work_year},#{us_phone},#{us_email},#{us_intro})
 	</insert>
-<<<<<<< HEAD
 	
 	<!-- 后台用户修改 -->
 	<update id="BackUserEdit" parameterType="User">
@@ -58,9 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from tkfuser where us_id=#{id}
 	</delete>
 	
-=======
 
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage}" ofType="User" select="getUser" />

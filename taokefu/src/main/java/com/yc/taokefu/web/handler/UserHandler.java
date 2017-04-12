@@ -270,17 +270,15 @@ public class UserHandler {
 	public Integer modifiTake(UserAll user){
 		return userService.modifiTake(user);
 	}
-<<<<<<< HEAD
-	//后台添加用户
-=======
 	
+
 	/**
 	 * 后台操作
 	 * @param us_picdata
 	 * @param user
 	 * @return
 	 */
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
+	//后台添加用户
 	@RequestMapping(value="add",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean doAdd(@RequestParam("us_picdata")MultipartFile us_picdata,User user){
