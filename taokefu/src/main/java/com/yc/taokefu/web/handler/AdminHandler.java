@@ -22,7 +22,7 @@ public class AdminHandler {
 	@Autowired
 	private  AdminService adminService;
 	
-	@RequestMapping(value="login",method=RequestMethod.GET)
+	@RequestMapping(value="login",method=RequestMethod.POST)
 	public String login(Admin admin ,HttpSession session){
 		admin=adminService.login(admin);
 		LogManager.getLogger().debug("管理员登录===》admin"+admin);

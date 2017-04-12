@@ -2,11 +2,14 @@ insert into admin values(1,'aaa','a');
 update admin set ad_pwd='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where ad_id=1
 select * from admin;
 ---admin管理员
+insert into ADMIN values(admin_sql.nextval,'admin','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','595068001@qq.com')
 alert table admin add (ad_email varchar2(50));
+drop table admin
 create table admin(
   ad_id number primary key ,
-  ad_name varchar2(10) not null,
-  ad_pwd varchar2(10) not null
+  ad_name varchar2(20) not null,
+  ad_pwd varchar2(50) not null,
+  ad_email varchar2(30)
 );
 select * from LOGIN
 --login	登录
@@ -804,4 +807,3 @@ create table job_class(
   jc_id number primary key ,
   jc_name varchar2(20) not null
 );
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu

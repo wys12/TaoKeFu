@@ -80,11 +80,13 @@ public class LoginHandler {
 					Integer l_id = logins.getL_id();
 					if(type.equals("0")){
 						userService.addUsers(l_id,l_email);
+						map.put("page", "index.html");
 					}else if(type.equals("1")){
 						companyService.addCompany(l_id,l_email);
+						map.put("page", "companyInfo01.html");
 					}
 					LogManager.getLogger().debug("注册邮箱成功,ID == " +l_id);
-					map.put("page", "index.html");
+					
 					return map;
 				}else{//注册失败
 					LogManager.getLogger().debug("注册失败");

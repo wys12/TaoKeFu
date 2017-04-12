@@ -7,4 +7,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="User">
 		insert into company (comp_id,comp_email) values(${comp_id},'${comp_email}')
 	</select>
+	
 </mapper>

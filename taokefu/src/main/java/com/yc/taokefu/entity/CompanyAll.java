@@ -1,6 +1,7 @@
 package com.yc.taokefu.entity;
 
 public class CompanyAll {
+	//公司
 	private Integer comp_id;
 	private String comp_name;//公司简称
 	private String comp_fullname;//公司 全称

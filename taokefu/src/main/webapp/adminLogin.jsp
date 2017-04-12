@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div id="loginDiv">
-		<form action="admin/login" id="loginForm"  method="get">
+		<form action="admin/login" id="loginForm"  method="post">
 			<p><label>${errorMsg }&nbsp;</label><c:remove var="errorMsg" scope="session"/>
 			<p><input name="ad_name" placeholder="请输入用户名" required="required" id="uname" class="easyui-validatebox" data-options="validType:'minLength[5]'"/><p>
 			<p><input name="ad_pwd" type="password" placeholder="请输入密码" required="required" id="upwd"/><p>
