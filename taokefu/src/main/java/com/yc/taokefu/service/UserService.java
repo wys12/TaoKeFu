@@ -20,6 +20,14 @@ public interface UserService {
 
 
 	boolean BackUserAdd(User user);
+
+
+
+	boolean BackUserEdit(User user);
+
+
+
+	boolean BackUserDelete(String id);
 	
 	
 }

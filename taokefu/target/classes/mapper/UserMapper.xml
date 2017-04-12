@@ -13,6 +13,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(tkfuser_sql.nextval,#{us_name},#{us_picpath},#{us_sex},#{us_educationa},#{us_work_year},#{us_phone},#{us_email},#{us_intro})
 	</insert>
 	
+	<!-- 后台用户修改 -->
+	<update id="BackUserEdit" parameterType="User">
+			update tkfuser
+		<set>
+			<if test="us_id != null">
+				us_id = #{us_id},
+			</if>
+			<if test="us_name != null">
+				us_name = #{us_name},
+			</if>
+			<if test="us_picpath != null">
+				us_picpath = #{us_picpath},
+			</if>
+			<if test="us_sex != null">
+				us_sex = #{us_sex},
+			</if>
+			<if test="us_educationa != null">
+				us_educationa = #{us_educationa},
+			</if>
+			<if test="us_work_year != null">
+				us_work_year = #{us_work_year},
+			</if>
+			<if test="us_phone != null">
+				us_phone = #{us_phone},
+			</if>
+			<if test="us_email != null">
+				us_email = #{us_email},
+			</if>
+			<if test="us_intro != null">
+				us_intro = #{us_intro}
+			</if>
+		</set>
+		where us_id = #{us_id}
+	</update>
+	
+	<!-- 后台用户删除 -->
+	<delete id="BackUserDelete" parameterType="String">
+		delete from tkfuser where us_id=#{id}
+	</delete>
+	
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows" column="{pageSize=pageSize,currPage=currPage}" ofType="User" select="getUser"/>
 	</resultMap>

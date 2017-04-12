@@ -59,6 +59,11 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	public void testBackUserDelete() {
+		assertNotNull(userService.BackUserDelete("1026"));
+	}
+	
+	@Test
 	public void testRegister0() {
 		assertNotNull(userService.addUsers(1112, "6661@qq.com"));
 	}
