@@ -1335,9 +1335,9 @@ $(function(){
 	if(!$.cookie(sessionId)){
 		$.cookie(sessionId, 0, {expires: 1});
 	}
-	if($.cookie(sessionId) &amp;&amp; $.cookie(sessionId) != 5){
+	/* if($.cookie(sessionId) &amp;&amp; $.cookie(sessionId) != 5){
 		$('#qr_cloud_resume').removeClass('dn');
-	}
+	} */
 	$('#qr_cloud_resume .close').click(function(){
 		$('#qr_cloud_resume').fadeOut(200);
 		resumeQR = parseInt($.cookie(sessionId)) + 1;
@@ -1371,7 +1371,7 @@ $(function(){
 var index = Math.floor(Math.random() * 2);
 var ipArray = new Array('42.62.79.226','42.62.79.227');
 var url = "ws://" + ipArray[index] + ":18080/wsServlet?code=314873";
-var CallCenter = {
+/* var CallCenter = {
 		init:function(url){
 			var _websocket = new WebSocket(url);
 			_websocket.onopen = function(evt) {
@@ -1402,7 +1402,7 @@ var CallCenter = {
 			};
 		}
 };
-CallCenter.init(url);
+CallCenter.init(url); */
 </script>
 
 <div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div></body></html>
