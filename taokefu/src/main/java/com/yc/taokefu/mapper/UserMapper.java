@@ -29,6 +29,11 @@ public interface UserMapper {
 	//后台添加用户
 	int BackUserAdd(User user);
 
+	//后台修改用户
+	int BackUserEdit(User user);
+	
+	//后台删除用户
+	int BackUserDelete(String id);
 	/**
 	 * wys
 	 * @param user

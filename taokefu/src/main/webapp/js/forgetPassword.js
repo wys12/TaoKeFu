@@ -1,11 +1,11 @@
-/*$("#forgetDiv").dialog({
+$("#forgetDiv").dialog({
 	title:"",
 	top:80,
 	width:400,
-	height:230,
+	height:400,
 	border:false,
 	modal:true
-});*/
+});
 /*$.post("admin/sendEmail");
 $.post("点击找回,照这个请求中判断验证码是否一致");*/
 var new_pwd1=$("#new_pwd1");
@@ -15,16 +15,15 @@ function forget(){
 	var email=$("#ad_email").val();
 	var name=$("#ad_name").val();
 	if(email=="" || email==null){
-
-		alert("邮箱不能为空!!! .."+email)
+		$("#msg1").html("用户名不能为空!!!");
 	}
 	if(name=="" || name==null){
-		alert("用户名不能为空!!! .."+name)
+		$("#msg2").html("邮箱不能为空!!!")
 	}
 	if(email!=null && email!="" && name!=null && name!=""){
 		$.post("admin/forget",{ad_email:email,ad_name:name},function(data){
 			if(data=="false"){
-				alert("用户名和邮箱不匹配！！！");
+				$("#msg2").html("用户名和邮箱不匹配！！！");
 			}
 		},"json");
 	}
@@ -40,10 +39,14 @@ $(function(){
 		}
 	});  
 })  
+
 function new_pwd(){
-	//alert("密码判断");
+	var new_pwd1=document.getElementById("new_pwd1").value;
+	var new_pwd2=document.getElementById("new_pwd2").value;
 	if(new_pwd1!=new_pwd2){
-		//$("#msg").val("两次密码不一致！！！");
+		$("#msg3").html('两次密码不一致！！！');
+	}else{
+		$("#msg3").html('');
 	}
 }
 
@@ -60,3 +63,16 @@ function msg(){
 		$("#forgetForm").submit();
 	}
 }
+$('#sbm').click(function (){
+	var email=$("#ad_email").val();
+	var new_pwd2=document.getElementById("new_pwd2").value;
+	var code=document.getElementById("code").value;
+	alert(email);
+	$.post("admin/forgets",{ad_pwd:new_pwd2,code:code,ad_email:email},function(data){
+		if(data=="0"){
+			location.href="adminLogin.jsp";
+		}else if(data=="1"){
+			location.href="forgetPassword.jsp";
+		}
+	},'json');
+});

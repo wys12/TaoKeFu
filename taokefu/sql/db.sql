@@ -1,10 +1,12 @@
-insert into admin values(1,'aaa','a');
-update admin set ad_pwd='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where ad_id=1
+insert into admin values('1441605117@qq.com','admin','a');
+update admin set ad_pwd='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where ad_email='1441605117@qq.com'
 select * from admin;
+update admin set ad_pwd='3b3690fba8bd08059eae130425396eb05ded1b7d' where ad_email='1441605117@qq.com'
+
 ---admin管理员
 insert into ADMIN values(admin_sql.nextval,'admin','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','595068001@qq.com')
 alert table admin add (ad_email varchar2(50));
-drop table admin
+drop table  admin;
 create table admin(
   ad_id number primary key ,
   ad_name varchar2(20) not null,
@@ -19,7 +21,6 @@ create table login(
   l_pwd varchar2(100) not null,
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
-
 
 create table otherlogin(
   ol_id varchar2(50) primary key ,

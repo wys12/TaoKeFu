@@ -177,4 +177,13 @@ public class UserServiceImpl implements UserService {
 	public boolean BackUserAdd(User user) {
 		return userMapper.BackUserAdd(user)>0;
 	}
+	@Override
+	public boolean BackUserEdit(User user) {
+		return userMapper.BackUserEdit(user)>0;
+	}
+	
+	@Override
+	public boolean BackUserDelete(String id) {
+		return userMapper.BackUserDelete(id)>0;
+	}
 }

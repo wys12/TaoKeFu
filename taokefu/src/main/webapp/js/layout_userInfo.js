@@ -1,14 +1,22 @@
+function chgPic_edit(obj){
+	$("#pic-edit").attr("src", window.URL.createObjectURL(obj.files[0]));
+}
+
+function chgPic(obj){
+	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
+}
+
 /**
  * Name 添加记录
  */
 function add(){
-	$('#wu-form-1').form('submit', {
+	$('#user-form-1').form('submit', {
 		url:'tkfuser/add',
 		success:function(data){
-			alert(data);
 			if(data){
-				$.messager.alert('信息提示','提交成功！','info');
-				$('#wu-dialog-2').dialog('close');
+				//$.messager.alert('信息提示','添加成功！','info');
+				$('#user-dialog-1').dialog('close');
+				$('#user-datagrid-2').datagrid('reload');
 			}
 			else
 			{
@@ -17,20 +25,19 @@ function add(){
 		}
 	});
 }
-function chgPic(obj){
-	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
-}
 
 /**
  * Name 修改记录
  */
 function edit(){
-	$('#wu-form-2').form('submit', {
+	$('#user-form-2').form('submit', {
 		url:'tkfuser/edit',
 		success:function(data){
+			
 			if(data){
-				$.messager.alert('信息提示','提交成功！','info');
-				$('#wu-dialog-2').dialog('close');
+				//$.messager.alert('信息提示','提交成功！','info');
+				$('#user-dialog-2').dialog('close');
+				$('#user-datagrid-2').datagrid('reload');
 			}
 			else
 			{
@@ -46,25 +53,29 @@ function edit(){
 function remove(){
 	$.messager.confirm('信息提示','确定要删除该记录？', function(result){
 		if(result){
-			var items = $('#wu-datagrid-2').datagrid('getSelections');
+			var items = $('#user-datagrid-2').datagrid('getSelections');
 			var ids = [];
 			$(items).each(function(){
-				ids.push(this.productid);	
+				ids.push(this.us_id);	
 			});
-			//alert(ids);return;
-			$.ajax({
-				url:'',
-				data:'',
-				success:function(data){
-					if(data){
-						$.messager.alert('信息提示','删除成功！','info');		
-					}
-					else
-					{
-						$.messager.alert('信息提示','删除失败！','info');		
-					}
-				}	
-			});
+			if(ids.length>0){
+				$.ajax({
+					url:'tkfuser/deleteById',
+					data:{"ids":ids.toString()},
+					traditional: true,
+					success:function(data){
+						if(data){
+							$.messager.alert('信息提示','删除成功！','info');
+							$('#user-datagrid-2').datagrid('reload');
+						}
+						else
+						{
+							$.messager.alert('信息提示','删除失败！','info');		
+						}
+					}	
+				});
+			}
+			
 		}	
 	});
 }
@@ -73,8 +84,8 @@ function remove(){
  * Name 打开添加窗口
  */
 function openAdd(){
-	$('#wu-form-1').form('clear');
-	$('#wu-dialog-1').dialog({
+	$('#user-form-1').form('clear');
+	$('#user-dialog-1').dialog({
 		closed: false,
 		modal:true,
 		title: "添加信息",
@@ -86,7 +97,7 @@ function openAdd(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-1').dialog('close');                    
+				$('#user-dialog-1').dialog('close');                    
 			}
 		}]
 	});
@@ -96,23 +107,25 @@ function openAdd(){
  * Name 打开修改窗口
  */
 function openEdit(){
-	$('#wu-form-2').form('clear');
-	var item = $('#wu-datagrid-2').datagrid('getSelected');
-	$("#uid").val(item.us_id);
-	$("#uname").val(item.us_name);
-	$("#upicpath").val("");
-	if(row.picPath){
-		$("#pic").attr("src", row.picPath);
+	$('#user-form-2').form('clear');
+	var item = $('#user-datagrid-2').datagrid('getSelected');
+	//alert(JSON.stringify(item));
+	$("#uid-edit").val(item.us_id);
+	$("#uname-edit").val(item.us_name);
+	$("#upicpath-edit").val("");
+	if(item.us_picpath !=null && item.us_picpath !=""){  
+		$("#pic-edit").attr("src", item.us_picpath);
 	}else{
-		$("#pic").attr("src", "style/images/default_headpic.png");
+		$("#pic-edit").attr("src", item.us_picpath);
 	}
-	$("#uex").val(item.us_sex);
-	$("#ueducationa").val(item.us_educationa);
-	$("#uwork_year").val(item.us_work_year);
-	$("#uphone").val(item.us_phone);
-	$("#uemail").val(item.us_email);
-	$("#uintro").val(item.us_intro);
-	$('#wu-dialog-2').dialog({
+	$("div[value="+item.us_sex+"]").trigger('click');
+	$("div[value="+item.us_educationa+"]").trigger('click');
+	$("div[value="+item.us_work_year+"]").trigger('click');
+	$("#uphone-edit").val(item.us_phone);
+	$("#uemail-edit").val(item.us_email);
+	
+	$("#uintro-edit").val(item.us_intro);
+	$('#user-dialog-2').dialog({
 		closed: false,
 		modal:true,
 		title: "修改信息",
@@ -124,7 +137,7 @@ function openEdit(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-2').dialog('close');                    
+				$('#user-dialog-2').dialog('close');                    
 			}
 		}]
 	});
@@ -149,7 +162,7 @@ function reload(){
  * Name 载入数据
  */
 load();
-function load(){$('#wu-datagrid-2').datagrid({
+function load(){$('#user-datagrid-2').datagrid({
 	url:"tkfuser/list",
 	rownumbers:true,
 	singleSelect:false,

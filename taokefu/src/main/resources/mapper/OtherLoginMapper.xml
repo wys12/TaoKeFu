@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.OtherLoginMapper">
 	<insert id="addQqlogin" parameterType="Qqlogin">
-		insert into tkfuser (us_id,us_name,openId) values (tkfuser_sql.nextval,#{nickname},#{openId})
+		insert into tkfuser (us_id,us_name,us_picpath,us_sex,us_intro,openId) values (tkfuser_sql.nextval,#{nickname},#{us_picpath},#{us_sex},#{us_intro},#{openId})
 	</insert>
 
 	<select id="findOpenId" parameterType="Qqlogin" resultType="Qqlogin">

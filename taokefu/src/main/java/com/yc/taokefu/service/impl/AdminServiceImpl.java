@@ -45,7 +45,7 @@ public class AdminServiceImpl  implements AdminService {
 				MimeMessageHelper helper = new MimeMessageHelper(message, true);
 				helper.setFrom(ResourceBundle.getBundle("data").getString("mail.smtp.from"));
 				helper.setTo(admin.getAd_email());
-				helper.setSubject("忘记密码");
+				helper.setSubject("验证码为");
 				helper.setText(String.valueOf(ServletUtil.CODE));
 				mailSender.send(message);
 				return true;

@@ -5,7 +5,7 @@
     </div>
 </div> -->
 <div class="easyui-panel pd5" data-options="fit:true,border:true">
-	<div id="wu-toolbar-2">
+	<div id="user-toolbar-2">
 		<div class="wu-toolbar-button">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
 				onclick="openAdd()" plain="true">添加</a> <a href="#"
@@ -46,15 +46,15 @@
 		</div>
 	</div>
 	<!-- End of toolbar 用户信息显示 -->
-	<table id="wu-datagrid-2" class="easyui-datagrid"
-		toolbar="#wu-toolbar-2"></table>
+	<table id="user-datagrid-2" class="easyui-datagrid"
+		toolbar="#user-toolbar-2"></table>
 </div>
 <!-- Begin of easyui-dialog -->
 <!-- 添加信息 -->
-<div id="wu-dialog-1" class="easyui-dialog"
+<div id="user-dialog-1" class="easyui-dialog"
 	data-options="closed:true,iconCls:'icon-save'"
 	style="width: 500px; padding: 10px;">
-	<form id="wu-form-1" method="post" enctype="multipart/form-data">
+	<form id="user-form-1" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td width="60" align="right">姓 名:</td>
@@ -118,30 +118,29 @@
 	</form>
 </div>
 
-<div id="wu-dialog-2" class="easyui-dialog"
+<div id="user-dialog-2" class="easyui-dialog"
 	data-options="closed:true,iconCls:'icon-save'"
 	style="width: 500px; padding: 10px;">
-	<form id="wu-form-2" method="post" enctype="multipart/form-data">
+	<form id="user-form-2" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td width="60" align="right">I D:</td>
-				<td><input type="text" name="us_id" id="uid"
-					class="wu-text" /></td>
+				<td><input type="text" name="us_id" id="uid-edit"
+					class="wu-text" readonly="readonly" /></td>
 			</tr>
 			<tr>
 				<td width="60" align="right">姓 名:</td>
-				<td><input type="text" name="us_name" id="uname"
+				<td><input type="text" name="us_name" id="uname-edit"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">头 像:</td>
-				<td><img src="style/images/default_headpic.png" id="pic"
-					width="120" height="120" align="center"> <input type="file"
-					name="us_picdata" id="upicpath" onchange="chgPic(this)" /></td>
+				<td><img src="style/images/default_headpic.png" id="pic-edit" width="120" height="120" align="center"> 
+					<input type="file" name="us_picdata" id="upicpath-edit" onchange="chgPic_edit(this)" /></td>
 			</tr>
 			<tr>
 				<td align="right">性 别:</td>
-				<td><select name="us_sex" id="usex" class="easyui-combobox"
+				<td><select name="us_sex" id="usex-edit" class="easyui-combobox"
 					panelHeight="auto" style="width: 100px">
 						<option value="0"></option>
 						<option value="男">男</option>
@@ -150,7 +149,7 @@
 			</tr>
 			<tr>
 				<td align="right">学 历:</td>
-				<td><select name="us_educationa" id="ueducationa"
+				<td><select name="us_educationa" id="ueducationa-edit"
 					class="easyui-combobox" panelHeight="auto" style="width: 100px">
 						<option value="0"></option>
 						<option value="小学">小学</option>
@@ -162,7 +161,7 @@
 			</tr>
 			<tr>
 				<td align="right">工作年限:</td>
-				<td><select name="us_work_year" id="uwork_year"
+				<td><select name="us_work_year" id="uwork_year-edit"
 					class="easyui-combobox" panelHeight="auto" style="width: 100px">
 						<option value="0"></option>
 						<option value="1年以下">1年以下</option>
@@ -173,17 +172,17 @@
 			</tr>
 			<tr>
 				<td align="right">联系方式:</td>
-				<td><input type="text" name="us_phone" id="uphone"
+				<td><input type="text" name="us_phone" id="uphone-edit"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">电子邮箱:</td>
-				<td><input type="text" name="us_email" id="uemail"
+				<td><input type="text" name="us_email" id="uemail-edit"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td valign="top" align="right">用户简介 :</td>
-				<td><textarea name="us_intro" id="uintro" rows="6"
+				<td><textarea name="us_intro" id="uintro-edit" rows="6"
 						class="wu-textarea" style="width: 260px"></textarea></td>
 			</tr>
 		</table>
