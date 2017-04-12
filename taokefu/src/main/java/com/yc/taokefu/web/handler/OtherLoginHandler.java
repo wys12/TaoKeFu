@@ -23,11 +23,10 @@ import com.yc.taokefu.util.ServletUtil;
 public class OtherLoginHandler {
 	@Autowired
 	private OtherLoginService otherLoginService;
-
-	/*
-	 * @Autowired private UserService userService;
-	 */
-
+	@Autowired
+	private UserService userService;
+	
+	
 	@RequestMapping("qqlogin")
 	@ResponseBody
 	public Map<String,String> qqlogin(@RequestBody Qqlogin qqlogins, HttpSession session) {

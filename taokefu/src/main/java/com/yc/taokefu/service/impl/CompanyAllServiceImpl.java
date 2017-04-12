@@ -34,7 +34,7 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	 * @return
 	 */
 	@Override
-	public List<CompanyAll> findJobName(CompanyAll companyAll,Integer currPage, Integer pageSize) {
+	public List<CompanyAll> findJobName(CompanyAll companyAll) {
 		LogManager.getLogger().debug("companyAll   ==> " + companyAll);
 		//return pageNumber(companyAllMapper.findJobAllMapper(companyAll),currPage,pageSize);
 		return companyAllMapper.findJobAllMapper(companyAll);

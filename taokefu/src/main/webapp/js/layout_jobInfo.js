@@ -21,50 +21,12 @@ function add(){
  */
 
 function find(){
-	$('#wu-form-3').form({    
-		url:'job/search', 
-		onSubmit: function(){    
-			var job_start_time = $("#job_start_time").datebox("getValue"); 
-			var joob_end_time = $("#job_end_time").datebox("getValue");
-			var job_nature=$("#jnature").combobox("getValue");
-			alert(job_nature);
-			param={job_start_time:job_start_time,joob_end_time:joob_end_time,job_nature:job_nature};
-			//alert(JSON.stringify(param));
-			return;
-		},    
-		success:function(data){
-			var ships = eval('(' + data + ')');//转换接收json字符串为json对象
-			//console.info(JSON.stringify(ships));
-			for(var i=0 ; i<ships.length ;i++ ){
-				alert(i+"--"+ships[i].job_tags);
-			}			
-		/*	$('#wu-datagrid-2').datagrid({
-				rownumbers:true,
-				singleSelect:false,
-				pagination:true,
-				multiSort:true,
-				fitColumns:true,
-				fit:true,
-				pageList:[5,10,15,20,30],
-				columns:[[
-				          { checkbox:true},
-				          { field:'job_id',title:'职位ID',width:100,sortable:true},
-				          { field:'c_id',title:'公司编号',width:100,sortable:true},
-				          { field:'job_tags',title:'职位标签',width:100,sortable:true},
-				          { field:'job_name',title:'职位名称',width:100,sortable:true},
-				          { field:'job_department',title:'所属部门',width:100},
-				          { field:'job_nature',title:'职位性质',width:100},
-				          { field:'job_min_salary',title:'最小薪资',width:100},
-				          { field:'job_max_salary',title:'最大薪资',width:100},
-				          { field:'job_ftime',title:'发布时间',width:100},
-				          { field:'job_need',title:'职位要求',width:100}
-				          ]]
-			});*/
-			 
-		}    
-	});    
-	$('#wu-form-3').submit();  
-
+	alert("00");
+	var value1 = $("#job_start_time").datebox("getValue"); 
+	var value2 = $("#job_end_time").datebox("getValue");
+	var value3 = $("#job_nature").combobox("getValue");
+	var urlStr= "job/search?job_start_time="+value1+"&job_end_time="+value2+"&job_nature="+value3;
+	load(urlStr);
 }
 
 /**
@@ -186,10 +148,11 @@ function reload(){
 /**
  * Name 载入数据
  */
-load();
-function load(){
+load("job/list");
+function load(urlStr){
+	//alert(urlStr);
 	$('#wu-datagrid-2').datagrid({
-		url:"job/list",
+		url:urlStr,
 		rownumbers:true,
 		singleSelect:false,
 		pagination:true,
