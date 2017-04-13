@@ -34,6 +34,9 @@ public interface UserMapper {
 	
 	//后台删除用户
 	int BackUserDelete(String id);
+	
+	//后台搜索用户
+	List<User> BackUsersearch(User user);
 	/**
 	 * wys
 	 * @param user
@@ -83,5 +86,6 @@ public interface UserMapper {
 	int modifiCollect(UserAll user);
 	//订阅
 	int modifiTake(UserAll user);
+	
 
 }

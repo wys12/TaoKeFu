@@ -13,6 +13,10 @@ public class User {
 	private String us_phone;
 	private String us_email;
 	private String openId;
+	private String user_nature;
+	private String find_type;
+	private String key_search;
+	
 	public Integer getUs_id() {
 		return us_id;
 	}
@@ -80,14 +84,31 @@ public class User {
 	public void setOpenId(String openId) {
 		this.openId = openId;
 	}
+	public String getUser_nature() {
+		return user_nature;
+	}
+	public void setUser_nature(String user_nature) {
+		this.user_nature = user_nature;
+	}
+	public String getKey_search() {
+		return key_search;
+	}
+	public void setKey_search(String key_search) {
+		this.key_search = key_search;
+	}
+ 
+	public String getFind_type() {
+		return find_type;
+	}
+	public void setFind_type(String find_type) {
+		this.find_type = find_type;
+	}
 	@Override
 	public String toString() {
 		return "User [us_id=" + us_id + ", us_name=" + us_name + ", us_pwd=" + us_pwd + ", us_picpath=" + us_picpath
 				+ ", us_intro=" + us_intro + ", us_sex=" + us_sex + ", us_educationa=" + us_educationa
 				+ ", us_work_year=" + us_work_year + ", us_phone=" + us_phone + ", us_email=" + us_email + ", openId="
-				+ openId + "]";
+				+ openId + ", user_nature=" + user_nature + ", find_type=" + find_type + ", key_search=" + key_search
+				+ "]";
 	}
-
-	
-	
 }

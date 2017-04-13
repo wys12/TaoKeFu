@@ -23,6 +23,7 @@ public interface UserService {
 
 	boolean BackUserDelete(String id);
 	
+	List<User> BackUsersearch(User user);
 	/**
 	 * fengwei
 	 * @param page
@@ -64,6 +65,7 @@ public interface UserService {
 	Integer modifiEducationa(UserAll user);//教育学历
 	Integer modifiCollect(UserAll user);//收藏职位
 	Integer modifiTake(UserAll user);//订阅职位
+
 
 
 

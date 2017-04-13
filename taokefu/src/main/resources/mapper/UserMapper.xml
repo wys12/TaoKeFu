@@ -16,10 +16,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(us_id,us_name,us_picpath,us_sex,us_educationa,us_work_year,us_phone,us_email,us_intro)
 		values(tkfuser_sql.nextval,#{us_name},#{us_picpath},#{us_sex},#{us_educationa},#{us_work_year},#{us_phone},#{us_email},#{us_intro})
 	</insert>
-	
 	<!-- 后台用户修改 -->
 	<update id="BackUserEdit" parameterType="User">
-			update tkfuser
+		update tkfuser
 		<set>
 			<if test="us_id != null">
 				us_id = #{us_id},
@@ -51,12 +50,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where us_id = #{us_id}
 	</update>
-	
+
 	<!-- 后台用户删除 -->
 	<delete id="BackUserDelete" parameterType="String">
-		delete from tkfuser where us_id=#{id}
+		delete from tkfuser
+		where us_id=#{id}
 	</delete>
-	
+	<!-- 后台用户搜索 -->
+	<select id="BackUsersearch" parameterType="User" resultType="User">
+		select * from tkfuser 
+		<if test="user_nature=='-0'">where us_id like '%%'</if>
+		<if test="user_nature=='-1'">where openId like '%%'</if>
+		<if test="user_nature=='-2'">where openId like '%%'</if>
+		<if test="key_search !=null">and ${find_type}='${key_search}'</if>
+
+	</select>
 
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows"
@@ -223,6 +231,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="us_id !=null">us_id=#{us_id}</if>
 		<if test="tkf_id !=null">tkf_id=#{tkf_id}</if>
 	</select>
+	<!-- select * from tkfuser where <trim><if test="us_id !=null">us_id=#{us_id}</if> 
+		<if test="tkf_id !=null">and tkf_id=#{tkf_id}</if> <if test="openId !=null">and 
+		openId=#{openId}</if> </trim> -->
 	<!-- 查询简历信息 -->
 	<select id="findUsResume" parameterType="UserAll" resultType="UserAll">
 		select * from usResume where

@@ -21,11 +21,12 @@ function add(){
  */
 
 function find(){
-	alert("00");
+	
 	var value1 = $("#job_start_time").datebox("getValue"); 
 	var value2 = $("#job_end_time").datebox("getValue");
 	var value3 = $("#job_nature").combobox("getValue");
 	var urlStr= "job/search?job_start_time="+value1+"&job_end_time="+value2+"&job_nature="+value3;
+	alert(urlStr);
 	load(urlStr);
 }
 

@@ -65,7 +65,7 @@ function remove(){
 					traditional: true,
 					success:function(data){
 						if(data){
-							$.messager.alert('信息提示','删除成功！','info');
+							//$.messager.alert('信息提示','删除成功！','info');
 							$('#user-datagrid-2').datagrid('reload');
 						}
 						else
@@ -79,6 +79,20 @@ function remove(){
 		}	
 	});
 }
+
+/**
+ * 查询
+ */
+
+function findUserBack(){
+	var value_user = $("#user_nature").combobox("getValue");
+	var value_type = $("#find_type").combobox("getValue");
+	var value_key = document.getElementById("key_search").value;
+	var urlStr= "tkfuser/search?user_nature="+value_user+"&find_type="+value_type+"&key_search="+value_key;
+	alert(urlStr);
+	load(urlStr);
+}
+
 
 /**
  * Name 打开添加窗口
@@ -123,7 +137,6 @@ function openEdit(){
 	$("div[value="+item.us_work_year+"]").trigger('click');
 	$("#uphone-edit").val(item.us_phone);
 	$("#uemail-edit").val(item.us_email);
-	
 	$("#uintro-edit").val(item.us_intro);
 	$('#user-dialog-2').dialog({
 		closed: false,
@@ -144,14 +157,7 @@ function openEdit(){
 }	
 
 /**
-<<<<<<< HEAD
- * Name 分页过滤器
- */
 
-
-/**
-=======
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
  * reload()刷新数据
  * 
  */
@@ -161,9 +167,10 @@ function reload(){
 /**
  * Name 载入数据
  */
-load();
-function load(){$('#user-datagrid-2').datagrid({
-	url:"tkfuser/list",
+load("tkfuser/list");
+function load(urlStr){
+	$('#user-datagrid-2').datagrid({
+	url:urlStr,
 	rownumbers:true,
 	singleSelect:false,
 	pagination:true,
