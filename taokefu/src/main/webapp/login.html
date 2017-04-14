@@ -73,7 +73,7 @@ QC.api("get_user_info", paras)
 		if(QC.Login.check()){//如果已登录
 			QC.Login.getMe(function(openId, accessToken){		
 			var param={nickname:s.data.nickname,us_picpath:s.data.figureurl_2,us_sex:s.data.gender,us_intro:s.data.year+'年出生,'+s.data.province+s.data.city,openId:openId};
-			alert(JSON.stringify(param));
+			//alert(JSON.stringify(param));
 				$.ajax({
 					type:"POST",
 					url:"otherusers/qqlogin",

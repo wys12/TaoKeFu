@@ -3,6 +3,8 @@ package com.yc.taokefu.web.handler;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -282,7 +284,7 @@ public class UserHandler {
 	@RequestMapping(value="add",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean doAdd(@RequestParam("us_picdata")MultipartFile us_picdata,User user){
-		String picPath = null;
+		String picPath = "";
 		LogManager.getLogger().debug("图片......us_picpath:"+us_picdata);
 		if(us_picdata != null && !us_picdata.isEmpty()){//判断是否有文件上传
 			System.out.println("图片不为空");
@@ -301,7 +303,7 @@ public class UserHandler {
 	@RequestMapping(value="edit",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean doEdit(@RequestParam("us_picdata")MultipartFile us_picdata,User user){
-		String picPath = null;
+		String picPath = "";
 		LogManager.getLogger().debug("图片......us_picpath:"+us_picdata);
 		if(us_picdata != null && !us_picdata.isEmpty()){//判断是否有文件上传
 			System.out.println("图片不为空");
@@ -318,7 +320,8 @@ public class UserHandler {
 	}
 	//后台删除用户
 	@RequestMapping("deleteById")
-	public Boolean doDelete(HttpServletRequest request){
+	@ResponseBody
+	public String doDelete(HttpServletRequest request){
 		String ids = request.getParameter("ids");
 		String[] id = ids.split(",");
 			for (int i = 0; i < id.length;i++) {
@@ -327,8 +330,28 @@ public class UserHandler {
 				
 				
 			}
-			return null;
+			return "true";
 			
+	}
+	
+	/**
+	 * 多条件查询
+	 */
+	@RequestMapping("search")
+	@ResponseBody
+	public List<User> doSearch(User user){
+		try {
+			user.setKey_search(new String(user.getKey_search().getBytes("ISO-8859-1"),"UTF-8"));
+			LogManager.getLogger().debug("多条件查询:"+"用户组"+user.getUser_nature()+"检索类型1"+user.getFind_type()+"检索词"+user.getKey_search());
+			LogManager.getLogger().debug(user);	
+			List<User> list = new ArrayList<User>();
+			list= userService.BackUsersearch(user);
+			LogManager.getLogger().debug("list ========  >"+list);
+			return list;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }
