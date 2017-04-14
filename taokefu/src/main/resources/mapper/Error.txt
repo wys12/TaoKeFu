@@ -1,0 +1,49 @@
+<!-- 查询标签 -->
+	<select id="findTag" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from tag where
+		<if test="c_id !=null">c_id=#{c_id}</if>
+	</select>
+	<!-- 查询投资机构信息 -->
+	<select id="findInvest" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from invest where
+		<if test="c_id !=null">c_id=#{c_id}</if>
+	</select>
+	<!-- 标签 -->
+	<insert id="insertTag" parameterType="CompanyAll">
+		insert into tag values(tag_sql.nextval
+		<if test="c_id ==null or c_id ==''">,''</if>
+		<if test="c_id !=null">,'${c_id}'</if>
+		<if test="tag_name ==null or tag_name ==''">,''</if>
+		<if test="tag_name !=null">,'${tag_name}'</if>
+		)
+	</insert>
+	<!--投资机构信息 -->
+	<insert id="insertInvest" parameterType="CompanyAll">
+		insert into invest values(invest_sql.nextval
+		<if test="c_id ==null or c_id ==''">,''</if>
+		<if test="c_id !=null">,'${c_id}'</if>
+		<if test="inv_name ==null or inv_name ==''">,''</if>
+		<if test="inv_name !=null">,'${inv_name}'</if>
+		<if test="inv_state ==null or inv_state ==''">,''</if>
+		<if test="inv_state !=null">,'${inv_state}'</if>
+		)
+	</insert>
+	
+	<update id="modifiTag" parameterType="CompanyAll">
+		update tag
+		<set>
+			<if test="tag_name !=null">,tag_name='${tag_name}'</if>
+		</set>
+		where
+		<if test="c_id !=null">,c_id=${c_id}</if>
+	</update>
+
+	<update id="modifiInvest" parameterType="CompanyAll">
+		update invest
+		<set>
+			<if test="inv_name !=null">,c_id='${inv_name}'</if>
+			<if test="inv_state !=null">,inv_state='${inv_state}'</if>
+		</set>
+		where
+		<if test="c_id !=null">,c_id='${c_id}'</if>
+	</update>

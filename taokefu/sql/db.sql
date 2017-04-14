@@ -57,6 +57,7 @@ select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
 select * from company
 alter table company modify (COMP_INTRODUCE varchar2(50))
+alter table company add (tag_name varchar2(150))
 --company 公司 
 create table company(
   comp_id number primary key,
@@ -180,11 +181,11 @@ insert into tag values(tag_sql.nextval,'1001','五险一金');
 --tag公司标签
 select * from  tag
 select job_sql.nextval from dual
-create table tag(
-	tag_id number primary key,
-	c_id number constraint fk_tag_id references company(comp_id),	--外键关联
-	tag_name varchar2(20)	--标签名称
-);
+--create table tag(
+--	tag_id number primary key,
+--	c_id number constraint fk_tag_id references company(comp_id),	--外键关联
+--	tag_name varchar2(20)	--标签名称
+--);
 insert into invest values(invest_sql.nextval,1001,'支付宝金融','上市公司');
 
 --invest 投资机构

@@ -131,39 +131,7 @@ public class CompanyHandler {
 	public Integer modifiCompany_team(CompanyAll company){
 		return companyAllService.modifiCompany_team(company);
 	}
-	/**
-	 * wys
-	 * 投资机构加载
-	 * @param company
-	 * @return
-	 */
-	@RequestMapping("findInvest")
-	@ResponseBody //响应Json数据
-	public List<CompanyAll> findInvest(CompanyAll company){
-		return companyAllService.findInvest(company);
-	}
-	/**
-	 * wys
-	 * 投资机构添加
-	 * @param company
-	 * @return
-	 */
-	@RequestMapping("insertInvest")
-	@ResponseBody //响应Json数据
-	public Integer insertInvest(CompanyAll company){
-		return companyAllService.insertInvest(company);
-	}
-	/**
-	 * wys
-	 * 投资机构修改
-	 * @param company
-	 * @return
-	 */
-	@RequestMapping("modifiInvest")
-	@ResponseBody //响应Json数据
-	public Integer modifiInvest(CompanyAll company){
-		return companyAllService.modifiInvest(company);
-	}
+	
 	/**
 	 * wys
 	 * 职位信息加载
@@ -197,40 +165,7 @@ public class CompanyHandler {
 	public Integer modifiJob(CompanyAll company){
 		return companyAllService.modifiJob(company);
 	}
-	/**
-	 * wys
-	 *标签加载
-	 * @return
-	 */
-	@RequestMapping("findTag")
-	@ResponseBody //响应Json数据
-	public List<CompanyAll> findTag(CompanyAll company){
-		return companyAllService.findTag(company);
-	}
-	/**
-	 * wys
-	 * 标签添加
-	 * @return
-	 */
-	@RequestMapping(value="insertTag",method=RequestMethod.POST)
-	@ResponseBody
-	public String insertTag(CompanyAll company,HttpSession session){
-		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
-		company.setC_id(long1.getL_id());
-		LogManager.getLogger().debug(company.getTag_name()+"=="+long1.getL_id());
-		companyAllService.insertTag(company);
-		return "1";
-	}
-	/**
-	 * wys
-	 * 标签修改
-	 * @return
-	 */
-	@RequestMapping("modifiTag")
-	@ResponseBody //响应Json数据
-	public Integer modifiTag(CompanyAll company){
-		return companyAllService.modifiTag(company);
-	}
+	
 	/**
 	 * wys
 	 * 职位类别
@@ -265,3 +200,71 @@ public class CompanyHandler {
 		return companyAllService.modifiJob_class(company);
 	}
 }
+
+/**
+ * wys
+ *标签加载
+ * @return
+ */
+/*@RequestMapping("findTag")
+@ResponseBody //响应Json数据
+public List<CompanyAll> findTag(CompanyAll company){
+	return companyAllService.findTag(company);
+}*/
+/**
+ * wys
+ * 标签添加
+ * @return
+ */
+/*@RequestMapping(value="insertTag",method=RequestMethod.POST)
+@ResponseBody
+public String insertTag(CompanyAll company,HttpSession session){
+	Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
+	company.setC_id(long1.getL_id());
+	LogManager.getLogger().debug(company.getTag_name()+"=="+long1.getL_id());
+	companyAllService.insertTag(company);
+	return "1";
+}*/
+/**
+ * wys
+ * 标签修改
+ * @return
+ */
+/*@RequestMapping("modifiTag")
+@ResponseBody //响应Json数据
+public Integer modifiTag(CompanyAll company){
+	return companyAllService.modifiTag(company);
+}*/
+/**
+ * wys
+ * 投资机构加载
+ * @param company
+ * @return
+ */
+/*@RequestMapping("findInvest")
+@ResponseBody //响应Json数据
+public List<CompanyAll> findInvest(CompanyAll company){
+	return companyAllService.findInvest(company);
+}*/
+/**
+ * wys
+ * 投资机构添加
+ * @param company
+ * @return
+ */
+/*@RequestMapping("insertInvest")
+@ResponseBody //响应Json数据
+public Integer insertInvest(CompanyAll company){
+	return companyAllService.insertInvest(company);
+}*/
+/**
+ * wys
+ * 投资机构修改
+ * @param company
+ * @return
+ */
+/*@RequestMapping("modifiInvest")
+@ResponseBody //响应Json数据
+public Integer modifiInvest(CompanyAll company){
+	return companyAllService.modifiInvest(company);
+}*/
