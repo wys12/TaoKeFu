@@ -190,12 +190,12 @@ select job_sql.nextval from dual
 insert into invest values(invest_sql.nextval,1001,'支付宝金融','上市公司');
 
 --invest 投资机构
-create table  invest(
-	inv_id number primary key,
-	c_id number constraint fk_inv_id references company(comp_id),	--外键关联
-	inv_name varchar2(30),	--投资机构名称
-	inv_state varchar2(20)	--投资机构发展阶段
-) ;
+--create table  invest(
+--	inv_id number primary key,
+--	c_id number constraint fk_inv_id references company(comp_id),	--外键关联
+--	inv_name varchar2(30),	--投资机构名称
+--	inv_state varchar2(20)	--投资机构发展阶段
+--) ;
 insert into job 
 values(job_sql.nextval,'1001','五险一金','qq客服','客服联系','全职','3k','5k','2017-04-05','本科','休息时间多','工作职责','任职要求',
 '其他','0','-1');
