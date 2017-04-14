@@ -55,7 +55,7 @@ create table tkfuser(
 --'500-1000','你来就好','百度公司','-1');
 select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
-select * from company
+select * from job
 alter table company modify (COMP_INTRODUCE varchar2(50))
 alter table company add (tag_name varchar2(150))
 --company 公司 
@@ -76,11 +76,12 @@ create table company(
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
 );
 
-select * from usResume login tkfuser
+select * from tkfuser usResume login tkfuser
 insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
 --drop table usResume
  --resume	用户简历表(详情)
  alter table usResume modify  hj_city varchar2(30)
+ alter table tkfuser modify(us_picpath varchar2(150)) 
 create table usResume(
 	usr_id number primary key,
 	tkf_id number constraint tkf_id references tkfuser(us_id),

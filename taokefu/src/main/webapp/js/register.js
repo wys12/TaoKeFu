@@ -52,7 +52,7 @@
     });
  
  $(".typeinfo").onclick(function(){
-	 alert("注册可用");
+	// alert("注册可用");
 	 $("#btnzhuce").removeAttr("disabled");
  });
 function register(){
@@ -69,9 +69,9 @@ function register(){
 		dataType:"json",//指定返回参数为json格式
 		contentType:"application/json;charset=utf-8",  //指定请求数据为json格式
 		success:function(data){
-			if(data.msg == "0"){alert(data.msg);
+			if(data.msg == "0"){//alert(data.msg);
 				location.href="index.html"; //在当前页面跳转		            		
-        	}else if(data.msg == "1"){alert(data.msg);
+        	}else if(data.msg == "1"){//alert(data.msg);
 				location.href="companyInfo01.html"; //在当前页面跳转		            		
         	}else if(data.msg=="该邮箱已被注册"){
 				$('#beError').text(data.msg).show();

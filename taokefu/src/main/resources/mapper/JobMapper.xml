@@ -16,10 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join
 		coResume cor
 		on cor.c_id = comp.comp_id
-		join tag t
+		<!--join tag t
 		on
 		cor.c_id=t.c_id
-		<!-- join invest inv
+		 join invest inv
 		on inv.c_id = t.c_id -->
 		where j.job_id=${job_id}
 	</select>

@@ -91,7 +91,7 @@ function findUserBack(){
 		value_key="-0";
 	}	
 	var urlStr= "tkfuser/search?user_nature="+value_user+"&find_type="+value_type+"&key_search="+value_key;
-	alert(urlStr);
+	//alert(urlStr);
 	load(urlStr);
 }
 
