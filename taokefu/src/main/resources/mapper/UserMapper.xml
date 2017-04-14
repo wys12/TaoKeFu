@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="user_nature=='-0'">where us_id like '%%'</if>
 		<if test="user_nature=='-1'">where openId like '%%'</if>
 		<if test="user_nature=='-2'">where openId like '%%'</if>
-		<if test="key_search !=null">and ${find_type}='${key_search}'</if>
+		<if test="key_search !=null and key_search !='-0'">and ${find_type}='${key_search}'</if>
 
 	</select>
 

@@ -88,6 +88,9 @@ function findUserBack(){
 	var value_user = $("#user_nature").combobox("getValue");
 	var value_type = $("#find_type").combobox("getValue");
 	var value_key = document.getElementById("key_search").value;
+	if(value_key ==null || value_key == ""){
+		value_key="-0";
+	}	
 	var urlStr= "tkfuser/search?user_nature="+value_user+"&find_type="+value_type+"&key_search="+value_key;
 	alert(urlStr);
 	load(urlStr);
