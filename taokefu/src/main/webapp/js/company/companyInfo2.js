@@ -11,7 +11,6 @@ $("#step2Submit").click(function(){
 	}
 	alert(tag_name);
 	$.post("company/insertTag",{tag_name:tag_name},function(data){
-		alert(data);
 		if(data=="1"){
 			location.href="companyInfo03.html";
 		}
