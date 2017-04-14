@@ -1,0 +1,204 @@
+<!-- <div class="easyui-layout" data-options="fit:true">
+	<div class="easyui-panel pd5" data-options="fit:true,border:true">
+        <p style="font-size:14px">Here is the content loaded via AJAX.</p>
+    		
+    </div>
+</div> -->
+<div class="easyui-panel pd5" data-options="fit:true,border:true">
+	<div id="user-toolbar-2">
+		<div class="wu-toolbar-button">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+				onclick="openAdd()" plain="true">添加</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()"
+				plain="true">修改</a> <a href="#" class="easyui-linkbutton"
+				iconCls="icon-remove" onclick="remove()" plain="true">删除</a> <a
+				href="#" class="easyui-linkbutton" iconCls="icon-cancel"
+				onclick="cancel()" plain="true">取消</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()"
+				plain="true">刷新</a> <a href="#" class="easyui-linkbutton"
+				iconCls="icon-print" onclick="openAdd()" plain="true">打印</a> <a
+				href="#" class="easyui-linkbutton" iconCls="icon-help"
+				onclick="openEdit()" plain="true">帮助</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-undo" onclick="remove()"
+				plain="true">撤销</a> <a href="#" class="easyui-linkbutton"
+				iconCls="icon-redo" onclick="cancel()" plain="true">重做</a> <a
+				href="#" class="easyui-linkbutton" iconCls="icon-sum"
+				onclick="reload()" plain="true">总计</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-back" onclick="reload()"
+				plain="true">返回</a> <a href="#" class="easyui-linkbutton"
+				iconCls="icon-tip" onclick="reload()" plain="true">提示</a> <a
+				href="#" class="easyui-linkbutton" iconCls="icon-save"
+				onclick="reload()" plain="true">保存</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-cut" onclick="reload()"
+				plain="true">剪切</a>
+		</div>
+		<div class="wu-toolbar-search">
+			<label>用户组：</label>
+			<select class="easyui-combobox" panelHeight="auto" style="width: 100px" id="user_nature"
+					name="user_nature">
+				<option value="-0">选择用户组</option>
+				<option value="-1">本站用户</option>
+				<option value="-2">第三方用户</option>
+			</select> 
+			<label>关键词：</label>
+			<select class="easyui-combobox" panelHeight="auto" style="width: 80px" id="find_type"
+					name="find_type">
+				<option value="us_id">用户ID</option>
+				<option value="us_name">用户姓名</option>
+				<option value="us_sex">性别</option>
+				<option value="us_intro">用户简介</option>
+				<option value="us_educationa">学历</option>
+				<option value="us_work_year">工作年限</option>
+				<option value="us_phone">联系方式</option>
+				<option value="us_email">电子邮箱</option>
+			</select>
+			<input class="wu-text" style="width: 100px" id="key_search" name="key_search">
+			<a href="javascript:void(0)" onclick="findUserBack()" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
+		</div>
+	</div>
+	<!-- End of toolbar 用户信息显示 -->
+	<table id="user-datagrid-2" class="easyui-datagrid"
+		toolbar="#user-toolbar-2"></table>
+</div>
+<!-- Begin of easyui-dialog -->
+<!-- 添加信息 -->
+<div id="user-dialog-1" class="easyui-dialog"
+	data-options="closed:true,iconCls:'icon-save'"
+	style="width: 500px; padding: 10px;">
+	<form id="user-form-1" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td width="60" align="right">姓 名:</td>
+				<td><input type="text" name="us_name" id="uname"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">头 像:</td>
+				<td><img src="style/images/default_headpic.png" id="pic"
+					width="120" height="120" align="center"> <input type="file"
+					name="us_picdata" id="upicpath" onchange="chgPic(this)" /></td>
+			</tr>
+			<tr>
+				<td align="right">性 别:</td>
+				<td><select name="us_sex" id="usex" class="easyui-combobox"
+					panelHeight="auto" style="width: 100px">
+						<option value="0"></option>
+						<option value="男">男</option>
+						<option value="女">女</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">学 历:</td>
+				<td><select name="us_educationa" id="ueducationa"
+					class="easyui-combobox" panelHeight="auto" style="width: 100px">
+						<option value="0"></option>
+						<option value="小学">小学</option>
+						<option value="中学">中学</option>
+						<option value="本科">本科</option>
+						<option value="研究生">研究生</option>
+						<option value="博士">博士</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">工作年限:</td>
+				<td><select name="us_work_year" id="uwork_year"
+					class="easyui-combobox" panelHeight="auto" style="width: 100px">
+						<option value="0"></option>
+						<option value="1年以下">1年以下</option>
+						<option value="1-3年">1-3年</option>
+						<option value="3-10年">3-10年</option>
+						<option value="10年以上">10年以上</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">联系方式:</td>
+				<td><input type="text" name="us_phone" id="uphone"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">电子邮箱:</td>
+				<td><input type="text" name="us_email" id="uemail"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">用户简介 :</td>
+				<td><textarea name="us_intro" id="uintro" rows="6"
+						class="wu-textarea" style="width: 260px"></textarea></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<div id="user-dialog-2" class="easyui-dialog"
+	data-options="closed:true,iconCls:'icon-save'"
+	style="width: 500px; padding: 10px;">
+	<form id="user-form-2" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td width="60" align="right">I D:</td>
+				<td><input type="text" name="us_id" id="uid-edit"
+					class="wu-text" readonly="readonly" /></td>
+			</tr>
+			<tr>
+				<td width="60" align="right">姓 名:</td>
+				<td><input type="text" name="us_name" id="uname-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">头 像:</td>
+				<td><img src="style/images/default_headpic.png" id="pic-edit"
+					width="120" height="120" align="center"> <input type="file"
+					name="us_picdata" id="upicpath-edit" onchange="chgPic_edit(this)" /></td>
+			</tr>
+			<tr>
+				<td align="right">性 别:</td>
+				<td><select name="us_sex" id="usex-edit" class="easyui-combobox" panelHeight="auto" style="width: 100px">
+						<option value="0"></option>
+						<option value="男">男</option>
+						<option value="女">女</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">学 历:</td>
+				<td><select name="us_educationa" id="ueducationa-edit"
+					class="easyui-combobox" panelHeight="auto" style="width: 100px">
+						<option value="0"></option>
+						<option value="小学">小学</option>
+						<option value="中学">中学</option>
+						<option value="本科">本科</option>
+						<option value="研究生">研究生</option>
+						<option value="博士">博士</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">工作年限:</td>
+				<td><select name="us_work_year" id="uwork_year-edit"
+					class="easyui-combobox" panelHeight="auto" style="width: 100px">
+						<option value="0"></option>
+						<option value="1年以下">1年以下</option>
+						<option value="1-3年">1-3年</option>
+						<option value="3-10年">3-10年</option>
+						<option value="10年以上">10年以上</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">联系方式:</td>
+				<td><input type="text" name="us_phone" id="uphone-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">电子邮箱:</td>
+				<td><input type="text" name="us_email" id="uemail-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">用户简介 :</td>
+				<td><textarea name="us_intro" id="uintro-edit" rows="6"
+						class="wu-textarea" style="width: 260px"></textarea></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<script type="text/javascript" src="js/layout_userInfo.js"></script>
+
