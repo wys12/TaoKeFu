@@ -77,32 +77,33 @@
 						</div>
 
 						<div class="c_box companyName">
-							<h2 id="comp_name" title="平潭协创进出口贸易有限公司">平潭协创进出口贸易有限公司</h2><em class="unvalid"></em> 
+							<h2 id="comp_names"></h2><em class="unvalid"></em> 
 							<span class="va dn">拉勾未认证企业</span> <a target="_blank" class="applyC" href="http://www.lagou.com/c/auth.html">申请认证</a><div class="clear"></div>
 
-							<h1 id="comp_fullname" title="福建平潭协创进出口贸易有限公司" class="fullname">福建平潭协创进出口贸易有限公司</h1>
+							<h1 id="comp_fullnames" class="fullname"></h1>
 
 							<form class="clear editDetail dn" id="editDetailForm">
-								<input type="text" placeholder="请输入公司简称" maxlength="15" value="平潭协创进出口贸易有限公司" name="companyShortName" id="companyShortName"> <input type="text" placeholder="一句话描述公司优势，核心价值，限50字" maxlength="50"value="测试的发打发打发大范德萨发" name="companyFeatures" id="companyFeatures"> 
-								<input type="hidden" value="25927" id="companyId" name="companyId"> <input type="submit" value="保存" id="saveDetail" class="btn_small"><a id="cancelDetail" class="btn_cancel_s">取消</a>
+								<input type="text" placeholder="请输入公司简称" maxlength="15" name="comp_name" id="comp_name"> 
+								<input type="text" placeholder="一句话描述公司优势，核心价值，限50字" maxlength="50" name="comp_introduce" id="comp_introduce"> 
+								<input type="button" value="保存" id="saveDetail" class="btn_small">
+								<a id="cancelDetail" class="btn_cancel_s">取消</a>
 							</form>
 
 							<div class="clear oneword"><img width="17" height="15" src="style/images/quote_l.png">&nbsp;<span>测试的发打发打发大范德萨发</span> &nbsp;<img width="17" height="15" src="style/images/quote_r.png"></div>
-							<h3 class="dn">已选择标签</h3><ul style="overflow: auto" id="hasLabels" class="reset clearfix"><li><span>年终分红</span></li><li><span>五险一金</span></li><li><span>弹性工作</span></li><li><span>岗位晋升</span></li><li class="link">编辑</li></ul>
-							
+							<h3 class="dn">已选择标签</h3>
+							<ul style="overflow: auto" id="hasLabels" class="reset clearfix">
+								
+								<li class="link">编辑</li>
+							</ul>
 							
 							<div class="dn" id="addLabels">
-								<a id="changeLabels" class="change" href="javascript:void(0)">换一换</a>
-								<input type="hidden" value="1" id="labelPageNo"> <input
-									type="submit" value="贴上" class="fr" id="add_label"> <input
-									type="text" placeholder="添加自定义标签" name="label" id="label"
-									class="label_form fr">
+								<span id="changeLabels" class="change" ">自定义标签</span>
+								<input type="submit" value="贴上" class="fr" id="add_label"> 
+								<input type="text" placeholder="添加自定义标签" name="label" id="label" class="label_form fr">
 								<div class="clear"></div>
-								<ul class="reset clearfix">
-								</ul>
+								<ul class="reset clearfix"></ul>
 								<a id="saveLabels" class="btn_small" href="javascript:void(0)">保存</a>
-								<a id="cancelLabels" class="btn_cancel_s"
-									href="javascript:void(0)">取消</a>
+								<a id="cancelLabels" class="btn_cancel_s" href="javascript:void(0)">取消</a>
 							</div>
 						</div>
 						<a title="编辑基本信息" class="c_edit" id="editCompanyDetail"

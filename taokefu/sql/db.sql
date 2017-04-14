@@ -55,7 +55,7 @@ create table tkfuser(
 --'500-1000','你来就好','百度公司','-1');
 select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
-select * from job
+select * from company
 alter table company modify (COMP_INTRODUCE varchar2(50))
 alter table company add (tag_name varchar2(150))
 --company 公司 
