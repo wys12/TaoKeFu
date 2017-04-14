@@ -21,8 +21,8 @@
 
 <!-- <div class="web_root"  style="display:none">http://www.lagou.com</div> -->
 <script type="text/javascript">
-var ctx = "http://www.lagou.com";
-console.log(1);
+	var ctx = "http://www.lagou.com";
+	console.log(1);
 </script>
 <link href="http://www.lagou.com/images/favicon.ico" rel="Shortcut Icon">
 <link href="style/css/style.css" type="text/css" rel="stylesheet">
@@ -36,7 +36,7 @@ console.log(1);
     <script type="text/javascript" src="style/js/excanvas.js"></script>
 <![endif]-->
 <script type="text/javascript">
-var youdao_conv_id = 271546; 
+	var youdao_conv_id = 271546;
 </script>
 <script src="style/js/conv.js" type="text/javascript"></script>
 <script src="style/js/ajaxCross.json" charset="UTF-8"></script>
@@ -53,6 +53,9 @@ var youdao_conv_id = 271546;
 					<li class="current"><a href="companylist.html">公司</a></li>
 					<li><a rel="nofollow" href="">简历管理</a></li>
 					<li><a rel="nofollow" href="create.html">发布职位</a></li>
+				</ul>
+				<ul class="loginTop">
+					<li><a href="login.html" rel="nofollow">登录</a></li><li>|</li><li><a href="register.html" rel="nofollow">注册</a></li>
 				</ul>
 				<dl class="collapsible_menu">
 					<!-- <dt><span>jason&nbsp;</span> <span class="red dn" id="noticeDot-1"></span><i></i></dt><dd><a href="myhome.html">我的公司主页</a></dd><dd><a href="positions.html">我发布的职位</a></dd><dd><a href="">我收到的简历</a></dd><dd><a href="accountBindCompany.html">帐号设置</a></dd><dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd> -->
@@ -706,15 +709,16 @@ var youdao_conv_id = 271546;
 
 			<script src="style/js/company.min.js" type="text/javascript"></script>
 			<script>
-var avatar = {};
-avatar.uploadComplate = function( data ){
-	var result = eval('('+ data +')');
-	if(result.success){
-		jQuery('#logoShow img').attr("src",ctx+ '/'+result.content);
-		jQuery.colorbox.close();
-	}
-};
-</script>
+				var avatar = {};
+				avatar.uploadComplate = function(data) {
+					var result = eval('(' + data + ')');
+					if (result.success) {
+						jQuery('#logoShow img').attr("src",
+								ctx + '/' + result.content);
+						jQuery.colorbox.close();
+					}
+				};
+			</script>
 			<div class="clear"></div>
 			<input type="hidden" value="d1035b6caa514d869727cff29a1c2e0c"
 				id="resubmitToken"> <a rel="nofollow" title="回到顶部"
@@ -773,5 +777,7 @@ avatar.uploadComplate = function( data ){
 		<div
 			style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div>
 	</div>
+	<script type="text/javascript" src="js/userinfo.js"></script>
+	<script type="text/javascript" src="js/company/myhome.js"></script>
 </body>
 </html>
