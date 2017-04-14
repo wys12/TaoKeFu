@@ -1,7 +1,11 @@
 loadInfo();
 function loadInfo(){
-	
+	$.post("company/findCompany",function(data){
+		console.info(JSON.stringify(data));
+	},"json");
 }
+
+
 
 function find(){
 	$.post("company/findCompany",function(data){
@@ -14,7 +18,8 @@ function find(){
 		alert("findCompany=="+data);
 	},"json");
 	
-	
+}
+function modifiy(){
 	$.post("company/modifiCompany",function(data){
 		alert("findCompany=="+data);
 	},"json");
@@ -24,7 +29,4 @@ function find(){
 	$.post("company/modifiCompany_team",function(data){
 		alert("findCompany=="+data);
 	},"json");
-}
-function modifi(){
-	
 }

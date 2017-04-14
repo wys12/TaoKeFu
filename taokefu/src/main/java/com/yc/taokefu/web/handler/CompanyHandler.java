@@ -39,7 +39,8 @@ public class CompanyHandler {
 	 * */
 	@RequestMapping("findCompany")
 	@ResponseBody //响应Json数据
-	public List<CompanyAll> findCompany(CompanyAll company){
+	public List<CompanyAll> findCompany(CompanyAll company,HttpSession session){
+		company.setComp_email(ServletUtil.login_session(session).getL_email());
 		return companyAllService.findCompany(company);
 	}
 	/**
@@ -59,8 +60,7 @@ public class CompanyHandler {
 	@RequestMapping(value="modifiCompany",method=RequestMethod.POST)
 	@ResponseBody
 	public String modifiCompany(CompanyAll company,HttpSession session){
-		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
-		company.setComp_id(long1.getL_id());;
+		company.setComp_id(ServletUtil.login_session(session).getL_id());
 		LogManager.getLogger().debug("companyInfo01 ==> "+company);
 		companyAllService.modifiCompany(company);
 		return "1";
@@ -80,8 +80,7 @@ public class CompanyHandler {
 	 * */
 	@RequestMapping("insertCoResume")
 	public String insertCoResume(CompanyAll company,HttpSession session){
-		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
-		company.setC_id(long1.getL_id());
+		company.setC_id(ServletUtil.login_session(session).getL_id());
 		LogManager.getLogger().debug(company);
 		companyAllService.insertCoResume(company);
 		return "redirect:/companyInfo05.html";
@@ -92,7 +91,8 @@ public class CompanyHandler {
 	 * */
 	@RequestMapping("modifiCoResume")
 	@ResponseBody //响应Json数据
-	public Integer modifiCoResume(CompanyAll company){
+	public Integer modifiCoResume(CompanyAll company,HttpSession session){
+		company.setC_id(ServletUtil.login_session(session).getL_id());
 		return companyAllService.modifiCoResume(company);
 	}
 	/**
@@ -114,8 +114,7 @@ public class CompanyHandler {
 	 */
 	@RequestMapping("insertCompany_team")
 	public String insertCompany_team(CompanyAll company,HttpSession session){
-		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
-		company.setC_id(long1.getL_id());
+		company.setC_id(ServletUtil.login_session(session).getL_id());
 		LogManager.getLogger().debug(company);
 		companyAllService.insertCompany_team(company);
 		return "redirect:/companyInfo04.html";
