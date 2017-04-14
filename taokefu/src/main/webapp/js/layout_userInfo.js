@@ -33,7 +33,6 @@ function edit(){
 	$('#user-form-2').form('submit', {
 		url:'tkfuser/edit',
 		success:function(data){
-			
 			if(data){
 				//$.messager.alert('信息提示','提交成功！','info');
 				$('#user-dialog-2').dialog('close');
@@ -144,14 +143,11 @@ function openEdit(){
 }	
 
 /**
-<<<<<<< HEAD
  * Name 分页过滤器
  */
 
 
 /**
-=======
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
  * reload()刷新数据
  * 
  */

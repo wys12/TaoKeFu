@@ -2,6 +2,8 @@ package com.yc.taokefu.web.handler;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.taokefu.entity.CompanyAll;
+import com.yc.taokefu.entity.Login;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.CompanyService;
+import com.yc.taokefu.util.ServletUtil;
 
 @Controller("companyHandler")
 @RequestMapping("company")
@@ -42,19 +46,24 @@ public class CompanyHandler {
 	 * wys
 	 * 公司添加
 	 * */
-	@RequestMapping("insertCompany")
-	@ResponseBody //响应Json数据
-	public Integer insertCompany(CompanyAll company){
-		return companyAllService.insertCompany(company);
+	@RequestMapping(value="insertCompany",method=RequestMethod.POST)
+	public String insertCompany(CompanyAll company){
+		LogManager.getLogger().debug("companyInfo01 ==> "+company);
+		companyAllService.insertCompany(company);
+		return "redirect:/companyInfo02.html";
 	}
 	/**
 	 * wys
 	 * 公司修改
 	 * */
-	@RequestMapping("modifiCompany")
-	@ResponseBody //响应Json数据
-	public Integer modifiCompany(CompanyAll company){
-		return companyAllService.modifiCompany(company);
+	@RequestMapping(value="modifiCompany",method=RequestMethod.POST)
+	@ResponseBody
+	public String modifiCompany(CompanyAll company,HttpSession session){
+		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
+		company.setComp_id(long1.getL_id());;
+		LogManager.getLogger().debug("companyInfo01 ==> "+company);
+		companyAllService.modifiCompany(company);
+		return "1";
 	}
 	/**
 	 * wys
@@ -70,9 +79,12 @@ public class CompanyHandler {
 	 * 公司简历添加
 	 * */
 	@RequestMapping("insertCoResume")
-	@ResponseBody //响应Json数据
-	public Integer insertCoResume(CompanyAll company){
-		return companyAllService.insertCoResume(company);
+	public String insertCoResume(CompanyAll company,HttpSession session){
+		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
+		company.setC_id(long1.getL_id());
+		LogManager.getLogger().debug(company);
+		companyAllService.insertCoResume(company);
+		return "redirect:/companyInfo05.html";
 	}
 	/**
 	 * wys
@@ -101,9 +113,12 @@ public class CompanyHandler {
 	 * @return
 	 */
 	@RequestMapping("insertCompany_team")
-	@ResponseBody //响应Json数据
-	public Integer insertCompany_team(CompanyAll company){
-		return companyAllService.insertCompany_team(company);
+	public String insertCompany_team(CompanyAll company,HttpSession session){
+		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
+		company.setC_id(long1.getL_id());
+		LogManager.getLogger().debug(company);
+		companyAllService.insertCompany_team(company);
+		return "redirect:/companyInfo04.html";
 	}
 	/**
 	 * 公司团队修改
@@ -197,10 +212,14 @@ public class CompanyHandler {
 	 * 标签添加
 	 * @return
 	 */
-	@RequestMapping("insertTag")
-	@ResponseBody //响应Json数据
-	public Integer insertTag(CompanyAll company){
-		return companyAllService.insertTag(company);
+	@RequestMapping(value="insertTag",method=RequestMethod.POST)
+	@ResponseBody
+	public String insertTag(CompanyAll company,HttpSession session){
+		Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
+		company.setC_id(long1.getL_id());
+		LogManager.getLogger().debug(company.getTag_name()+"=="+long1.getL_id());
+		companyAllService.insertTag(company);
+		return "1";
 	}
 	/**
 	 * wys

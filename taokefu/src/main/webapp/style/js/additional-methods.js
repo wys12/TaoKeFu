@@ -19,7 +19,7 @@ $(function(){
 	/*** check city**********************/
 		jQuery.validator.addMethod("checkCity",function(value, element) {
 			var reg =  /^[\u4e00-\u9fa5]{0,}$/;//只能输入汉字
-			return this.optional(element) || reg.test(value);
+			return this.optional(element) || !reg.test(value);
 			}, "请输入有效的公司所在城市，如：北京"); 
 		
 	/*** 不能全部输入数字**********************/

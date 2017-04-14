@@ -80,18 +80,19 @@ public class LoginHandler {
 					Integer l_id = logins.getL_id();
 					if(type.equals("0")){
 						userService.addUsers(l_id,l_email);
-						map.put("page", "index.html");
+						LogManager.getLogger().debug("注册邮箱成功0,IDs == " +logins);
+						map.put("msg", "0");
 					}else if(type.equals("1")){
 						companyService.addCompany(l_id,l_email);
-						map.put("page", "companyInfo01.html");
+						LogManager.getLogger().debug("注册邮箱成功1,IDs == " +logins);
+						map.put("msg", "1");
 					}
-					LogManager.getLogger().debug("注册邮箱成功,ID == " +l_id);
-					
+					session.setAttribute(ServletUtil.LOGIN_USER, logins);
 					return map;
 				}else{//注册失败
 					LogManager.getLogger().debug("注册失败");
 					session.setAttribute(ServletUtil.ERROR_MESSAGE,"注册失败!!!!");
-					map.put("page", "register.html");
+					map.put("msg", "register.html");
 					return map;
 				}
 			}else{//邮箱已注册

@@ -7,6 +7,7 @@ update admin set ad_pwd='3b3690fba8bd08059eae130425396eb05ded1b7d' where ad_emai
 insert into ADMIN values(admin_sql.nextval,'admin','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','595068001@qq.com')
 alert table admin add (ad_email varchar2(50));
 drop table  admin;
+select * from admin
 create table admin(
   ad_id number primary key ,
   ad_name varchar2(20) not null,
@@ -52,12 +53,15 @@ create table tkfuser(
 --insert into company values
 --(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.1603.com','www.baidu.com','北京',
 --'500-1000','你来就好','百度公司','-1');
-
+select company_sql.nextval from dual
+update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
+select * from company
+alter table company modify (COMP_INTRODUCE varchar2(50))
 --company 公司 
 create table company(
   comp_id number primary key,
-  comp_name varchar2(10),	--公司简称
-  comp_fullname varchar2(10),	--公司 全称
+  comp_name varchar2(30),	--公司简称
+  comp_fullname varchar2(30),	--公司 全称
   comp_logo varchar2(20),	--logo
   comp_territory varchar2(30), 	--领域 (行业领域)
   comp_state varchar2(20),	--发展阶段/状体(上市/a轮)
@@ -66,7 +70,7 @@ create table company(
   comp_link varchar2(255), 	--公司主页链接
   comp_city varchar2(20), --城市
   comp_scale varchar2(20), --公司规模
-  comp_introduce varchar2(10),	--公司一句话介绍
+  comp_introduce varchar2(50),	--公司一句话介绍
   comp_introduces varchar2(100),	--公司详情介绍
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
 );

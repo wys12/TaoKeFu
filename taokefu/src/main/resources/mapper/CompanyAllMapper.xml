@@ -29,50 +29,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 公司信息 -->
 	<insert id="insertCompany" parameterType="CompanyAll">
 		insert into company values(company_sql.nextval
-		<if test="comp_name ==null or comp_name ==''">,''</if>
+		<if test="comp_name ==null">,''</if>
 		<if test="comp_name !=null">,'${comp_name}'</if>
-		<if test="comp_fullname ==null or comp_fullname ==''">,''</if>
+		<if test="comp_fullname ==null ">,''</if>
 		<if test="comp_fullname !=null">,'${comp_fullname}'</if>
-		<if test="comp_logo ==null or comp_logo ==''">,''</if>
+		<if test="comp_logo ==null">,''</if>
 		<if test="comp_logo !=null">,'${comp_logo}'</if>
-		<if test="comp_territory ==null or comp_territory ==''">,''</if>
+		<if test="comp_territory ==null">,''</if>
 		<if test="comp_territory !=null">,'${comp_territory}'</if>
-		<if test="comp_state ==null or comp_state ==''">,''</if>
+		<if test="comp_state ==null ">,''</if>
 		<if test="comp_state !=null">,'${comp_state}'</if>
-		<if test="comp_phone ==null or comp_phone ==''">,''</if>
+		<if test="comp_phone ==null ">,''</if>
 		<if test="comp_phone !=null">,'${comp_phone}'</if>
-		<if test="comp_email ==null or comp_email ==''">,''</if>
+		<if test="comp_email ==null ">,''</if>
 		<if test="comp_email !=null">,'${comp_email}'</if>
-		<if test="comp_link ==null or comp_link ==''">,''</if>
+		<if test="comp_link ==null ">,''</if>
 		<if test="comp_link !=null">,'${comp_link}'</if>
-		<if test="comp_city ==null or comp_city ==''">,''</if>
+		<if test="comp_city ==null ">,''</if>
 		<if test="comp_city !=null">,'${comp_city}'</if>
-		<if test="comp_scale ==null or comp_scale ==''">,''</if>
+		<if test="comp_scale ==null ">,''</if>
 		<if test="comp_scale !=null">,'${comp_scale}'</if>
-		<if test="comp_introduce ==null or comp_introduce ==''">,''</if>
+		<if test="comp_introduce ==null ">,''</if>
 		<if test="comp_introduce !=null">,'${comp_introduce}'</if>
-		<if test="comp_introduces ==null or comp_introduces ==''">,''</if>
+		<if test="comp_introduces ==null ">,''</if>
 		<if test="comp_introduces !=null">,'${comp_introduces}'</if>
-		<if test="comp_attestation ==null or comp_attestation ==''">,''</if>
+		<if test="comp_attestation ==null ">,'-0'</if>
 		<if test="comp_attestation !=null">,'${comp_attestation}'</if>
 		)
 	</insert>
 	<!-- 公司详情信息 -->
 	<insert id="insertCoResume" parameterType="User">
 		insert into coResume values(comResume_sql.nextval
-		<if test="c_id ==null or c_id ==''">,''</if>
+		<if test="c_id ==null">,''</if>
 		<if test="c_id !=null">,'${c_id}'</if>
-		<if test="pro_name ==null or pro_name ==''">,''</if>
+		<if test="pro_name ==null">,''</if>
 		<if test="pro_name !=null">,'${pro_name}'</if>
-		<if test="pro_link ==null or pro_link ==''">,''</if>
+		<if test="pro_link ==null">,''</if>
 		<if test="pro_link!=null">,'${pro_link}'</if>
-		<if test="pro_picPath ==null or pro_picPath ==''">,''</if>
+		<if test="pro_picPath ==null ">,''</if>
 		<if test="pro_picPath !=null">,'${pro_picPath}'</if>
-		<if test="pro_pdesc ==null or pro_pdesc ==''">,''</if>
+		<if test="pro_pdesc ==null ">,''</if>
 		<if test="pro_pdesc !=null">,'${pro_pdesc}'</if>
-		<if test="de_name ==null or de_name ==''">,''</if>
+		<if test="de_name ==null">,''</if>
 		<if test="de_name !=null">,'${de_name}'</if>
-		<if test="dee_link ==null or dee_link ==''">,''</if>
+		<if test="dee_link ==null">,''</if>
 		<if test="dee_link !=null">,'${dee_link}'</if>
 		)
 	</insert>
@@ -203,25 +203,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="modifiCompany" parameterType="CompanyAll">
 		update company
 		<set>
-			<if test="comp_name !=null">,comp_name='${comp_name}'</if>
-			<if test="comp_fullname !=null">,comp_fullname='${comp_fullname}'</if>
-			<if test="comp_logo !=null">,comp_logo='${comp_logo}'</if>
-			<if test="comp_territory !=null">,comp_territory='${comp_territory}'</if>
-			<if test="comp_state !=null">,comp_state='${comp_state}'</if>
-			<if test="comp_phone !=null">,comp_phone='${comp_phone}'</if>
-			<if test="comp_email !=null">,comp_email='${comp_email}'</if>
-			<if test="comp_link !=null">,comp_link='${comp_link}'</if>
-			<if test="comp_city !=null">,comp_city='${comp_city}'</if>
-			<if test="comp_scale !=null">,comp_scale='${comp_scale}'</if>
-			<if test="comp_introduce !=null">,comp_introduce='${comp_introduce}'</if>
-			<if test="comp_introduces !=null">,comp_introduces='${comp_introduces}'</if>
-			<if test="comp_attestation !=null">,comp_attestation='${comp_attestation}'</if>
-			)
+			<if test="comp_name !=null">comp_name='${comp_name}',</if>
+			<if test="comp_fullname !=null">comp_fullname='${comp_fullname}',</if>
+			<if test="comp_logo !=null">comp_logo='${comp_logo}',</if>
+			<if test="comp_territory !=null">comp_territory='${comp_territory}',</if>
+			<if test="comp_state !=null">comp_state='${comp_state}',</if>
+			<if test="comp_phone !=null">comp_phone='${comp_phone}',</if>
+			<if test="comp_link !=null">comp_link='${comp_link}',</if>
+			<if test="comp_city !=null">comp_city='${comp_city}',</if>
+			<if test="comp_scale !=null">comp_scale='${comp_scale}',</if>
+			<if test="comp_introduce !=null">comp_introduce='${comp_introduce}',</if>
+			<if test="comp_introduces !=null">comp_introduces='${comp_introduces}',</if>
+			<if test="comp_attestation !=null">comp_attestation='${comp_attestation}',</if>
 		</set>
 		where
-		<if test="comp_id !=null">us_id=${comp_id}</if>
-		<if test="comp_name !=null"> comp_name='${comp_name}'</if>
-		<if test="comp_email !=null"> comp_email='${comp_email}'</if>
+		<if test="comp_id !=null">comp_id=${comp_id}</if>
+		<if test="comp_email !=null">comp_email='${comp_email}'</if>
 
 	</update>
 	<update id="modifiCoResume" parameterType="CompanyAll">
