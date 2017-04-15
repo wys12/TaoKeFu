@@ -98,7 +98,38 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(100) --描述内容
 );
-
+select * from resume
+	create sequence resume_sql INCREMENT BY 1 START WITH 1001;--简历序列
+	create table resume(
+		 res_id number primary key,
+		 c_id number ,
+		 usr_id number ,
+		 us_name varchar2(30) ,
+		 usr_name varchar2(30) ,
+		 us_picpath varchar2(50) ,--图片路径
+		 us_intro varchar2(200), --简介
+		 us_sex varchar2(30) check(us_sex in('男','女')),
+		 us_educationa varchar2(30), --学历
+		 us_work_year varchar2(30), --工作年限
+		 us_phone varchar2(30), --联系方式
+		 us_email varchar2(50), --邮箱
+	/*--------------工作经历-----------------------*/
+		 exp_company_name varchar2(50) ,--工作公司
+		 exp_job_name varchar2(50),--工作职位
+		 exp_start_year varchar2(30) ,--起始时间
+		 exp_end_year varchar2(30) ,--结束时间
+		 exp_work varchar2(50),
+		 exp_city varchar2(50),
+		 
+		 hj_name varchar2(50) ,--职位名称
+		 hj_city varchar2(50) ,--工作地址
+		 hj_min_salary varchar2(30) ,--期望月薪 
+		 hj_max_salary varchar2(30),--期望月薪 
+		 hj_nature varchar2(30) ,--职位性质（全职/兼职/实习）
+		 des_content varchar2(200) ,--描述内容
+		 
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
+	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
  select * from coResume

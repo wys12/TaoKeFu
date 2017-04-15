@@ -56,30 +56,29 @@ function comp_namesTag(){
 		$("#hasLabels").html(str+'<li class="link" onclick="edit()">编辑</li>');
 	},"json");
 }
-
+/*function edit(){
+	$("#addLabels").css('display','block');
+	$("#tags").css('display','block');
+	$(".link").css('display','none');
+}*/
 /**
  * 点击保存 修改标签
  */
 function tagSave(){
 	var length=$("#hasLabels li").length;
 	var tag_name="";
-	alert("==="+$("#hasLabels li").text());
+	//alert("==="+$("#hasLabels li").text());
 	for(var i=0;i<length;i++){
-		alert("i"+i+"length"+length+tag_name);
+		//alert("i"+i+"length"+length+tag_name);
 		tag_name+=$('#hasLabels li:eq('+i+')').text().substring(0, $('#hasLabels li:eq('+i+')').text().indexOf("x"))+(i!=(length-1)?",":"");
 	}
-	/*$.post("company/modifiCompany",{tag_name:tag_name},function(data){
+	$.post("company/modifiCompany",{tag_name:tag_name},function(data){
 		if(data=="1"){
 			$("#addLabels").css('display','none');
 			$("#tags").css('display','none');
 			comp_namesTag();
 		}
-	},"json");*/
-}
-function edit(){
-	$("#addLabels").css('display','block');
-	$("#tags").css('display','block');
-	$(".link").css('display','none');
+	},"json");
 }
 /**
  * 标签取消
