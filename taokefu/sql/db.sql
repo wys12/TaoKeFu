@@ -55,7 +55,8 @@ create table tkfuser(
 --'500-1000','你来就好','百度公司','-1');
 select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
-select * from company
+select * from company where comp_id=1081
+update company set  tag_name='五险一金' where comp_id=1081
 alter table company modify (COMP_INTRODUCE varchar2(50))
 alter table company add (tag_name varchar2(150))
 --company 公司 
@@ -125,6 +126,7 @@ create table company_team(
 	ct_job varchar2(20),	--团队职位
 	ct_tdesc varchar2(100)	--团队描述
 );
+select * from company_team
 	select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id join tag t on cor.c_id=t.c_id join invest inv on inv.c_id = t.c_id where j.job_name like '%微信%' 
  --succeed	作品展示
 create table succeed(

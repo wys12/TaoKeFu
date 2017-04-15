@@ -71,7 +71,8 @@ public class CompanyHandler {
 	 * */
 	@RequestMapping("findCoResume")
 	@ResponseBody //响应Json数据
-	public List<CompanyAll> findCoResume(CompanyAll company){
+	public List<CompanyAll> findCoResume(CompanyAll company,HttpSession session){
+		company.setC_id(ServletUtil.login_session(session).getL_id());
 		return companyAllService.findCoResume(company);
 	}
 	/**
@@ -103,7 +104,8 @@ public class CompanyHandler {
 	 */
 	@RequestMapping("findCompany_team")
 	@ResponseBody //响应Json数据
-	public List<CompanyAll> findCompany_team(CompanyAll company){
+	public List<CompanyAll> findCompany_team(CompanyAll company,HttpSession session){
+		company.setC_id(ServletUtil.login_session(session).getL_id());
 		return companyAllService.findCompany_team(company);
 	}
 	/**
@@ -127,7 +129,8 @@ public class CompanyHandler {
 	 */
 	@RequestMapping("modifiCompany_team")
 	@ResponseBody //响应Json数据
-	public Integer modifiCompany_team(CompanyAll company){
+	public Integer modifiCompany_team(CompanyAll company,HttpSession session){
+		company.setC_id(ServletUtil.login_session(session).getL_id());
 		return companyAllService.modifiCompany_team(company);
 	}
 	
