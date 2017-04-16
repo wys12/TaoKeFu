@@ -23,6 +23,7 @@ import com.yc.taokefu.util.ServletUtil;
 public class OtherLoginHandler {
 	@Autowired
 	private OtherLoginService otherLoginService;
+	
 	@Autowired
 	private UserService userService;
 	

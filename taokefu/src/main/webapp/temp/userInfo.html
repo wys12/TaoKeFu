@@ -5,7 +5,7 @@
     </div>
 </div> -->
 <div class="easyui-panel pd5" data-options="fit:true,border:true">
-	<div id="wu-toolbar-2">
+	<div id="user-toolbar-2">
 		<div class="wu-toolbar-button">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
 				onclick="openAdd()" plain="true">添加</a> <a href="#"
@@ -32,7 +32,7 @@
 				class="easyui-linkbutton" iconCls="icon-cut" onclick="reload()"
 				plain="true">剪切</a>
 		</div>
-		<div class="wu-toolbar-search">
+		<div class="user-toolbar-search">
 			<label>起始时间：</label><input class="easyui-datebox"
 				style="width: 100px"> <label>结束时间：</label><input
 				class="easyui-datebox" style="width: 100px"> <label>用户组：</label>
@@ -46,15 +46,15 @@
 		</div>
 	</div>
 	<!-- End of toolbar 用户信息显示 -->
-	<table id="wu-datagrid-2" class="easyui-datagrid"
-		toolbar="#wu-toolbar-2"></table>
+	<table id="user-datagrid-2" class="easyui-datagrid"
+		toolbar="#user-toolbar-2"></table>
 </div>
 <!-- Begin of easyui-dialog -->
 <!-- 添加信息 -->
-<div id="wu-dialog-1" class="easyui-dialog"
+<div id="user-dialog-1" class="easyui-dialog"
 	data-options="closed:true,iconCls:'icon-save'"
 	style="width: 500px; padding: 10px;">
-	<form id="wu-form-1" method="post" enctype="multipart/form-data">
+	<form id="user-form-1" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td width="60" align="right">姓 名:</td>
@@ -118,7 +118,7 @@
 	</form>
 </div>
 
-<div id="wu-dialog-2" class="easyui-dialog"
+<div id="user-dialog-2" class="easyui-dialog"
 	data-options="closed:true,iconCls:'icon-save'"
 	style="width: 500px; padding: 10px;">
 	<form id="wu-form-2" method="post" enctype="multipart/form-data">

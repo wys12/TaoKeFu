@@ -2,13 +2,13 @@
  * Name 添加记录
  */
 function add(){
-	$('#wu-form-1').form('submit', {
+	$('#user-form-1').form('submit', {
 		url:'tkfuser/add',
 		success:function(data){
 			alert(data);
 			if(data){
 				$.messager.alert('信息提示','提交成功！','info');
-				$('#wu-dialog-2').dialog('close');
+				$('#user-dialog-2').dialog('close');
 			}
 			else
 			{
@@ -25,12 +25,12 @@ function chgPic(obj){
  * Name 修改记录
  */
 function edit(){
-	$('#wu-form-2').form('submit', {
+	$('#user-form-2').form('submit', {
 		url:'tkfuser/edit',
 		success:function(data){
 			if(data){
 				$.messager.alert('信息提示','提交成功！','info');
-				$('#wu-dialog-2').dialog('close');
+				$('#user-dialog-2').dialog('close');
 			}
 			else
 			{
@@ -46,7 +46,7 @@ function edit(){
 function remove(){
 	$.messager.confirm('信息提示','确定要删除该记录？', function(result){
 		if(result){
-			var items = $('#wu-datagrid-2').datagrid('getSelections');
+			var items = $('#user-datagrid-2').datagrid('getSelections');
 			var ids = [];
 			$(items).each(function(){
 				ids.push(this.productid);	
@@ -73,8 +73,8 @@ function remove(){
  * Name 打开添加窗口
  */
 function openAdd(){
-	$('#wu-form-1').form('clear');
-	$('#wu-dialog-1').dialog({
+	$('#user-form-1').form('clear');
+	$('#user-dialog-1').dialog({
 		closed: false,
 		modal:true,
 		title: "添加信息",
@@ -86,7 +86,7 @@ function openAdd(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-1').dialog('close');                    
+				$('#user-dialog-1').dialog('close');                    
 			}
 		}]
 	});
@@ -96,8 +96,8 @@ function openAdd(){
  * Name 打开修改窗口
  */
 function openEdit(){
-	$('#wu-form-2').form('clear');
-	var item = $('#wu-datagrid-2').datagrid('getSelected');
+	$('#user-form-2').form('clear');
+	var item = $('#user-datagrid-2').datagrid('getSelected');
 	$("#uid").val(item.us_id);
 	$("#uname").val(item.us_name);
 	$("#upicpath").val("");
@@ -112,7 +112,7 @@ function openEdit(){
 	$("#uphone").val(item.us_phone);
 	$("#uemail").val(item.us_email);
 	$("#uintro").val(item.us_intro);
-	$('#wu-dialog-2').dialog({
+	$('#user-dialog-2').dialog({
 		closed: false,
 		modal:true,
 		title: "修改信息",
@@ -124,21 +124,15 @@ function openEdit(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-2').dialog('close');                    
+				$('#user-dialog-2').dialog('close');                    
 			}
 		}]
 	});
 }	
 
-/**
-<<<<<<< HEAD
- * Name 分页过滤器
- */
 
 
 /**
-=======
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
  * reload()刷新数据
  * 
  */
@@ -149,7 +143,7 @@ function reload(){
  * Name 载入数据
  */
 load();
-function load(){$('#wu-datagrid-2').datagrid({
+function load(){$('#user-datagrid-2').datagrid({
 	url:"tkfuser/list",
 	rownumbers:true,
 	singleSelect:false,

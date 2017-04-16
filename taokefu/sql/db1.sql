@@ -16,15 +16,17 @@ create table login(
 );
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
+drop table tkfuser
 create table tkfuser(
   us_id number primary key,	--id等于 login id
   us_name varchar2(10) ,	--名称
+  openId varchar2(50),
   us_picpath varchar2(50),      --图片路径
   us_intro varchar2(100),       --简介
   us_sex  varchar2(3) check (us_sex in('男','女')),         --性别
   us_educationa varchar2(10) ,  -- 学历
   us_work_year  varchar2(20) ,  --工作年限
-  us_phone varchar2(10) ,       --联系方式
+  us_phone varchar2(11) ,       --联系方式
   us_email varchar2(30) UNIQUE   --邮箱 
 );
 
@@ -45,7 +47,6 @@ create table company(
   comp_introduces varchar2(100),	--公司详情介绍
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
 );
-<<<<<<< HEAD
 insert into company(comp_id,comp_email) 
 values(company_sql.nextval,'123@qq.com')
 
@@ -147,7 +148,10 @@ create table  invest(
 	inv_state varchar2(20)	--投资机构发展阶段
 ) ;
 --职位表
+update job set job_name= '淘宝客服', c_id= 1002, job_tags= '管理', job_department= '网络客服', job_nature='兼职', job_min_salary= '3k', job_max_salary='8k', job_education= '没要求', job_tempt= '', job_ftime= '2017-04-11', job_rests= '-1', job_number='1', job_state= '-1', job_need= '' where job_id=1032 
+ 淘宝客服(String), 1002(Integer), 管理(String), 网络客服(String), 兼职(String), 3k(String), 8k(String), 没要求(String), (String), 2017-04-11(String), (String), 1(String), -1(String), 研究生(String), 1038(Integer)
 drop table job
+select * from job
 create table job(
   job_id number primary key,
   c_id number not null,
@@ -169,7 +173,6 @@ create table job(
 );
 insert into job(job_id,c_id,job_tags,job_name,job_department,job_nature,job_min_salary,job_max_salary,job_ftime,job_need) 
 values(job_sql.nextval,1002,'编程','微信客服','网络客服','兼职','3k','5k','2017-4-8','研究生')
-=======
 
  --resume	用户简历表(详情)
 create table usResume(
@@ -291,7 +294,6 @@ create table job(
 );
 insert into job(job_id,c_id,job_tags,job_name,job_department,job_nature,job_min_salary,job_max_salary,job_ftime,job_need) 
 values(job_sql.nextval,1002,'编程','微信客服','网络客服','兼职','3k','3.5k','2017-4-8','研究生')
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 --职位分类表
 select * from JOB_CLASS
 create table job_class(

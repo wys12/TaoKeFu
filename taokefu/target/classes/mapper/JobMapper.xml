@@ -4,7 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.JobMapper">
 	<select id="jobFind" parameterType="Job" resultType="Job">
-		select * from job where job_name=#{job_name}
+		select *
+		from job where job_name=#{job_name}
 	</select>
 
 	<select id="findCompany" parameterType="CompanyAll" resultType="CompanyAll">
@@ -19,8 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join tag t
 		on
 		cor.c_id=t.c_id
-		<!-- join invest inv
-		on inv.c_id = t.c_id -->
+		<!-- join invest inv on inv.c_id = t.c_id -->
 		where j.job_id=${job_id}
 	</select>
 
@@ -53,26 +53,121 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 职位修改 -->
 	<update id="editJob" parameterType="Job">
 		update job set
-		job_name=#{job_name},
-		job_department=#{job_department},
-		job_nature=#{job_nature},
-		job_min_salary=#{job_min_salary}
-		,job_max_salary=#{job_max_salary}
-		,job_ftime=#{job_ftime}, job_need=#{job_need}
+		job_name=
+		<choose>
+			<when test="job_name !=null">#{job_name},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		c_id=
+		<choose>
+			<when test="c_id !=null">#{c_id},</when>
+			<otherwise>1002,</otherwise>
+		</choose>
+		job_tags=
+		<choose>
+			<when test="job_tags !=null">#{job_tags},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_department=
+		<choose>
+			<when test="job_department !=null">#{job_department},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_nature=
+		<choose>
+			<when test="job_nature !=null">#{job_nature},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_min_salary=
+		<choose>
+			<when test="job_min_salary !=null">#{job_min_salary},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_max_salary=
+		<choose>
+			<when test="job_max_salary !=null">#{job_max_salary},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_education=
+		<choose>
+			<when test="job_education !=null">#{job_education},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_tempt=
+		<choose>
+			<when test="job_tempt !=null">#{job_tempt},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_ftime=
+		<choose>
+			<when test="job_ftime !=null">#{job_ftime},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_rests=
+		<choose>
+			<when test="job_rests !=null">#{job_rests},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_number=
+		<choose>
+			<when test="job_number !=null">#{job_number},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		job_state=
+		<choose>
+			<when test="job_state !=null">#{job_state},</when>
+			<otherwise>'',</otherwise>
+		</choose>
+		 job_need=
+		 <choose>
+			<when test="job_state !=null"> #{job_need}</when>
+			<otherwise>''</otherwise>
+		</choose>
 		where
 		job_id=#{job_id}
 	</update>
 	<!--职位多条件查询 -->
 	<select id="search" parameterType="Job" resultType="Job">
-		select * from job where job_nature=#{job_nature} and 
-		(to_date(job_ftime, 'yyyy-MM-dd') 
-		between to_date(#{job_start_time}, 'yyyy-MM-dd') and 
+		select * from
+		job where job_nature=#{job_nature} and
+		(to_date(job_ftime,
+		'yyyy-MM-dd')
+		between to_date(#{job_start_time}, 'yyyy-MM-dd') and
 		to_date(#{job_end_time}, 'yyyy-MM-dd'))
 	</select>
 	<!-- 职位添加 -->
 	<insert id="jobAdd" parameterType="Job">
-		insert into job (job_id,c_id,job_name,job_tags,job_department,job_nature,job_min_salary, job_max_salary,job_ftime, job_need)
-		values(job_sql.nextval,#{c_id},#{job_name},#{job_tags},#{job_department},#{job_nature},#{job_min_salary},#{job_max_salary},#{job_ftime},#{job_need})
+		insert into job values(job_sql.nextval
+		<if test="c_id ==null ">,''</if>
+		<if test="c_id !=null">,'${c_id}'</if>
+		<if test="job_tags ==null ">,''</if>
+		<if test="job_tags !=null">,'${job_tags}'</if>
+		<if test="job_name ==null ">,''</if>
+		<if test="job_name !=null">,'${job_name}'</if>
+		<if test="job_department ==null">,''</if>
+		<if test="job_department !=null">,'${job_department}'</if>
+		<if test="job_nature ==null">,''</if>
+		<if test="job_nature !=null">,'${job_nature}'</if>
+		<if test="job_min_salary ==null">,''</if>
+		<if test="job_min_salary !=null">,'${job_min_salary}'</if>
+		<if test="job_max_salary ==null">,''</if>
+		<if test="job_max_salary !=null">,'${job_max_salary}'</if>
+		<if test="job_ftime ==null">,''</if>
+		<if test="job_ftime !=null">,'${job_ftime}'</if>
+		<if test="job_education ==null ">,''</if>
+		<if test="job_education !=null">,'${job_education}'</if>
+		<if test="job_tempt ==null">,''</if>
+		<if test="job_tempt !=null">,'${job_tempt}'</if>
+		<if test="job_responsibility ==null">,''</if>
+		<if test="job_responsibility !=null">,'${job_responsibility}'</if>
+		<if test="job_need ==null">,''</if>
+		<if test="job_need !=null">,'${job_need}'</if>
+		<if test="job_rests ==null">,''</if>
+		<if test="job_rests !=null">,'${job_rests}'</if>
+		<if test="job_number ==null">,''</if>
+		<if test="job_number !=null">,'${job_number}'</if>
+		<if test="job_state ==null">,''</if>
+		<if test="job_state !=null">,'${job_state}'</if>)
 	</insert>
 
 </mapper>

@@ -160,6 +160,17 @@ public class JobHandler {
 	@RequestMapping("add")
 	public int doAdd(Job job){
 		LogManager.getLogger().debug("添加"+job);
+		if(job.getJob_nature().equals(1)){
+			job.setJob_nature("全职");
+		}else{
+			job.setJob_nature("兼职");
+		}
+		String min_salary=job.getJob_min_salary()+"k";
+		job.setJob_min_salary(min_salary);
+		String max_salary=job.getJob_max_salary()+"k";
+		job.setJob_max_salary(max_salary);
+		
+		LogManager.getLogger().debug("添加"+job);
 		return jobService.jobAdd(job);
 	}
 }
