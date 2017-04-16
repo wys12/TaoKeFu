@@ -3,7 +3,44 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.ResumeMapper">
-	<insert id=""></insert>
-	<update id=""></update>
-	<select id=""></select>
+	<insert id="insertResume">
+		insert into resume(res_id,c_id,usr_id,us_name)
+		values(resume_sql.nextval,${c_id},${tkf_id},'')
+	</insert>
+	<update id="modifiResumes" parameterType="UserAll">
+		update resume
+		<set>
+			<if test="us_name !=null">us_name='${us_name}',</if>
+			<if test="usr_name !=null">usr_name='${usr_name}',</if>
+			<if test="us_picpath !=null">us_picpath='${us_picpath}',</if>
+			<if test="us_intro !=null">us_intro='${us_intro}',</if>
+			<if test="us_sex !=null">us_sex='${us_sex}',</if>
+			<if test="us_educationa !=null">us_educationa='${us_educationa}',</if>
+			<if test="us_work_year !=null">us_work_year='${us_work_year}',</if>
+			<if test="us_phone !=null">us_phone='${us_phone}',</if>
+			<if test="usr_state !=null">usr_state='${usr_state}',</if>
+			<if test="hj_name !=null">hj_name='${hj_name}',</if>
+			<if test="hj_city !=null">hj_city='${hj_city}',</if>
+			<if test="hj_min_salary !=null">hj_min_salary='${hj_min_salary}',</if>
+			<if test="hj_max_salary !=null">hj_max_salary='${hj_max_salary}',</if>
+			<if test="hj_nature !=null">hj_nature='${hj_nature}',</if>
+			<if test="des_content !=null">des_content='${des_content}',</if>
+			<if test="exp_company_name !=null">exp_company_name='${exp_company_name}',</if>
+			<if test="exp_job_name !=null">exp_job_name='${exp_job_name}',</if>
+			<if test="exp_work !=null">exp_work='${exp_work}',</if>
+			<if test="exp_city !=null">exp_city='${exp_city}',</if>
+			<if test="exp_start_year !=null">exp_start_year='${exp_start_year}',</if>
+			<if test="exp_end_year !=null">exp_end_year='${exp_end_year}',</if>
+			<if test="edu_shool_name !=null">edu_shool_name='${edu_shool_name}',</if>
+			<if test="edu_major !=null">edu_major='${edu_major}',</if>
+			<if test="edu_educationa !=null">edu_educationa='${edu_educationa}',</if>
+			<if test="edu_start_year !=null">edu_start_year='${edu_start_year}',</if>
+			<if test="edu_end_year !=null">edu_end_year='${edu_end_year}',</if>
+		</set>
+		where c_id=${c_id}
+	</update>
+	<select id="findResume" resultType="Resume"></select>
+	<select id="findResumes" resultType="Resume">
+		select * from resume where c_id=${c_id} and usr_id=${tkf_id}
+	</select>
 </mapper>

@@ -98,7 +98,10 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(100) --描述内容
 );
-select * from resume
+select * from usResume;
+select * from resume where c_id=1001 and usr_id=1001
+--drop table resume
+--drop sequence resume_sql
 	create sequence resume_sql INCREMENT BY 1 START WITH 1001;--简历序列
 	create table resume(
 		 res_id number primary key,
@@ -128,6 +131,12 @@ select * from resume
 		 hj_nature varchar2(30) ,--职位性质（全职/兼职/实习）
 		 des_content varchar2(200) ,--描述内容
 		 
+		 edu_shool_name varchar2(50),  --学校名称
+		 edu_major varchar2(50), --所学专业
+		 edu_educationa varchar2(30), --学历
+		 edu_start_year varchar2(30),-- 开始年份
+		 edu_end_year varchar2(30) ,--毕业年份
+	
 		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
 	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');

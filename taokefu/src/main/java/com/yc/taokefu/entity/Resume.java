@@ -35,6 +35,41 @@ public class Resume {
 	private String exp_end_year;//结束时间
 	private String exp_work;
 	private String  exp_city;
+	private String edu_shool_name ;  //学校名称
+	private String edu_major ; //所学专业
+	private String edu_educationa ;//学历
+	private String edu_start_year ;// 开始年份
+	private String edu_end_year  ;//毕业年份
+	public String getEdu_shool_name() {
+		return edu_shool_name;
+	}
+	public void setEdu_shool_name(String edu_shool_name) {
+		this.edu_shool_name = edu_shool_name;
+	}
+	public String getEdu_major() {
+		return edu_major;
+	}
+	public void setEdu_major(String edu_major) {
+		this.edu_major = edu_major;
+	}
+	public String getEdu_educationa() {
+		return edu_educationa;
+	}
+	public void setEdu_educationa(String edu_educationa) {
+		this.edu_educationa = edu_educationa;
+	}
+	public String getEdu_start_year() {
+		return edu_start_year;
+	}
+	public void setEdu_start_year(String edu_start_year) {
+		this.edu_start_year = edu_start_year;
+	}
+	public String getEdu_end_year() {
+		return edu_end_year;
+	}
+	public void setEdu_end_year(String edu_end_year) {
+		this.edu_end_year = edu_end_year;
+	}
 	public Integer getRes_id() {
 		return res_id;
 	}
@@ -207,7 +242,8 @@ public class Resume {
 				+ hj_nature + ", des_content=" + des_content + ", suc_name=" + suc_name + ", suc_link=" + suc_link
 				+ ", exp_company_name=" + exp_company_name + ", exp_job_name=" + exp_job_name + ", exp_start_year="
 				+ exp_start_year + ", exp_end_year=" + exp_end_year + ", exp_work=" + exp_work + ", exp_city="
-				+ exp_city + "]";
+				+ exp_city + ", edu_shool_name=" + edu_shool_name + ", edu_major=" + edu_major + ", edu_educationa="
+				+ edu_educationa + ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + "]";
 	}
 
 }
