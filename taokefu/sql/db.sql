@@ -48,8 +48,13 @@ create table tkfuser(
 
 select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
+<<<<<<< HEAD
 update company SET comp_attestation='-2' where comp_id = '1027'
 select * from job
+=======
+select * from company where comp_id=1081
+update company set  tag_name='五险一金' where comp_id=1081
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 alter table company modify (COMP_INTRODUCE varchar2(50))
 alter table company add (tag_name varchar2(150))
 alter table company modify (comp_attestation varchar2(10) check(comp_attestation BETWEEN -2 and 0))
@@ -94,7 +99,47 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(100) --描述内容
 );
-
+select * from usResume;
+select * from resume where c_id=1001 and usr_id=1001
+--drop table resume
+--drop sequence resume_sql
+	create sequence resume_sql INCREMENT BY 1 START WITH 1001;--简历序列
+	create table resume(
+		 res_id number primary key,
+		 c_id number ,
+		 usr_id number ,
+		 us_name varchar2(30) ,
+		 usr_name varchar2(30) ,
+		 us_picpath varchar2(50) ,--图片路径
+		 us_intro varchar2(200), --简介
+		 us_sex varchar2(30) check(us_sex in('男','女')),
+		 us_educationa varchar2(30), --学历
+		 us_work_year varchar2(30), --工作年限
+		 us_phone varchar2(30), --联系方式
+		 us_email varchar2(50), --邮箱
+	/*--------------工作经历-----------------------*/
+		 exp_company_name varchar2(50) ,--工作公司
+		 exp_job_name varchar2(50),--工作职位
+		 exp_start_year varchar2(30) ,--起始时间
+		 exp_end_year varchar2(30) ,--结束时间
+		 exp_work varchar2(50),
+		 exp_city varchar2(50),
+		 
+		 hj_name varchar2(50) ,--职位名称
+		 hj_city varchar2(50) ,--工作地址
+		 hj_min_salary varchar2(30) ,--期望月薪 
+		 hj_max_salary varchar2(30),--期望月薪 
+		 hj_nature varchar2(30) ,--职位性质（全职/兼职/实习）
+		 des_content varchar2(200) ,--描述内容
+		 
+		 edu_shool_name varchar2(50),  --学校名称
+		 edu_major varchar2(50), --所学专业
+		 edu_educationa varchar2(30), --学历
+		 edu_start_year varchar2(30),-- 开始年份
+		 edu_end_year varchar2(30) ,--毕业年份
+	
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
+	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
  select * from coResume
@@ -122,6 +167,7 @@ create table company_team(
 	ct_job varchar2(20),	--团队职位
 	ct_tdesc varchar2(100)	--团队描述
 );
+select * from company_team
 	select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id join tag t on cor.c_id=t.c_id join invest inv on inv.c_id = t.c_id where j.job_name like '%微信%' 
  --succeed	作品展示
 create table succeed(

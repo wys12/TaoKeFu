@@ -226,7 +226,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		* from tkfuser where
 		<if test="us_id !=null">us_id=#{us_id}</if>
-		<if test="tkf_id !=null">tkf_id=#{tkf_id}</if>
+		<if test="tkf_id !=null">us_id=#{tkf_id}</if>
 	</select>
 	<!-- select * from tkfuser where <trim><if test="us_id !=null">us_id=#{us_id}</if> 
 		<if test="tkf_id !=null">and tkf_id=#{tkf_id}</if> <if test="openId !=null">and 
@@ -266,7 +266,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		* from take where
 		<if test="tak_id !=null">tak_id=#{tak_id}</if>
-		<if test="tkf_id !=null">tkf_id=#{tkf_id}</if>
 	</select>
 
 	<!-- ***********************修改用户信息 *********************** -->

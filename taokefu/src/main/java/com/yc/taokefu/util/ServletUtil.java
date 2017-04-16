@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yc.taokefu.entity.CompanyAll;
@@ -42,5 +44,8 @@ public class ServletUtil {
 				e.printStackTrace();
 			}
 		}
+	}
+	public static Login login_session(HttpSession session){
+		return (Login) session.getAttribute(ServletUtil.LOGIN_USER);
 	}
 }
