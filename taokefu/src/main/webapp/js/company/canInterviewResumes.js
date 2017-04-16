@@ -4,9 +4,9 @@ function loadInfo(){
 }
 function show(){
 	$.post("resume/findResume",function(data){
-		//alert(JSON.stringify(data));
+		alert(data.length);
 		for(var i=0;i<data.length;i++){
-			alert(JSON.stringify(data[i]));
+			alert("第"+(i+1)+"个简历====》》 "+JSON.stringify(data[i]));
 		}
 		$(".contactInfo span:eq(1)").text("123");
 		$(".contactInfo a").text("321");

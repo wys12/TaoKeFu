@@ -35,6 +35,7 @@ public class ResumeHandler {
 		user.setC_id(ServletUtil.job_id);
 		user.setTak_id(ServletUtil.c_id);
 		List<Resume> list = resumeService.findResumes(user);
+		System.out.println("list==="+list);
 		if(list.size()==0){
 			UserAll user1=userService.findUser(user).get(0);
 			UserAll usResume=userService.findUsResume(user).get(0);

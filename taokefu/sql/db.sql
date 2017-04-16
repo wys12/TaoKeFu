@@ -91,6 +91,7 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(300) --描述内容
 );
+select * from resume where c_id=1001 and usr_id=1002 
 select * from resume
 drop  table resume
 delete resume where c_id=1002
