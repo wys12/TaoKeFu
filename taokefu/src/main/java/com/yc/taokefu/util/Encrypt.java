@@ -32,6 +32,7 @@ public class Encrypt {
 
 	}
 
+	
 	/**
 	 * 加密
 	 * 

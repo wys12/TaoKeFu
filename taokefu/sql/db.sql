@@ -1,6 +1,6 @@
 insert into admin values('595068001@qq.com','admin','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2');
 select * from admin;
-
+select * from login where l_pwd='61c239e5c7203949a78ff72615256c8db5dc04c4' and l_email='159357@qq.com' 
 ---admin管理员
 insert into ADMIN values(admin_sql.nextval,'admin','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','595068001@qq.com')
 alert table admin add (ad_email varchar2(50));
@@ -98,8 +98,10 @@ create table usResume(
 select * from resume where c_id=1001
 select * from resume where c_id=1001 and usr_id=1002 
 select * from resume
+select * from tkfuser
+select * from company
 drop  table resume
-delete resume where c_id=1002
+delete resume where res_id=1041
 	create table resume(
 		 res_id number primary key,
 		  c_id number ,

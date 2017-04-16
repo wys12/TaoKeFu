@@ -40,13 +40,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where c_id=${c_id}
 	</update>
 	
+	<!-- 根据公司id查找 -->
 	<select id="findResume" resultType="Resume">
 		select * from resume where c_id=${c_id}
 	</select>
 	<!-- 简历投递时的查询判断 -->
 	<select id="findResumes" resultType="Resume">
-		select * from resume where c_id=${c_id} and usr_id=${tkf_id}
+		select * from resume where job_id=${tak_id} and usr_id=${tkf_id}
 	</select>
+	<!-- 查看简历详情 -->
 	<select id="findResumeInfo" resultType="java.util.List">
 	select * from resume where c_id=${c_id} and usr_id=${usr_id}
 	</select>

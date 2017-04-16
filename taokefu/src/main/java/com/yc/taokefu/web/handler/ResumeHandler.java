@@ -34,9 +34,9 @@ public class ResumeHandler {
 		user.setTkf_id(ServletUtil.login_session(session).getL_id());///用户和id
 		user.setC_id(ServletUtil.c_id);//公司id
 		user.setTak_id(ServletUtil.job_id);//职位id
-		LogManager.getLogger().debug("list0  ===  "+user);
+		LogManager.getLogger().debug("user  ===  "+user);
 		List<Resume> list = resumeService.findResumes(user);
-		LogManager.getLogger().debug("list1  ===  "+user);
+		LogManager.getLogger().debug("list  ===  "+list);
 		if(list.size()==0){
 			UserAll user1=userService.findUser(user).get(0);
 			UserAll usResume=userService.findUsResume(user).get(0);
@@ -44,13 +44,13 @@ public class ResumeHandler {
 			UserAll experience=userService.findExperience(user).get(0);
 			LogManager.getLogger().debug("user == >  "+user);
 			user1.setTkf_id(ServletUtil.login_session(session).getL_id());
-			user1.setC_id(ServletUtil.job_id);
+			user1.setC_id(ServletUtil.c_id);
 			usResume.setTkf_id(ServletUtil.login_session(session).getL_id());
-			usResume.setC_id(ServletUtil.job_id);
+			usResume.setC_id(ServletUtil.c_id);
 			educationa.setTkf_id(ServletUtil.login_session(session).getL_id());
-			educationa.setC_id(ServletUtil.job_id);
+			educationa.setC_id(ServletUtil.c_id);
 			experience.setTkf_id(ServletUtil.login_session(session).getL_id());
-			experience.setC_id(ServletUtil.job_id);
+			experience.setC_id(ServletUtil.c_id);
 			return resumeService.insertResume(user,user1,usResume,educationa,experience);
 		}else{
 			LogManager.getLogger().debug("已有你的简历");
@@ -69,7 +69,7 @@ public class ResumeHandler {
 	@ResponseBody
 	public List<Resume> findResume(Resume resume,HttpSession session){
 		resume.setC_id(ServletUtil.c_ids);
-		System.out.println(ServletUtil.c_id);
+		LogManager.getLogger().debug(ServletUtil.c_id);
 		LogManager.getLogger().debug(resume);
 		return resumeService.findResume(resume);
 	}
