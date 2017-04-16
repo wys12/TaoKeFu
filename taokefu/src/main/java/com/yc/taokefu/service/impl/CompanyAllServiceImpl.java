@@ -48,5 +48,95 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 		}
 		return list;
 	}
+	//查询
+	@Override
+	public List<CompanyAll> findCompany(CompanyAll company) {
+		return companyAllMapper.findCompany(company);
+	}
+	@Override
+	public List<CompanyAll> findCoResume(CompanyAll company) {
+		return companyAllMapper.findCoResume(company);
+	}
+	@Override
+	public List<CompanyAll> findCompany_team(CompanyAll company) {
+		return companyAllMapper.findCompany_team(company);
+	}
+	@Override
+	public List<CompanyAll> findTag(CompanyAll company) {
+		return companyAllMapper.findTag(company);
+	}
+	@Override
+	public List<CompanyAll> findInvest(CompanyAll company) {
+		return companyAllMapper.findInvest(company);
+	}
+	@Override
+	public List<CompanyAll> findJob(CompanyAll company) {
+		return companyAllMapper.findJob(company);
+	}
+	@Override
+	public List<CompanyAll> findJob_class(CompanyAll company) {
+		return companyAllMapper.findJob_class(company);
+	}
+	
+	
+	//插入
+	@Override
+	public Integer insertCompany(CompanyAll company) {
+		return companyAllMapper.insertCompany(company);
+	}
+	@Override
+	public Integer insertCoResume(CompanyAll company) {
+		return companyAllMapper.insertCoResume(company);
+	}
+	@Override
+	public Integer insertCompany_team(CompanyAll company) {
+		return companyAllMapper.insertCompany_team(company);
+	}
+	@Override
+	public Integer insertTag(CompanyAll company) {
+		return companyAllMapper.insertTag(company);
+	}
+	@Override
+	public Integer insertInvest(CompanyAll company) {
+		return companyAllMapper.insertInvest(company);
+	}
+	@Override
+	public Integer insertJob(CompanyAll company) {
+		return companyAllMapper.insertJob(company);
+	}
+	@Override
+	public Integer insertJob_class(CompanyAll company) {
+		return companyAllMapper.insertJob_class(company);
+	}
+	
+	//修改
+	@Override
+	public Integer modifiCompany(CompanyAll company) {
+		return companyAllMapper.modifiCompany(company);
+	}
+	@Override
+	public Integer modifiCoResume(CompanyAll company) {
+		return companyAllMapper.modifiCoResume(company);
+	}
+	@Override
+	public Integer modifiCompany_team(CompanyAll company) {
+		return companyAllMapper.modifiCompany_team(company);
+	}
+	@Override
+	public Integer modifiTag(CompanyAll company) {
+		return companyAllMapper.modifiTag(company);
+	}
+	@Override
+	public Integer modifiInvest(CompanyAll company) {
+		return companyAllMapper.modifiInvest(company);
+	}
+	@Override
+	public Integer modifiJob(CompanyAll company) {
+		return companyAllMapper.modifiJob(company);
+	}
+	@Override
+	public Integer modifiJob_class(CompanyAll company) {
+		return companyAllMapper.modifiJob_class(company);
+	}
 	
 }

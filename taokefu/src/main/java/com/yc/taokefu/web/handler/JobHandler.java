@@ -90,15 +90,17 @@ public class JobHandler {
 	 * @param job_id
 	 */
 	@RequestMapping(value="sendCompany",method=RequestMethod.POST)
-	public void getCompany(String job_id) {
+	public void getCompany(String job_id,String c_id ) {
 		ServletUtil.job_id=Integer.valueOf(job_id);
-		LogManager.getLogger().debug("公司id === " +job_id);
+		ServletUtil.c_id = Integer.valueOf(c_id);
+		LogManager.getLogger().debug("公司id === " +job_id+"c_id"+c_id);
 	}
 	
 	@RequestMapping(value="findCompany")
 	@ResponseBody
 	public List<CompanyAll> findCompany(CompanyAll job) {
 		job.setJob_id(ServletUtil.job_id);
+		LogManager.getLogger().debug("job==>   "+job);
 		return jobService.findCompany(job);
 	}
 	

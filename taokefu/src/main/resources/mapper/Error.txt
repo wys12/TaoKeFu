@@ -1,0 +1,84 @@
+<!-- 查询标签 -->
+	<select id="findTag" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from tag where
+		<if test="c_id !=null">c_id=#{c_id}</if>
+	</select>
+	<!-- 查询投资机构信息 -->
+	<select id="findInvest" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from invest where
+		<if test="c_id !=null">c_id=#{c_id}</if>
+	</select>
+	<!-- 标签 -->
+	<insert id="insertTag" parameterType="CompanyAll">
+		insert into tag values(tag_sql.nextval
+		<if test="c_id ==null or c_id ==''">,''</if>
+		<if test="c_id !=null">,'${c_id}'</if>
+		<if test="tag_name ==null or tag_name ==''">,''</if>
+		<if test="tag_name !=null">,'${tag_name}'</if>
+		)
+	</insert>
+	<!--投资机构信息 -->
+	<insert id="insertInvest" parameterType="CompanyAll">
+		insert into invest values(invest_sql.nextval
+		<if test="c_id ==null or c_id ==''">,''</if>
+		<if test="c_id !=null">,'${c_id}'</if>
+		<if test="inv_name ==null or inv_name ==''">,''</if>
+		<if test="inv_name !=null">,'${inv_name}'</if>
+		<if test="inv_state ==null or inv_state ==''">,''</if>
+		<if test="inv_state !=null">,'${inv_state}'</if>
+		)
+	</insert>
+	
+	<update id="modifiTag" parameterType="CompanyAll">
+		update tag
+		<set>
+			<if test="tag_name !=null">,tag_name='${tag_name}'</if>
+		</set>
+		where
+		<if test="c_id !=null">,c_id=${c_id}</if>
+	</update>
+
+	<update id="modifiInvest" parameterType="CompanyAll">
+		update invest
+		<set>
+			<if test="inv_name !=null">,c_id='${inv_name}'</if>
+			<if test="inv_state !=null">,inv_state='${inv_state}'</if>
+		</set>
+		where
+		<if test="c_id !=null">,c_id='${c_id}'</if>
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	--invest 投资机构
+--create table  invest(
+--	inv_id number primary key,
+--	c_id number constraint fk_inv_id references company(comp_id),	--外键关联
+--	inv_name varchar2(30),	--投资机构名称
+--	inv_state varchar2(20)	--投资机构发展阶段
+--) ;
+	--tag公司标签
+select * from  tag
+select job_sql.nextval from dual
+--create table tag(
+--	tag_id number primary key,
+--	c_id number constraint fk_tag_id references company(comp_id),	--外键关联
+--	tag_name varchar2(20)	--标签名称
+--);
+insert into invest values(invest_sql.nextval,1001,'支付宝金融','上市公司');
+
+ --succeed	作品展示
+create table succeed(
+	suc_id number primary key,
+	tkf_id number constraint fk_suc_id references usResume(usr_id),
+	suc_name varchar2(20),	--作品名称
+	suc_link varchar2(30)	--作品链接
+);

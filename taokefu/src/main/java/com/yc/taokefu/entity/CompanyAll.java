@@ -1,6 +1,7 @@
 package com.yc.taokefu.entity;
 
 public class CompanyAll {
+	//公司
 	private Integer comp_id;
 	private String comp_name;//公司简称
 	private String comp_fullname;//公司 全称
@@ -16,7 +17,7 @@ public class CompanyAll {
 	private String comp_introduces;//公司详情介绍
 	private String comp_attestation;//公司认证状态
 	
-	
+	private Integer ct_id;
 	private String ct_name;//团队名称
 	private String ct_picPath;//图片路径
 	private String ct_job;//团队职位
@@ -66,6 +67,12 @@ public class CompanyAll {
 	}
 	public String getComp_name() {
 		return comp_name;
+	}
+	public Integer getCt_id() {
+		return ct_id;
+	}
+	public void setCt_id(Integer ct_id) {
+		this.ct_id = ct_id;
 	}
 	public void setComp_name(String comp_name) {
 		this.comp_name = comp_name;
@@ -352,18 +359,17 @@ public class CompanyAll {
 				+ ", comp_logo=" + comp_logo + ", comp_phone=" + comp_phone + ", comp_email=" + comp_email
 				+ ", comp_link=" + comp_link + ", comp_city=" + comp_city + ", comp_territory=" + comp_territory
 				+ ", comp_state=" + comp_state + ", comp_scale=" + comp_scale + ", comp_introduce=" + comp_introduce
-				+ ", comp_introduces=" + comp_introduces + ", comp_attestation=" + comp_attestation + ", ct_name="
-				+ ct_name + ", ct_picPath=" + ct_picPath + ", ct_job=" + ct_job + ", ct_tdesc=" + ct_tdesc + ", cor_id="
-				+ cor_id + ", pro_name=" + pro_name + ", pro_link=" + pro_link + ", pro_picPath=" + pro_picPath
-				+ ", pro_pdesc=" + pro_pdesc + ", de_name=" + de_name + ", dee_link=" + dee_link + ", inv_id=" + inv_id
-				+ ", inv_name=" + inv_name + ", inv_state=" + inv_state + ", tag_id=" + tag_id + ", tag_name="
-				+ tag_name + ", job_id=" + job_id + ", c_id=" + c_id + ", job_tags=" + job_tags + ", job_name="
-				+ job_name + ", job_department=" + job_department + ", job_nature=" + job_nature + ", job_min_salary="
-				+ job_min_salary + ", job_max_salary=" + job_max_salary + ", job_ftime=" + job_ftime + ", job_education="
-				+ job_education + ", job_tempt=" + job_tempt + ", job_responsibility=" + job_responsibility + ", job_need="
-				+ job_need + ", job_rests=" + job_rests + ", job_number=" + job_number + ", job_state=" + job_state
-				+ ", jc_id=" + jc_id + ", jc_name=" + jc_name + "]";
+				+ ", comp_introduces=" + comp_introduces + ", comp_attestation=" + comp_attestation + ", ct_id=" + ct_id
+				+ ", ct_name=" + ct_name + ", ct_picPath=" + ct_picPath + ", ct_job=" + ct_job + ", ct_tdesc="
+				+ ct_tdesc + ", cor_id=" + cor_id + ", pro_name=" + pro_name + ", pro_link=" + pro_link
+				+ ", pro_picPath=" + pro_picPath + ", pro_pdesc=" + pro_pdesc + ", de_name=" + de_name + ", dee_link="
+				+ dee_link + ", inv_id=" + inv_id + ", inv_name=" + inv_name + ", inv_state=" + inv_state + ", tag_id="
+				+ tag_id + ", tag_name=" + tag_name + ", job_id=" + job_id + ", c_id=" + c_id + ", job_tags=" + job_tags
+				+ ", job_name=" + job_name + ", job_department=" + job_department + ", job_nature=" + job_nature
+				+ ", job_min_salary=" + job_min_salary + ", job_max_salary=" + job_max_salary + ", job_ftime="
+				+ job_ftime + ", job_education=" + job_education + ", job_tempt=" + job_tempt + ", job_responsibility="
+				+ job_responsibility + ", job_need=" + job_need + ", job_rests=" + job_rests + ", job_number="
+				+ job_number + ", job_state=" + job_state + ", jc_id=" + jc_id + ", jc_name=" + jc_name + "]";
 	}
-	
 	
 }

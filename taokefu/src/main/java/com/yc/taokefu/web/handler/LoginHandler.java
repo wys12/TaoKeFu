@@ -53,6 +53,11 @@ public class LoginHandler {
 			map.put("page", "login.html");
 			return map;
 		}else{
+			if(logins.getL_type().equals("1")){
+				ServletUtil.c_ids=logins.getL_id();
+			}else if(logins.getL_type().equals("0")){
+				ServletUtil.tkf_ids=logins.getL_id();
+			}
 			LogManager.getLogger().debug("登录成功"+logins);
 			session.setAttribute(ServletUtil.LOGIN_USER, logins);
 			map.put("page", "index.html");
@@ -80,16 +85,19 @@ public class LoginHandler {
 					Integer l_id = logins.getL_id();
 					if(type.equals("0")){
 						userService.addUsers(l_id,l_email);
+						LogManager.getLogger().debug("注册邮箱成功0,IDs == " +logins);
+						map.put("msg", "0");
 					}else if(type.equals("1")){
 						companyService.addCompany(l_id,l_email);
+						LogManager.getLogger().debug("注册邮箱成功1,IDs == " +logins);
+						map.put("msg", "1");
 					}
-					LogManager.getLogger().debug("注册邮箱成功,ID == " +l_id);
-					map.put("page", "index.html");
+					session.setAttribute(ServletUtil.LOGIN_USER, logins);
 					return map;
 				}else{//注册失败
 					LogManager.getLogger().debug("注册失败");
 					session.setAttribute(ServletUtil.ERROR_MESSAGE,"注册失败!!!!");
-					map.put("page", "register.html");
+					map.put("msg", "register.html");
 					return map;
 				}
 			}else{//邮箱已注册

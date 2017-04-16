@@ -1,3 +1,11 @@
+function chgPic_edit(obj){
+	$("#pic-edit").attr("src", window.URL.createObjectURL(obj.files[0]));
+}
+
+function chgPic(obj){
+	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
+}
+
 /**
  * Name 添加记录
  */
@@ -5,10 +13,15 @@ function add(){
 	$('#user-form-1').form('submit', {
 		url:'tkfuser/add',
 		success:function(data){
-			alert(data);
 			if(data){
+<<<<<<< HEAD
 				$.messager.alert('信息提示','提交成功！','info');
 				$('#user-dialog-2').dialog('close');
+=======
+				//$.messager.alert('信息提示','添加成功！','info');
+				$('#user-dialog-1').dialog('close');
+				$('#user-datagrid-2').datagrid('reload');
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 			}
 			else
 			{
@@ -16,9 +29,6 @@ function add(){
 			}
 		}
 	});
-}
-function chgPic(obj){
-	$("#pic").attr("src", window.URL.createObjectURL(obj.files[0]));
 }
 
 /**
@@ -29,8 +39,14 @@ function edit(){
 		url:'tkfuser/edit',
 		success:function(data){
 			if(data){
+<<<<<<< HEAD
 				$.messager.alert('信息提示','提交成功！','info');
 				$('#user-dialog-2').dialog('close');
+=======
+				//$.messager.alert('信息提示','提交成功！','info');
+				$('#user-dialog-2').dialog('close');
+				$('#user-datagrid-2').datagrid('reload');
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 			}
 			else
 			{
@@ -49,25 +65,46 @@ function remove(){
 			var items = $('#user-datagrid-2').datagrid('getSelections');
 			var ids = [];
 			$(items).each(function(){
-				ids.push(this.productid);	
+				ids.push(this.us_id);	
 			});
-			//alert(ids);return;
-			$.ajax({
-				url:'',
-				data:'',
-				success:function(data){
-					if(data){
-						$.messager.alert('信息提示','删除成功！','info');		
-					}
-					else
-					{
-						$.messager.alert('信息提示','删除失败！','info');		
-					}
-				}	
-			});
+			if(ids.length>0){
+				$.ajax({
+					url:'tkfuser/deleteById',
+					data:{"ids":ids.toString()},
+					traditional: true,
+					success:function(data){
+						if(data){
+							//$.messager.alert('信息提示','删除成功！','info');
+							$('#user-datagrid-2').datagrid('reload');
+						}
+						else
+						{
+							$.messager.alert('信息提示','删除失败！','info');		
+						}
+					}	
+				});
+			}
+			
 		}	
 	});
 }
+
+/**
+ * 查询
+ */
+
+function findUserBack(){
+	var value_user = $("#user_nature").combobox("getValue");
+	var value_type = $("#find_type").combobox("getValue");
+	var value_key = document.getElementById("key_search").value;
+	if(value_key ==null || value_key == ""){
+		value_key="-0";
+	}	
+	var urlStr= "tkfuser/search?user_nature="+value_user+"&find_type="+value_type+"&key_search="+value_key;
+	//alert(urlStr);
+	load(urlStr);
+}
+
 
 /**
  * Name 打开添加窗口
@@ -98,20 +135,38 @@ function openAdd(){
 function openEdit(){
 	$('#user-form-2').form('clear');
 	var item = $('#user-datagrid-2').datagrid('getSelected');
+<<<<<<< HEAD
 	$("#uid").val(item.us_id);
 	$("#uname").val(item.us_name);
 	$("#upicpath").val("");
 	if(row.picPath){
 		$("#pic").attr("src", row.picPath);
+=======
+	//alert(JSON.stringify(item));
+	$("#uid-edit").val(item.us_id);
+	$("#uname-edit").val(item.us_name);
+	$("#upicpath-edit").val("");
+	if(item.us_picpath !=null && item.us_picpath !=""){  
+		$("#pic-edit").attr("src", item.us_picpath);
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 	}else{
-		$("#pic").attr("src", "style/images/default_headpic.png");
+		$("#pic-edit").attr("src", item.us_picpath);
 	}
+<<<<<<< HEAD
 	$("#uex").val(item.us_sex);
 	$("#ueducationa").val(item.us_educationa);
 	$("#uwork_year").val(item.us_work_year);
 	$("#uphone").val(item.us_phone);
 	$("#uemail").val(item.us_email);
 	$("#uintro").val(item.us_intro);
+=======
+	$("div[value="+item.us_sex+"]").trigger('click');
+	$("div[value="+item.us_educationa+"]").trigger('click');
+	$("div[value="+item.us_work_year+"]").trigger('click');
+	$("#uphone-edit").val(item.us_phone);
+	$("#uemail-edit").val(item.us_email);
+	$("#uintro-edit").val(item.us_intro);
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 	$('#user-dialog-2').dialog({
 		closed: false,
 		modal:true,
@@ -130,6 +185,12 @@ function openEdit(){
 	});
 }	
 
+<<<<<<< HEAD
+=======
+/**
+ * Name 分页过滤器
+ */
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 
 
 /**
@@ -142,9 +203,16 @@ function reload(){
 /**
  * Name 载入数据
  */
+<<<<<<< HEAD
 load();
 function load(){$('#user-datagrid-2').datagrid({
 	url:"tkfuser/list",
+=======
+load("tkfuser/list");
+function load(urlStr){
+	$('#user-datagrid-2').datagrid({
+	url:urlStr,
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 	rownumbers:true,
 	singleSelect:false,
 	pagination:true,

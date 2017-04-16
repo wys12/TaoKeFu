@@ -6,6 +6,10 @@ $("#forgetDiv").dialog({
 	border:false,
 	modal:true
 });
+/*$.post("admin/sendEmail");
+$.post("点击找回,照这个请求中判断验证码是否一致");*/
+var new_pwd1=$("#new_pwd1");
+var new_pwd2=$("#new_pwd2");
 
 function forget(){
 	var email=$("#ad_email").val();
@@ -24,6 +28,17 @@ function forget(){
 		},"json");
 	}
 }
+$(function(){  
+	$('#new_pwd2').bind('input propertychange', function() { 
+		if(new_pwd1!=new_pwd2){
+			$("#msg").html('两次密码不一致！！！');
+		}else if(new_pwd1==new_pwd2){
+			$("#msg").html('');
+		}else{
+			$("#msg").html('');
+		}
+	});  
+})  
 
 function new_pwd(){
 	var new_pwd1=document.getElementById("new_pwd1").value;
@@ -32,6 +47,20 @@ function new_pwd(){
 		$("#msg3").html('两次密码不一致！！！');
 	}else{
 		$("#msg3").html('');
+	}
+}
+
+function msg(){
+	if(new_pwd1!=new_pwd2  ){
+		$("#msg").val("两次密码不一致！！！");
+	}else if(new_pwd1!=null){
+		$("#msg").val("密码不能为空！！！");
+	}else if($("#ad_email").val() !=null){
+		alert("请输入邮箱");
+	}else if($("#name").val() !=null){
+		alert("请输入用户名");
+	}else{
+		$("#forgetForm").submit();
 	}
 }
 $('#sbm').click(function (){

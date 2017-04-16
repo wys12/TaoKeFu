@@ -1,9 +1,14 @@
 package com.yc.taokefu.util;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Login;
@@ -21,11 +26,29 @@ public class ServletUtil {
 	public static List<CompanyAll> JOB_LIST = new ArrayList<CompanyAll>();//返回界面信息
 	public static Integer type =0;
 	public static Integer job_id;
+	public static String picPath ;
+	public static Integer c_id;
+	public static Integer c_ids;
+	public static Integer tkf_ids;
 	public static File getUploadFile(String fileName){
 		File file=new File(UPLOAD_DIR,fileName); //上传文件
 		if(!file.getParentFile().exists()){
 			file.getParentFile().mkdirs(); //如果不存在就创建
 		}
 		return file;
+	}
+	public static void uploadFile(MultipartFile us_picdata){
+		if(us_picdata != null && !us_picdata.isEmpty()){//判断是否有文件上传
+			System.out.println("图片不为空");
+			try {
+				us_picdata.transferTo(ServletUtil.getUploadFile(us_picdata.getOriginalFilename()));
+				picPath = ServletUtil.VARTUAL_UPLOAD_DIR + us_picdata.getOriginalFilename();
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public static Login login_session(HttpSession session){
+		return (Login) session.getAttribute(ServletUtil.LOGIN_USER);
 	}
 }

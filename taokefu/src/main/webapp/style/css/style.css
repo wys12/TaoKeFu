@@ -1,6 +1,4 @@
-﻿@charset "utf-8";
-/*********************************************
-* CSS Document for lagou.com 拉勾招聘 
+﻿* CSS Document for lagou.com 拉勾招聘 
 * Start Time 2013-06-14
 * Author : Vee
 * Contect : vee@3wcoffee.com
@@ -1684,7 +1682,7 @@ ul.resumeLists .resumeIntro h3.read em{width:17px;height:17px;background:url(img
 .resumeLists a.resume_forward dd{background:#fff;padding:3px 10px;}
 .resumeLists a.resume_forward dd ul{margin:0;padding:0;list-style:none;}
 .resumeLists a.resume_forward dd ul li{padding:3px 0 3px 12px;margin:0;background:url("img/resume_square.png") left 14px no-repeat;}
-.contactInfo{clear:both;background:#f2f2f2;	border-top:1px dashed #d9d9d9;padding:5px 10px;margin-left:30px;}
+.contactInfo{clear:both;background:#f2f2f2;	border-top:1px dashed #d9d9d9;padding:5px 10px;margin-left:00px;}
 .contactInfo .fr{*margin:-25px 10px 0 0;}
 .filter_tip{color:#777;background:url(img/noresult_50.png) 5px 0 no-repeat;margin:-10px 40px 0 40px;padding:5px 0 20px 70px}
 .filter_tip span{color:#ff8903}

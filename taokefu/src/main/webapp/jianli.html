@@ -32,6 +32,9 @@
 <!--[if lte IE 8]>
     <script type="text/javascript" src="style/js/excanvas.js"></script>
 <![endif]-->
+<script type="text/javascript">
+	var ctx = "http://www.lagou.com";
+</script>
 <script src="style/js/conv.js" type="text/javascript"></script>
 <script src="style/js/ajaxCross.json" charset="UTF-8"></script>
 </head>
@@ -48,36 +51,7 @@
 					<li class="current"><a rel="nofollow" href="jianli.html">我的简历</a></li>
 				</ul>
 				<dl class="collapsible_menu">
-					<dt>
-						<span id="usname"></span> <span class="red dn" id="noticeDot-0"></span>
-						<i></i>
-					</dt>
-					<dd>
-						<a rel="nofollow" href="jianli.html">我的简历</a>
-					</dd>
-					<dd>
-						<a href="collections.html">我收藏的职位</a>
-					</dd>
-					<dd>
-						<a href="delivery.html">我投递的职位 <span id="noticeNo"
-							class="red dn">(0)</span></a>
-					</dd>
-					<dd>
-						<a href="subscribe.html">我的订阅</a>
-					</dd>
-					<dd>
-						<a href="accountBind.html">帐号设置</a>
-					</dd>
-					<dd class="logout">
-						<a rel="nofollow" href="login.html">退出</a>
-					</dd>
 				</dl>
-				<ul class="loginTop">
-					<li><a href="login.html" rel="nofollow">登录</a></li>
-					<li>|</li>
-					<li><a href="register.html" rel="nofollow">注册</a></li>
-				</ul>
-
 				<div class="dn" id="noticeTip">
 					<span class="bot"></span> <span class="top"></span> <a
 						target="_blank" href="delivery.html"><strong>0</strong>条新投递反馈</a>
@@ -127,12 +101,10 @@
 						<h2>基本信息</h2>
 						<span class="c_edit"></span>
 						<div class="basicShow">
-							<span>jason | 男 | 大专 | 3年工作经验<br> 18644444444 |
-								jason@qq.com<br>
-							</span>
+
 							<div class="m_portrait">
 								<div></div>
-								<img width="120" height="120" alt="jason"
+								<img width="120" height="120" alt="123"
 									src="style/images/default_headpic.png">
 							</div>
 						</div>
@@ -144,8 +116,7 @@
 									<tbody>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
-											<td><input type="text" placeholder="姓名" value="jason"
-												name="name" id="name"></td>
+											<td id="names"></td>
 											<td valign="top"></td>
 											<td>
 												<ul class="profile_radio clearfix reset">
@@ -798,8 +769,6 @@
 					</div>
 					<!--end #workExperience-->
 
-
-
 					<div class="profile_box" id="educationalBackground">
 						<h2>
 							教育背景<span>（投递简历时必填）</span>
@@ -1118,8 +1087,8 @@
 										</tr>
 										<tr>
 											<td></td>
-											<td colspan="3"><input type="submit" id="education"
-												value="保 存" class="btn_profile_save"> <a
+											<td colspan="3"><input type="submit" value="保 存"
+												class="btn_profile_save"> <a
 												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
 										</tr>
 									</tbody>
@@ -1417,6 +1386,31 @@
 						href="javascript:;"></a>
 				</div>
 			</div>
+			<script>
+$(function(){
+	$.ajax({
+        url:ctx+"/mycenter/showQRCode",
+        type:"GET",
+        async:false
+   	}).done(function(data){
+        if(data.success){
+             $('#qr_cloud_resume img').attr("src",data.content);
+        }
+   	}); 
+	var sessionId = "resumeQR"+314873;
+	if(!$.cookie(sessionId)){
+		$.cookie(sessionId, 0, {expires: 1});
+	}
+	/* if($.cookie(sessionId) &amp;&amp; $.cookie(sessionId) != 5){
+		$('#qr_cloud_resume').removeClass('dn');
+	} */
+	$('#qr_cloud_resume .close').click(function(){
+		$('#qr_cloud_resume').fadeOut(200);
+		resumeQR = parseInt($.cookie(sessionId)) + 1;
+		$.cookie(sessionId, resumeQR, {expires: 1});
+	});
+});
+</script>
 			<div class="clear"></div>
 			<input type="hidden" value="97fd449bcb294153a671f8fe6f4ba655"
 				id="resubmitToken"> <a rel="nofollow" title="回到顶部"
@@ -1442,6 +1436,50 @@
 	<script src="style/js/popup.min.js" type="text/javascript"></script>
 
 	<!--  -->
+
+	<script type="text/javascript">
+$(function(){
+	$('#noticeDot-1').hide();
+	$('#noticeTip a.closeNT').click(function(){
+		$(this).parent().hide();
+	});
+});
+var index = Math.floor(Math.random() * 2);
+var ipArray = new Array('42.62.79.226','42.62.79.227');
+var url = "ws://" + ipArray[index] + ":18080/wsServlet?code=314873";
+/* var CallCenter = {
+		init:function(url){
+			var _websocket = new WebSocket(url);
+			_websocket.onopen = function(evt) {
+				console.log("Connected to WebSocket server.");
+			};
+			_websocket.onclose = function(evt) {
+				console.log("Disconnected");
+			};
+			_websocket.onmessage = function(evt) {
+				//alert(evt.data);
+				var notice = jQuery.parseJSON(evt.data);
+				if(notice.status[0] == 0){
+					$('#noticeDot-0').hide();
+					$('#noticeTip').hide();
+					$('#noticeNo').text('').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
+					$('#noticeNoPage').text('').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
+				}else{
+					$('#noticeDot-0').show();
+					$('#noticeTip strong').text(notice.status[0]);
+					$('#noticeTip').show();
+					$('#noticeNo').text('('+notice.status[0]+')').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
+					$('#noticeNoPage').text(' ('+notice.status[0]+')').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
+				}
+				$('#noticeDot-1').hide();
+			};
+			_websocket.onerror = function(evt) {
+				console.log('Error occured: ' + evt);
+			};
+		}
+};
+CallCenter.init(url); */
+</script>
 
 	<div id="cboxOverlay" style="display: none;"></div>
 	<div id="colorbox" class="" role="dialog" tabindex="-1"

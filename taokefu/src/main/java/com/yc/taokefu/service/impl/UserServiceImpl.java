@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	//作品展示
 	@Override
 	public List<UserAll> findSucceed(UserAll user) {
-		return userMapper.findSucceed(user);
+		return null;//userMapper.findSucceed(user);
 	}
 	//工作经历信息
 	@Override
@@ -176,5 +176,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean BackUserAdd(User user) {
 		return userMapper.BackUserAdd(user)>0;
+	}
+	@Override
+	public boolean BackUserEdit(User user) {
+		return userMapper.BackUserEdit(user)>0;
+	}
+	
+	@Override
+	public boolean BackUserDelete(String id) {
+		return userMapper.BackUserDelete(id)>0;
+	}
+	@Override
+	public List<User> BackUsersearch(User user) {
+		return userMapper.BackUsersearch(user);
 	}
 }
