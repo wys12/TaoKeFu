@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.taokefu.entity.Company;
+import com.yc.taokefu.entity.PaginationBean;
+import com.yc.taokefu.entity.User;
 import com.yc.taokefu.mapper.CompanyMapper;
 import com.yc.taokefu.service.CompanyService;
 @Service("companyService")
@@ -21,5 +23,33 @@ public class CompanyServiceImpl implements CompanyService{
 	public Company findCompany(Company company) {
 		return companyMapper.findCompany(company);
 	}*/
+	@Override
+	public PaginationBean<Company> listPartCompanys(String page, String rows) {
+		PaginationBean<Company> pb=new PaginationBean<>();
+		if(page != null){
+			pb.setCurrPage(Integer.parseInt(page));
+		}
+		if(rows != null){
+			pb.setPageSize(Integer.parseInt(rows));
+		}
+
+		return companyMapper.findPartCompanys(pb);
+	}
+	@Override
+	public boolean BackCompanyAdd(Company company) {
+		return companyMapper.BackCompanyAdd(company)>0;
+	}
+	@Override
+	public boolean BackCompanyEdit(Company company) {
+		return companyMapper.BackCompanyEdit(company)>0;
+	}
+	@Override
+	public boolean BackCompanyDelete(String id) {
+		return companyMapper.BackCompanyDelete(id)>0;
+	}
+	@Override
+	public List<Company> BackCompanysearch(Company company) {
+		return companyMapper.BackCompanysearch(company);
+	}
 
 }

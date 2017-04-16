@@ -5,7 +5,7 @@
     </div>
 </div> -->
 <div class="easyui-panel pd5" data-options="fit:true,border:true">
-	<div id="user-toolbar-2">
+	<div id="company-toolbar-2">
 		<div class="wu-toolbar-button">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
 				onclick="openAdd()" plain="true">添加</a> <a href="#"
@@ -33,172 +33,214 @@
 				plain="true">剪切</a>
 		</div>
 		<div class="wu-toolbar-search">
-			<label>用户组：</label>
-			<select class="easyui-combobox" panelHeight="auto" style="width: 100px" id="user_nature"
-					name="user_nature">
-				<option value="-0">选择用户组</option>
-				<option value="-1">本站用户</option>
-				<option value="-2">第三方用户</option>
-			</select> 
-			<label>关键词：</label>
-			<select class="easyui-combobox" panelHeight="auto" style="width: 80px" id="find_type"
-					name="find_type">
-				<option value="us_id">用户ID</option>
-				<option value="us_name">用户姓名</option>
-				<option value="us_sex">性别</option>
-				<option value="us_intro">用户简介</option>
-				<option value="us_educationa">学历</option>
-				<option value="us_work_year">工作年限</option>
-				<option value="us_phone">联系方式</option>
-				<option value="us_email">电子邮箱</option>
+			<label>关键词：</label>&nbsp;&nbsp;
+			<select class="easyui-combobox" panelHeight="auto" style="width: 80px" id="find_comp"
+					name="find_comp">
+				<option value="comp_id">公司ID</option>
+				<option value="comp_attestation">认证状态</option>
+				<option value="comp_city">所在城市</option>
+				<option value="comp_name">公司简称</option>
+				<option value="comp_logo">公司logo</option>
+				<option value="comp_phone">联系方式</option>
+				<option value="comp_email">公司邮箱</option>
+				<option value="comp_introduce">公司简介</option>
 			</select>
-			<input class="wu-text" style="width: 100px" id="key_search" name="key_search">
-			<a href="javascript:void(0)" onclick="findUserBack()" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
+			<input class="wu-text" style="width: 100px" id="comp_search" name="comp_search">
+			<a href="javascript:void(0)" onclick="findCompanyBack()" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
 		</div>
 	</div>
 	<!-- End of toolbar 用户信息显示 -->
-	<table id="user-datagrid-2" class="easyui-datagrid"
-		toolbar="#user-toolbar-2"></table>
+	<table id="company-datagrid-2" class="easyui-datagrid"
+		toolbar="#company-toolbar-2"></table>
 </div>
 <!-- Begin of easyui-dialog -->
 <!-- 添加信息 -->
-<div id="user-dialog-1" class="easyui-dialog"
+<div id="company-dialog-1" class="easyui-dialog"
 	data-options="closed:true,iconCls:'icon-save'"
 	style="width: 500px; padding: 10px;">
-	<form id="user-form-1" method="post" enctype="multipart/form-data">
+	<form id="company-form-1" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td width="60" align="right">姓 名:</td>
-				<td><input type="text" name="us_name" id="uname"
+				<td width="50" align="right">公司简称:</td>
+				<td><input type="text" name="comp_name" id="cname"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">头 像:</td>
-				<td><img src="style/images/default_headpic.png" id="pic"
-					width="120" height="120" align="center"> <input type="file"
-					name="us_picdata" id="upicpath" onchange="chgPic(this)" /></td>
+				<td width="80" align="right">公司全称:</td>
+				<td><input type="text" name="comp_fullname" id="cfullname"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">性 别:</td>
-				<td><select name="us_sex" id="usex" class="easyui-combobox"
-					panelHeight="auto" style="width: 100px">
-						<option value="0"></option>
-						<option value="男">男</option>
-						<option value="女">女</option>
-				</select></td>
+				<td align="right">公司logo:</td>
+				<td><img src="style/images/logo_default.png" id="pic"
+					width="100" height="100" align="center"> <input type="file"
+					name="comp_picdata" id="clogo" onchange="chgPic(this)" /></td>
 			</tr>
 			<tr>
-				<td align="right">学 历:</td>
-				<td><select name="us_educationa" id="ueducationa"
-					class="easyui-combobox" panelHeight="auto" style="width: 100px">
-						<option value="0"></option>
-						<option value="小学">小学</option>
-						<option value="中学">中学</option>
-						<option value="本科">本科</option>
-						<option value="研究生">研究生</option>
-						<option value="博士">博士</option>
-				</select></td>
+				<td align="right">行业领域:</td>
+				<td><input type="text" name="comp_territory" id="cterritory"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">工作年限:</td>
-				<td><select name="us_work_year" id="uwork_year"
-					class="easyui-combobox" panelHeight="auto" style="width: 100px">
-						<option value="0"></option>
-						<option value="1年以下">1年以下</option>
-						<option value="1-3年">1-3年</option>
-						<option value="3-10年">3-10年</option>
-						<option value="10年以上">10年以上</option>
-				</select></td>
+				<td align="right">发展阶段:</td>
+				<td><input type="text" name="comp_state" id="cstate"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">联系方式:</td>
-				<td><input type="text" name="us_phone" id="uphone"
+				<td><input type="text" name="comp_phone" id="cphone"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">电子邮箱:</td>
-				<td><input type="text" name="us_email" id="uemail"
+				<td align="right">公司邮箱:</td>
+				<td><input type="text" placeholder="邮箱不能为空" name="comp_email" id="cemail"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td valign="top" align="right">用户简介 :</td>
-				<td><textarea name="us_intro" id="uintro" rows="6"
+				<td align="right">公司链接:</td>
+				<td><input type="text" name="comp_link" id="clink"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">所在城市:</td>
+				<td><input type="text" name="comp_city" id="ccity"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">公司规模:</td>
+				<td><select name="comp_scale" id="cscale" class="easyui-combobox"
+					panelHeight="auto" style="width: 100px">
+						<option value="少于15人">少于15人</option>
+						<option value="15-50人">15-50人</option>
+						<option value="50-150人">50-100人</option>
+						<option value="150-500人">150-500人</option>
+						<option value="500-2000人">500-2000人</option>
+						<option value="2000人以上">2000人以上</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">认证状态:</td>
+				<td><select name="comp_attestation" id="cattestation" class="easyui-combobox"
+					panelHeight="auto" style="width: 100px">
+						<option value="-0">未审核</option>
+						<option value="-1">已认证</option>
+						<option value="-2">审核未通过</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">公司标签:</td>
+				<td><input type="text" name="tag_name" id="tname"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">公司简介:</td>
+				<td><input type="text" name="comp_introduce" id="cintroduce"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">公司详情 :</td>
+				<td><textarea name="comp_introduces" id="cintroduces" rows="4"
 						class="wu-textarea" style="width: 260px"></textarea></td>
 			</tr>
 		</table>
 	</form>
 </div>
 
-<div id="user-dialog-2" class="easyui-dialog"
+<div id="company-dialog-2" class="easyui-dialog"
 	data-options="closed:true,iconCls:'icon-save'"
 	style="width: 500px; padding: 10px;">
-	<form id="user-form-2" method="post" enctype="multipart/form-data">
+	<form id="company-form-2" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td width="60" align="right">I D:</td>
-				<td><input type="text" name="us_id" id="uid-edit"
+				<td width="60" align="right">公司ID:</td>
+				<td><input type="text" name="comp_id" id="cid-edit"
 					class="wu-text" readonly="readonly" /></td>
 			</tr>
 			<tr>
-				<td width="60" align="right">姓 名:</td>
-				<td><input type="text" name="us_name" id="uname-edit"
+				<td width="50" align="right">公司简称:</td>
+				<td><input type="text" name="comp_name" id="cname-edit"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">头 像:</td>
-				<td><img src="style/images/default_headpic.png" id="pic-edit"
-					width="120" height="120" align="center"> <input type="file"
-					name="us_picdata" id="upicpath-edit" onchange="chgPic_edit(this)" /></td>
+				<td width="80" align="right">公司全称:</td>
+				<td><input type="text" name="comp_fullname" id="cfullname-edit"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">性 别:</td>
-				<td><select name="us_sex" id="usex-edit" class="easyui-combobox" panelHeight="auto" style="width: 100px">
-						<option value="0"></option>
-						<option value="男">男</option>
-						<option value="女">女</option>
-				</select></td>
+				<td align="right">公司logo:</td>
+				<td><img src="style/images/logo_default.png" id="pic-edit"
+					width="100" height="100" align="center">
+					 <input type="file" name="comp_picdata" id="clogo-edit" onchange="chgPic_edit(this)" /></td>
 			</tr>
 			<tr>
-				<td align="right">学 历:</td>
-				<td><select name="us_educationa" id="ueducationa-edit"
-					class="easyui-combobox" panelHeight="auto" style="width: 100px">
-						<option value="0"></option>
-						<option value="小学">小学</option>
-						<option value="中学">中学</option>
-						<option value="本科">本科</option>
-						<option value="研究生">研究生</option>
-						<option value="博士">博士</option>
-				</select></td>
+				<td align="right">行业领域:</td>
+				<td><input type="text" name="comp_territory" id="cterritory-edit"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">工作年限:</td>
-				<td><select name="us_work_year" id="uwork_year-edit"
-					class="easyui-combobox" panelHeight="auto" style="width: 100px">
-						<option value="0"></option>
-						<option value="1年以下">1年以下</option>
-						<option value="1-3年">1-3年</option>
-						<option value="3-10年">3-10年</option>
-						<option value="10年以上">10年以上</option>
-				</select></td>
+				<td align="right">发展阶段:</td>
+				<td><input type="text" name="comp_state" id="cstate-edit"
+					class="wu-text" /></td>
 			</tr>
 			<tr>
 				<td align="right">联系方式:</td>
-				<td><input type="text" name="us_phone" id="uphone-edit"
+				<td><input type="text" name="comp_phone" id="cphone-edit"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td align="right">电子邮箱:</td>
-				<td><input type="text" name="us_email" id="uemail-edit"
+				<td align="right">公司邮箱:</td>
+				<td><input type="text" placeholder="邮箱不能为空" name="comp_email" id="cemail-edit"
 					class="wu-text" /></td>
 			</tr>
 			<tr>
-				<td valign="top" align="right">用户简介 :</td>
-				<td><textarea name="us_intro" id="uintro-edit" rows="6"
+				<td align="right">公司链接:</td>
+				<td><input type="text" name="comp_link" id="clink-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">所在城市:</td>
+				<td><input type="text" name="comp_city" id="ccity-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">公司规模:</td>
+				<td><select name="comp_scale" id="cscale-edit" class="easyui-combobox"
+					panelHeight="auto" style="width: 100px">
+						<option value="少于15人">少于15人</option>
+						<option value="15-50人">15-50人</option>
+						<option value="50-150人">50-100人</option>
+						<option value="150-500人">150-500人</option>
+						<option value="500-2000人">500-2000人</option>
+						<option value="2000人以上">2000人以上</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">认证状态:</td>
+				<td><select name="comp_attestation" id="cattestation-edit" class="easyui-combobox"
+					panelHeight="auto" style="width: 100px">
+						<option value="">未审核</option>
+						<option value="-1">已认证</option>
+						<option value="-2">审核未通过</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="right">公司标签:</td>
+				<td><input type="text" name="tag_name" id="tname-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">公司简介:</td>
+				<td><input type="text" name="comp_introduce" id="cintroduce-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">公司详情 :</td>
+				<td><textarea name="comp_introduces" id="cintroduces-edit" rows="3"
 						class="wu-textarea" style="width: 260px"></textarea></td>
 			</tr>
 		</table>
 	</form>
 </div>
 
-<script type="text/javascript" src="js/layout_userInfo.js"></script>
+<script type="text/javascript" src="js/layout_companyInfo.js"></script>
 

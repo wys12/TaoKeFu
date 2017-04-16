@@ -23,11 +23,6 @@ create table login(
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
 
-create table otherlogin(
-  ol_id varchar2(50) primary key ,
-  ol_name varchar2(50),
-  ol_email varchar2(20)
-);
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 update set tkfuser us_name=${us_name},us_picpath=${us_picpath},us_intro=${us_intro},
@@ -50,20 +45,21 @@ create table tkfuser(
   us_email varchar2(30) UNIQUE ,  --邮箱 
   openId varchar2(50) UNIQUE
 );
---insert into company values
---(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.1603.com','www.baidu.com','北京',
---'500-1000','你来就好','百度公司','-1');
+
 select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
+update company SET comp_attestation='-2' where comp_id = '1027'
 select * from job
 alter table company modify (COMP_INTRODUCE varchar2(50))
 alter table company add (tag_name varchar2(150))
+alter table company modify (comp_attestation varchar2(10) check(comp_attestation BETWEEN -2 and 0))
+insert into company values(company_sql.nextval,'百度','北京百度网讯科技有限公司'，'http://www.baidu.com/img/bd_logo1.png','互联网','上市','(+86 10) 5992 8888','comnect@baidu.com','www.baidu.com','北京','5000-10000','百度一下,你就知道了','百度,全球最大的中文搜索引擎、最大的中文网站。1999年底,身在美国硅谷的李彦宏看到了中国互联网及中文搜 索引擎服务的巨大发展潜力,抱着技术改变世界的梦想,他毅然辞掉硅谷的高薪工作,携搜索引擎专利技术,于 2000年1月1日在中关村创建了百度公司。','','股票期权,绩效奖金,五险一金');
 --company 公司 
 create table company(
   comp_id number primary key,
   comp_name varchar2(30),	--公司简称
   comp_fullname varchar2(30),	--公司 全称
-  comp_logo varchar2(20),	--logo
+  comp_logo varchar2(200),	--logo
   comp_territory varchar2(30), 	--领域 (行业领域)
   comp_state varchar2(20),	--发展阶段/状体(上市/a轮)
   comp_phone varchar2(20),	--联系方式
@@ -72,8 +68,9 @@ create table company(
   comp_city varchar2(20), --城市
   comp_scale varchar2(20), --公司规模
   comp_introduce varchar2(50),	--公司一句话介绍
-  comp_introduces varchar2(100),	--公司详情介绍
-  comp_attestation varchar2(10) check(comp_attestation in('-0','-1'))--公司认证状态
+  comp_introduces varchar2(500),	--公司详情介绍
+  comp_attestation varchar2(10) check(comp_attestation in('-0','-1')),--公司认证状态
+  tag_name varchar2(150)
 );
 
 select * from tkfuser usResume login tkfuser
@@ -255,10 +252,11 @@ drop table tkfuser;--用户基本信息
 drop table company;--公司基本信息
 	drop table coResume;--信息
 	drop table company_team;
-		drop table invest;--投资机构
-		drop table tag;--公司标签
+--		drop table invest;--投资机构
+--		drop table tag;--公司标签
 	drop table job_class; --职位类别
-		drop table job;--职位信息
+	drop table job;--职位信息
+	drop table product;
 --	删除序列
 drop sequence admin_sql;
 drop sequence login_sql;
