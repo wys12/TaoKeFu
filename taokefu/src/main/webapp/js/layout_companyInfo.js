@@ -163,6 +163,16 @@ function openEdit(){
 	});
 }	
 
+
+function openDatail(index){
+	$("#company-dialog-3").dialog("open");
+	//var row = $("#userList").datagrid("getRows")[index];
+}
+
+function openTeam(index){
+	$("#company-dialog-4").dialog("open");
+	//var row = $("#userList").datagrid("getRows")[index];
+}
 /**
  * Name 分页过滤器
  */
@@ -229,9 +239,9 @@ function load(urlStr){
 	          { field:'opr',title:'操作',align : 'center',width:140,
 	        	  formatter: function(value,row,index){
 	      			var oprStr = '<a class="detailBtn" href="javascript:void(0)" onclick="openDatail(' + index + ')">公司详情</a>&nbsp;' + 
-	      				'<a class="modifyBtn" href="javascript:void(0)" onclick="openUpdate(' + index + ')">管理团队</a>' +
+	      				'<a class="teamBtn" href="javascript:void(0)" onclick="openTeam(' + index + ')">管理团队</a>' +
 	      				'<script>$(".detailBtn").linkbutton({iconCls: "icon-search"});' +
-	      				'$(".modifyBtn").linkbutton({iconCls: "icon-user-group"});</script>'; 
+	      				'$(".teamBtn").linkbutton({iconCls: "icon-user-group"});</script>'; 
 	      			return oprStr;
 	      		  }
 	       	  }

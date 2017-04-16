@@ -242,5 +242,85 @@
 	</form>
 </div>
 
+<div id="company-dialog-3" class="easyui-dialog"
+	data-options="closed:true,iconCls:'icon-save'"
+	style="width: 500px; padding: 10px;">
+	<form id="company-form-3" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td width="60" align="right">详情ID:</td>
+				<td><input type="text" name="cor_id" id="corid-edit"
+					class="wu-text" readonly="readonly" /></td>
+			</tr>
+			<tr>
+				<td width="50" align="right">公司ID:</td>
+				<td><input type="text" name="c_id" id="cor_cid-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td width="80" align="right">公司产品:</td>
+				<td><input type="text" name="pro_name" id="pname-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">产品链接:</td>
+				<td><input type="text" name="pro_link" id="plink-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">产品图片:</td>
+				<td><img src="style/images/product_default.png" id="pic-edit"
+					width="100" height="100" align="center">
+					 <input type="file" name="pro_picdata" id="ppicPath-edit" onchange="chgPic_detail(this)" /></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">产品描述 :</td>
+				<td><textarea name="pro_pdesc" id="ppdesc-edit" rows="3"
+						class="wu-textarea" style="width: 260px"></textarea></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<div id="company-dialog-4" class="easyui-dialog"
+	data-options="closed:true,iconCls:'icon-save'"
+	style="width: 500px; padding: 10px;">
+	<form id="company-form-4" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td width="60" align="right">团队ID:</td>
+				<td><input type="text" name="ct_id" id="ct_id-edit"
+					class="wu-text" readonly="readonly" /></td>
+			</tr>
+			<tr>
+				<td width="50" align="right">公司ID:</td>
+				<td><input type="text" name="c_id" id="ct_c_id-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td width="80" align="right">团队名称:</td>
+				<td><input type="text" name="ct_name" id="ct_name-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td align="right">团队图片:</td>
+				<td><img src="style/images/leader_default.png" id="pic-edit"
+					width="100" height="100" align="center">
+					 <input type="file" name="ct_picdata" id="ct_picPath-edit" onchange="chgPic_detail(this)" /></td>
+			</tr>
+			<tr>
+				<td align="right">团队职位:</td>
+				<td><input type="text" name="ct_job" id="ct_job-edit"
+					class="wu-text" /></td>
+			</tr>
+			<tr>
+				<td valign="top" align="right">团队描述 :</td>
+				<td><textarea name="ct_tdesc" id="ct_tdesc-edit" rows="3"
+						class="wu-textarea" style="width: 260px"></textarea></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
 <script type="text/javascript" src="js/layout_companyInfo.js"></script>
 
