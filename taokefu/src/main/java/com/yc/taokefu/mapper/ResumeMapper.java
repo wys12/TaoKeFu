@@ -20,4 +20,6 @@ public interface ResumeMapper {
 	int modifiResumes(UserAll resume);
 
 	List<Resume> findResumes(UserAll user);
+
+	List<Resume> findResumeInfo(Resume resume);
 }

@@ -22,4 +22,6 @@ public interface ResumeService {
 	List<Resume> findResumes(UserAll user);
 
 	int insertResume(UserAll user, UserAll user1, UserAll usResume, UserAll educationa, UserAll experience);
+
+	List<Resume> findResumeInfo(Resume resume);
 }

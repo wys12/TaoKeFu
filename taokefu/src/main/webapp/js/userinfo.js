@@ -16,7 +16,7 @@ function logins(){
 			}else if(data.l_type=="1"){
 				//alert(data.l_type);
 				/*$(".collapsible_menu").html('<dt><span id="usname"></span> <span class="red dn" id="noticeDot-1"></span><i></i></dt><dd><a href="positions.html">我发布的职位</a></dd><dd><a href="positions.html">我收到的简历</a></dd><dd class="btm"><a href="myhome.html">我的公司主页</a></dd><dd><a href="jianli.html">我要找工作</a></dd><dd><a href="accountBind.html">帐号设置</a></dd><dd><a rel="nofollow" href="login.html onclick="outlogins()"">退出</a></dd>');*/
-				$(".collapsible_menu").html('<dt><span id="usname"></span> <span class="red dn" id="noticeDot-1"></span><i></i></dt><dd><a href="myhome.html">我的公司主页</a></dd><dd><a href="positions.html">我发布的职位</a></dd><dd><a href="">我收到的简历</a></dd><dd><a href="accountBindCompany.html">帐号设置</a></dd><dd><a rel="nofollow" href="login.html" "outlogins()">退出</a></dd>');
+				$(".collapsible_menu").html('<dt><span id="usname"></span> <span class="red dn" id="noticeDot-1"></span><i></i></dt><dd><a href="myhome.html">我的公司主页</a></dd><dd><a href="positions.html">我发布的职位</a></dd><dd><a href="canInterviewResumes.html">我收到的简历</a></dd><dd><a href="accountBindCompany.html">帐号设置</a></dd><dd><a rel="nofollow" href="login.html" "outlogins()">退出</a></dd>');
 				$(".collapsible_menu").show();
 			}/*'+data.l_email!=null?data.l_email:data.nickname+'*/
 			if(data.l_email==null){

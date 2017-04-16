@@ -33,6 +33,7 @@ public class ResumeHandler {
 	public int insertResume(UserAll user,HttpSession session){
 		user.setTkf_id(ServletUtil.login_session(session).getL_id());
 		user.setC_id(ServletUtil.job_id);
+		user.setTak_id(ServletUtil.c_id);
 		List<Resume> list = resumeService.findResumes(user);
 		if(list.size()==0){
 			UserAll user1=userService.findUser(user).get(0);
@@ -63,9 +64,15 @@ public class ResumeHandler {
 	}
 	@RequestMapping(value="findResume",method=RequestMethod.POST)
 	@ResponseBody
-	public List<Resume> findResume(Resume user){
-		LogManager.getLogger().debug(user);
-		return null;
+	public List<Resume> findResume(Resume resume){
+		LogManager.getLogger().debug(resume);
+		return resumeService.findResume(resume);
+	}
+	@RequestMapping(value="findResumeInfo",method=RequestMethod.POST)
+	@ResponseBody
+	public List<Resume> findResumeInfo(Resume resume){
+		LogManager.getLogger().debug(resume);
+		return resumeService.findResumeInfo(resume);
 	}
 
 }

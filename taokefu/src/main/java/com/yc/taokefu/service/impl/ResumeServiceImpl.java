@@ -67,4 +67,11 @@ public class ResumeServiceImpl implements ResumeService {
 		return result;
 	}
 
+
+	@Override
+	public List<Resume> findResumeInfo(Resume resume) {
+		// TODO Auto-generated method stub
+		return resumeMapper.findResumeInfo(resume);
+	}
+
 }

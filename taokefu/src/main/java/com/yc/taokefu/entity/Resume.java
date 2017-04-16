@@ -4,6 +4,13 @@ public class Resume {
 	/*----------------个人基础信息---------------------*/
 	private Integer res_id;
 	private Integer c_id;
+	private Integer job_id;
+	public Integer getJob_id() {
+		return job_id;
+	}
+	public void setJob_id(Integer job_id) {
+		this.job_id = job_id;
+	}
 	private Integer usr_id;
 	private String us_name;
 	private String us_picpath;//图片路径
@@ -34,7 +41,7 @@ public class Resume {
 	private String exp_start_year;//起始时间
 	private String exp_end_year;//结束时间
 	private String exp_work;
-	private String  exp_city;
+	private String exp_city;
 	private String edu_shool_name ;  //学校名称
 	private String edu_major ; //所学专业
 	private String edu_educationa ;//学历
@@ -234,16 +241,18 @@ public class Resume {
 	}
 	@Override
 	public String toString() {
-		return "Resume [res_id=" + res_id + ", c_id=" + c_id + ", usr_id=" + usr_id + ", us_name=" + us_name
-				+ ", us_picpath=" + us_picpath + ", us_intro=" + us_intro + ", us_sex=" + us_sex + ", us_educationa="
-				+ us_educationa + ", us_work_year=" + us_work_year + ", us_phone=" + us_phone + ", us_email=" + us_email
-				+ ", usr_name=" + usr_name + ", usr_state=" + usr_state + ", hj_name=" + hj_name + ", hj_city="
-				+ hj_city + ", hj_min_salary=" + hj_min_salary + ", hj_max_salary=" + hj_max_salary + ", hj_nature="
-				+ hj_nature + ", des_content=" + des_content + ", suc_name=" + suc_name + ", suc_link=" + suc_link
-				+ ", exp_company_name=" + exp_company_name + ", exp_job_name=" + exp_job_name + ", exp_start_year="
-				+ exp_start_year + ", exp_end_year=" + exp_end_year + ", exp_work=" + exp_work + ", exp_city="
-				+ exp_city + ", edu_shool_name=" + edu_shool_name + ", edu_major=" + edu_major + ", edu_educationa="
-				+ edu_educationa + ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + "]";
+		return "Resume [res_id=" + res_id + ", c_id=" + c_id + ", job_id=" + job_id + ", usr_id=" + usr_id
+				+ ", us_name=" + us_name + ", us_picpath=" + us_picpath + ", us_intro=" + us_intro + ", us_sex="
+				+ us_sex + ", us_educationa=" + us_educationa + ", us_work_year=" + us_work_year + ", us_phone="
+				+ us_phone + ", us_email=" + us_email + ", usr_name=" + usr_name + ", usr_state=" + usr_state
+				+ ", hj_name=" + hj_name + ", hj_city=" + hj_city + ", hj_min_salary=" + hj_min_salary
+				+ ", hj_max_salary=" + hj_max_salary + ", hj_nature=" + hj_nature + ", des_content=" + des_content
+				+ ", suc_name=" + suc_name + ", suc_link=" + suc_link + ", exp_company_name=" + exp_company_name
+				+ ", exp_job_name=" + exp_job_name + ", exp_start_year=" + exp_start_year + ", exp_end_year="
+				+ exp_end_year + ", exp_work=" + exp_work + ", exp_city=" + exp_city + ", edu_shool_name="
+				+ edu_shool_name + ", edu_major=" + edu_major + ", edu_educationa=" + edu_educationa
+				+ ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + "]";
 	}
+	
 
 }

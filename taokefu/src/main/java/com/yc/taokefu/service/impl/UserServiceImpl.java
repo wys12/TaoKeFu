@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	//作品展示
 	@Override
 	public List<UserAll> findSucceed(UserAll user) {
-		return userMapper.findSucceed(user);
+		return null;//userMapper.findSucceed(user);
 	}
 	//工作经历信息
 	@Override
