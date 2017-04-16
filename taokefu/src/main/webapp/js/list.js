@@ -29,7 +29,7 @@ function shouInfo(data){
 }
 function toudi(data){
 	var c_id = $(".c_id").val();
-	//alert("job_id"+data+"c_id"+c_id);
+	alert("job_id"+data+"c_id"+c_id);
 	$.post("job/sendCompany",{job_id:data,c_id:c_id},"json");
 }
 /*function number(number){

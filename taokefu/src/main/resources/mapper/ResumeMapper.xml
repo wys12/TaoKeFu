@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.yc.taokefu.mapper.ResumeMapper">
 	<insert id="insertResume">
 		insert into resume(res_id,c_id,job_id,usr_id)
-		values(resume_sql.nextval,${c_id},${tkf_id},${tak_id})
+		values(resume_sql.nextval,${c_id},${tak_id},${tkf_id})
 	</insert>
 	<update id="modifiResumes" parameterType="UserAll">
 		update resume
@@ -39,11 +39,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where c_id=${c_id}
 	</update>
-	<select id="findResumes" resultType="Resume">
-		select * from resume where c_id=${c_id} and usr_id=${tak_id}
-	</select>
+	
 	<select id="findResume" resultType="Resume">
 		select * from resume where c_id=${c_id}
+	</select>
+	<!-- 简历投递时的查询判断 -->
+	<select id="findResumes" resultType="Resume">
+		select * from resume where c_id=${c_id} and usr_id=${tkf_id}
 	</select>
 	<select id="findResumeInfo" resultType="java.util.List">
 	select * from resume where c_id=${c_id} and usr_id=${usr_id}

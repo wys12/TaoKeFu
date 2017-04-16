@@ -95,6 +95,7 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(300) --描述内容
 );
+select * from resume where c_id=1001
 select * from resume where c_id=1001 and usr_id=1002 
 select * from resume
 drop  table resume
@@ -136,10 +137,9 @@ delete resume where c_id=1002
 	
 		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
 	);
-<<<<<<< HEAD
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
-=======
+ select * from company
 insert into coResume values(comResume_sql.nextval,'1053','百度糯米','www.nuomi.com','http://gss0.bdstatic.com/8r1VfDn9KggZnd_b8IqT0jB-xx1xbK/static/common/nis_index/sub/img/logo_e53daea.png'
 ,'还窝在家里，做别人眼中的宅男宅女吗？为什么不走出家门去攀岩、去K歌、去享受一顿丰盛的大餐？还在遗憾工作太忙，没时间和死党们欢聚吗？为什么不和闺蜜一起去做个SPA，或者干脆去拍套个性写真？还在纠结口袋里的银子，总觉得做个头发或美甲太贵吗？为什么不找个机会跟朋友们一起团购，杀出个痛快的价格出来？
 我们提供的解决方案是：每天把最超值的团购消费带到您身边！

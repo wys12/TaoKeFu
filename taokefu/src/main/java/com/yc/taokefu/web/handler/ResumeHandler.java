@@ -31,11 +31,12 @@ public class ResumeHandler {
 	@RequestMapping(value="insertResume",method=RequestMethod.POST)
 	@ResponseBody
 	public int insertResume(UserAll user,HttpSession session){
-		user.setTkf_id(ServletUtil.login_session(session).getL_id());
-		user.setC_id(ServletUtil.job_id);
-		user.setTak_id(ServletUtil.c_id);
+		user.setTkf_id(ServletUtil.login_session(session).getL_id());///用户和id
+		user.setC_id(ServletUtil.c_id);//公司id
+		user.setTak_id(ServletUtil.job_id);//职位id
+		LogManager.getLogger().debug("list0  ===  "+user);
 		List<Resume> list = resumeService.findResumes(user);
-		System.out.println("list==="+list);
+		LogManager.getLogger().debug("list1  ===  "+user);
 		if(list.size()==0){
 			UserAll user1=userService.findUser(user).get(0);
 			UserAll usResume=userService.findUsResume(user).get(0);
@@ -55,6 +56,7 @@ public class ResumeHandler {
 			LogManager.getLogger().debug("已有你的简历");
 			return 2;
 		}
+		//return 0;
 	}
 	
 	@RequestMapping(value="modifiResume",method=RequestMethod.POST)
