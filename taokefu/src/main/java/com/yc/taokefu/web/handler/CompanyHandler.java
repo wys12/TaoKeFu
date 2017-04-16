@@ -1,7 +1,10 @@
 package com.yc.taokefu.web.handler;
 
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,10 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Login;
+import com.yc.taokefu.entity.PaginationBean;
+import com.yc.taokefu.entity.User;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.CompanyService;
 import com.yc.taokefu.util.ServletUtil;
@@ -133,7 +141,7 @@ public class CompanyHandler {
 		company.setC_id(ServletUtil.login_session(session).getL_id());
 		return companyAllService.modifiCompany_team(company);
 	}
-	
+
 	/**
 	 * wys
 	 * 职位信息加载
@@ -167,7 +175,7 @@ public class CompanyHandler {
 	public Integer modifiJob(CompanyAll company){
 		return companyAllService.modifiJob(company);
 	}
-	
+
 	/**
 	 * wys
 	 * 职位类别
@@ -201,24 +209,24 @@ public class CompanyHandler {
 	public Integer modifiJob_class(CompanyAll company){
 		return companyAllService.modifiJob_class(company);
 	}
-}
 
-/**
- * wys
- *标签加载
- * @return
- */
-/*@RequestMapping("findTag")
+
+	/**
+	 * wys
+	 *标签加载
+	 * @return
+	 */
+	/*@RequestMapping("findTag")
 @ResponseBody //响应Json数据
 public List<CompanyAll> findTag(CompanyAll company){
 	return companyAllService.findTag(company);
 }*/
-/**
- * wys
- * 标签添加
- * @return
- */
-/*@RequestMapping(value="insertTag",method=RequestMethod.POST)
+	/**
+	 * wys
+	 * 标签添加
+	 * @return
+	 */
+	/*@RequestMapping(value="insertTag",method=RequestMethod.POST)
 @ResponseBody
 public String insertTag(CompanyAll company,HttpSession session){
 	Login long1 = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
@@ -227,46 +235,110 @@ public String insertTag(CompanyAll company,HttpSession session){
 	companyAllService.insertTag(company);
 	return "1";
 }*/
-/**
- * wys
- * 标签修改
- * @return
- */
-/*@RequestMapping("modifiTag")
+	/**
+	 * wys
+	 * 标签修改
+	 * @return
+	 */
+	/*@RequestMapping("modifiTag")
 @ResponseBody //响应Json数据
 public Integer modifiTag(CompanyAll company){
 	return companyAllService.modifiTag(company);
 }*/
-/**
- * wys
- * 投资机构加载
- * @param company
- * @return
- */
-/*@RequestMapping("findInvest")
+	/**
+	 * wys
+	 * 投资机构加载
+	 * @param company
+	 * @return
+	 */
+	/*@RequestMapping("findInvest")
 @ResponseBody //响应Json数据
 public List<CompanyAll> findInvest(CompanyAll company){
 	return companyAllService.findInvest(company);
 }*/
-/**
- * wys
- * 投资机构添加
- * @param company
- * @return
- */
-/*@RequestMapping("insertInvest")
+	/**
+	 * wys
+	 * 投资机构添加
+	 * @param company
+	 * @return
+	 */
+	/*@RequestMapping("insertInvest")
 @ResponseBody //响应Json数据
 public Integer insertInvest(CompanyAll company){
 	return companyAllService.insertInvest(company);
 }*/
-/**
- * wys
- * 投资机构修改
- * @param company
- * @return
- */
-/*@RequestMapping("modifiInvest")
+	/**
+	 * wys
+	 * 投资机构修改
+	 * @param company
+	 * @return
+	 */
+	/*@RequestMapping("modifiInvest")
 @ResponseBody //响应Json数据
 public Integer modifiInvest(CompanyAll company){
 	return companyAllService.modifiInvest(company);
 }*/
+	//后台公司页面加载
+	@RequestMapping("list")
+	@ResponseBody //响应Json数据
+	public PaginationBean<Company> list(String rows,String page){
+		LogManager.getLogger().debug("公司-->  rows==>"+rows +",page==>"+page);
+		return companyService.listPartCompanys(page,rows);
+	}
+
+	//后台添加公司
+	@RequestMapping(value="add",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean doAdd(@RequestParam("comp_picdata")MultipartFile comp_picdata,Company company){
+		LogManager.getLogger().debug("图片......us_picpath:"+comp_picdata);
+		ServletUtil.uploadFile(comp_picdata);
+		company.setComp_logo(ServletUtil.picPath);
+		ServletUtil.picPath="";
+		LogManager.getLogger().debug("添加"+company);
+		return companyService.BackCompanyAdd(company);
+		
+	}
+	//后台修改公司
+		@RequestMapping(value="edit",method=RequestMethod.POST)
+		@ResponseBody
+		public boolean doEdit(@RequestParam("comp_picdata")MultipartFile comp_picdata,Company company){
+			LogManager.getLogger().debug("图片......us_picpath:"+comp_picdata);
+			ServletUtil.uploadFile(comp_picdata);
+			company.setComp_logo(ServletUtil.picPath);
+			LogManager.getLogger().debug("修改"+company);
+			return companyService.BackCompanyEdit(company);
+		}
+		
+		//后台删除公司
+		@RequestMapping("deleteById")
+		@ResponseBody
+		public String doDelete(HttpServletRequest request){
+			String ids = request.getParameter("ids");
+			String[] id = ids.split(",");
+				for (int i = 0; i < id.length;i++) {
+					LogManager.getLogger().debug("删除用户"+id[i]);
+					companyService.BackCompanyDelete(id[i]);
+				}
+			return "true";
+		}
+
+		/**
+		 * 多条件查询
+		 */
+		@RequestMapping("search")
+		@ResponseBody
+		public List<Company> doSearch(Company company){
+			try {
+				company.setComp_search(new String(company.getComp_search().getBytes("ISO-8859-1"),"UTF-8"));
+				LogManager.getLogger().debug("多条件查询:"+"查找条件"+company.getFind_comp()+"检索词"+company.getComp_search());
+				LogManager.getLogger().debug(company);	
+				List<Company> list = new ArrayList<Company>();
+				list= companyService.BackCompanysearch(company);
+				LogManager.getLogger().debug("list ========  >"+list);
+				return list;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+}

@@ -284,18 +284,9 @@ public class UserHandler {
 	@RequestMapping(value="add",method=RequestMethod.POST)
 	@ResponseBody
 	public boolean doAdd(@RequestParam("us_picdata")MultipartFile us_picdata,User user){
-		String picPath = "";
 		LogManager.getLogger().debug("图片......us_picpath:"+us_picdata);
-		if(us_picdata != null && !us_picdata.isEmpty()){//判断是否有文件上传
-			System.out.println("图片不为空");
-			try {
-				us_picdata.transferTo(ServletUtil.getUploadFile(us_picdata.getOriginalFilename()));
-				picPath = ServletUtil.VARTUAL_UPLOAD_DIR + us_picdata.getOriginalFilename();
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-			}
-		}
-		user.setUs_picpath(picPath);
+		ServletUtil.uploadFile(us_picdata);
+		user.setUs_picpath(ServletUtil.picPath);
 		LogManager.getLogger().debug("添加"+user);
 		return userService.BackUserAdd(user);
 	}
@@ -319,11 +310,8 @@ public class UserHandler {
 			for (int i = 0; i < id.length;i++) {
 				LogManager.getLogger().debug("删除用户"+id[i]);
 				userService.BackUserDelete(id[i]);
-				
-				
 			}
 			return "true";
-			
 	}
 	
 	/**

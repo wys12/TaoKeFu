@@ -44,18 +44,22 @@ create table tkfuser(
   us_email varchar2(50) UNIQUE ,  --邮箱 
   openId varchar2(100) UNIQUE
 );
---insert into company values
---(company_sql.nextval,'百度','百度搜索'，'logo','互联网','上市','13613931201','baidu.1603.com','www.baidu.com','北京',
---'500-1000','你来就好','百度公司','-1');
+
 select company_sql.nextval from dual
+update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
+update company SET comp_attestation='-2' where comp_id = '1027'
+select * from job
 select * from company where comp_id=1081
+update company set  tag_name='五险一金' where comp_id=1081
+alter table company modify (comp_logo varchar2(200))
 alter table company add (tag_name varchar2(150))
+insert into company values(company_sql.nextval,'百度','北京百度网讯科技有限公司'，'http://www.baidu.com/img/bd_logo1.png','互联网','上市','(+86 10) 5992 8888','comnect@baidu.com','www.baidu.com','北京','5000-10000','百度一下,你就知道了','百度,全球最大的中文搜索引擎、最大的中文网站。1999年底,身在美国硅谷的李彦宏看到了中国互联网及中文搜 索引擎服务的巨大发展潜力,抱着技术改变世界的梦想,他毅然辞掉硅谷的高薪工作,携搜索引擎专利技术,于 2000年1月1日在中关村创建了百度公司。','','股票期权,绩效奖金,五险一金');
 --company 公司 
 create table company(
   comp_id number primary key,
   comp_name varchar2(30),	--公司简称
-  comp_fullname varchar2(50),	--公司 全称
-  comp_logo varchar2(30),	--logo
+  comp_fullname varchar2(30),	--公司 全称
+  comp_logo varchar2(200),	--logo
   comp_territory varchar2(30), 	--领域 (行业领域)
   comp_state varchar2(20),	--发展阶段/状体(上市/a轮)
   comp_phone varchar2(30),	--联系方式
@@ -64,7 +68,7 @@ create table company(
   comp_city varchar2(50), --城市
   comp_scale varchar2(30), --公司规模
   comp_introduce varchar2(50),	--公司一句话介绍
-  comp_introduces varchar2(300),	--公司详情介绍
+  comp_introduces varchar2(500),	--公司详情介绍
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1')),--公司认证状态
   tag_name varchar2(150)
 );
@@ -132,19 +136,35 @@ delete resume where c_id=1002
 	
 		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
 	);
+<<<<<<< HEAD
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
+=======
+insert into coResume values(comResume_sql.nextval,'1053','百度糯米','www.nuomi.com','http://gss0.bdstatic.com/8r1VfDn9KggZnd_b8IqT0jB-xx1xbK/static/common/nis_index/sub/img/logo_e53daea.png'
+,'还窝在家里，做别人眼中的宅男宅女吗？为什么不走出家门去攀岩、去K歌、去享受一顿丰盛的大餐？还在遗憾工作太忙，没时间和死党们欢聚吗？为什么不和闺蜜一起去做个SPA，或者干脆去拍套个性写真？还在纠结口袋里的银子，总觉得做个头发或美甲太贵吗？为什么不找个机会跟朋友们一起团购，杀出个痛快的价格出来？
+我们提供的解决方案是：每天把最超值的团购消费带到您身边！
+百度糯米，致力于通过团购的方式向消费者推荐高折扣的本地精品生活服务。');
+--resume	公司简历表(详情)
+ select * from coResume
+ drop table coResume
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 create table coResume(
 	cor_id number primary key,
 	c_id number constraint fk_coR_id references company(comp_id),
  --product 产品
 	pro_name varchar2(30),	--公司产品
+<<<<<<< HEAD
 	pro_link varchar2(50),	--产品链接
 	pro_picPath varchar2(30),	--图片路径
 	pro_pdesc varchar2(100), --产品描述
+=======
+	pro_link varchar2(30),	--产品链接
+	pro_picPath varchar2(300),	--图片路径
+	pro_pdesc varchar2(500) --产品描述
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
  --deepness 公司深度
- 	de_name varchar2(30),	--公司深度名称
- 	dee_link varchar2(30)	--公司深度链接
+-- 	de_name varchar2(30),	--公司深度名称
+-- 	dee_link varchar2(30)	--公司深度链接
 );
 
 drop table company_team
@@ -152,13 +172,33 @@ drop table company_team
 create table company_team(
 	ct_id number primary key,
 	c_id number constraint fk_ct_id references company(comp_id),
+<<<<<<< HEAD
 	ct_name varchar2(30),  --团队名称
 	ct_picPath varchar2(50),	--图片路径
 	ct_job varchar2(30),	--团队职位
 	ct_tdesc varchar2(150)	--团队描述
+=======
+	ct_name varchar2(20),  --团队名称
+	ct_picPath varchar2(300),	--图片路径
+	ct_job varchar2(20),	--团队职位
+	ct_tdesc varchar2(300)	--团队描述
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 );
+<<<<<<< HEAD
 insert into experience values(experience_job_sql.nextval,1002,'阿里云','项目总监','5年','北京','2011.1','2016.1');
 select * from educationa experience  usResume 
+=======
+insert into company_team values(company_team_sql.nextval,'1053','百度糯米','http://gss0.bdstatic.com/8r1VfDn9KggZnd_b8IqT0jB-xx1xbK/static/common/nis_index/sub/img/logo_e53daea.png','客服工程师','百度糯米，致力于通过团购的方式向消费者推荐高折扣的本地精品生活服务。')
+select * from company_team
+	select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id join tag t on cor.c_id=t.c_id join invest inv on inv.c_id = t.c_id where j.job_name like '%微信%' 
+ --succeed	作品展示
+create table succeed(
+	suc_id number primary key,
+	tkf_id number constraint fk_suc_id references usResume(usr_id),
+	suc_name varchar2(20),	--作品名称
+	suc_link varchar2(30)	--作品链接
+);
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,
@@ -268,9 +308,15 @@ drop table tkfuser;--用户基本信息
 drop table company;--公司基本信息
 	drop table coResume;--信息
 	drop table company_team;
+<<<<<<< HEAD
 		drop table tag;--公司标签
+=======
+--		drop table invest;--投资机构
+--		drop table tag;--公司标签
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 	drop table job_class; --职位类别
-		drop table job;--职位信息
+	drop table job;--职位信息
+	drop table product;
 --	删除序列
 drop sequence admin_sql;
 drop sequence login_sql;
