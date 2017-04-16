@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.ResumeMapper">
 	<insert id="insertResume">
-		insert into resume(res_id,c_id,job_id,us_name)
-		values(resume_sql.nextval,${c_id},${tak_id},${tkf_id},'')
+		insert into resume(res_id,c_id,job_id)
+		values(resume_sql.nextval,${c_id},${tkf_id})
 	</insert>
 	<update id="modifiResumes" parameterType="UserAll">
 		update resume

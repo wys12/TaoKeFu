@@ -49,32 +49,13 @@ console.log(1);
 					<li><a target="_blank" href="">论坛</a></li>
 					<li><a rel="nofollow" href="jianli.html">我的简历</a></li>
 				</ul>
+				<ul class="loginTop">
+					<li><a href="login.html" rel="nofollow">登录</a></li>
+					<li>|</li>
+					<li><a href="register.html" rel="nofollow">注册</a></li>
+				</ul>
 				<dl class="collapsible_menu">
-					<dt>
-						<span>jason&nbsp;</span> <span class="red" id="noticeDot-0"></span>
-						<i></i>
-					</dt>
-					<dd>
-						<a rel="nofollow" href="jianli.html">我的简历</a>
-					</dd>
-					<dd>
-						<a href="collections.html">我收藏的职位</a>
-					</dd>
-					<dd>
-						<a href="delivery.html">我投递的职位 <span id="noticeNo" class="red">(1)</span></a>
-					</dd>
-					<dd class="btm">
-						<a href="subscribe.html">我的订阅</a>
-					</dd>
-					<dd>
-						<a href="create.html">我要招人</a>
-					</dd>
-					<dd>
-						<a href="accountBind.html">帐号设置</a>
-					</dd>
-					<dd class="logout">
-						<a rel="nofollow" href="login.html">退出</a>
-					</dd>
+					<!-- <dt><span></span> <span class="red dn" id="noticeDot-1"></span><i></i></dt><dd><a href="positions.html">我发布的职位</a></dd><dd><a href="positions.html">我收到的简历</a></dd><dd class="btm"><a href="myhome.html">我的公司主页</a></dd><dd><a href="jianli.html">我要找工作</a></dd><dd><a href="accountBind.html">帐号设置</a></dd><dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd> -->
 				</dl>
 				<div id="noticeTip">
 					<span class="bot"></span> <span class="top"></span> <a
@@ -87,13 +68,32 @@ console.log(1);
 		<div id="container">
 			<div class="sidebar">
 				<a class="btn_create" href="create.html">发布新职位</a>
-				<ul class="loginTop">
-					<li><a href="login.html" rel="nofollow">登录</a></li>
-					<li>|</li>
-					<li><a href="register.html" rel="nofollow">注册</a></li>
-				</ul>
-				<dl class="collapsible_menu">
-					<!-- <dt><span></span> <span class="red dn" id="noticeDot-1"></span><i></i></dt><dd><a href="positions.html">我发布的职位</a></dd><dd><a href="positions.html">我收到的简历</a></dd><dd class="btm"><a href="myhome.html">我的公司主页</a></dd><dd><a href="jianli.html">我要找工作</a></dd><dd><a href="accountBind.html">帐号设置</a></dd><dd class="logout"><a rel="nofollow" href="login.html">退出</a></dd> -->
+				<dl class="company_center_aside">
+					<dt>我收到的简历</dt>
+					<dd>
+						<a href="">待处理简历</a>
+					</dd>
+					<dd class="current">
+						<a href="canInterviewResumes.html">待定简历</a>
+					</dd>
+					<dd>
+						<a href="haveNoticeResumes.html">已通知面试简历</a>
+					</dd>
+					<dd>
+						<a href="haveRefuseResumes.html">不合适简历</a>
+					</dd>
+					<dd class="btm">
+						<a href="autoFilterResumes.html">自动过滤简历</a>
+					</dd>
+				</dl>
+				<dl class="company_center_aside">
+					<dt>我发布的职位</dt>
+					<dd>
+						<a href="positions.html">有效职位</a>
+					</dd>
+					<dd>
+						<a href="positions.html">已下线职位</a>
+					</dd>
 				</dl>
 			</div>
 			<!-- end .sidebar -->
@@ -173,7 +173,7 @@ console.log(1);
 										<div class="resumeIntro">
 											<h3 class="unread">
 												<a target="_blank" title="预览jason的简历"
-													href="resumeView.html?deliverId=1686182"> jason的简历 </a> <em></em>
+													href="javascript:void(0)"> jason的简历 </a> <em></em>
 											</h3>
 											<span class="fr">投递时间：2014-07-01 17:08</span>
 											<div>
@@ -201,8 +201,8 @@ console.log(1);
 										</div>
 									</div>
 									<div class="contactInfo">
-										<span class="c9">电话：</span>18650216666 &nbsp;&nbsp;&nbsp; <span
-											class="c9">邮箱：</span><a href="mailto:888888888@qq.com">888888888@qq.com</a>
+										<span class="c9">电话：</span><span>18650216666 &nbsp;&nbsp;&nbsp;</span> <span
+											class="c9">邮箱：</span><a href="javascript:void(0)">888888888@qq.com</a>
 									</div></li>
 							</ul>
 							<!-- end .resumeLists -->
@@ -212,7 +212,7 @@ console.log(1);
 				<!-- end .company_center_content -->
 			</div>
 			<!-- end .content -->
-			
+
 			<!------------------------------------- 弹窗lightbox ----------------------------------------->
 			<div style="display: none;">
 				<!--通知面试弹窗-->
@@ -428,7 +428,8 @@ console.log(1);
 	<script src="style/js/popup.min.js" type="text/javascript"></script>
 
 	<!--  -->
-
+	<script src="js/userinfo.js" type="text/javascript"></script>
+	<script src="js/company/canInterviewResumes.js" type="text/javascript"></script>
 	<script type="text/javascript">
 $(function(){
 	$('#noticeDot-1').hide();
@@ -472,6 +473,7 @@ var CallCenter = {
 };
 CallCenter.init(url);
 </script>
+
 	<div id="cboxOverlay" style="display: none;"></div>
 	<div id="colorbox" class="" role="dialog" tabindex="-1"
 		style="display: none;">

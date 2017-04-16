@@ -64,7 +64,9 @@ public class ResumeHandler {
 	}
 	@RequestMapping(value="findResume",method=RequestMethod.POST)
 	@ResponseBody
-	public List<Resume> findResume(Resume resume){
+	public List<Resume> findResume(Resume resume,HttpSession session){
+		resume.setC_id(ServletUtil.c_ids);
+		System.out.println(ServletUtil.c_id);
 		LogManager.getLogger().debug(resume);
 		return resumeService.findResume(resume);
 	}

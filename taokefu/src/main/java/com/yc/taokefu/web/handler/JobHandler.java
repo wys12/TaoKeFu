@@ -100,6 +100,7 @@ public class JobHandler {
 	@ResponseBody
 	public List<CompanyAll> findCompany(CompanyAll job) {
 		job.setJob_id(ServletUtil.job_id);
+		LogManager.getLogger().debug("job==>   "+job);
 		return jobService.findCompany(job);
 	}
 	

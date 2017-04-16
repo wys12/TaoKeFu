@@ -53,6 +53,11 @@ public class LoginHandler {
 			map.put("page", "login.html");
 			return map;
 		}else{
+			if(logins.getL_type().equals("1")){
+				ServletUtil.c_ids=logins.getL_id();
+			}else if(logins.getL_type().equals("0")){
+				ServletUtil.tkf_ids=logins.getL_id();
+			}
 			LogManager.getLogger().debug("登录成功"+logins);
 			session.setAttribute(ServletUtil.LOGIN_USER, logins);
 			map.put("page", "index.html");
