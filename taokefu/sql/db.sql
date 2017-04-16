@@ -21,6 +21,7 @@ create table login(
   l_type varchar2(10) not null check (l_type in('0','1')) 
 );
 
+
 --insert into tkfuser values (login_sql.nextval,'李四',null,'我是李四',default,'衡大','三年','12345678901','111111@qq.com');
 --user  个人信息  
 update set tkfuser us_name=${us_name},us_picpath=${us_picpath},us_intro=${us_intro},
@@ -44,7 +45,6 @@ create table tkfuser(
   us_email varchar2(50) UNIQUE ,  --邮箱 
   openId varchar2(100) UNIQUE
 );
-
 select company_sql.nextval from dual
 update company SET comp_name='辣翻天', comp_fullname='辣翻天有限公司', comp_state='A轮', comp_link='www.baidu.com', comp_city='湖南衡阳', comp_scale='少于15人', comp_introduce='辣翻天，辣不死！' where comp_email='332211@qq.com'
 update company SET comp_attestation='-2' where comp_id = '1027'
@@ -58,7 +58,7 @@ insert into company values(company_sql.nextval,'百度','北京百度网讯科�
 create table company(
   comp_id number primary key,
   comp_name varchar2(30),	--公司简称
-  comp_fullname varchar2(30),	--公司 全称
+  comp_fullname varchar2(50),	--公司 全称
   comp_logo varchar2(200),	--logo
   comp_territory varchar2(30), 	--领域 (行业领域)
   comp_state varchar2(20),	--发展阶段/状体(上市/a轮)
@@ -147,21 +147,17 @@ insert into coResume values(comResume_sql.nextval,'1053','百度糯米','www.nuo
 --resume	公司简历表(详情)
  select * from coResume
  drop table coResume
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 create table coResume(
 	cor_id number primary key,
 	c_id number constraint fk_coR_id references company(comp_id),
  --product 产品
 	pro_name varchar2(30),	--公司产品
-<<<<<<< HEAD
 	pro_link varchar2(50),	--产品链接
 	pro_picPath varchar2(30),	--图片路径
 	pro_pdesc varchar2(100), --产品描述
-=======
 	pro_link varchar2(30),	--产品链接
 	pro_picPath varchar2(300),	--图片路径
 	pro_pdesc varchar2(500) --产品描述
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
  --deepness 公司深度
 -- 	de_name varchar2(30),	--公司深度名称
 -- 	dee_link varchar2(30)	--公司深度链接
@@ -172,22 +168,17 @@ drop table company_team
 create table company_team(
 	ct_id number primary key,
 	c_id number constraint fk_ct_id references company(comp_id),
-<<<<<<< HEAD
 	ct_name varchar2(30),  --团队名称
 	ct_picPath varchar2(50),	--图片路径
 	ct_job varchar2(30),	--团队职位
 	ct_tdesc varchar2(150)	--团队描述
-=======
 	ct_name varchar2(20),  --团队名称
 	ct_picPath varchar2(300),	--图片路径
 	ct_job varchar2(20),	--团队职位
 	ct_tdesc varchar2(300)	--团队描述
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 );
-<<<<<<< HEAD
 insert into experience values(experience_job_sql.nextval,1002,'阿里云','项目总监','5年','北京','2011.1','2016.1');
 select * from educationa experience  usResume 
-=======
 insert into company_team values(company_team_sql.nextval,'1053','百度糯米','http://gss0.bdstatic.com/8r1VfDn9KggZnd_b8IqT0jB-xx1xbK/static/common/nis_index/sub/img/logo_e53daea.png','客服工程师','百度糯米，致力于通过团购的方式向消费者推荐高折扣的本地精品生活服务。')
 select * from company_team
 	select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id join tag t on cor.c_id=t.c_id join invest inv on inv.c_id = t.c_id where j.job_name like '%微信%' 
@@ -198,7 +189,6 @@ create table succeed(
 	suc_name varchar2(20),	--作品名称
 	suc_link varchar2(30)	--作品链接
 );
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,
@@ -275,12 +265,9 @@ create table job(
   job_number varchar2(100), --点击量
   job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
    foreign key (c_id) references company(comp_id) --外键关联
-<<<<<<< HEAD
 );
 select * from job_class
-=======
 );
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 
 --职位分类表
 create table job_class(
@@ -313,12 +300,9 @@ drop table tkfuser;--用户基本信息
 drop table company;--公司基本信息
 	drop table coResume;--信息
 	drop table company_team;
-<<<<<<< HEAD
 		drop table tag;--公司标签
-=======
 --		drop table invest;--投资机构
 --		drop table tag;--公司标签
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 	drop table job_class; --职位类别
 	drop table job;--职位信息
 	drop table product;

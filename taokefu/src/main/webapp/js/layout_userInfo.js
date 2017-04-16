@@ -14,14 +14,9 @@ function add(){
 		url:'tkfuser/add',
 		success:function(data){
 			if(data){
-<<<<<<< HEAD
-				$.messager.alert('信息提示','提交成功！','info');
-				$('#user-dialog-2').dialog('close');
-=======
 				//$.messager.alert('信息提示','添加成功！','info');
 				$('#user-dialog-1').dialog('close');
 				$('#user-datagrid-2').datagrid('reload');
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 			}
 			else
 			{
@@ -39,14 +34,9 @@ function edit(){
 		url:'tkfuser/edit',
 		success:function(data){
 			if(data){
-<<<<<<< HEAD
-				$.messager.alert('信息提示','提交成功！','info');
-				$('#user-dialog-2').dialog('close');
-=======
 				//$.messager.alert('信息提示','提交成功！','info');
 				$('#user-dialog-2').dialog('close');
 				$('#user-datagrid-2').datagrid('reload');
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 			}
 			else
 			{
@@ -135,38 +125,21 @@ function openAdd(){
 function openEdit(){
 	$('#user-form-2').form('clear');
 	var item = $('#user-datagrid-2').datagrid('getSelected');
-<<<<<<< HEAD
-	$("#uid").val(item.us_id);
-	$("#uname").val(item.us_name);
-	$("#upicpath").val("");
-	if(row.picPath){
-		$("#pic").attr("src", row.picPath);
-=======
 	//alert(JSON.stringify(item));
 	$("#uid-edit").val(item.us_id);
 	$("#uname-edit").val(item.us_name);
 	$("#upicpath-edit").val("");
 	if(item.us_picpath !=null && item.us_picpath !=""){  
 		$("#pic-edit").attr("src", item.us_picpath);
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 	}else{
 		$("#pic-edit").attr("src", item.us_picpath);
 	}
-<<<<<<< HEAD
-	$("#uex").val(item.us_sex);
-	$("#ueducationa").val(item.us_educationa);
-	$("#uwork_year").val(item.us_work_year);
-	$("#uphone").val(item.us_phone);
-	$("#uemail").val(item.us_email);
-	$("#uintro").val(item.us_intro);
-=======
 	$("div[value="+item.us_sex+"]").trigger('click');
 	$("div[value="+item.us_educationa+"]").trigger('click');
 	$("div[value="+item.us_work_year+"]").trigger('click');
 	$("#uphone-edit").val(item.us_phone);
 	$("#uemail-edit").val(item.us_email);
 	$("#uintro-edit").val(item.us_intro);
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 	$('#user-dialog-2').dialog({
 		closed: false,
 		modal:true,
@@ -185,12 +158,6 @@ function openEdit(){
 	});
 }	
 
-<<<<<<< HEAD
-=======
-/**
- * Name 分页过滤器
- */
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 
 
 /**
@@ -203,16 +170,10 @@ function reload(){
 /**
  * Name 载入数据
  */
-<<<<<<< HEAD
-load();
-function load(){$('#user-datagrid-2').datagrid({
-	url:"tkfuser/list",
-=======
 load("tkfuser/list");
 function load(urlStr){
 	$('#user-datagrid-2').datagrid({
 	url:urlStr,
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/taokefu
 	rownumbers:true,
 	singleSelect:false,
 	pagination:true,
