@@ -24,6 +24,7 @@ public interface JobMapper {
 	int editJob(Job job);
 	//点击投递简历显示详情
 	List<CompanyAll> findCompany(CompanyAll companyAll);
+	List<CompanyAll> findCompanyJob(CompanyAll companyAll);
 	//多条件查询
 	List<Job> search(Job job);
 

@@ -81,4 +81,8 @@ public class JobServiceImpl implements JobService{
 	public  List<Job> search(Job job) {
 		return jobMapper.search(job);
 	}
+	@Override
+	public List<CompanyAll> findCompanyJob(CompanyAll comJob) {
+		return jobMapper.findCompanyJob(comJob);
+	}
 }

@@ -103,6 +103,28 @@ public class JobHandler {
 		LogManager.getLogger().debug("job==>   "+job);
 		return jobService.findCompany(job);
 	}
+	/**
+	 * 查询职位信息
+	 * @param job
+	 * @return
+	 */
+	@RequestMapping(value="findJob")
+	@ResponseBody
+	public List<CompanyAll> findJob(CompanyAll job) {
+		return jobService.findCompany(job);
+	}
+	/**
+	 * wys
+	 * 查询公司发布的所有职位
+	 * @param job
+	 * @return
+	 */
+	@RequestMapping(value="findCompanyJob")
+	@ResponseBody
+	public List<CompanyAll> findCompanyJob(CompanyAll comJob) {
+		comJob.setC_id(ServletUtil.c_ids);
+		return jobService.findCompanyJob(comJob);
+	}
 	
 	//查询所有职位
 	@RequestMapping("list")

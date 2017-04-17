@@ -1,3 +1,7 @@
+var listTkfUser =[];
+var listUsResume =[];
+var listExperience =[];
+var params="";
 function loadInfo(number){
 	if(number!=null && number!=""){
 		var t = getUrlParam('tkf_id');
@@ -5,15 +9,13 @@ function loadInfo(number){
 			//alert("number"+JSON.stringify(number));
 			shouInfo(number);
 		}else if(t!=null){
-			//alert("t"+t);
 			shouInfos(t);
 		}
-		
 	}else{
-		//alert("请先登录");
 		location.href = "login.html";
 	}
 }
+
 $("#toudi").click(function(){
 	//alert("ss=="+s);
 	$.ajax({
@@ -44,9 +46,6 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 
-var listTkfUser =[];var listUsResume =[];var listExperience =[];
-var listEducationa =[];var listCollect =[];var listTake =[];
-var params="";
 function shouInfo(number){
 	 params={tkf_id:number.l_id};
 	 $.post("tkfuser/findTkfUser",{us_id:number.l_id},function(data){

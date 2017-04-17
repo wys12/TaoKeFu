@@ -38,4 +38,6 @@ public interface JobService {
 	 * @return
 	 */
 	List<Job> search(Job job);
+
+	List<CompanyAll> findCompanyJob(CompanyAll comJob);
 }

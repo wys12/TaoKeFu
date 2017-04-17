@@ -4,7 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.JobMapper">
 	<select id="jobFind" parameterType="Job" resultType="Job">
-		select * from job where job_name=#{job_name}
+		select *
+		from job where job_name=#{job_name}
 	</select>
 
 	<select id="findCompany" parameterType="CompanyAll" resultType="CompanyAll">
@@ -13,16 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join company comp
 		on j.c_id =
 		comp.comp_id
-		where j.job_id=${job_id}
-		<!-- join
-		coResume cor
-		on cor.c_id = comp.comp_id join tag t
-		on
-		cor.c_id=t.c_id
-		 join invest inv
-		on inv.c_id = t.c_id -->
+		where
+		j.job_id=${job_id}
 	</select>
-
+	
+	<select id="findCompanyJob" parameterType="CompanyAll"
+		resultType="CompanyAll">
+		select *
+		from job where
+		c_id=${c_id}
+	</select>
 
 
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
@@ -57,20 +58,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		job_nature=#{job_nature},
 		job_min_salary=#{job_min_salary}
 		,job_max_salary=#{job_max_salary}
-		,job_ftime=#{job_ftime}, job_need=#{job_need}
+		,job_ftime=#{job_ftime},
+		job_need=#{job_need}
 		where
 		job_id=#{job_id}
 	</update>
 	<!--职位多条件查询 -->
 	<select id="search" parameterType="Job" resultType="Job">
-		select * from job where job_nature=#{job_nature} and 
-		(to_date(job_ftime, 'yyyy-MM-dd') 
-		between to_date(#{job_start_time}, 'yyyy-MM-dd') and 
+		select * from
+		job where job_nature=#{job_nature} and
+		(to_date(job_ftime,
+		'yyyy-MM-dd')
+		between to_date(#{job_start_time}, 'yyyy-MM-dd') and
 		to_date(#{job_end_time}, 'yyyy-MM-dd'))
 	</select>
 	<!-- 职位添加 -->
 	<insert id="jobAdd" parameterType="Job">
-		insert into job (job_id,c_id,job_name,job_tags,job_department,job_nature,job_min_salary, job_max_salary,job_ftime, job_need)
+		insert into job
+		(job_id,c_id,job_name,job_tags,job_department,job_nature,job_min_salary,
+		job_max_salary,job_ftime, job_need)
 		values(job_sql.nextval,#{c_id},#{job_name},#{job_tags},#{job_department},#{job_nature},#{job_min_salary},#{job_max_salary},#{job_ftime},#{job_need})
 	</insert>
 

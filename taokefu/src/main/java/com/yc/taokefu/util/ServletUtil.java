@@ -28,8 +28,8 @@ public class ServletUtil {
 	public static Integer job_id;
 	public static String picPath ;
 	public static Integer c_id;
-	public static Integer c_ids;
-	public static Integer tkf_ids;
+	public static Integer c_ids;//公司id
+	public static Integer tkf_ids;//用户id
 	public static File getUploadFile(String fileName){
 		File file=new File(UPLOAD_DIR,fileName); //上传文件
 		if(!file.getParentFile().exists()){
