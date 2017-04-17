@@ -2,12 +2,12 @@
  * Name 添加记录
  */
 function add(){
-	$('#wu-form-1').form('submit', {
+	$('#job-form-1').form('submit', {
 		url:'job/add',
 		success:function(data){
 			if(data){
 				$.messager.alert('信息提示','提交成功！','info');
-				$('#wu-dialog-1').dialog('close');
+				$('#job-dialog-1').dialog('close');
 			}
 			else
 			{
@@ -36,12 +36,12 @@ function find(){
  */
 
 function edit(){
-	$('#wu-form-2').form('submit', {
+	$('#job-form-2').form('submit', {
 		url:'job/edit',
 		success:function(data){
 			if(data){
 				$.messager.alert('信息提示','提交成功！','info');
-				$('#wu-dialog-2').dialog('close');
+				$('#job-dialog-2').dialog('close');
 			}
 			else
 			{
@@ -57,7 +57,7 @@ function edit(){
 function remove(){
 	$.messager.confirm('信息提示','确定要删除该记录？', function(result){
 		if(result){
-			var items = $('#wu-datagrid-2').datagrid('getSelections');
+			var items = $('#job-datagrid-2').datagrid('getSelections');
 			var ids = [];
 			$(items).each(function(){
 				ids.push(this.job_id);	
@@ -87,8 +87,8 @@ function remove(){
  * Name 打开添加窗口
  */
 function openAdd(){
-	$('#wu-form-1').form('clear');
-	$('#wu-dialog-1').dialog({
+	$('#job-form-1').form('clear');
+	$('#job-dialog-1').dialog({
 		closed: false,
 		modal:true,
 		title: "添加信息",
@@ -100,7 +100,7 @@ function openAdd(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-1').dialog('close');                    
+				$('#job-dialog-1').dialog('close');                    
 			}
 		}]
 	});
@@ -110,18 +110,25 @@ function openAdd(){
  * Name 打开修改窗口
  */
 function openEdit(){
-	$('#wu-form-2').form('clear');
-	var item = $('#wu-datagrid-2').datagrid('getSelected');
+	$('#job-form-2').form('clear');
+	var item = $('#job-datagrid-2').datagrid('getSelected');
 	$("#jid").val(item.job_id);
-	$("#jattract").val(item.job_tags);
 	$("#jname").val(item.job_name);
+	$("#cid").val(item.c_id);
+	$("#jtags").val(item.job_tags);
 	$("#jdepartment").val(item.job_department);
-	$("#jnature1").val(item.job_nature);
+	$("#jnature").val(item.job_nature);
 	$("#jminsalary").val(item.job_min_salary);
 	$("#jmaxsalary").val(item.job_max_salary);
+	$("#jeducation").val(item.job_education);
+	$("#jtempt").val(item.job_tempt);
 	$("#jftime").val(item.job_ftime);
+	$("#jrests").val(item.job_rests);
+	$("#jnumber").val(item.job_number);
+	$("#jstate").val(item.job_state);
 	$("#jneed").val(item.job_need);
-	$('#wu-dialog-2').dialog({
+	$("#jresponsibility").val(item.job_responsibility);
+	$('#job-dialog-2').dialog({
 		closed: false,
 		modal:true,
 		title: "修改信息",
@@ -133,7 +140,7 @@ function openEdit(){
 			text: '取消',
 			iconCls: 'icon-cancel',
 			handler: function () {
-				$('#wu-dialog-2').dialog('close');                    
+				$('#job-dialog-2').dialog('close');                    
 			}
 		}]
 	});
@@ -152,7 +159,7 @@ function reload(){
 load("job/list");
 function load(urlStr){
 	//alert(urlStr);
-	$('#wu-datagrid-2').datagrid({
+	$('#job-datagrid-2').datagrid({
 		url:urlStr,
 		rownumbers:true,
 		singleSelect:false,
@@ -171,8 +178,14 @@ function load(urlStr){
 		          { field:'job_nature',title:'职位性质',width:100},
 		          { field:'job_min_salary',title:'最小薪资',width:100},
 		          { field:'job_max_salary',title:'最大薪资',width:100},
+		          { field:'job_education',title:'学历要求',width:100},
+		          { field:'job_tempt',title:'职位诱惑',width:100},
 		          { field:'job_ftime',title:'发布时间',width:100},
-		          { field:'job_need',title:'职位要求',width:100}
+		          { field:'job_rests',title:'其他',width:100},
+		          { field:'job_number',title:'点击量',width:100},
+		          { field:'job_state',title:'职位状态',width:100},
+		          { field:'job_need',title:'任职要求',width:100},
+		          { field:'job_responsibility',title:'工作职责',width:100},
 		          ]]
 	});
 }

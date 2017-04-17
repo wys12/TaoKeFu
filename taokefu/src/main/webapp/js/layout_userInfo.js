@@ -158,9 +158,6 @@ function openEdit(){
 	});
 }	
 
-/**
- * Name 分页过滤器
- */
 
 
 /**

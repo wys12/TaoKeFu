@@ -148,6 +148,7 @@ public class LoginHandler {
 
 	//密码修改
 	@RequestMapping("updatePwd")
+	@ResponseBody
 	public String updatePwd(Login login, HttpSession session,HttpServletRequest request){
 		Login logins = (Login) session.getAttribute(ServletUtil.LOGIN_USER);
 		String oldpassword=request.getParameter("oldpassword");
@@ -155,7 +156,7 @@ public class LoginHandler {
 		String comfirmpassword=request.getParameter("comfirmpassword");
 		String email=logins.getL_email();
 		oldpassword=Encrypt.md5AndSha(oldpassword);
-		LogManager.getLogger().debug("进行密码修改！！！logins==>" +login +oldpassword);
+		LogManager.getLogger().debug("进行密码修改！！！logins==>" +login.getL_email() +oldpassword);
 		if(logins.getL_pwd().equals(oldpassword)){
 			LogManager.getLogger().debug("进行密码修改！！！logins==>" +newpassword +comfirmpassword);
 			if(newpassword.equals(comfirmpassword)){
@@ -163,11 +164,11 @@ public class LoginHandler {
 				login.setL_email(email);
 				loginService.updatePwd(login);
 				LogManager.getLogger().debug("修改成功");
-				return "login.html";
+				return "修改成功";
 			}
 			LogManager.getLogger().debug("两次输入密码不正确");
 		}
-		return "updatePwd.html";
+		return "修改失败";
 
 	}
 
