@@ -31,7 +31,7 @@ update set tkfuser us_name=${us_name},us_picpath=${us_picpath},us_intro=${us_int
 insert into tkfuser us_name=${us_name},us_picpath=${us_picpath},us_picpath=${us_picpath},us_intro=${us_intro},
 us_sex=${us_sex},us_educationa=${us_educationa},us_work_year=${us_work_year},us_phone=${us_phone} 
 where us_id=${us_id} or us_email=${us_email} or openId=${openId}  
-select * from tkfuser
+select * from tkfuser where us_email='123@qq.com'
 update tkfuser set us_intro='我的简介', us_sex='男',us_educationa='本科',us_work_year='5年',us_phone='13974412345' where us_id=1002
 create table tkfuser(
   us_id number primary key,	--id等于 login id
@@ -265,11 +265,18 @@ create table job(
   job_need varchar2(100) ,--任职要求
   job_rests varchar2(100) ,--其他
   job_number varchar2(100), --点击量
-  job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
-   foreign key (c_id) references company(comp_id) --外键关联
+  job_state varchar2(10) check(job_state in('-0','-1')),--职位状态   （在线职位/下线职位）
+  job_city varchar2(50),--工作城市
+  job_address varchar2(150),--工作详细地址
+  job_classes varchar2(50), --职位类别
+  job_experience --工作经验的需求
+  -- foreign key (c_id) references company(comp_id) --外键关联
 );
+--alter table job add(job_city varchar2(50))
+--alter table job add(job_address varchar2(150))
+--alter table job add(job_classes varchar2(50))
+--alter table job add(job_experience varchar2(50))
 select * from job_class
-);
 
 --职位分类表
 create table job_class(

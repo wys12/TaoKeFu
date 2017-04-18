@@ -40,4 +40,6 @@ public interface JobService {
 	List<Job> search(Job job);
 
 	List<CompanyAll> findCompanyJob(CompanyAll comJob);
+
+	int insertCompanyJob(CompanyAll comJob);
 }

@@ -56,9 +56,38 @@ public class CompanyAll {
 	private String job_rests;
 	private Integer job_number;
 	private String job_state; //职位状态   （在线职位/下线职位）
+	private String job_city;
+	private String job_address;
+	private String job_classes;	
+	private String job_experience;
 	
 	private String jc_id;
 	private String jc_name;
+	public String getJob_city() {
+		return job_city;
+	}
+	public void setJob_city(String job_city) {
+		this.job_city = job_city;
+	}
+	public String getJob_address() {
+		return job_address;
+	}
+	public void setJob_address(String job_address) {
+		this.job_address = job_address;
+	}
+	public String getJob_classes() {
+		return job_classes;
+	}
+	public void setJob_classes(String job_classes) {
+		this.job_classes = job_classes;
+	}
+	public String getJob_experience() {
+		return job_experience;
+	}
+	public void setJob_experience(String job_experience) {
+		this.job_experience = job_experience;
+	}
+	
 	public Integer getComp_id() {
 		return comp_id;
 	}
@@ -369,7 +398,10 @@ public class CompanyAll {
 				+ ", job_min_salary=" + job_min_salary + ", job_max_salary=" + job_max_salary + ", job_ftime="
 				+ job_ftime + ", job_education=" + job_education + ", job_tempt=" + job_tempt + ", job_responsibility="
 				+ job_responsibility + ", job_need=" + job_need + ", job_rests=" + job_rests + ", job_number="
-				+ job_number + ", job_state=" + job_state + ", jc_id=" + jc_id + ", jc_name=" + jc_name + "]";
+				+ job_number + ", job_state=" + job_state + ", job_city=" + job_city + ", job_address=" + job_address
+				+ ", job_classes=" + job_classes + ", job_experience=" + job_experience + ", jc_id=" + jc_id
+				+ ", jc_name=" + jc_name + "]";
 	}
+	
 	
 }

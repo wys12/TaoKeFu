@@ -85,4 +85,8 @@ public class JobServiceImpl implements JobService{
 	public List<CompanyAll> findCompanyJob(CompanyAll comJob) {
 		return jobMapper.findCompanyJob(comJob);
 	}
+	@Override
+	public int insertCompanyJob(CompanyAll comJob) {
+		return jobMapper.insertCompanyJob(comJob);
+	}
 }

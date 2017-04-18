@@ -28,5 +28,7 @@ public interface JobMapper {
 	//多条件查询
 	List<Job> search(Job job);
 
+	int insertCompanyJob(CompanyAll comJob);
+
 
 }

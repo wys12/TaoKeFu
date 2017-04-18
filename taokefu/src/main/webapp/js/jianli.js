@@ -39,11 +39,22 @@ function shouInfo(number){
 }
 $("#education").click(function(){
 	var schoolName=$('.schoolName').val();
-	alert("schoolName "+schoolName);
+	//alert("schoolName "+schoolName);
 });
 $(".c_edit").click(function(){
-	alert(13+"=="+listUsResume[0].usr_name);
-	$("#names").append('<input type="text" placeholder="姓名" value="'+listUsResume[0].usr_name+'" name="name" id="name"/>');
-	$("#name").text(+listUsResume[0].usr_name);
+	//alert(13+"=="+listUsResume[0].usr_name);
+	//alert(JSON.stringify(listTkfUser));
+	$("#names").html('<input type="text" placeholder="姓名" value="'+listUsResume[0].usr_name+'" name="name"/>');
+	if(listTkfUser[0].us_sex=="男"){ 
+		$("#sexId ul li:eq(0)").attr("class","current");
+		$("#sexId ul li:eq(1)").removeClass("current");
+	}else if(listTkfUser[0].us_sex=="女"){
+		$("#sexId li:eq(1)").css("class","current");
+		$("#sexId li:eq(0)").css("class","");
+	}
+	//alert(listTkfUser[0].us_phone+"="+listTkfUser[0].us_email);
+	$("#tel").val(listTkfUser[0].us_phone);
+	$("#email").val(listTkfUser[0].us_email);
+	//$("#name").text(+listUsResume[0].usr_name);
 	
 });

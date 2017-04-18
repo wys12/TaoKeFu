@@ -1,6 +1,10 @@
 package com.yc.taokefu.web.handler;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -125,6 +129,22 @@ public class JobHandler {
 		comJob.setC_id(ServletUtil.c_ids);
 		return jobService.findCompanyJob(comJob);
 	}
+	/**
+	 * wys
+	 * 公司发布职位
+	 * @param rows
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(value="insertCompanyJob",method=RequestMethod.POST)
+	@ResponseBody
+	public int insertCompanyJob(CompanyAll comJob) {
+		comJob.setC_id(ServletUtil.c_ids);
+		comJob.setJob_ftime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		LogManager.getLogger().debug(comJob);
+		return jobService.insertCompanyJob(comJob);
+	}
+	
 	
 	//查询所有职位
 	@RequestMapping("list")

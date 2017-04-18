@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		j.job_id=${job_id}
 	</select>
-	
+
 	<select id="findCompanyJob" parameterType="CompanyAll"
 		resultType="CompanyAll">
 		select *
@@ -119,8 +119,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<when test="job_state !=null">#{job_state},</when>
 			<otherwise>'',</otherwise>
 		</choose>
-		 job_need=
-		 <choose>
+		job_need=
+		<choose>
 			<when test="job_state !=null"> #{job_need}</when>
 			<otherwise>''</otherwise>
 		</choose>
@@ -168,7 +168,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="job_number ==null">,''</if>
 		<if test="job_number !=null">,'${job_number}'</if>
 		<if test="job_state ==null">,''</if>
-		<if test="job_state !=null">,'${job_state}'</if>)
+		<if test="job_state !=null">,'${job_state}'</if>
+		<if test="job_city ==null">,''</if>
+		<if test="job_city !=null">,'${job_city}'</if>
+		<if test="job_address ==null">,''</if>
+		<if test="job_address !=null">,'${job_address}'</if>
+		<if test="job_classes ==null">,''</if>
+		<if test="job_classes !=null">,'${job_classes}'</if>
+		<if test="job_experience ==null">,''</if>
+		<if test="job_experience !=null">,'${job_experience}'</if>
+		)
 	</insert>
 
+	<!-- 职位发布 -->
+	<insert id="insertCompanyJob" parameterType="CompanyAll">
+		insert into job values(job_sql.nextval
+		<if test="c_id ==null ">,''</if>
+		<if test="c_id !=null">,'${c_id}'</if>
+		<if test="job_tags ==null ">,''</if>
+		<if test="job_tags !=null">,'${job_tags}'</if>
+		<if test="job_name ==null ">,''</if>
+		<if test="job_name !=null">,'${job_name}'</if>
+		<if test="job_department ==null">,''</if>
+		<if test="job_department !=null">,'${job_department}'</if>
+		<if test="job_nature ==null">,''</if>
+		<if test="job_nature !=null">,'${job_nature}'</if>
+		<if test="job_min_salary ==null">,''</if>
+		<if test="job_min_salary !=null">,'${job_min_salary}'</if>
+		<if test="job_max_salary ==null">,''</if>
+		<if test="job_max_salary !=null">,'${job_max_salary}'</if>
+		<if test="job_ftime ==null">,''</if>
+		<if test="job_ftime !=null">,'${job_ftime}'</if>
+		<if test="job_education ==null ">,''</if>
+		<if test="job_education !=null">,'${job_education}'</if>
+		<if test="job_tempt ==null">,''</if>
+		<if test="job_tempt !=null">,'${job_tempt}'</if>
+		<if test="job_responsibility ==null">,''</if>
+		<if test="job_responsibility !=null">,'${job_responsibility}'</if>
+		<if test="job_need ==null">,''</if>
+		<if test="job_need !=null">,'${job_need}'</if>
+		<if test="job_rests ==null">,''</if>
+		<if test="job_rests !=null">,'${job_rests}'</if>
+		<if test="job_number ==null">,'0'</if>
+		<if test="job_number !=null">,'${job_number}'</if>
+		<if test="job_state ==null">,'-1'</if>
+		<if test="job_state !=null">,'${job_state}'</if>
+		<if test="job_city ==null">,''</if>
+		<if test="job_city !=null">,'${job_city}'</if>
+		<if test="job_address ==null">,''</if>
+		<if test="job_address !=null">,'${job_address}'</if>
+		<if test="job_classes ==null">,''</if>
+		<if test="job_classes !=null">,'${job_classes}'</if>
+		<if test="job_experience ==null">,''</if>
+		<if test="job_experience !=null">,'${job_experience}'</if>
+		)
+	</insert>
 </mapper>
