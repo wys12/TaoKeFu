@@ -145,6 +145,19 @@ public class JobHandler {
 		return jobService.insertCompanyJob(comJob);
 	}
 	
+	@RequestMapping(value="findJobEidt",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> findJobEidt(CompanyAll comJob) {
+		ServletUtil.job_id=comJob.getJob_id();
+		return jobService.findJobEidt(comJob);
+	}
+	@RequestMapping(value="modifiJobEidt",method=RequestMethod.POST)
+	@ResponseBody
+	public int modifiJobEidts(CompanyAll comJob) {
+		comJob.setJob_id(ServletUtil.job_id);
+		return jobService.modifiJobEidts(comJob);
+	}
+	
 	
 	//查询所有职位
 	@RequestMapping("list")

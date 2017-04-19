@@ -42,4 +42,8 @@ public interface JobService {
 	List<CompanyAll> findCompanyJob(CompanyAll comJob);
 
 	int insertCompanyJob(CompanyAll comJob);
+
+	List<CompanyAll> findJobEidt(CompanyAll comJob);
+
+	int modifiJobEidts(CompanyAll comJob);
 }

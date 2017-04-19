@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		j.job_id=${job_id}
 	</select>
+	<select id="findJobEidt" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from job
+		where job_id=${job_id}
+	</select>
 
 	<select id="findCompanyJob" parameterType="CompanyAll"
 		resultType="CompanyAll">
@@ -223,4 +227,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="job_experience !=null">,'${job_experience}'</if>
 		)
 	</insert>
+	<update id="modifiJobEidts" parameterType="CompanyAll">
+		update job
+		<set>
+		<if test="job_tags !=null">job_tags='${job_tags}',</if>
+		<if test="job_name !=null">job_name='${job_name}',</if>
+		<if test="job_department !=null">job_department='${job_department}',</if>
+		<if test="job_nature !=null">job_nature='${job_nature}',</if>
+		<if test="job_min_salary !=null">job_min_salary='${job_min_salary}',</if>
+		<if test="job_max_salary !=null">job_max_salary='${job_max_salary}',</if>
+		<if test="job_ftime !=null">job_ftime='${job_ftime}',</if>
+		<if test="job_education !=null">job_education='${job_education}',</if>
+		<if test="job_tempt !=null">job_tempt='${job_tempt}',</if>
+		<if test="job_responsibility !=null">job_responsibility='${job_responsibility}',</if>
+		<if test="job_need !=null">job_need='${job_need}',</if>
+		<if test="job_rests !=null">job_rests='${job_rests}',</if>
+		<if test="job_number !=null">job_number='${job_number}',</if>
+		<if test="job_state !=null">job_state='${job_state}',</if>
+		<if test="job_city !=null">job_city='${job_city}',</if>
+		<if test="job_address !=null">job_address='${job_address}',</if>
+		<if test="job_classes !=null">job_classes='${job_classes}',</if>
+		<if test="job_experience !=null">job_experience='${job_experience}'</if>
+		</set> where job_id=${job_id}
+	</update>
 </mapper>

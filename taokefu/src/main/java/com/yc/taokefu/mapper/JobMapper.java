@@ -30,5 +30,9 @@ public interface JobMapper {
 
 	int insertCompanyJob(CompanyAll comJob);
 
+	List<CompanyAll> findJobEidt(CompanyAll comJob);
+
+	int modifiJobEidts(CompanyAll comJob);
+
 
 }

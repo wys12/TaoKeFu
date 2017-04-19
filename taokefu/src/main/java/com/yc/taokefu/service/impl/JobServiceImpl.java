@@ -1,6 +1,5 @@
 package com.yc.taokefu.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -89,4 +88,13 @@ public class JobServiceImpl implements JobService{
 	public int insertCompanyJob(CompanyAll comJob) {
 		return jobMapper.insertCompanyJob(comJob);
 	}
+	@Override
+	public List<CompanyAll> findJobEidt(CompanyAll comJob) {
+		return jobMapper.findJobEidt(comJob);
+	}
+	@Override
+	public int modifiJobEidts(CompanyAll comJob) {
+		return jobMapper.modifiJobEidts(comJob);
+	}
+	
 }
