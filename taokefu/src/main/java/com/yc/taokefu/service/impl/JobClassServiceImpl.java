@@ -2,6 +2,7 @@ package com.yc.taokefu.service.impl;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,9 @@ public class JobClassServiceImpl implements JobClassService{
 	@Autowired
 	private JobClassMapper jobClssMapper;
 	@Override
-	public List<JobClass> jobClassFind(JobClass jobClass) {
-		return jobClssMapper.jobClassFind(jobClass);
+	public List<JobClass> jobClassTypeFind(JobClass jobClass) {
+		LogManager.getLogger().debug("jobClass   ==> " + jobClass);
+		return jobClssMapper.jobClassTypeFind(jobClass);
 	}
 	@Override
 	public Integer jobClassAdd(JobClass jobClass) {

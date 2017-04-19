@@ -272,19 +272,32 @@ create table job(
   job_experience --工作经验的需求
   -- foreign key (c_id) references company(comp_id) --外键关联
 );
+<<<<<<< HEAD
+
+=======
 --alter table job add(job_city varchar2(50))
 --alter table job add(job_address varchar2(150))
 --alter table job add(job_classes varchar2(50))
 --alter table job add(job_experience varchar2(50))
 select * from job_class
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 
 --职位分类表
+select * from job_class
 create table job_class(
   jc_id number primary key ,
+<<<<<<< HEAD
   jc_name varchar2(30) not null,
+=======
+  jc_name varchar2(30) not null UNIQUE,
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
   jc_type varchar2(30)
 );
-insert into JOB_CLASS values(jobClass_sql.nextval,'编程');
+insert into JOB_CLASS values(jobClass_sql.nextval,'客服经理','客服中心');
+insert into JOB_CLASS values(jobClass_sql.nextval,'客服总监','客服中心');
+insert into JOB_CLASS values(jobClass_sql.nextval,'客服主管','客服中心');
+insert into JOB_CLASS values(jobClass_sql.nextval,'淘宝客服','网络客服');
+insert into JOB_CLASS values(jobClass_sql.nextval,'QQ客服','网络客服');
 
 ----------------------------------------------------------------------------------
 

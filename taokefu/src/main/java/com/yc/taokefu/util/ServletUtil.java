@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yc.taokefu.entity.CompanyAll;
+import com.yc.taokefu.entity.JobClass;
 import com.yc.taokefu.entity.Login;
 
 public class ServletUtil {
@@ -24,6 +25,7 @@ public class ServletUtil {
 	public static Map<String, String> userMap;
 	public static int CODE;
 	public static List<CompanyAll> JOB_LIST = new ArrayList<CompanyAll>();//返回界面信息
+	public static List<JobClass> JOBCLASSTYPE_LIST = new ArrayList<JobClass>();//返回职位类型
 	public static Integer type =0;
 	public static Integer job_id;
 	public static String picPath ;
