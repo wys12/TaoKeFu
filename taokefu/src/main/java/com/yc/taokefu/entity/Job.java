@@ -19,6 +19,34 @@ public class Job {
 	private String job_state;
 	private String  job_start_time;
 	private String job_end_time;
+	private String job_city;
+	private String job_address;
+	private String job_classes;	
+	private String job_experience;
+	public String getJob_city() {
+		return job_city;
+	}
+	public void setJob_city(String job_city) {
+		this.job_city = job_city;
+	}
+	public String getJob_address() {
+		return job_address;
+	}
+	public void setJob_address(String job_address) {
+		this.job_address = job_address;
+	}
+	public String getJob_classes() {
+		return job_classes;
+	}
+	public void setJob_classes(String job_classes) {
+		this.job_classes = job_classes;
+	}
+	public String getJob_experience() {
+		return job_experience;
+	}
+	public void setJob_experience(String job_experience) {
+		this.job_experience = job_experience;
+	}
 	public Integer getJob_id() {
 		return job_id;
 	}
@@ -135,6 +163,8 @@ public class Job {
 				+ ", job_education=" + job_education + ", job_tempt=" + job_tempt + ", job_responsibility="
 				+ job_responsibility + ", job_need=" + job_need + ", job_rests=" + job_rests + ", job_number="
 				+ job_number + ", job_state=" + job_state + ", job_start_time=" + job_start_time + ", job_end_time="
-				+ job_end_time + "]";
+				+ job_end_time + ", job_city=" + job_city + ", job_address=" + job_address + ", job_classes="
+				+ job_classes + ", job_experience=" + job_experience + "]";
 	}
+	
 }
