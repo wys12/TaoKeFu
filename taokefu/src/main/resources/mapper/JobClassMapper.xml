@@ -3,10 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.JobClassMapper">
-<select id="jobClassFind" resultType="Job" parameterType="Job">
-		
+	<select id="jobClassTypeFind" resultType="JobClass" parameterType="JobClass">
+		select * from job_class 
 	</select>
 	<insert id="jobClassAdd" parameterType="Job">
-	
+
 	</insert>
 </mapper>

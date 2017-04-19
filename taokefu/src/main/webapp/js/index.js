@@ -1,3 +1,21 @@
+loadInfo();
+function loadInfo(){
+	$.post("job/findJc_type",function(data){
+		var str="";
+		for(var i=0;i<data.length;i++){
+				str+='<div id="menu_box" class="menu_box">'
+					+'<div class="menu_main">'
+					+'<h2>'+data[i].jc_type+'</h2>'
+					+'<a href="list.html" onclick="typeSearch('+data[i].jc_name+')">'+data[i].jc_name+'</a>'
+					+'</div>'
+					+'</div>';
+		}
+		$("#mainNavs").html(str);
+		alert(str);
+	},"json");
+	
+}
+
 $("#search_button").click(function(){
 	var searchType = $('#searchType li').val(); //查询类型 0 1
 	$("#searchTypes").val(searchType);

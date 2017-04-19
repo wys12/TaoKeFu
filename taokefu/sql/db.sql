@@ -268,15 +268,20 @@ create table job(
   job_state varchar2(10) check(job_state in('-0','-1')), --职位状态   （在线职位/下线职位）
    foreign key (c_id) references company(comp_id) --外键关联
 );
-select * from job_class
-);
+
 
 --职位分类表
+select * from job_class
 create table job_class(
   jc_id number primary key ,
-  jc_name varchar2(30) not null
+  jc_name varchar2(30) not null UNIQUE,
+  jc_type varchar2(30)
 );
-insert into JOB_CLASS values(jobClass_sql.nextval,'编程');
+insert into JOB_CLASS values(jobClass_sql.nextval,'客服经理','客服中心');
+insert into JOB_CLASS values(jobClass_sql.nextval,'客服总监','客服中心');
+insert into JOB_CLASS values(jobClass_sql.nextval,'客服主管','客服中心');
+insert into JOB_CLASS values(jobClass_sql.nextval,'淘宝客服','网络客服');
+insert into JOB_CLASS values(jobClass_sql.nextval,'QQ客服','网络客服');
 
 ----------------------------------------------------------------------------------
 

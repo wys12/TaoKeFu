@@ -8,8 +8,6 @@ public interface JobClassService {
 
 	Integer jobClassAdd(JobClass jobClass);
 
-	List<JobClass> jobClassFind(JobClass jobClass);
-
-	
+	List<JobClass> jobClassTypeFind(JobClass jobClass);
 
 }

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.Job;
+import com.yc.taokefu.entity.JobClass;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.service.CompanyAllService;
+import com.yc.taokefu.service.JobClassService;
 import com.yc.taokefu.service.JobService;
 import com.yc.taokefu.util.ServletUtil;
 /**
@@ -28,6 +30,8 @@ public class JobHandler {
 	private CompanyAllService companyAllServics;
 	@Autowired 
 	private JobService jobService;
+	@Autowired 
+	private JobClassService jobClassService;
 	
 	/**
 	 * index查询职位信息
@@ -40,7 +44,7 @@ public class JobHandler {
 		companyAll.setJob_name(search_input);
 		if(searchTypes.intern() == "0"){
 			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
-			//LogManager.getLogger().debug("index ===>  "+ServletUtil.JOB_LIST);
+			LogManager.getLogger().debug("index ===>  "+ServletUtil.JOB_LIST);
 		}else if(searchTypes.intern() == "1"){
 			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(search_input,0,0);
 		}else{
@@ -196,6 +200,24 @@ public class JobHandler {
 		
 		LogManager.getLogger().debug("添加"+job);
 		return jobService.jobAdd(job);
+	}
+	
+	/*
+	 * 首页左边客服类型加载
+	 * 
+	 */
+	
+	@RequestMapping(value="findJc_type",method=RequestMethod.POST)
+	@ResponseBody
+	public List<JobClass> findClass(JobClass jobClass) {
+		if(ServletUtil.JOBCLASSTYPE_LIST.size() != 0){
+			LogManager.getLogger().debug("返回界面职位类型信息   ==> "+ServletUtil.JOBCLASSTYPE_LIST);
+			return ServletUtil.JOBCLASSTYPE_LIST;
+		}else{
+			ServletUtil.JOBCLASSTYPE_LIST = jobClassService.jobClassTypeFind(jobClass);
+			LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSTYPE_LIST);
+			return ServletUtil.JOBCLASSTYPE_LIST;
+		}
 	}
 }
 
