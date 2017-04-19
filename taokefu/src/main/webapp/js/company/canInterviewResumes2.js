@@ -1,11 +1,10 @@
 loadInfo();
 function loadInfo(){
-	$("#resumeRefuseAll").attr("class","inappropriateRes");
-	showResume("-1");
+	showResume_1();
 }
 var str='';
-function showResume(usr_state){
-	$.post("resume/findResume",{usr_state:usr_state},function(data){
+function showResume_1(){
+	$.post("resume/findResume",function(data){
 		console.info(JSON.stringify(data));
 		str='';
 		for(var i=0;i<data.length;i++){
@@ -19,60 +18,19 @@ function showResume(usr_state){
 					+'data-forwardcount="1" class="resume_forward" href="javascript:void(0)"> 转发 <span>(1人)</span></a></div></div>'
 					+'<div class="contactInfo"><span class="c9">电话：</span><span>'+data[0].us_phone+' &nbsp;&nbsp;&nbsp;</span> <span class="c9">邮箱：</span><a href="javascript:void(0)">'+data[0].us_email+'</a></div></li>');
 			$.post("job/findJob",{job_id:data[i].job_id},function(data1){
+				//alert(JSON.stringify(data1[0].job_name));
 				$("#"+data1[0].job_id+"").text(" | "+data1[0].job_name);
 				$("#"+data1[0].job_id+"").attr("href","toudi.html");
+				/*$("#1001").text(data1[0].job_name);*/
 			},"json");
 		}
+		//alert(data.length+"str====>>>>"+str);
 		$("#showInfo").html(str);
 	},"json");
-}
-$("#resume_0").click(function(){
-	$("#resumeRefuseAll").text("标记为查看");
-	$("#resumeRefuseAll").attr("class","examineRes");
-	showResume("-0");
-	companyResumeClass(0);
-});
-$("#resume_1").click(function(){
-	$("#resumeRefuseAll").text("标记为不合适");
-	$("#resumeRefuseAll").attr("class","inappropriateRes");
-	showResume("-1");
-	companyResumeClass(1);
-});
-$("#resume_2").click(function(){
-	$("#resumeRefuseAll").text("标记为通过");
-	$("#resumeRefuseAll").attr("class","passRes");
-	showResume("-2");
-	companyResumeClass(2);
-});
-$("#resume_3").click(function(){
-	$("#resumeRefuseAll").text("标记为删除");
-	$("#resumeRefuseAll").attr("class","deleteRes");
-	showResume("-3");
-	companyResumeClass(3);
-});
-$("#resume_4").click(function(){
-	alert("自动过滤简历");
-	companyResumeClass(4);
-});
-
-//查看过的简历
-$(".examineRes").click(function(){
-	alert("执行简历状态改为查看操作");
-});
-//不合适的简历
-$(".inappropriateRes").click(function(){
-	alert("执行简历状态改为不合适操作");
-});
-//通过的简历
-$(".passRes").click(function(){
-	alert("执行简历状态改为通过操作");
-});
-//删除简历
-$(".deleteRes").click(function(){
-	alert("执行简历状态改为删除操作");
-});
-
-function companyResumeClass(number){
-	$("#companyResume dd").removeClass("current");
-	$("#companyResume dd:eq("+number+")").attr("class","current");
+	/*$(".contactInfo span:eq(1)").text("123");
+	$(".contactInfo a").text("321");
+	$(".contactInfo a").attr("href","http://www.baidu.com");
+	$(".unread a").text("张三");
+	$(".unread a").attr("href","preview.html?tkf_id=1002");*/
+	//alert("简历信息2");
 }

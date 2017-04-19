@@ -28,6 +28,13 @@ public class ResumeHandler {
 	@Autowired
 	private  UserService userService;
 
+	/**
+	 * wys
+	 * 简历的投递
+	 * @param user
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="insertResume",method=RequestMethod.POST)
 	@ResponseBody
 	public int insertResume(UserAll user,HttpSession session){
@@ -59,17 +66,29 @@ public class ResumeHandler {
 		//return 0;
 	}
 	
+	/**
+	 * wys
+	 *  修改简历
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value="modifiResume",method=RequestMethod.POST)
 	@ResponseBody
 	public int modifiResume(UserAll user){
 		LogManager.getLogger().debug(user);
 		return 0;
 	}
+	/**
+	 * wys
+	 * 查询投递的简历
+	 * @param resume
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="findResume",method=RequestMethod.POST)
 	@ResponseBody
 	public List<Resume> findResume(Resume resume,HttpSession session){
 		resume.setC_id(ServletUtil.c_ids);
-		LogManager.getLogger().debug(ServletUtil.c_id);
 		LogManager.getLogger().debug(resume);
 		return resumeService.findResume(resume);
 	}

@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 根据公司id查找 -->
 	<select id="findResume" resultType="Resume">
-		select * from resume where c_id=${c_id}
+		select * from resume where c_id=${c_id} and usr_state='${usr_state}'
 	</select>
 	<!-- 简历投递时的查询判断 -->
 	<select id="findResumes" resultType="Resume">
