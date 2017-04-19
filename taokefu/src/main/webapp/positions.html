@@ -86,13 +86,13 @@ var ctx = "http://www.lagou.com";
 						<a href="autoFilterResumes.html">自动过滤简历</a>
 					</dd>
 				</dl>
-				<dl class="company_center_aside">
+				<dl id="companyJob" class="company_center_aside">
 					<dt>我发布的职位</dt>
 					<dd class="current">
-						<a href="positions.html">有效职位</a>
+						<a id="valid" href="javascript:void(0)">有效职位</a>
 					</dd>
 					<dd>
-						<a href="positions.html">已下线职位</a>
+						<a id="Invalid" href="javascript:void(0)">已下线职位</a>
 					</dd>
 				</dl>
 			</div>
@@ -101,9 +101,7 @@ var ctx = "http://www.lagou.com";
 				<dl class="company_center_content">
 					<dt>
 						<h1>
-							<em></em> 有效职位 <span>（共<i
-								style="color: #fff; font-style: normal" id="positionNumber"></i>个）
-							</span>
+							
 						</h1>
 					</dt>
 					<dd>

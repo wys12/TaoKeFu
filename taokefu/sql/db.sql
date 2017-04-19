@@ -281,7 +281,8 @@ select * from job_class
 --职位分类表
 create table job_class(
   jc_id number primary key ,
-  jc_name varchar2(30) not null
+  jc_name varchar2(30) not null,
+  jc_type varchar2(30)
 );
 insert into JOB_CLASS values(jobClass_sql.nextval,'编程');
 

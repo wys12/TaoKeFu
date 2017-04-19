@@ -44,7 +44,6 @@ public class JobHandler {
 		companyAll.setJob_name(search_input);
 		if(searchTypes.intern() == "0"){
 			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
-			//LogManager.getLogger().debug("index ===>  "+ServletUtil.JOB_LIST);
 		}else if(searchTypes.intern() == "1"){
 			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(search_input,0,0);
 		}else{
@@ -99,7 +98,12 @@ public class JobHandler {
 		ServletUtil.c_id = Integer.valueOf(c_id);
 		LogManager.getLogger().debug("公司id === " +job_id+"c_id"+c_id);
 	}
-	
+	/**
+	 * wys
+	 * 查询公司
+	 * @param job
+	 * @return
+	 */
 	@RequestMapping(value="findCompany")
 	@ResponseBody
 	public List<CompanyAll> findCompany(CompanyAll job) {
@@ -127,6 +131,7 @@ public class JobHandler {
 	@ResponseBody
 	public List<CompanyAll> findCompanyJob(CompanyAll comJob) {
 		comJob.setC_id(ServletUtil.c_ids);
+		System.out.println("===="+comJob);
 		return jobService.findCompanyJob(comJob);
 	}
 	/**
@@ -144,13 +149,38 @@ public class JobHandler {
 		LogManager.getLogger().debug(comJob);
 		return jobService.insertCompanyJob(comJob);
 	}
+	/**
+	 * wys
+	 * 公司职位状态修改
+	 * @param rows
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(value="modifiJobState",method=RequestMethod.POST)
+	@ResponseBody
+	public int modifiJobState(Job job) {
+		LogManager.getLogger().debug(job);
+		return jobService.modifiJobState(job);
+	}
 	
+	/**
+	 * wys
+	 * 对以添加的职位进行查询
+	 * @param comJob
+	 * @return
+	 */
 	@RequestMapping(value="findJobEidt",method=RequestMethod.POST)
 	@ResponseBody
 	public List<CompanyAll> findJobEidt(CompanyAll comJob) {
 		ServletUtil.job_id=comJob.getJob_id();
 		return jobService.findJobEidt(comJob);
 	}
+	/**
+	 * wys
+	 * 对以添加的职位进行修改
+	 * @param comJob
+	 * @return
+	 */
 	@RequestMapping(value="modifiJobEidt",method=RequestMethod.POST)
 	@ResponseBody
 	public int modifiJobEidts(CompanyAll comJob) {

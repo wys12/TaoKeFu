@@ -34,5 +34,7 @@ public interface JobMapper {
 
 	int modifiJobEidts(CompanyAll comJob);
 
+	int modifiJobState(Job job);
+
 
 }

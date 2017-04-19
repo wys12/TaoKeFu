@@ -46,4 +46,6 @@ public interface JobService {
 	List<CompanyAll> findJobEidt(CompanyAll comJob);
 
 	int modifiJobEidts(CompanyAll comJob);
+
+	int modifiJobState(Job job);
 }
