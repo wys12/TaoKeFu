@@ -100,11 +100,12 @@ select * from resume where c_id=1001 and usr_id=1002
 select * from resume
 select * from tkfuser
 select * from company
+delete resume where job_id=1041
 drop  table resume
 delete resume where res_id=1041
 	create table resume(
 		 res_id number primary key,
-		  c_id number ,
+		 c_id number ,
 		 job_id number ,
 		 usr_id number ,
 		 us_name varchar2(30) ,
@@ -137,7 +138,7 @@ delete resume where res_id=1041
 		 edu_start_year varchar2(30),-- 开始年份
 		 edu_end_year varchar2(30) ,--毕业年份
 	
-		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通过初选/通知面试/不合适）
 	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
@@ -272,25 +273,17 @@ create table job(
   job_experience --工作经验的需求
   -- foreign key (c_id) references company(comp_id) --外键关联
 );
-<<<<<<< HEAD
-
-=======
 --alter table job add(job_city varchar2(50))
 --alter table job add(job_address varchar2(150))
 --alter table job add(job_classes varchar2(50))
 --alter table job add(job_experience varchar2(50))
 select * from job_class
->>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
-
+drop table job_class
 --职位分类表
 select * from job_class
 create table job_class(
   jc_id number primary key ,
-<<<<<<< HEAD
-  jc_name varchar2(30) not null,
-=======
   jc_name varchar2(30) not null UNIQUE,
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
   jc_type varchar2(30)
 );
 insert into JOB_CLASS values(jobClass_sql.nextval,'客服经理','客服中心');

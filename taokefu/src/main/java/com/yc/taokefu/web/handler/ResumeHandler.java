@@ -78,6 +78,30 @@ public class ResumeHandler {
 		LogManager.getLogger().debug(user);
 		return 0;
 	}
+	
+	/**
+	 * 简历投递状态的修改
+	 * @param resume
+	 * @return
+	 */
+	@RequestMapping(value="modifiResumeState",method=RequestMethod.POST)
+	@ResponseBody
+	public int modifiResumeState(Resume resume){
+		LogManager.getLogger().debug(resume);
+		return resumeService.modifiResumeState(resume);
+	}
+	/**
+	 * 删除简历
+	 * @param resume
+	 * @return
+	 */
+	@RequestMapping(value="deleteResumeState",method=RequestMethod.POST)
+	@ResponseBody
+	public int deleteResumeState(Resume resume){
+		LogManager.getLogger().debug(resume);
+		return resumeService.deleteResumeState(resume);
+	}
+	
 	/**
 	 * wys
 	 * 查询投递的简历
@@ -92,6 +116,11 @@ public class ResumeHandler {
 		LogManager.getLogger().debug(resume);
 		return resumeService.findResume(resume);
 	}
+	/**
+	 * wys
+	 * @param resume
+	 * @return
+	 */
 	@RequestMapping(value="findResumeInfo",method=RequestMethod.POST)
 	@ResponseBody
 	public List<Resume> findResumeInfo(Resume resume){

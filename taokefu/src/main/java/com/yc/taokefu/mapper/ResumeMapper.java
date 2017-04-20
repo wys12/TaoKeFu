@@ -22,4 +22,8 @@ public interface ResumeMapper {
 	List<Resume> findResumes(UserAll user);
 
 	List<Resume> findResumeInfo(Resume resume);
+
+	int modifiResumeState(Resume resume);
+
+	int deleteResumeState(Resume resume);
 }

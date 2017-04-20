@@ -70,8 +70,19 @@ public class ResumeServiceImpl implements ResumeService {
 
 	@Override
 	public List<Resume> findResumeInfo(Resume resume) {
-		// TODO Auto-generated method stub
 		return resumeMapper.findResumeInfo(resume);
+	}
+
+
+	@Override
+	public int modifiResumeState(Resume resume) {
+		return resumeMapper.modifiResumeState(resume);
+	}
+
+
+	@Override
+	public int deleteResumeState(Resume resume) {
+		return resumeMapper.deleteResumeState(resume);
 	}
 
 }
