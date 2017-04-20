@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Resume;
 import com.yc.taokefu.entity.UserAll;
 
@@ -30,4 +31,5 @@ public interface ResumeService {
 	int deleteResumeState(Resume resume);
 
 	List<Resume> findUserResume(Resume resume);
+	PaginationBean<Resume> listPartUsers(String page, String rows);
 }

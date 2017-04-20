@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yc.taokefu.entity.JobClass;
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Resume;
 import com.yc.taokefu.entity.UserAll;
 import com.yc.taokefu.mapper.ResumeMapper;
@@ -24,8 +26,8 @@ import com.yc.taokefu.util.ServletUtil;
 public class ResumeServiceImpl implements ResumeService {
 	@Autowired
 	private ResumeMapper resumeMapper;
-	
-	
+
+
 	@Override
 	public List<Resume> findResume(Resume resume) {
 		return resumeMapper.findResume(resume);
@@ -45,7 +47,7 @@ public class ResumeServiceImpl implements ResumeService {
 	@Override
 	public List<Resume> findResumes(UserAll user) {
 		return resumeMapper.findResumes(user);
-		
+
 	}
 
 
@@ -89,6 +91,16 @@ public class ResumeServiceImpl implements ResumeService {
 	@Override
 	public List<Resume> findUserResume(Resume resume) {
 		return resumeMapper.findUserResume(resume);
+	}
+	public PaginationBean<Resume> listPartUsers(String page, String rows) {
+		PaginationBean<Resume> pb=new PaginationBean<>();
+		if(page != null){
+			pb.setCurrPage(Integer.parseInt(page));
+		}
+		if(rows != null){
+			pb.setPageSize(Integer.parseInt(rows));
+		}
+		return resumeMapper.listJob(pb);
 	}
 
 }

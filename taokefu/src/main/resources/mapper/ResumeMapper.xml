@@ -62,4 +62,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findResumeInfo" resultType="java.util.List">
 	select * from resume where c_id=${c_id} and usr_id=${usr_id}
 	</select>
+	
+	<!-- 后台简历数据分页 -->
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="Resume" select="getResume" />
+	</resultMap>
+
+	<select id="listJob" parameterType="PaginationBean" resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) / ${pageSize})
+		totalPage,${pageSize} pageSize,${currPage} currPage from resume
+	</select>
+
+	<select id="getResume" resultType="Resume">
+		select * from (select n.*,rownum
+		rn from
+		(select * from resume order by 1) n where ${pageSize}*${currPage}
+		>= rownum)
+		where rn > ${pageSize}*(${currPage}-1)
+	</select>
 </mapper>

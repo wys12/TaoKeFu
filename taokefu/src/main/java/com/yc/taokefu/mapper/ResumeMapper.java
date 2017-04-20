@@ -2,6 +2,7 @@ package com.yc.taokefu.mapper;
 
 import java.util.List;
 
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Resume;
 import com.yc.taokefu.entity.UserAll;
 
@@ -28,4 +29,5 @@ public interface ResumeMapper {
 	int deleteResumeState(Resume resume);
 
 	List<Resume> findUserResume(Resume resume);
+	PaginationBean<Resume> listJob(PaginationBean<Resume> pb);
 }

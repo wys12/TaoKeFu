@@ -4,9 +4,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.JobClassMapper">
 	<select id="jobClassTypeFind" resultType="JobClass" parameterType="JobClass">
-		select * from job_class 
+		select distinct jc_type from job_class
 	</select>
-	<insert id="jobClassAdd" parameterType="Job">
+	
+	<select id="jobClassNameFind" resultType="JobClass" parameterType="JobClass">
+		select * from job_class where jc_type='${jc_type}'
+	</select>
+	
+	<insert id="jobClassAdd" parameterType="JobClass">
 
 	</insert>
+	
+	<!-- 后台职位分类数据分页 -->
+	<resultMap type="PaginationBean" id="PaginationBeanMap">
+		<collection property="rows"
+			column="{pageSize=pageSize,currPage=currPage}" ofType="JobClass" select="getJobClass" />
+	</resultMap>
+
+	<select id="jcListJob" parameterType="PaginationBean" resultMap="PaginationBeanMap">
+		select count(1) total, ceil(count(1) / ${pageSize})
+		totalPage,${pageSize} pageSize,${currPage} currPage from job_class
+	</select>
+
+	<select id="getJobClass" resultType="JobClass">
+		select * from (select n.*,rownum
+		rn from
+		(select * from job_class order by 1) n where ${pageSize}*${currPage}
+		>= rownum)
+		where rn > ${pageSize}*(${currPage}-1)
+	</select>
+	
+	<!-- 后台职位分类添加 -->
+	<insert id="BackjcAdd" parameterType="JobClass">
+		insert into job_class(jc_id,jc_name,jc_type)
+		values(jobClass_sql.nextval,#{jc_name},#{jc_type})
+	</insert>
+	
+	<!-- 后台职位分类修改 -->
+	<update id="BackJcEdit" parameterType="JobClass">
+		update job_class
+		<set>
+			<if test="jc_id != null">
+				jc_id = #{jc_id},
+			</if>
+			<if test="jc_name != null">
+				jc_name = #{jc_name},
+			</if>
+			<if test="jc_type != null">
+				jc_type = #{jc_type}
+			</if>
+		</set>
+		where jc_id = #{jc_id}
+	</update>
+	
+	<!-- 后台职位分类删除 -->
+	<delete id="BackJcDelete" parameterType="String">
+		delete from job_class
+		where jc_id=#{id}
+	</delete>
+	
+	<!-- 后台职位分类搜索 -->
+	<select id="BackJcSearch" parameterType="JobClass" resultType="JobClass">
+		select * from job_class 
+		<if test="jc_type !=null and jc_type !='-0'">where jc_type ='${jc_type}'</if>
+	</select>
 </mapper>

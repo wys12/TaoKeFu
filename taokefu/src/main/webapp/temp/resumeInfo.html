@@ -1,0 +1,84 @@
+<div class="easyui-layout" data-options="fit:true">
+	<!-- Begin of toolbar -->
+	<div id="jobClass-toolbar-2">
+		<div class="jobClass-toolbar-button">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+				onclick="openAdd()" plain="true">添加</a> <a href="#"
+				class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()"
+				plain="true">修改</a> <a href="#" class="easyui-linkbutton"
+				iconCls="icon-remove" onclick="remove()" plain="true">删除</a> <a
+				href="#" class="easyui-linkbutton" iconCls="icon-reload"
+				onclick="reload()" plain="true">刷新</a>
+		</div>
+		<div class="jobClass-toolbar-search">
+			&nbsp;&nbsp;&nbsp;
+			<label>职位类型：</label> 
+			<select class="easyui-combobox" panelHeight="auto" style="width: 100px" id="jobClass_nature" name="jobClass_nature">
+				<option value="网络客服">网络客服</option>
+				<option value="客服中心">客服中心</option>
+				<option value="客服专员">客服专员</option>
+				<option value="电话客服">电话客服</option>
+				<option value="兼职客服">兼职客服</option>
+			</select> 
+			&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="find()" class="easyui-linkbutton" iconCls="icon-search">开始检索</a>
+		</div>
+	</div>
+
+	<!-- End of toolbar 职位信息显示 -->
+	<table id="jobClass-datagrid-2" class="easyui-datagrid"
+		toolbar="#jobClass-toolbar-2"></table>
+</div>
+
+<!-- 添加职位类型 -->
+<div id="jobClass-dialog-1" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width: 220px; padding: 10px;">
+	<form id="jobClass-form-1" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td width="60" align="right">职位名称:</td>
+				<td><input type="text" name="jc_name" id="jname" class="wu-text" style="width: 90px"/></td>
+			</tr>
+			
+			<tr>
+				<td align="right">职位类型:</td>
+				<td>
+					<select class="easyui-combobox" style="width: 95px" name="jc_type" id="jtype">
+						<option value="网络客服">网络客服</option>
+						<option value="客服中心">客服中心</option>
+						<option value="客服专员">客服专员</option>
+						<option value="电话客服">电话客服</option>
+						<option value="兼职客服">兼职客服</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<!-- 修改职位类型 -->
+<div id="jobClass-dialog-2" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width: 220px; padding: 10px;">
+	<form id="jobClass-form-2" method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td width="60" align="right">类型I D:</td>
+				<td><input type="text" name="jc_id" id="jid-edit" class="wu-text" readonly="readonly" style="width: 90px"/></td>
+			</tr>
+			<tr>
+				<td width="60" align="right">职位名称:</td>
+				<td><input type="text" name="jc_name" id="jname-edit" class="wu-text" style="width: 90px"/></td>
+			</tr>
+			
+			<tr>
+				<td align="right">职位类型:</td>
+				<td>
+					<select class="easyui-combobox" style="width: 95px" name="jc_type" id="jtype-edit">
+						<option value="网络客服">网络客服</option>
+						<option value="客服中心">客服中心</option>
+						<option value="客服专员">客服专员</option>
+						<option value="电话客服">电话客服</option>
+						<option value="兼职客服">兼职客服</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript" src="js/layout_resumeInfo.js"></script>

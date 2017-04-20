@@ -1,5 +1,6 @@
 package com.yc.taokefu.web.handler;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class JobHandler {
 	private JobService jobService;
 	@Autowired 
 	private JobClassService jobClassService;
-	
+
 	/**
 	 * index查询职位信息
 	 * @param companyAll
@@ -53,8 +54,8 @@ public class JobHandler {
 		}
 		return "redirect:/list.html";
 	}
-	
-	
+
+
 	/**
 	 * list查询信息   wys
 	 * @param <T>
@@ -75,7 +76,7 @@ public class JobHandler {
 			return null;
 		}
 	}
-	
+
 	/**  wys
 	 * 返回信息
 	 * @return
@@ -100,12 +101,6 @@ public class JobHandler {
 		ServletUtil.c_id = Integer.valueOf(c_id);
 		LogManager.getLogger().debug("公司id === " +job_id+"c_id"+c_id);
 	}
-	/**
-	 * wys
-	 * 查询公司
-	 * @param job
-	 * @return
-	 */
 	@RequestMapping(value="findCompany")
 	@ResponseBody
 	public List<CompanyAll> findCompany(CompanyAll job) {
@@ -151,6 +146,7 @@ public class JobHandler {
 		LogManager.getLogger().debug(comJob);
 		return jobService.insertCompanyJob(comJob);
 	}
+
 	/**
 	 * wys
 	 * 公司职位状态修改
@@ -202,8 +198,8 @@ public class JobHandler {
 		comJob.setJob_id(ServletUtil.job_id);
 		return jobService.modifiJobEidts(comJob);
 	}
-	
-	
+
+
 	//查询所有职位
 	@RequestMapping("list")
 	@ResponseBody //响应Json数据
@@ -218,12 +214,12 @@ public class JobHandler {
 	public Boolean doDelete(HttpServletRequest request){
 		String ids = request.getParameter("ids");
 		String[] id = ids.split(",");
-			for (int i = 0; i < id.length;i++) {
-				LogManager.getLogger().debug("进行删除"+id[i]);
-				jobService.deleteJob(Integer.parseInt(id[i]));
-			}
-			return null;
-			
+		for (int i = 0; i < id.length;i++) {
+			LogManager.getLogger().debug("进行删除"+id[i]);
+			jobService.deleteJob(Integer.parseInt(id[i]));
+		}
+		return null;
+
 	} 
 	/**
 	 * 根据job_id修改 fv
@@ -253,8 +249,8 @@ public class JobHandler {
 			return list;//jobService.search(job);
 		}
 	}
-	
-	
+
+
 	/**
 	 * 添加职位 fv
 	 * fv
@@ -271,19 +267,19 @@ public class JobHandler {
 		job.setJob_min_salary(min_salary);
 		String max_salary=job.getJob_max_salary()+"k";
 		job.setJob_max_salary(max_salary);
-		
+
 		LogManager.getLogger().debug("添加"+job);
 		return jobService.jobAdd(job);
 	}
-	
+
 	/*
 	 * 首页左边客服类型加载
 	 * 
 	 */
-	
+
 	@RequestMapping(value="findJc_type",method=RequestMethod.POST)
 	@ResponseBody
-	public List<JobClass> findClass(JobClass jobClass) {
+	public List<JobClass> findClassType(JobClass jobClass) {
 		if(ServletUtil.JOBCLASSTYPE_LIST.size() != 0){
 			LogManager.getLogger().debug("返回界面职位类型信息   ==> "+ServletUtil.JOBCLASSTYPE_LIST);
 			return ServletUtil.JOBCLASSTYPE_LIST;
@@ -292,6 +288,73 @@ public class JobHandler {
 			LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSTYPE_LIST);
 			return ServletUtil.JOBCLASSTYPE_LIST;
 		}
+	}
+	/*
+	 * 首页左边客服类型名称加载
+	 * 
+	 */
+
+	@RequestMapping(value="findJc_name",method=RequestMethod.POST)
+	@ResponseBody
+	public List<JobClass> findClassName(JobClass jobClass) {
+		ServletUtil.JOBCLASSNAME_LIST = jobClassService.jobClassNameFind(jobClass);
+		LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSNAME_LIST);
+		return ServletUtil.JOBCLASSNAME_LIST;
+	}
+
+	//查询职位类型
+	@RequestMapping("jcList")
+	@ResponseBody //响应Json数据
+	public PaginationBean<JobClass> jcList(String rows,String page){
+		LogManager.getLogger().debug("职位类型  --> rows==>"+rows +",page==>"+page);
+		return jobClassService.jcListPartUsers(page,rows);
+	}
+	//添加职位类型
+	@RequestMapping(value="jcAdd",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean doJcAdd(JobClass jobClass){
+		LogManager.getLogger().debug("添加"+jobClass);
+		return jobClassService.BackjcAdd(jobClass);
+	}
+	//修改职位类型
+	@RequestMapping(value="jcEdit",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean doJcEdit(JobClass jobClass){
+		LogManager.getLogger().debug("添加"+jobClass);
+		return jobClassService.BackJcEdit(jobClass);
+	}
+
+	//后台删除职业类型
+	@RequestMapping("deleteJcById")
+	@ResponseBody
+	public String doJcDelete(HttpServletRequest request){
+		String ids = request.getParameter("ids");
+		String[] id = ids.split(",");
+		for (int i = 0; i < id.length;i++) {
+			LogManager.getLogger().debug("删除用户"+id[i]);
+			jobClassService.BackJcDelete(id[i]);
+		}
+		return "true";
+	}
+	
+	/**
+	 * 后台职业类型查询
+	 */
+	@RequestMapping("jcSearch")
+	@ResponseBody
+	public List<JobClass> doJcSearch(JobClass jobClass){
+		try {
+			jobClass.setJc_type(new String(jobClass.getJc_type().getBytes("ISO-8859-1"),"UTF-8"));
+			LogManager.getLogger().debug("后台职业类型查询:"+"检索类型"+jobClass.getJc_type());
+			LogManager.getLogger().debug(jobClass);	
+			List<JobClass> list = new ArrayList<JobClass>();
+			list= jobClassService.BackJcSearch(jobClass);
+			LogManager.getLogger().debug("list ========  >"+list);
+			return list;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
 

@@ -79,11 +79,11 @@ insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
  --resume	用户简历表(详情)
  update tkfuser set us_name='张三' where us_id=1002
  select * from tkfuser
- insert into usResume values(usResume_sql.nextval,1002,'','张三的简历','-0','qq客服','北京','5k','8k','-0','能吃苦耐劳，不怕加班');
+ insert into usResume values(usResume_sql.nextval,1042,'','张三的简历','-0','qq客服','北京','5k','8k','-0','能吃苦耐劳，不怕加班');
  select * from usResume
 create table usResume(
 	usr_id number primary key,
-	tkf_id number constraint tkf_id references tkfuser(us_id),
+	tkf_id varchar2(20) constraint tkf_id references tkfuser(us_id),
 	c_id number constraint fk_usR_id references company(comp_id),
 	usr_name varchar2(30),	--简历名称
 	usr_state varchar2(10) check(usr_state in('-0','-1','-2','-3','-4')),	--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
@@ -105,6 +105,7 @@ select * from company
 delete resume where job_id=1041
 drop  table resume
 delete resume where res_id=1041
+insert into resume values (resume_sql.nextval,'1042','1061','1001','呵呵','张三的简历','/upload/ChMkJlXsB1yIa_J2AAZNDJXnP7AAACUugPfLaoABk0k852.jpg','哎哟不错','男','本科','1-3年','12312345678','8888@qq.com',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','-0')
 	create table resume(
 		 res_id number primary key,
 		 c_id number ,
@@ -112,7 +113,7 @@ delete resume where res_id=1041
 		 usr_id number ,
 		 us_name varchar2(30) ,
 		 usr_name varchar2(30) ,
-		 us_picpath varchar2(50) ,--图片路径
+		 us_picpath varchar2(300) ,--图片路径
 		 us_intro varchar2(200), --简介
 		 us_sex varchar2(30) check(us_sex in('男','女')),
 		 us_educationa varchar2(30), --学历
@@ -139,8 +140,13 @@ delete resume where res_id=1041
 		 edu_educationa varchar2(30), --学历
 		 edu_start_year varchar2(30),-- 开始年份
 		 edu_end_year varchar2(30) ,--毕业年份
+<<<<<<< HEAD
 	
 		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
+=======
+		 
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
@@ -281,7 +287,8 @@ create table job(
 select * from job_class
 drop table job_class
 --职位分类表
-select * from job_class
+select distinct jc_type from job_class
+select * from job_class where jc_type='网络客服'
 create table job_class(
   jc_id number primary key ,
   jc_name varchar2(30) not null UNIQUE,
@@ -292,6 +299,7 @@ insert into JOB_CLASS values(jobClass_sql.nextval,'客服总监','客服中心')
 insert into JOB_CLASS values(jobClass_sql.nextval,'客服主管','客服中心');
 insert into JOB_CLASS values(jobClass_sql.nextval,'淘宝客服','网络客服');
 insert into JOB_CLASS values(jobClass_sql.nextval,'QQ客服','网络客服');
+insert into JOB_CLASS values(jobClass_sql.nextval,'投诉协调人员','客服专员');
 
 ----------------------------------------------------------------------------------
 
