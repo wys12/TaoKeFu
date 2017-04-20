@@ -1,5 +1,6 @@
 var str="";
 var state="";
+var s="";
 function loadInfo(number){
 	state=number.l_id;
 	showResume(state,"-10");
@@ -10,30 +11,34 @@ function showResume(number,usr_state){
 	$("#deliveryResume").html(str);
 	$.post("resume/findUserResume",{usr_id:number,usr_state:usr_state},function(data){
 		for(var i=0;i<data.length;i++){
-			str+='<li><div class="d_item"><h2 title="随便写"><a target="_blank" href="http://www.lagou.com/jobs/149594.html"> <em>'+data[i].us_name+'</em><span>（1k-2k）</span></a></h2>'
-			+'<div class="clear"></div><a title="公司名称" class="d_jobname" target="_blank" href="myhome.html?'+data[i].c_id+'"> <span>[上海]</span></a> <span class="d_time">2017-04-01 17:15</span>'
-			+'<div class="clear"></div><div class="d_resume">使用简历： <span> 在线简历 </span></div></div>'
-			otherInfo(data[i].job_id,data[i].c_id);
+			console.info(JSON.stringify(data));
+			str+='<li><div class="d_item"><h2 title="随便写"><a target="_blank" href="http://www.lagou.com/jobs/149594.html"> <em>'+data[i].us_name+'</em><span id="job_salary'+i+'"></span></a></h2>'
+			+'<div class="clear"></div><div class="d_resume">公司名称：<span id="d_comname'+i+'"></span></a></div>'
+			+'<div class="clear"></div><div class="d_resume">职位名称： <span id="d_jobname'+i+'"></span></div><span id="d_time'+i+'" class="d_time"></span></div>'
+			findResumeJob(data[i].job_id,i);
+			findResumeCompany(data[i].c_id,i);
+			/*
+		 * otherInfo(data[i].job_id,data[i].c_id);	$.post("company/findResumeCompany",{comp_id:data[i].c_id},function(data1){
+				//alert("1=="+data1[0].comp_name);
+				$(".d_jobname"+i+"").html(data1[0].comp_name);
+			},"json");<a title="公司名称" target="_blank" href="myhome.html?'+data[i].c_id+'">*/
+			
 		}
 		//alert(JSON.stringify(data));
 		$("#deliveryResume").html(str);
 	},"json");
 }
-function otherInfo(job_id,c_id){
-	//alert(job_id+"=="+c_id);
-	findResumeJob(job_id);
-	findResumeCompany(c_id);
-}
-function findResumeJob(job_id){
-	$.post("job/findResumeJob",{job_id:job_id},function(data){
-		//alert("job=="+data[0].job_name);
-		$(".d_jobname").text(data[0].job_name);
+function findResumeJob(job_id,i){
+	$.post("job/findResumeJob",{job_id:job_id},function(data2){
+		$("#d_jobname"+i+"").text(data2[0].job_name);
+		$("#d_time"+i+"").text(data2[0].job_ftime);
+		$("#job_salary"+i+"").text('（'+data2[0].job_min_salary+'-'+data2[0].job_max_salary+'）');
 	},"json");
 }
-function findResumeCompany(comp_id){
-	$.post("company/findResumeCompany",{comp_id:comp_id},function(data){
-		//alert("company=="+data[0].comp_name);
-		$(".d_jobname").text(data[0].job_name);
+function findResumeCompany(comp_id,i){
+	//alert("comp_id=="+comp_id);
+	$.post("company/findResumeCompany",{comp_id:comp_id},function(data1){
+		$("#d_comname"+i+"").text(data1[0].comp_name);
 	},"json");
 }
 $("#allResume").click(function(){

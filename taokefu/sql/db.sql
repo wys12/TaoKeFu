@@ -99,6 +99,7 @@ create table usResume(
 update resume set usr_state='-0' where c_id=1001
 select * from resume where c_id=1001 and usr_id=1002 
 select * from resume
+select * from job
 select * from tkfuser
 select * from company
 delete resume where job_id=1041
