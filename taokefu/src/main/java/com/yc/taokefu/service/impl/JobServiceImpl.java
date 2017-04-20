@@ -96,5 +96,9 @@ public class JobServiceImpl implements JobService{
 	public int modifiJobEidts(CompanyAll comJob) {
 		return jobMapper.modifiJobEidts(comJob);
 	}
+	@Override
+	public int modifiJobState(Job job) {
+		return jobMapper.modifiJobState(job);
+	}
 	
 }

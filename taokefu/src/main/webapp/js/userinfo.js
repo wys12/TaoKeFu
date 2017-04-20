@@ -39,7 +39,6 @@ function loadUrl(number){
 
 function outlogins(){
 	$.post("users/outlogins",function(data){
-		//alert("outlogins");
 		$(".collapsible_menu").hide();
 		$(".loginTop").show();
 	});

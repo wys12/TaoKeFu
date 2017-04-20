@@ -287,7 +287,11 @@ select distinct jc_type from job_class
 select * from job_class where jc_type='网络客服'
 create table job_class(
   jc_id number primary key ,
+<<<<<<< HEAD
+  jc_name varchar2(30) not null,
+=======
   jc_name varchar2(30) not null UNIQUE,
+>>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
   jc_type varchar2(30)
 );
 insert into JOB_CLASS values(jobClass_sql.nextval,'客服经理','客服中心');
