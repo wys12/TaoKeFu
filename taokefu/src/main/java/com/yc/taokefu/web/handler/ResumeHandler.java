@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.taokefu.entity.JobClass;
+import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Resume;
 import com.yc.taokefu.entity.UserAll;
 import com.yc.taokefu.service.ResumeService;
@@ -79,5 +81,13 @@ public class ResumeHandler {
 		LogManager.getLogger().debug(resume);
 		return resumeService.findResumeInfo(resume);
 	}
+	
+	//后台查询简历查询
+		@RequestMapping("list")
+		@ResponseBody //响应Json数据
+		public PaginationBean<Resume> jcList(String rows,String page){
+			LogManager.getLogger().debug("职位类型  --> rows==>"+rows +",page==>"+page);
+			return resumeService.listPartUsers(page,rows);
+		}
 
 }

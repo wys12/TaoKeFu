@@ -15,12 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</insert>
 	
+	<!-- 后台职位分类数据分页 -->
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage}" ofType="JobClass" select="getJobClass" />
 	</resultMap>
 
-	<!-- 后台职位分类数据分页 -->
 	<select id="jcListJob" parameterType="PaginationBean" resultMap="PaginationBeanMap">
 		select count(1) total, ceil(count(1) / ${pageSize})
 		totalPage,${pageSize} pageSize,${currPage} currPage from job_class
