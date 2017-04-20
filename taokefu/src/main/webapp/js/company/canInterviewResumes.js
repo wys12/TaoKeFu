@@ -16,7 +16,7 @@ function showResume(usr_state){
 					+'<div class="resumeIntro"><h3 class="unread"><a target="_blank" title="预览jason的简历" href="preview.html?tkf_id='+data[i].usr_id+'"> '+data[i].usr_name+'</a> <em></em><a target="_blank" href="javascript:void(0)" id="'+data[i].job_id+'"></a></h3><span class="fr">投递时间：2017-04-16 16:08</span>'
 					+'<div>'+data[i].us_name+' / '+data[i].us_sex+' / '+data[i].us_educationa+' / '+data[i].us_work_year+' / '+data[i].hj_city+' <br> '+data[i].exp_job_name+' · '+data[i].exp_company_name+' | '+data[i].edu_educationa+'· '+data[i].edu_shool_name+'</div>'
 					+'<div class="links"><a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" onclick="companyResumeState(-2,'+data[i].job_id+')" href="javascript:void(0)">通知面试</a> '
-					+'<a data-deliverid="1686182" class="resume_refuse" onclick="companyResumeState(-3,'+data[i].job_id+')" href="javascript:void(0)">不合适</a> '
+					+'<a data-deliverid="1686182" class="resume_refuse" onclick="companyResumeState(-4,'+data[i].job_id+')" href="javascript:void(0)">不合适</a> '
 					+'</div></div><div class="contactInfo"><span class="c9">电话：</span><span>'+data[0].us_phone+' &nbsp;&nbsp;&nbsp;</span> <span class="c9">邮箱：</span><a href="javascript:void(0)">'+data[0].us_email+'</a></div></li>');
 			$.post("job/findJob",{job_id:data[i].job_id},function(data1){
 				$("#"+data1[0].job_id+"").text(" | "+data1[0].job_name);
@@ -34,6 +34,9 @@ $("#resume_0").click(function(){
 	showResume("-0");
 	companyResumeClass(0);
 });
+/**
+ * 待定（查看的简历）
+ */
 $("#resume_1").click(function(){
 	$("#resumeRefuseAll").text("标记为不合适");
 	$("#resumeRefuseAll").removeClass("examineRes","passRes","deleteRes");
@@ -41,6 +44,9 @@ $("#resume_1").click(function(){
 	showResume("-1");
 	companyResumeClass(1);
 });
+/**
+ * 通知面试
+ */
 $("#resume_2").click(function(){
 	$("#resumeRefuseAll").removeClass();
 	$("#resumeRefuseAll").text("标记为通过");
@@ -49,11 +55,14 @@ $("#resume_2").click(function(){
 	showResume("-2");
 	companyResumeClass(2);
 });
+/**
+ * 不合适简历
+ */
 $("#resume_3").click(function(){
 	$("#resumeRefuseAll").text("标记为删除");
 	$("#resumeRefuseAll").removeClass("examineRes","passRes","inappropriateRes");
 	$("#resumeRefuseAll").attr("class","deleteRes");
-	showResume("-3");
+	showResume("-4");
 	companyResumeClass(3);
 });
 $("#resume_4").click(function(){
@@ -66,10 +75,10 @@ function stateRes(){
 		return $(elem).val();
 	}).get().join(',');
 	switch($("#resumeRefuseAll").attr("class")){
-	case "examineRes":companyResumeState("-1",job_id);break;
-	case "inappropriateRes":companyResumeState("-3",job_id);break;
-	case "passRes":companyResumeState("-4",job_id);break;
-	case "deleteRes":companyResumeDelete();break;
+	case "examineRes":companyResumeState("-1",job_id);break;//标记为查看
+	case "inappropriateRes":companyResumeState("-4",job_id);break;//标记为不合适
+	case "passRes":companyResumeState("-3",job_id);break;//标记为通过
+	case "deleteRes":companyResumeDelete();break;//标记为删除
 	default: alert("sss");break;
 	}
 };

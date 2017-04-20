@@ -41,4 +41,6 @@ public interface CompanyAllMapper {
 	Integer modifiInvest(CompanyAll company);
 	Integer modifiJob(CompanyAll company);
 	Integer modifiJob_class(CompanyAll company);
+
+	List<CompanyAll> findResumeCompany(CompanyAll companyAll);
 }

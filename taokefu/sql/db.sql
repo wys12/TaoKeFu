@@ -13,6 +13,7 @@ create table admin(
   ad_email varchar2(30)
 );
 select * from LOGIN
+select * from user_tables
 --login	登录
 create table login(
   l_id number primary key ,
@@ -95,7 +96,7 @@ create table usResume(
   --description	自我描述
 	des_content varchar2(300) --描述内容
 );
-select * from resume where c_id=1001
+update resume set usr_state='-0' where c_id=1001
 select * from resume where c_id=1001 and usr_id=1002 
 select * from resume
 select * from tkfuser
@@ -138,7 +139,7 @@ delete resume where res_id=1041
 		 edu_start_year varchar2(30),-- 开始年份
 		 edu_end_year varchar2(30) ,--毕业年份
 	
-		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通过初选/通知面试/不合适）
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
 	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
@@ -239,9 +240,8 @@ create table take(
 );
 select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id where j.job_id=1001 
 insert into tag values(tag_sql.nextval,'1001','五险一金');
-
-
-
+select * from tkfuser
+select * from usResume
 insert into job 
 values(job_sql.nextval,'1001','五险一金','qq客服','客服联系','全职','3k','5k','2017-04-05','本科','职位诱惑是休息时间多','qq客服工作的职责','qq客服任职的要求',
 'qq客服其他的要求','0','-1');

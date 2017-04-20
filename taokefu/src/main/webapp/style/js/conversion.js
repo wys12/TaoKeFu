@@ -1,4 +1,4 @@
-var youdao_conv_host = window.youdao_conv_host || "conv.youdao.com";
+/*var youdao_conv_host = window.youdao_conv_host || "conv.youdao.com";
 var youdao = window.youdao || {};
 youdao.param_names = ["youdao_conv_id", "youdao_conv_label", "youdao_conv_value", "youdao_order_id", "youdao_passport", "youdao_conv_params"];
 youdao.escape = function(a) {
@@ -214,4 +214,4 @@ youdao.imageRequest = function(b) {
     };
     youdao.img = null
 };
-youdao.pageView(); 
+youdao.pageView(); */

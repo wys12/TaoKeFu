@@ -14,7 +14,7 @@ public interface JobMapper {
 
 	List<CompanyAll> jobFind(CompanyAll job);
 
-	Integer jobAdd(Job job);
+	int jobAdd(Job job);
 	
 	//职位数据分页
 	PaginationBean<Job> listJob(PaginationBean<Job> pb);
@@ -35,6 +35,11 @@ public interface JobMapper {
 	int modifiJobEidts(CompanyAll comJob);
 
 	int modifiJobState(Job job);
+
+
+	List<CompanyAll> findResumeJob(CompanyAll job);
+
+
 
 
 }

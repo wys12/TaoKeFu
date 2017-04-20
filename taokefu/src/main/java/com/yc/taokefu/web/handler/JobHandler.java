@@ -179,6 +179,19 @@ public class JobHandler {
 	}
 	/**
 	 * wys
+	 * 简历查询职位信息
+	 * @param comJob
+	 * @return
+	 */
+	@RequestMapping(value="findResumeJob",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> findResumeJob(CompanyAll job) {
+		return jobService.findResumeJob(job);
+	}
+	
+	
+	/**
+	 * wys
 	 * 对以添加的职位进行修改
 	 * @param comJob
 	 * @return

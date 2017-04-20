@@ -28,4 +28,6 @@ public interface ResumeService {
 	int modifiResumeState(Resume resume);
 
 	int deleteResumeState(Resume resume);
+
+	List<Resume> findUserResume(Resume resume);
 }

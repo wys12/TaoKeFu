@@ -9,7 +9,7 @@ import com.yc.taokefu.entity.PaginationBean;
 public interface JobService {
 	List<CompanyAll> jobFind(String job);
 	
-	Integer jobAdd(Job job);
+	int jobAdd(Job job);
 	/**
 	 * 职位数据分页
 	 * @param page
@@ -48,4 +48,7 @@ public interface JobService {
 	int modifiJobEidts(CompanyAll comJob);
 
 	int modifiJobState(Job job);
+
+
+	List<CompanyAll> findResumeJob(CompanyAll job);
 }

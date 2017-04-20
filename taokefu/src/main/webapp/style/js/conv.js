@@ -1,4 +1,4 @@
-var youdao = window.youdao || {};
+/*var youdao = window.youdao || {};
 (function() {
     var a = document;
     youdao.script = a.createElement('script');
@@ -11,4 +11,4 @@ var youdao = window.youdao || {};
     }
     var s = a.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(youdao.script, s);
-})(); 
+})(); */

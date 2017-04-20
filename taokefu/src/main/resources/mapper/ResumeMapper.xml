@@ -50,6 +50,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findResume" resultType="Resume">
 		select * from resume where c_id=${c_id} and usr_state='${usr_state}'
 	</select>
+	<select id="findUserResume" resultType="Resume">
+		select * from resume where usr_id=${usr_id} <if test="usr_state != '-10'">and usr_state='${usr_state}'</if>
+	</select>
+	
 	<!-- 简历投递时的查询判断 -->
 	<select id="findResumes" resultType="Resume">
 		select * from resume where job_id=${tak_id} and usr_id=${tkf_id}

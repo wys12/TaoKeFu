@@ -34,7 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="modifiJobState" parameterType="Job">
 		update job set job_state='${job_state}' where job_id=${job_id}
 	</update>
-
+	<select id="findResumeJob" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from job where job_id=${job_id}
+	</select>
+	
 	<resultMap type="PaginationBean" id="PaginationBeanMap">
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage}" ofType="Job" select="getJOb" />

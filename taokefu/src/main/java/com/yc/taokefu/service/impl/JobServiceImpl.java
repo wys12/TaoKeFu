@@ -21,7 +21,7 @@ public class JobServiceImpl implements JobService{
 	 * wys
 	 */
 	@Override
-	public Integer jobAdd(Job job) {
+	public int jobAdd(Job job) {
 		return jobMapper.jobAdd(job);
 	}
 	/**
@@ -99,6 +99,10 @@ public class JobServiceImpl implements JobService{
 	@Override
 	public int modifiJobState(Job job) {
 		return jobMapper.modifiJobState(job);
+	}
+	@Override
+	public List<CompanyAll> findResumeJob(CompanyAll job) {
+		return jobMapper.findResumeJob(job);
 	}
 	
 }

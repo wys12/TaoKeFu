@@ -85,4 +85,10 @@ public class ResumeServiceImpl implements ResumeService {
 		return resumeMapper.deleteResumeState(resume);
 	}
 
+
+	@Override
+	public List<Resume> findUserResume(Resume resume) {
+		return resumeMapper.findUserResume(resume);
+	}
+
 }

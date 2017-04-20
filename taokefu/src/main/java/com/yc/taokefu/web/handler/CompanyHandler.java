@@ -75,6 +75,17 @@ public class CompanyHandler {
 	}
 	/**
 	 * wys
+	 * 简历查询公司信息
+	 * @param comJob
+	 * @return
+	 */
+	@RequestMapping(value="findResumeCompany",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> findResumeCompany(CompanyAll companyAll) {
+		return companyAllService.findResumeCompany(companyAll);
+	}
+	/**
+	 * wys
 	 * 公司简历加载
 	 * */
 	@RequestMapping("findCoResume")

@@ -138,5 +138,9 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	public Integer modifiJob_class(CompanyAll company) {
 		return companyAllMapper.modifiJob_class(company);
 	}
+	@Override
+	public List<CompanyAll> findResumeCompany(CompanyAll companyAll) {
+		return companyAllMapper.findResumeCompany(companyAll);
+	}
 	
 }

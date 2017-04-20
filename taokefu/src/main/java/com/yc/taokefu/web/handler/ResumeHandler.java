@@ -68,15 +68,15 @@ public class ResumeHandler {
 	
 	/**
 	 * wys
-	 *  修改简历
+	 *  个人查看简历
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value="modifiResume",method=RequestMethod.POST)
+	@RequestMapping(value="findUserResume",method=RequestMethod.POST)
 	@ResponseBody
-	public int modifiResume(UserAll user){
-		LogManager.getLogger().debug(user);
-		return 0;
+	public List<Resume> findUserResume(Resume resume){
+		LogManager.getLogger().debug(resume);
+		return resumeService.findUserResume(resume);
 	}
 	
 	/**

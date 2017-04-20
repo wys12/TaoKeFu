@@ -16,7 +16,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		'%${job_name}%'
 	</select>
 
-
+	<select id="findResumeCompany" parameterType="CompanyAll" resultType="CompanyAll">
+		select * from company where comp_id=${comp_id}
+	</select>
 
 	<!-- ***********************添加公司信息 *********************** -->
 	<!-- 公司信息 -->

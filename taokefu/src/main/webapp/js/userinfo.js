@@ -32,7 +32,7 @@ function logins(){
 function loadUrl(number){
 	var url = (window.location.pathname);
 	//alert(url);
-	if(url=="/taokefu/toudi.html" || url=="/taokefu/preview.html" || url=="/taokefu/jianli.html"){
+	if(url=="/taokefu/toudi.html" || url=="/taokefu/preview.html" || url=="/taokefu/jianli.html"||url=="/taokefu/delivery.html"){
 		loadInfo(number);
 	}
 }
