@@ -6,7 +6,8 @@ function add(){
 		url:'job/add',
 		success:function(data){
 			if(data){
-				$.messager.alert('信息提示','提交成功！','info');
+				//$.messager.alert('信息提示','提交成功！','info');
+				$('#jobClass-datagrid-2').datagrid('reload');
 				$('#job-dialog-1').dialog('close');
 			}
 			else
@@ -40,7 +41,8 @@ function edit(){
 		url:'job/edit',
 		success:function(data){
 			if(data){
-				$.messager.alert('信息提示','提交成功！','info');
+				//$.messager.alert('信息提示','提交成功！','info');
+				$('#jobClass-datagrid-2').datagrid('reload');
 				$('#job-dialog-2').dialog('close');
 			}
 			else
@@ -70,7 +72,8 @@ function remove(){
 					traditional: true,
 					success:function(data){
 						if(data){
-							$.messager.alert('信息提示','删除成功！','info');		
+							//$.messager.alert('信息提示','删除成功！','info');		
+							$('#jobClass-datagrid-2').datagrid('reload');
 						}
 						else
 						{

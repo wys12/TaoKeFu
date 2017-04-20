@@ -283,7 +283,8 @@ select * from job_class
 >>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 
 --职位分类表
-select * from job_class
+select distinct jc_type from job_class
+select * from job_class where jc_type='网络客服'
 create table job_class(
   jc_id number primary key ,
   jc_name varchar2(30) not null UNIQUE,
@@ -294,6 +295,7 @@ insert into JOB_CLASS values(jobClass_sql.nextval,'客服总监','客服中心')
 insert into JOB_CLASS values(jobClass_sql.nextval,'客服主管','客服中心');
 insert into JOB_CLASS values(jobClass_sql.nextval,'淘宝客服','网络客服');
 insert into JOB_CLASS values(jobClass_sql.nextval,'QQ客服','网络客服');
+insert into JOB_CLASS values(jobClass_sql.nextval,'投诉协调人员','客服专员');
 
 ----------------------------------------------------------------------------------
 

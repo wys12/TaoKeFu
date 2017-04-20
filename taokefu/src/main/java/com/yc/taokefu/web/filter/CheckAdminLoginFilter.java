@@ -20,7 +20,7 @@ import com.yc.taokefu.util.ServletUtil;
  * AaminLogin验证
  */
 
-@WebFilter("/manage.html")
+//@WebFilter("/manage.html")
 public class CheckAdminLoginFilter extends AbstractFilter  {
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
