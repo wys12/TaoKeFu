@@ -2,7 +2,6 @@ package com.yc.taokefu.web.handler;
 
 
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.yc.taokefu.entity.Job;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.User;
 import com.yc.taokefu.entity.UserAll;
@@ -80,7 +78,8 @@ public class UserHandler {
 	 * */
 	@RequestMapping("modifiTkfUser")
 	@ResponseBody //响应Json数据
-	public Integer modifiTkfUser(UserAll user){
+	public int modifiTkfUser(UserAll user){
+		LogManager.getLogger().debug(user);
 		return userService.modifiUser(user);
 	}
 	/**
@@ -99,7 +98,26 @@ public class UserHandler {
 	@RequestMapping("insertUsResume")
 	@ResponseBody //响应Json数据
 	public Integer insertUsResume(UserAll user){
-		return userService.insertUsResume(user);
+		user.setTkf_id(ServletUtil.tkf_ids);
+		String naString = user.getHj_nature();
+		if(naString.equals("全职")){
+			user.setHj_nature("-0");
+		}else if(naString.equals("兼职")){
+			user.setHj_nature("-1");
+		}else{
+			user.setHj_nature("-2");
+		}
+		String[] salary =user.getHj_min_salary().split("-");
+		LogManager.getLogger().debug(salary+"=="+user);
+		user.setHj_min_salary(salary[0]);
+		user.setHj_max_salary(salary[1]);
+		if(userService.findUsResume(user) != null ){
+			LogManager.getLogger().debug("修改");
+			return userService.modifiUsResume(user);
+		}else{
+			LogManager.getLogger().debug("第一次添加");
+			return userService.insertUsResume(user);
+		}
 	}
 	/**
 	 * wys
@@ -121,28 +139,7 @@ public class UserHandler {
 	public List<UserAll> findSucceed(UserAll user){
 		return userService.findSucceed(user);
 	}
-	/**
-	 * wys
-	 * 个人作品加载
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping("insertSucceed")
-	@ResponseBody //响应Json数据
-	public Integer insertSucceed(UserAll user){
-		return userService.insertSucceed(user);
-	}
-	/**
-	 * 个人作品加载
-	 * wys
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping("modifiSucceed")
-	@ResponseBody //响应Json数据
-	public Integer modifiSucceed(UserAll user){
-		return userService.modifiSucceed(user);
-	}
+	
 	/**
 	 * wys
 	 * 个人工作经验加载

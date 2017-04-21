@@ -13,8 +13,8 @@ function showResume(number,usr_state){
 		for(var i=0;i<data.length;i++){
 			console.info(JSON.stringify(data));
 			str+='<li><div class="d_item"><h2 title="随便写"><a target="_blank" href="http://www.lagou.com/jobs/149594.html"> <em>'+data[i].us_name+'</em><span id="job_salary'+i+'"></span></a></h2>'
-			+'<div class="clear"></div><div class="d_resume">公司名称：<span id="d_comname'+i+'"></span></a></div>'
-			+'<div class="clear"></div><div class="d_resume">职位名称： <span id="d_jobname'+i+'"></span></div><span id="d_time'+i+'" class="d_time"></span></div>'
+			+'<div class="clear"></div><div class="d_resume">职位名称： <span id="d_jobname'+i+'"></span></div>'
+			+'<div class="clear"></div><div class="d_resume">公司名称：<span id="d_comname'+i+'"></span></div><span id="d_time'+i+'" class="d_time"></span></div>'
 			findResumeJob(data[i].job_id,i);
 			findResumeCompany(data[i].c_id,i);
 			/*

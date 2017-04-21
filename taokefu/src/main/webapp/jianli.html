@@ -99,8 +99,8 @@
 
 					<div class="profile_box" id="basicInfo">
 						<h2>基本信息</h2>
-						<span class="c_edit"></span>
-						<div class="basicShow">
+						<span id="user_c_edit" class="c_edit"></span>
+						<div id="basicShow" class="basicShow">
 
 							<div class="m_portrait">
 								<div></div>
@@ -110,7 +110,7 @@
 						</div>
 						<!--end .basicShow-->
 
-						<div class="basicEdit dn">
+						<div id="basicEdit" class="basicEdit dn">
 							<form id="profileForm">
 								<table>
 									<tbody>
@@ -118,12 +118,12 @@
 											<td valign="top"><span class="redstar">*</span></td>
 											<td id="names"></td>
 											<td valign="top"></td>
-											<td id="sexId">
-												<ul class="profile_radio clearfix reset">
-													<li>男<em></em> <input type="radio"
-													 name="gender" value="男">
+											<td>
+												<ul id="us_sexId" class="profile_radio clearfix reset">
+													<li>男<em></em> <input type="radio" name="us_sex"
+														value="男">
 													</li>
-													<li>女<em></em> <input type="radio" name="gender"
+													<li>女<em></em> <input type="radio" name="us_sex"
 														value="女">
 													</li>
 												</ul>
@@ -131,13 +131,13 @@
 										</tr>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
-											<td><input type="hidden" id="topDegree" value="大专"
-												name="topDegree"> <input type="button" value="大专"
-												id="select_topDegree"
+											<td><input type="hidden" id="topDegrees"
+												name="us_educationa"> <input type="button"
+												id="select_topDegrees"
 												class="profile_select_190 profile_select_normal">
 												<div class="boxUpDown boxUpDown_190 dn" id="box_topDegree"
 													style="display: none;">
-													<ul>
+													<ul id="us_educationa">
 														<li>大专</li>
 														<li>本科</li>
 														<li>硕士</li>
@@ -146,13 +146,13 @@
 													</ul>
 												</div></td>
 											<td valign="top"><span class="redstar">*</span></td>
-											<td><input type="hidden" id="workyear" value=""
-												name="workyear"> <input type="button" value=""
-												id="select_workyear"
+											<td><input type="hidden" id="workyear"
+												name="us_work_years"> <input type="button"
+												id="select_workyears" value="工作时间"
 												class="profile_select_190 profile_select_normal">
 												<div class="boxUpDown boxUpDown_190 dn" id="box_workyear"
 													style="display: none;">
-													<ul>
+													<ul id="us_work_year">
 														<li>应届毕业生</li>
 														<li>1年</li>
 														<li>2年</li>
@@ -171,18 +171,17 @@
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td colspan="3"><input type="text" placeholder="手机号码"
-												 name="tel" id="tel"></td>
+												name="us_phone" id="us_phone"></td>
 										</tr>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td colspan="3"><input type="text"
-												placeholder="接收面试通知的邮箱" name="email"
-												id="email"></td>
+												placeholder="接收面试通知的邮箱" name="us_email" id="us_email"></td>
 										</tr>
 										<tr>
 											<td valign="top"></td>
 											<td colspan="3"><input type="hidden" id="currentState"
-												value="" name="currentState"> <input type="button"
+												value="" name="us_intro"> <input type="button"
 												value="目前状态" id="select_currentState"
 												class="profile_select_410 profile_select_normal">
 												<div class="boxUpDown boxUpDown_410 dn"
@@ -197,7 +196,7 @@
 										</tr>
 										<tr>
 											<td></td>
-											<td colspan="3"><input type="submit" value="保 存"
+											<td colspan="3"><input id="userInfo" type="button" value="保 存"
 												class="btn_profile_save"> <a
 												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
 										</tr>
@@ -240,14 +239,14 @@
 							<span></span>
 						</div>
 						<!--end .expectShow-->
-						<div class="expectEdit dn">
+						<div id="expectEditId" class="expectEdit dn">
 							<form id="expectForm">
 								<table>
 									<tbody>
 										<tr>
-											<td><input type="hidden" id="expectCity" value=""
-												name="expectCity"> <input type="button"
-												value="期望城市，如：北京" id="select_expectCity"
+											<td><input type="hidden" id="hjCity" 
+												name="hj_city"> <input type="button"
+												value="期望城市，如：北京" id="select_hjCity"
 												class="profile_select_287 profile_select_normal">
 												<div class="boxUpDown boxUpDown_596 dn" id="box_expectCity"
 													style="display: none;">
@@ -305,14 +304,14 @@
 													</dl>
 												</div></td>
 											<td>
-												<ul class="profile_radio clearfix reset">
+												<ul id="hj_natureId" class="profile_radio clearfix reset">
 													<li class="current">全职<em></em> <input type="radio"
-														checked="" name="type" value="全职">
+														checked="" name="hj_nature" value="全职">
 													</li>
-													<li>兼职<em></em> <input type="radio" name="type"
+													<li>兼职<em></em> <input type="radio" name="hj_nature"
 														value="兼职">
 													</li>
-													<li>实习<em></em> <input type="radio" name="type"
+													<li>实习<em></em> <input type="radio" name="hj_nature"
 														value="实习">
 													</li>
 												</ul>
@@ -320,11 +319,11 @@
 										</tr>
 										<tr>
 											<td><input type="text" placeholder="期望职位，如：产品经理"
-												value="" name="expectPosition" id="expectPosition">
+												value="" name="hj_name" id="hjPosition">
 											</td>
-											<td><input type="hidden" id="expectSalary" value=""
-												name="expectSalary"> <input type="button"
-												value="期望月薪" id="select_expectSalary"
+											<td><input type="hidden" id="hjSalary" value=""
+												name="hj_min_salary"> <input type="button"
+												value="期望月薪" id="select_hjSalary"
 												class="profile_select_287 profile_select_normal">
 												<div class="boxUpDown boxUpDown_287 dn"
 													id="box_expectSalary" style="display: none;">
@@ -340,9 +339,8 @@
 												</div></td>
 										</tr>
 										<tr>
-											<td colspan="2"><input type="submit" value="保 存"
-												class="btn_profile_save"> <a
-												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
+											<td colspan="2"><input type="button" onclick="hbId()" value="保 存"
+												class="btn_profile_save"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -350,9 +348,6 @@
 							<!--end #expectForm-->
 						</div>
 						<!--end .expectEdit-->
-						<div class="expectAdd pAdd">
-							填写准确的期望工作能大大提高求职成功率哦…<br> 快来添加期望工作吧！ <span>添加期望工作</span>
-						</div>
 						<!--end .expectAdd-->
 
 						<input type="hidden" id="expectJobVal" value=""> <input
@@ -375,23 +370,25 @@
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td><input type="text" placeholder="公司名称"
-												name="companyName" class="companyName"></td>
+												id="exp_company_nameId" name="exp_company_name" class="companyName"></td>
 											<td valign="top"><span class="redstar">*</span></td>
-											<td><input type="text" placeholder="职位名称，如：产品经理"
-												name="positionName" class="positionName"></td>
+											<td><input type="text" id="exp_job_nameId" placeholder="职位名称，如：产品经理"
+												name="exp_job_name" class="positionName"></td>
 										</tr>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td>
 												<div class="fl">
 													<input type="hidden" class="companyYearStart" value=""
-														name="companyYearStart"> <input type="button"
+														name="exp_start_year"> <input type="button"
 														value="开始年份"
 														class="profile_select_139 profile_select_normal select_companyYearStart">
 													<div
 														class="box_companyYearStart boxUpDown boxUpDown_139 dn"
 														style="display: none;">
-														<ul>
+														<ul><li>2017</li>
+															<li>2016</li>
+															<li>2015</li>
 															<li>2014</li>
 															<li>2013</li>
 															<li>2012</li>
@@ -469,7 +466,7 @@
 											<td>
 												<div class="fl">
 													<input type="hidden" class="companyYearEnd" value=""
-														name="companyYearEnd"> <input type="button"
+														name="exp_end_year"> <input type="button"
 														value="结束年份"
 														class="profile_select_139 profile_select_normal select_companyYearEnd">
 													<div class="box_companyYearEnd  boxUpDown boxUpDown_139 dn"
@@ -552,9 +549,8 @@
 										</tr>
 										<tr>
 											<td></td>
-											<td colspan="3"><input type="submit" value="保 存"
-												class="btn_profile_save"> <a
-												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
+											<td colspan="3"><input id="expId" type="button" value="保 存"
+												class="btn_profile_save"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -566,23 +562,23 @@
 							</ul>
 						</div>
 						<!--end .experienceShow-->
-						<div class="experienceEdit dn">
+						<div class="experienceEdit">
 							<form class="experienceForm">
 								<table>
 									<tbody>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td><input type="text" placeholder="公司名称"
-												name="companyName" class="companyName"></td>
+												id="exp_company_nameId" name="exp_company_name" class="companyName"></td>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td><input type="text" placeholder="职位名称，如：产品经理"
-												name="positionName" class="positionName"></td>
+												id="exp_job_nameId" name="exp_job_name" class="positionName"></td>
 										</tr>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td>
 												<div class="fl">
-													<input type="hidden" class="companyYearStart" value=""
+													<input type="hidden" id="companyYearStartId" class="companyYearStart"
 														name="companyYearStart"> <input type="button"
 														value="开始年份"
 														class="profile_select_139 profile_select_normal select_companyYearStart">
@@ -590,6 +586,9 @@
 														class="box_companyYearStart boxUpDown boxUpDown_139 dn"
 														style="display: none;">
 														<ul>
+															<li>2017</li>
+															<li>2016</li>
+															<li>2015</li>
 															<li>2014</li>
 															<li>2013</li>
 															<li>2012</li>
@@ -751,8 +750,7 @@
 										<tr>
 											<td></td>
 											<td colspan="3"><input type="submit" value="保 存"
-												class="btn_profile_save"> <a
-												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
+												class="btn_profile_save"> </td>
 										</tr>
 									</tbody>
 								</table>
@@ -762,9 +760,7 @@
 						</div>
 						<!--end .experienceEdit-->
 
-						<div class="experienceAdd pAdd">
-							工作经历最能体现自己的工作能力，<br> 且完善后才可投递简历哦！ <span>添加工作经历</span>
-						</div>
+						
 						<!--end .experienceAdd-->
 					</div>
 					<!--end #workExperience-->
@@ -928,8 +924,7 @@
 										<tr>
 											<td></td>
 											<td colspan="3"><input type="submit" value="保 存"
-												class="btn_profile_save"> <a
-												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
+												class="btn_profile_save"> </td>
 										</tr>
 									</tbody>
 								</table>
@@ -941,7 +936,7 @@
 							</ul>
 						</div>
 						<!--end .educationalShow-->
-						<div class="educationalEdit dn">
+						<div class="educationalEdit">
 							<form class="educationalForm">
 								<table>
 									<tbody>
@@ -1088,8 +1083,7 @@
 										<tr>
 											<td></td>
 											<td colspan="3"><input type="submit" value="保 存"
-												class="btn_profile_save"> <a
-												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
+												class="btn_profile_save"> </td>
 										</tr>
 									</tbody>
 								</table>
@@ -1098,9 +1092,7 @@
 							<!--end .educationalForm-->
 						</div>
 						<!--end .educationalEdit-->
-						<div class="educationalAdd pAdd">
-							教育背景可以充分体现你的学习和专业能力，<br> 且完善后才可投递简历哦！ <span>添加教育经历</span>
-						</div>
+						
 						<!--end .educationalAdd-->
 					</div>
 					<!--end #educationalBackground-->
@@ -1110,7 +1102,7 @@
 						<span class="c_edit dn"></span>
 						<div class="descriptionShow dn"></div>
 						<!--end .descriptionShow-->
-						<div class="descriptionEdit dn">
+						<div class="descriptionEdit">
 							<form class="descriptionForm">
 								<table>
 									<tbody>
@@ -1124,8 +1116,7 @@
 										</tr>
 										<tr>
 											<td colspan="2"><input type="submit" value="保 存"
-												class="btn_profile_save"> <a
-												class="btn_profile_cancel" href="javascript:;">取 消</a></td>
+												class="btn_profile_save"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -1133,21 +1124,19 @@
 							<!--end .descriptionForm-->
 						</div>
 						<!--end .descriptionEdit-->
-						<div class="descriptionAdd pAdd">
-							描述你的性格、爱好以及吸引人的经历等，<br> 让企业了解多元化的你！ <span>添加自我描述</span>
-						</div>
+						
 						<!--end .descriptionAdd-->
 					</div>
 					<!--end #selfDescription-->
 
-					<div class="profile_box" id="worksShow">
+					<!-- <div class="profile_box" id="worksShow">
 						<h2>作品展示</h2>
 						<span class="c_add dn"></span>
 						<div class="workShow dn">
 							<ul class="slist clearfix">
 							</ul>
 						</div>
-						<!--end .workShow-->
+						end .workShow
 						<div class="workEdit dn">
 							<form class="workForm">
 								<table>
@@ -1173,14 +1162,14 @@
 								</table>
 								<input type="hidden" class="showId" value="">
 							</form>
-							<!--end .workForm-->
+							end .workForm
 						</div>
-						<!--end .workEdit-->
+						end .workEdit
 						<div class="workAdd pAdd">
 							好作品会说话！<br> 快来秀出你的作品打动企业吧！ <span>添加作品展示</span>
 						</div>
-						<!--end .workAdd-->
-					</div>
+						end .workAdd
+					</div> -->
 					<!--end #worksShow-->
 					<input type="hidden" id="resumeId" value="268472">
 				</div>
@@ -1193,20 +1182,20 @@
 					</div>
 					<!--end #myInfo-->
 
-					<div class="mycenterR" id="myResume">
+					<!-- <div class="mycenterR" id="myResume">
 						<h2>
 							我的附件简历 <a title="上传附件简历" href="#uploadFile"
 								class="inline cboxElement">上传简历</a>
 						</h2>
 						<div class="resumeUploadDiv">暂无附件简历</div>
-					</div>
+					</div> -->
 					<!--end #myResume-->
 
-					<div class="mycenterR" id="resumeSet">
+					<!-- <div class="mycenterR" id="resumeSet">
 						<h2>
 							投递简历设置 <span>修改设置</span>
 						</h2>
-						<!-- -1 (0=附件， 1=在线， 其他=未设置) -->
+						-1 (0=附件， 1=在线， 其他=未设置)
 						<div class="noSet set0 dn">
 							默认使用<span>附件简历</span>进行投递
 						</div>
@@ -1224,13 +1213,13 @@
 							<input type="submit" value="保 存" class="btn_profile_save">
 							<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 						</form>
-					</div>
+					</div> -->
 					<!--end #resumeSet-->
 
-					<div class="mycenterR" id="myShare">
+					<!-- <div class="mycenterR" id="myShare">
 						<h2>当前每日投递量：10个</h2>
 						<a target="_blank" href="h/share/invite.html">邀请好友，提升投递量</a>
-					</div>
+					</div> -->
 					<!--end #myShare-->
 
 
