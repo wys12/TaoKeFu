@@ -26,7 +26,7 @@ import com.yc.taokefu.util.ServletUtil;
 @Controller("userHandler")
 @RequestMapping("tkfuser")
 public class UserHandler {
-	
+
 	@Autowired
 	private  UserService userService;
 	/**
@@ -53,7 +53,7 @@ public class UserHandler {
 		LogManager.getLogger().debug("用户userAll  "+userAll );
 		return userService.findAllUser(userAll);
 	}*/
-	
+
 	/**
 	 * wys
 	 * 用户信息加载
@@ -79,7 +79,7 @@ public class UserHandler {
 	@RequestMapping("modifiTkfUser")
 	@ResponseBody //响应Json数据
 	public int modifiTkfUser(UserAll user){
-		LogManager.getLogger().debug(user);
+		LogManager.getLogger().debug("=========="+user);
 		return userService.modifiUser(user);
 	}
 	/**
@@ -111,10 +111,12 @@ public class UserHandler {
 		LogManager.getLogger().debug(salary+"=="+user);
 		user.setHj_min_salary(salary[0]);
 		user.setHj_max_salary(salary[1]);
-		if(userService.findUsResume(user) != null ){
+		List<UserAll> list = userService.findUsResume(user);
+		if( list!= null && list.size()!=0){
 			LogManager.getLogger().debug("修改");
 			return userService.modifiUsResume(user);
 		}else{
+			user.setTkf_id(ServletUtil.tkf_ids);
 			LogManager.getLogger().debug("第一次添加");
 			return userService.insertUsResume(user);
 		}
@@ -126,6 +128,7 @@ public class UserHandler {
 	@RequestMapping("modifiUsResume")
 	@ResponseBody //响应Json数据
 	public Integer modifiUsResume(UserAll user){
+		user.setTkf_id(ServletUtil.tkf_ids);
 		return userService.modifiUsResume(user);
 	}
 	/**
@@ -139,7 +142,7 @@ public class UserHandler {
 	public List<UserAll> findSucceed(UserAll user){
 		return userService.findSucceed(user);
 	}
-	
+
 	/**
 	 * wys
 	 * 个人工作经验加载
@@ -160,7 +163,16 @@ public class UserHandler {
 	@RequestMapping("insertExperience")
 	@ResponseBody //响应Json数据
 	public Integer insertExperience(UserAll user){
-		return userService.insertExperience(user);
+		user.setTkf_id(ServletUtil.tkf_ids);
+		LogManager.getLogger().debug("=="+user);
+		List<UserAll> list = userService.findExperience(user);
+		if( list!= null && list.size()!=0){
+			LogManager.getLogger().debug("修改");
+			return userService.modifiExperience(user);
+		}else{
+			LogManager.getLogger().debug("第一次添加");
+			return userService.insertExperience(user);
+		}
 	}
 	/**
 	 * wys
@@ -193,7 +205,16 @@ public class UserHandler {
 	@RequestMapping("insertEducationa")
 	@ResponseBody //响应Json数据
 	public Integer insertEducationa(UserAll user){
-		return userService.insertEducationa(user);
+		user.setTkf_id(ServletUtil.tkf_ids);
+		LogManager.getLogger().debug("=="+user);
+		List<UserAll> list = userService.findEducationa(user);
+		if( list!= null && list.size()!=0){
+			LogManager.getLogger().debug("学历修改");
+			return userService.modifiEducationa(user);
+		}else{
+			LogManager.getLogger().debug("第一次添加");
+			return userService.insertEducationa(user);
+		}
 	}
 	/**
 	 * wys
@@ -269,7 +290,7 @@ public class UserHandler {
 	public Integer modifiTake(UserAll user){
 		return userService.modifiTake(user);
 	}
-	
+
 
 	/**
 	 * 后台操作
@@ -304,13 +325,13 @@ public class UserHandler {
 	public String doDelete(HttpServletRequest request){
 		String ids = request.getParameter("ids");
 		String[] id = ids.split(",");
-			for (int i = 0; i < id.length;i++) {
-				LogManager.getLogger().debug("删除用户"+id[i]);
-				userService.BackUserDelete(id[i]);
-			}
-			return "true";
+		for (int i = 0; i < id.length;i++) {
+			LogManager.getLogger().debug("删除用户"+id[i]);
+			userService.BackUserDelete(id[i]);
+		}
+		return "true";
 	}
-	
+
 	/**
 	 * 多条件查询
 	 */
@@ -330,5 +351,5 @@ public class UserHandler {
 		}
 		return null;
 	}
-	
+
 }

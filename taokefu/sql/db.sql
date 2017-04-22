@@ -33,6 +33,7 @@ insert into tkfuser us_name=${us_name},us_picpath=${us_picpath},us_picpath=${us_
 us_sex=${us_sex},us_educationa=${us_educationa},us_work_year=${us_work_year},us_phone=${us_phone} 
 where us_id=${us_id} or us_email=${us_email} or openId=${openId}  
 select * from tkfuser where us_email='123@qq.com'
+select * from usResume
 update tkfuser set us_intro='我的简介', us_sex='男',us_educationa='本科',us_work_year='5年',us_phone='13974412345' where us_id=1002
 create table tkfuser(
   us_id number primary key,	--id等于 login id

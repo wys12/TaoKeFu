@@ -65,7 +65,6 @@ public class ResumeHandler {
 			LogManager.getLogger().debug("已有你的简历");
 			return 2;
 		}
-		//return 0;
 	}
 	
 	/**

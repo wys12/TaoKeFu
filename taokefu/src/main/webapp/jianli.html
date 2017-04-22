@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns:wb="http://open.weibo.com/wb">
 <head>
-</script>
 <script type="text/javascript" async="" src="style/js/conversion.js"></script>
 <script src="style/js/allmobilize.min.js" charset="utf-8"
 	id="allmobilize"></script>
@@ -98,10 +97,9 @@
 					<!--end #resumeScore-->
 <div class="profile_box" id="basicInfo">
             		<h2>基本信息</h2>
-            		<span class="c_edit"></span>
-            		<div class="basicShow">
-            			            			<span>jason |  男 |    大专 |  3年工作经验<br>
-            			            			18644444444 | jason@qq.com<br>
+            		<span id="user_c_edit" class="c_edit"></span>
+            		<div id="basicShow" class="basicShow">
+            			 <span>
             			</span>
             			<div class="m_portrait">
 	                    	<div></div>
@@ -109,9 +107,9 @@
 	                    </div>
             		</div><!--end .basicShow-->
 
-            		<div class="basicEdit dn">
+            		<div id="basicEdit" class="basicEdit dn">
             			<form id="profileForm" >
-						  <table style="color:#768FC0;">
+						  <table>
 									<tbody>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
@@ -119,7 +117,7 @@
 											<td valign="top"></td>
 											<td>
 												<ul id="us_sexId" class="profile_radio clearfix reset">
-													<li>男<em></em> <input type="radio" name="us_sex"
+													<li>男<em></em> <input type="radio" name="us_sex"  class="current"
 														value="男">
 													</li>
 													<li>女<em></em> <input type="radio" name="us_sex"
@@ -132,7 +130,7 @@
 											<td valign="top"><span class="redstar">*</span></td>
 											<td><input type="hidden" id="topDegree"
 												name="us_educationa"> <input type="button"
-												id="select_topDegree" value="学历信息"
+												id="select_topDegree" title="这是学历信息"
 												class="profile_select_190 profile_select_normal">
 												<div class="boxUpDown boxUpDown_190 dn" id="box_topDegree"
 													style="display: none;">
@@ -147,7 +145,7 @@
 											<td valign="top"><span class="redstar">*</span></td>
 											<td><input type="hidden" id="workyear"
 												name="us_work_year"> <input type="button"
-												id="select_workyear" value="工作时间"
+												id="select_workyear" value="工作时间" title="这是工作时间"
 												class="profile_select_190 profile_select_normal">
 												<div class="boxUpDown boxUpDown_190 dn" id="box_workyear"
 													style="display: none;">
@@ -175,7 +173,7 @@
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td colspan="3"><input type="text"
-												placeholder="接收面试通知的邮箱" name="us_email" id="us_email"></td>
+												placeholder="接收面试通知的邮箱" readonly="readonly" name="us_email" id="us_email"></td>
 										</tr>
 										<tr>
 											<td valign="top"></td>
@@ -254,7 +252,7 @@
 
 					<div class="profile_box" id="expectJob">
 						<h2>期望工作</h2>
-						<span class="c_edit dn"></span>
+						<span  class="c_edit dn"></span>
 						<div class="expectShow dn">
 							<span></span>
 						</div>
@@ -264,8 +262,8 @@
 								<table>
 									<tbody>
 										<tr>
-											<td><input type="hidden" id="hjCity" name="hj_city">
-												<input type="button" value="期望城市，如：北京" id="select_hjCity"
+											<td><input type="hidden" id="expectCity" name="hj_city">
+												<input type="button" value="期望城市，如：北京" id="select_expectCity"
 												class="profile_select_287 profile_select_normal">
 												<div class="boxUpDown boxUpDown_596 dn" id="box_expectCity"
 													style="display: none;">
@@ -339,9 +337,9 @@
 										<tr>
 											<td><input type="text" placeholder="期望职位，如：产品经理"
 												value="" name="hj_name" id="hjPosition"></td>
-											<td><input type="hidden" id="hjSalary" value=""
+											<td><input type="hidden" id="expectSalary" value=""
 												name="hj_min_salary"> <input type="button"
-												value="期望月薪" id="select_hjSalary"
+												value="期望月薪" id="select_expectSalary"
 												class="profile_select_287 profile_select_normal">
 												<div class="boxUpDown boxUpDown_287 dn"
 													id="box_expectSalary" style="display: none;">
@@ -594,7 +592,7 @@
 												class="companyName"></td>
 											<td valign="top"><span class="redstar">*</span></td>
 											<td><input type="text" placeholder="职位名称，如：产品经理"
-												id="exp_job_nameId" name="exp_job_name" class="positionName"></td>
+												id="exp_job_nameId" name="exp_job_name" ></td>
 										</tr>
 										<tr>
 											<td valign="top"><span class="redstar">*</span></td>
@@ -603,7 +601,6 @@
 													<input type="hidden" id="companyYearStartId"
 														class="companyYearStart" name="companyYearStart">
 													<input type="button" value="开始年份" id="companyYearStartIds"
-														;
 														class="profile_select_139 profile_select_normal select_companyYearStart">
 													<div
 														class="box_companyYearStart boxUpDown boxUpDown_139 dn"
@@ -772,7 +769,7 @@
 										</tr>
 										<tr>
 											<td></td>
-											<td colspan="3"><input type="submit" value="保 存"
+											<td colspan="3"><input type="button" value="保 存" onclick="expId()"
 												class="btn_profile_save"></td>
 										</tr>
 									</tbody>
@@ -887,7 +884,7 @@
 												</div>
 												<div class="fl">
 													<input type="hidden" class="schoolYearEnd" value="" id="edu_end_yearId"
-														name="schoolYearEnd"> <input type="button"
+														name="edu_end_year"> <input type="button"
 														value="结束年份" id="edu_end_yearIds"
 														class="profile_select_139 profile_select_normal select_schoolYearEnd">
 													<div class="box_schoolYearEnd  boxUpDown boxUpDown_139 dn"
@@ -946,7 +943,7 @@
 										</tr>
 										<tr>
 											<td></td>
-											<td colspan="3"><input type="submit" value="保 存"
+											<td colspan="3"><input type="button" value="保 存" onclick="eduId()"
 												class="btn_profile_save"> </td>
 										</tr>
 									</tbody>
@@ -976,12 +973,13 @@
 										<td colspan="2"><textarea id="des_contentId"
 												class="selfDescription s_textarea" name="des_content"
 												placeholder=""></textarea>
+												<input id="" hidden="" name="">
 											<div class="word_count">
 												你还可以输入 <span>500</span> 字
 											</div></td>
 									</tr>
 									<tr>
-										<td colspan="2"><input type="submit" value="保 存"
+										<td colspan="2"><input type="button" value="保 存" onclick="desId()"
 											class="btn_profile_save"></td>
 									</tr>
 								</tbody>
@@ -1241,31 +1239,6 @@
 					href="javascript:;"></a>
 			</div>
 		</div>
-		<script>
-$(function(){
-	$.ajax({
-        url:ctx+"/mycenter/showQRCode",
-        type:"GET",
-        async:false
-   	}).done(function(data){
-        if(data.success){
-             $('#qr_cloud_resume img').attr("src",data.content);
-        }
-   	}); 
-	var sessionId = "resumeQR"+314873;
-	if(!$.cookie(sessionId)){
-		$.cookie(sessionId, 0, {expires: 1});
-	}
-	/* if($.cookie(sessionId) &amp;&amp; $.cookie(sessionId) != 5){
-		$('#qr_cloud_resume').removeClass('dn');
-	} */
-	$('#qr_cloud_resume .close').click(function(){
-		$('#qr_cloud_resume').fadeOut(200);
-		resumeQR = parseInt($.cookie(sessionId)) + 1;
-		$.cookie(sessionId, resumeQR, {expires: 1});
-	});
-});
-</script>
 		<div class="clear"></div>
 		<input type="hidden" value="97fd449bcb294153a671f8fe6f4ba655"
 			id="resubmitToken"> <a rel="nofollow" title="回到顶部"
@@ -1292,49 +1265,6 @@ $(function(){
 
 	<!--  -->
 
-	<script type="text/javascript">
-$(function(){
-	$('#noticeDot-1').hide();
-	$('#noticeTip a.closeNT').click(function(){
-		$(this).parent().hide();
-	});
-});
-var index = Math.floor(Math.random() * 2);
-var ipArray = new Array('42.62.79.226','42.62.79.227');
-var url = "ws://" + ipArray[index] + ":18080/wsServlet?code=314873";
-/* var CallCenter = {
-		init:function(url){
-			var _websocket = new WebSocket(url);
-			_websocket.onopen = function(evt) {
-				console.log("Connected to WebSocket server.");
-			};
-			_websocket.onclose = function(evt) {
-				console.log("Disconnected");
-			};
-			_websocket.onmessage = function(evt) {
-				//alert(evt.data);
-				var notice = jQuery.parseJSON(evt.data);
-				if(notice.status[0] == 0){
-					$('#noticeDot-0').hide();
-					$('#noticeTip').hide();
-					$('#noticeNo').text('').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
-					$('#noticeNoPage').text('').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
-				}else{
-					$('#noticeDot-0').show();
-					$('#noticeTip strong').text(notice.status[0]);
-					$('#noticeTip').show();
-					$('#noticeNo').text('('+notice.status[0]+')').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
-					$('#noticeNoPage').text(' ('+notice.status[0]+')').show().parent('a').attr('href',ctx+'/mycenter/delivery.html');
-				}
-				$('#noticeDot-1').hide();
-			};
-			_websocket.onerror = function(evt) {
-				console.log('Error occured: ' + evt);
-			};
-		}
-};
-CallCenter.init(url); */
-</script>
 
 	<div id="cboxOverlay" style="display: none;"></div>
 	<div id="colorbox" class="" role="dialog" tabindex="-1"
