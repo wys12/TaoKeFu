@@ -2,36 +2,59 @@ loadInfo();
 var str="";
 var jc_type ="";
 var type_length = ""
-function loadInfo(){
-	$.post("job/findJc_type",function(data){
-		type_length = data.length;
-		for(var i=0;i < type_length;i++){
-			//alert(i)
-			jc_type = data[i].jc_type;
+	function loadInfo(){
+	list();
+}
+var map={};
+function list(){
+	var str1="";
+	var i=0;
+	var params ="";
+	$.ajax({
+		type:'POST',
+		url:"job/findJc_type",
+		dataTpye:"json",
+		//async:false,
+		success:function(data){
+			for(i=0;i < data.length;i++){
+				jc_type = data[i].jc_type;
 				str+='<div id="menu_box" class="menu_box">'
 					+'<div class="menu_main">'
 					+'<h2>'+jc_type+'</h2>'
 					+'<div id = type'+i+'></div>'
 					+'</div>'
 					+'</div>';
-			findJc_name(jc_type,i);
-		}
-		$("#mainNavs").html(str);
-		//alert(str);
-	},"json");
-}
-function findJc_name(datas,z){
-	var str1="";
-	$.post("job/findJc_name",{jc_type:datas},function(data){
-		//for(var j=0;j<type_length;j++){
-			for(var i=0;i<data.length;i++){
-				str1+='<a href="list.html" onclick="typeSearch('+data[i].jc_name+')">'+data[i].jc_name+'</a>';
+				map[i] =jc_type;
 			}
-			$("#type"+z).html(str1);
-	},"json");
+			$("#mainNavs").html(str);
+			for(var prop in map){
+				if(map.hasOwnProperty(prop)){
+					findJc_name(map[prop],prop);
+				}
+			}
+		}
+	});
+}
+function findJc_name(jc_type,x){
+	var params = {jc_type:jc_type};
+	str1="";
+	$.ajax({
+		type:'POST',
+		url:"job/findJc_name",
+		data:params,
+		dataTpye:"json",
+		async:false,
+		success:function(data){
+			for(var s=0;s<data.length;s++){
+				str1+='<a href="list.html" onclick="typeSearch('+data[s].jc_name+')">'+data[s].jc_name+'</a>';
+			}
+			$("#type"+x).html(str1);
+		}
+	});
+
 }
 function typeSearch(data){
-	alert(data);
+	//alert(data);
 	$.post("job/index",{search_input:data},"json");
 }
 $("#search_button").click(function(){
@@ -39,8 +62,6 @@ $("#search_button").click(function(){
 	$("#searchTypes").val(searchType);
 	$("#searchForm").attr("action","job/index");
 	$("#searchForm").submit();
-	//$.post("job/sendInfo",{searchType:searchType,job_name:search_input,currPage:i},"json");
-	//setTimeout("submit()", 800);
 });
 
 $("#searchType li").click(function(){
@@ -59,5 +80,4 @@ $("#searchType").hover(
 			$(this).children("li").not(".type_selected").hide(),
 			$(this).siblings(".searchtype_arrow").removeClass("transform")
 		})
-
 

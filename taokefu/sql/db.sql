@@ -33,6 +33,7 @@ insert into tkfuser us_name=${us_name},us_picpath=${us_picpath},us_picpath=${us_
 us_sex=${us_sex},us_educationa=${us_educationa},us_work_year=${us_work_year},us_phone=${us_phone} 
 where us_id=${us_id} or us_email=${us_email} or openId=${openId}  
 select * from tkfuser where us_email='123@qq.com'
+select * from usResume
 update tkfuser set us_intro='我的简介', us_sex='男',us_educationa='本科',us_work_year='5年',us_phone='13974412345' where us_id=1002
 create table tkfuser(
   us_id number primary key,	--id等于 login id
@@ -80,7 +81,7 @@ insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
  update tkfuser set us_name='张三' where us_id=1002
  select * from tkfuser
  insert into usResume values(usResume_sql.nextval,1042,'','张三的简历','-0','qq客服','北京','5k','8k','-0','能吃苦耐劳，不怕加班');
- select * from usResume
+ select * from tkfuser
 create table usResume(
 	usr_id number primary key,
 	tkf_id varchar2(20) constraint tkf_id references tkfuser(us_id),
@@ -140,13 +141,8 @@ insert into resume values (resume_sql.nextval,'1042','1061','1001','呵呵','张
 		 edu_educationa varchar2(30), --学历
 		 edu_start_year varchar2(30),-- 开始年份
 		 edu_end_year varchar2(30) ,--毕业年份
-<<<<<<< HEAD
 	
 		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
-=======
-		 
-		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功/简历查看/通过初选/通知面试/不合适）
->>>>>>> branch 'master' of ssh://git@github.com/wys12/TaoKeFu
 	);
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
@@ -187,12 +183,13 @@ insert into company_team values(company_team_sql.nextval,'1053','百度糯米','
 select * from company_team
 	select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id join tag t on cor.c_id=t.c_id join invest inv on inv.c_id = t.c_id where j.job_name like '%微信%' 
  --succeed	作品展示
-create table succeed(
-	suc_id number primary key,
-	tkf_id number constraint fk_suc_id references usResume(usr_id),
-	suc_name varchar2(20),	--作品名称
-	suc_link varchar2(30)	--作品链接
-);
+-- select * from succeed
+--create table succeed(
+--	suc_id number primary key,
+--	tkf_id number constraint fk_suc_id references usResume(usr_id),
+--	suc_name varchar2(20),	--作品名称
+--	suc_link varchar2(30)	--作品链接
+--);
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,
@@ -310,6 +307,7 @@ drop table admin;
 drop table login;
 drop table tkfuser;--用户基本信息
 	drop table usResume;--信息
+	select * from experience
 		drop table educationa;--教育信息
 		drop table experience;--工作经验
 		drop table collect;	--收藏

@@ -93,129 +93,129 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="insertUser" parameterType="UserAll">
 		insert into tkfuser values(tkfuser_sql.nextval
-		<if test="us_name==null or us_name==''">,''</if>
+		<if test="us_name==null">,''</if>
 		<if test="us_name!=null">,'${us_name}'</if>
-		<if test="us_picpath==null or us_picpath ==''">,''</if>
+		<if test="us_picpath==null">,''</if>
 		<if test="us_picpath!=null">,'${us_picpath}'</if>
-		<if test="us_intro==null or us_intro ==''">,''</if>
+		<if test="us_intro==null">,''</if>
 		<if test="us_intro!=null">,'${us_intro}'</if>
-		<if test="us_sex==null or us_sex ==''">,''</if>
+		<if test="us_sex==null">,''</if>
 		<if test="us_sex!=null">,'${us_sex}'</if>
-		<if test="us_educationa==null or us_educationa ==''">,''</if>
+		<if test="us_educationa==null">,''</if>
 		<if test="us_educationa!=null">,'${us_educationa}'</if>
-		<if test="us_work_year==null or us_work_year ==''">,''</if>
+		<if test="us_work_year==null">,''</if>
 		<if test="us_work_year!=null">,'${us_work_year}'</if>
-		<if test="us_phone==null or us_phone ==''">,''</if>
+		<if test="us_phone==null">,''</if>
 		<if test="us_phone!=null">,'${us_phone}'</if>
-		<if test="us_email==null or us_email ==''">,''</if>
+		<if test="us_email==null">,''</if>
 		<if test="us_email!=null">,'${us_email}'</if>
-		<if test="openId==null or openId ==''">,''</if>
+		<if test="openId==null">,''</if>
 		<if test="openId!=null">,'${openId}'</if>
 		)
 	</insert>
 	<!-- 简历信息 -->
 	<insert id="insertUsResume" parameterType="User">
 		insert into usResume values(usResume_sql.nextval
-		<if test="tkf_id==null or tkf_id==''">,''</if>
+		<if test="tkf_id==null">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
-		<if test="c_id==null or c_id==''">,''</if>
+		<if test="c_id==null">,''</if>
 		<if test="c_id!=null">,'${c_id}'</if>
-		<if test="usr_name==null or usr_name==''">,''</if>
+		<if test="usr_name==null ">,''</if>
 		<if test="usr_name!=null">,'${usr_name}'</if>
-		<if test="usr_state==null or usr_state==''">,''</if>
+		<if test="usr_state==null">,''</if>
 		<if test="usr_state!=null">,'${usr_state}'</if>
-		<if test="hj_name==null or hj_name==''">,''</if>
+		<if test="hj_name==null ">,''</if>
 		<if test="hj_name!=null">,'${hj_name}'</if>
-		<if test="hj_city==null or hj_city==''">,''</if>
+		<if test="hj_city==null ">,''</if>
 		<if test="hj_city!=null">,'${hj_city}'</if>
-		<if test="hj_min_salary==null or hj_min_salary==''">,''</if>
+		<if test="hj_min_salary==null">,''</if>
 		<if test="hj_min_salary!=null">,'${hj_min_salary}'</if>
-		<if test="hj_max_salary==null or hj_max_salary==''">,''</if>
+		<if test="hj_max_salary==null ">,''</if>
 		<if test="hj_max_salary!=null">,'${hj_max_salary}'</if>
-		<if test="hj_nature ==null or hj_nature ==''">,''</if>
+		<if test="hj_nature ==null">,''</if>
 		<if test="hj_nature != null">,'${hj_nature}'</if>
-		<if test="des_content == null or des_content ==''">,''</if>
+		<if test="des_content == null">,''</if>
 		<if test="des_content!=null">,'${des_content}'</if>
 		)
 	</insert>
 	<!-- 作品信息 -->
 	<insert id="insertSucceed" parameterType="UserAll">
 		insert into succeed values(succeed_sql.nextval
-		<if test="tkf_id==null or tkf_id==''">,''</if>
+		<if test="tkf_id==null ">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
-		<if test="suc_name ==null or suc_name ==''">,''</if>
+		<if test="suc_name ==null ">,''</if>
 		<if test="suc_name !=null">,'${suc_name}'</if>
-		<if test="suc_link ==null or suc_link ==''">,''</if>
+		<if test="suc_link ==null">,''</if>
 		<if test="suc_link !=null">,'${suc_link}'</if>
 		)
 	</insert>
 	<!-- 经历 -->
 	<insert id="insertExperience" parameterType="UserAll">
 		insert into experience values(experience_job_sql.nextval
-		<if test="tkf_id==null or tkf_id==''">,''</if>
+		<if test="tkf_id==null">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
-		<if test="exp_company_name ==null or exp_company_name ==''">,''</if>
+		<if test="exp_company_name ==null">,''</if>
 		<if test="exp_company_name !=null">,'${exp_company_name}'</if>
-		<if test="exp_job_name ==null or exp_job_name ==''">,''</if>
+		<if test="exp_job_name ==null ">,''</if>
 		<if test="exp_job_name !=null">,'${exp_job_name}'</if>
-		<if test="exp_start_year ==null or exp_start_year ==''">,''</if>
+		<if test="exp_start_year ==null ">,''</if>
 		<if test="exp_start_year !=null">,'${exp_start_year}'</if>
-		<if test="exp_end_year ==null or exp_end_year ==''">,''</if>
+		<if test="exp_end_year ==null">,''</if>
 		<if test="exp_end_year !=null">,'${exp_end_year}'</if>
-		<if test="exp_work ==null or exp_work ==''">,''</if>
+		<if test="exp_work ==null">,''</if>
 		<if test="exp_work !=null">,'${exp_work}'</if>
-		<if test="exp_city ==null or exp_city ==''">,''</if>
+		<if test="exp_city ==null">,''</if>
 		<if test="exp_city !=null">,'${exp_city}'</if>
 		)
 	</insert>
 	<!--学历信息 -->
 	<insert id="insertEducationa" parameterType="UserAll">
 		insert into educationa values(educationa_sql.nextval
-		<if test="tkf_id==null or tkf_id==''">,''</if>
+		<if test="tkf_id==null">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
-		<if test="edu_shool_name ==null or edu_shool_name ==''">,''</if>
+		<if test="edu_shool_name ==null ">,''</if>
 		<if test="edu_shool_name !=null">,'${edu_shool_name}'</if>
-		<if test="edu_major ==null or edu_major ==''">,''</if>
+		<if test="edu_major ==null">,''</if>
 		<if test="edu_major !=null">,'${edu_major}'</if>
-		<if test="edu_educationa ==null or edu_educationa ==''">,''</if>
+		<if test="edu_educationa ==null ">,''</if>
 		<if test="edu_educationa !=null">,'${edu_educationa}'</if>
-		<if test="edu_start_year ==null or edu_start_year ==''">,''</if>
+		<if test="edu_start_year ==null">,''</if>
 		<if test="edu_start_year !=null">,'${edu_start_year}'</if>
-		<if test="edu_end_year ==null or edu_end_year ==''">,''</if>
+		<if test="edu_end_year ==null ">,''</if>
 		<if test="edu_end_year !=null">,'${edu_end_year}'</if>
 		)
 	</insert>
 	<!-- 收藏信息 -->
 	<insert id="insertCollect" parameterType="UserAll">
 		insert into collect values(collect_sql.nextval
-		<if test="tkf_id==null or tkf_id==''">,''</if>
+		<if test="tkf_id==null">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
-		<if test="col_job_id ==null or col_job_id ==''">,''</if>
+		<if test="col_job_id ==null">,''</if>
 		<if test="col_job_id !=null">,'${col_job_id}'</if>
 		)
 	</insert>
 	<!-- 订阅信息 -->
 	<insert id="insertTake" parameterType="UserAll">
 		insert into take values(take_job_sql.nextval
-		<if test="tkf_id==null or tkf_id==''">,''</if>
+		<if test="tkf_id==null ">,''</if>
 		<if test="tkf_id!=null">,'${tkf_id}'</if>
-		<if test="tak_job_id ==null or tak_job_id ==''">,''</if>
+		<if test="tak_job_id ==null">,''</if>
 		<if test="tak_job_id !=null">,'${tak_job_id}'</if>
-		<if test="tak_email ==null or tak_email ==''">,''</if>
+		<if test="tak_email ==null ">,''</if>
 		<if test="tak_email !=null">,'${tak_email}'</if>
-		<if test="tak_time ==null or tak_time ==''">,''</if>
+		<if test="tak_time ==null">,''</if>
 		<if test="tak_time !=null">,'${tak_time}'</if>
-		<if test="tak_job_name ==null or tak_job_name ==''">,''</if>
+		<if test="tak_job_name ==null">,''</if>
 		<if test="tak_job_name!=null">,'${tak_job_name}'</if>
-		<if test="tak_job_city ==null or tak_job_city ==''">,''</if>
+		<if test="tak_job_city ==null ">,''</if>
 		<if test="tak_job_city !=null">,'${tak_job_city}'</if>
-		<if test="tak_state ==null or tak_state ==''">,''</if>
+		<if test="tak_state ==null ">,''</if>
 		<if test="tak_state !=null">,'${tak_state}'</if>
-		<if test="tak_territory ==null or tak_territory ==''">,''</if>
+		<if test="tak_territory ==null ">,''</if>
 		<if test="tak_territory !=null">,'${tak_territory}'</if>
-		<if test="tak_min_salary ==null or tak_min_salary ==''">,''</if>
+		<if test="tak_min_salary ==null ">,''</if>
 		<if test="tak_min_salary !=null">,'${tak_min_salary}'</if>
-		<if test="tak_max_salary ==null or tak_max_salary ==''">,''</if>
+		<if test="tak_max_salary ==null ">,''</if>
 		<if test="tak_max_salary !=null">,'${tak_max_salary}'</if>
 		)
 	</insert>
@@ -226,7 +226,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 		* from tkfuser where
 		<if test="us_id !=null">us_id=#{us_id}</if>
-		<if test="tkf_id !=null">us_id=#{tkf_id}</if>
+		<if test="tkf_id !=null">tkf_id=#{tkf_id}</if>
 	</select>
 	<!-- select * from tkfuser where <trim><if test="us_id !=null">us_id=#{us_id}</if> 
 		<if test="tkf_id !=null">and tkf_id=#{tkf_id}</if> <if test="openId !=null">and 
@@ -305,7 +305,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		<trim>
 			<if test="usr_id !=null">usr_id=${usr_id}</if>
-			<if test="tkf_id !=null"> tkf_id='${us_email}'</if>
+			<if test="us_email !=null"> us_email='${us_email}'</if>
+			<if test="tkf_id !=null"> tkf_id='${tkf_id}'</if>
 		</trim>
 	</update>
 	<!-- 作品信息 -->
