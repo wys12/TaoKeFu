@@ -7,7 +7,7 @@ function add(){
 		success:function(data){
 			if(data){
 				//$.messager.alert('信息提示','提交成功！','info');
-				$('#jobClass-datagrid-2').datagrid('reload');
+				$('#job-datagrid-2').datagrid('reload');
 				$('#job-dialog-1').dialog('close');
 			}
 			else
@@ -42,7 +42,7 @@ function edit(){
 		success:function(data){
 			if(data){
 				//$.messager.alert('信息提示','提交成功！','info');
-				$('#jobClass-datagrid-2').datagrid('reload');
+				$('#job-datagrid-2').datagrid('reload');
 				$('#job-dialog-2').dialog('close');
 			}
 			else
@@ -73,7 +73,7 @@ function remove(){
 					success:function(data){
 						if(data){
 							//$.messager.alert('信息提示','删除成功！','info');		
-							$('#jobClass-datagrid-2').datagrid('reload');
+							$('#job-datagrid-2').datagrid('reload');
 						}
 						else
 						{
@@ -125,10 +125,10 @@ function openEdit(){
 	$("#jmaxsalary").val(item.job_max_salary);
 	$("#jeducation").val(item.job_education);
 	$("#jtempt").val(item.job_tempt);
-	$("#jftime").val(item.job_ftime);
+	$("div[value="+item.job_ftime+"]").trigger('click');
 	$("#jrests").val(item.job_rests);
 	$("#jnumber").val(item.job_number);
-	$("#jstate").val(item.job_state);
+	$("div[value="+item.job_state+"]").trigger('click');
 	$("#jneed").val(item.job_need);
 	$("#jresponsibility").val(item.job_responsibility);
 	$('#job-dialog-2').dialog({
@@ -173,20 +173,28 @@ function load(urlStr){
 		pageList:[5,10,15,20,30],
 		columns:[[
 		          { checkbox:true},
-		          { field:'job_id',title:'职位ID',width:100,sortable:true},
-		          { field:'c_id',title:'公司编号',width:100,sortable:true},
-		          { field:'job_tags',title:'职位标签',width:100,sortable:true},
-		          { field:'job_name',title:'职位名称',width:100,sortable:true},
-		          { field:'job_department',title:'所属部门',width:100},
-		          { field:'job_nature',title:'职位性质',width:100},
-		          { field:'job_min_salary',title:'最小薪资',width:100},
-		          { field:'job_max_salary',title:'最大薪资',width:100},
-		          { field:'job_education',title:'学历要求',width:100},
-		          { field:'job_tempt',title:'职位诱惑',width:100},
-		          { field:'job_ftime',title:'发布时间',width:100},
-		          { field:'job_rests',title:'其他',width:100},
-		          { field:'job_number',title:'点击量',width:100},
-		          { field:'job_state',title:'职位状态',width:100},
+		          { field:'job_id',title:'职位ID',width:60,align:'center'},
+		          { field:'c_id',title:'公司编号',width:60,align:'center'},
+		          { field:'job_tags',title:'职位标签',width:100,align:'center'},
+		          { field:'job_name',title:'职位名称',width:80,align:'center'},
+		          { field:'job_department',title:'所属部门',width:80,align:'center'},
+		          { field:'job_nature',title:'职位性质',width:60,align:'center'},
+		          { field:'job_min_salary',title:'最小薪资',width:60,align:'center'},
+		          { field:'job_max_salary',title:'最大薪资',width:60,align:'center'},
+		          { field:'job_education',title:'学历要求',width:60,align:'center'},
+		          { field:'job_tempt',title:'职位诱惑',width:100,align:'center'},
+		          { field:'job_ftime',title:'发布时间',width:100,align:'center'},
+		          { field:'job_rests',title:'其他',width:100,align:'center'},
+		          { field:'job_number',title:'点击量',width:50,align:'center'},
+		          { field:'job_state',title:'职位状态',width:80,align:'center',
+		        	  formatter: function(value,row,index){
+			      			if(value == "-0"){
+			      				return "在线职位"
+			      			}else{
+			      				return "离线职位"
+			      			}
+		        	  }  
+		          },
 		          { field:'job_need',title:'任职要求',width:100},
 		          { field:'job_responsibility',title:'工作职责',width:100},
 		          ]]
