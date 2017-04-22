@@ -80,7 +80,7 @@ insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
  update tkfuser set us_name='张三' where us_id=1002
  select * from tkfuser
  insert into usResume values(usResume_sql.nextval,1042,'','张三的简历','-0','qq客服','北京','5k','8k','-0','能吃苦耐劳，不怕加班');
- select * from usResume
+ select * from tkfuser
 create table usResume(
 	usr_id number primary key,
 	tkf_id varchar2(20) constraint tkf_id references tkfuser(us_id),
@@ -189,12 +189,13 @@ insert into company_team values(company_team_sql.nextval,'1053','百度糯米','
 select * from company_team
 	select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id join tag t on cor.c_id=t.c_id join invest inv on inv.c_id = t.c_id where j.job_name like '%微信%' 
  --succeed	作品展示
-create table succeed(
-	suc_id number primary key,
-	tkf_id number constraint fk_suc_id references usResume(usr_id),
-	suc_name varchar2(20),	--作品名称
-	suc_link varchar2(30)	--作品链接
-);
+-- select * from succeed
+--create table succeed(
+--	suc_id number primary key,
+--	tkf_id number constraint fk_suc_id references usResume(usr_id),
+--	suc_name varchar2(20),	--作品名称
+--	suc_link varchar2(30)	--作品链接
+--);
  --experience	工作经历
 create table experience(
 	exp_id number  primary key,

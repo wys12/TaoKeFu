@@ -280,12 +280,12 @@ public class JobHandler {
 	@RequestMapping(value="findJc_type",method=RequestMethod.POST)
 	@ResponseBody
 	public List<JobClass> findClassType(JobClass jobClass) {
-		if(ServletUtil.JOBCLASSTYPE_LIST.size() != 0){
+		LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSTYPE_LIST);
+		if(ServletUtil.JOBCLASSTYPE_LIST.size() != 0 && ServletUtil.JOBCLASSTYPE_LIST == null){
 			LogManager.getLogger().debug("返回界面职位类型信息   ==> "+ServletUtil.JOBCLASSTYPE_LIST);
 			return ServletUtil.JOBCLASSTYPE_LIST;
 		}else{
 			ServletUtil.JOBCLASSTYPE_LIST = jobClassService.jobClassTypeFind(jobClass);
-			LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSTYPE_LIST);
 			return ServletUtil.JOBCLASSTYPE_LIST;
 		}
 	}
