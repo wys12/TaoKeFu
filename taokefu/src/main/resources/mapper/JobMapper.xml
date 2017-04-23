@@ -42,6 +42,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection property="rows"
 			column="{pageSize=pageSize,currPage=currPage}" ofType="Job" select="getJOb" />
 	</resultMap>
+	
+	
 
 	<!-- 职位数据分页 -->
 	<select id="listJob" parameterType="PaginationBean" resultMap="PaginationBeanMap">
@@ -50,8 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getJOb" resultType="Job">
-		select * from (select n.*,rownum
-		rn from
+		select * from (select n.*,rownum rn from
 		(select * from job order by 1) n where ${pageSize}*${currPage}
 		>= rownum)
 		where rn > ${pageSize}*(${currPage}-1)

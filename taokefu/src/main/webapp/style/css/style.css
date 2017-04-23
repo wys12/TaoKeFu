@@ -173,7 +173,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 #qrSide{ background:url(img/qr_index.jpg) no-repeat; width:108px; height:132px; position:fixed; right:0; bottom:160px; z-index:3;}
 #qrSide a{ background:#cfd0d2 url(img/x.png) no-repeat; position:absolute; right:0; top:-15px; width:15px; height:15px;}
 #footer{ clear:both; height:36px; border-top:1px solid #ebebeb;line-height:36px;}
-#footer .wrapper{width:754px;margin:0 auto;padding-left:270px;}
+#footer .wrapper{width:754px;margin:0 auto;padding-left:0px;}
 #footer a{padding:0 10px; color:#555;}
 .footer_qr{ position:relative;}
 .footer_qr i{ display:none; border:3px solid #ff8903; background:url(img/qrcode.jpg) no-repeat; width:242px; height:242px; position:absolute; bottom:20px; left:0px;z-index:100;}

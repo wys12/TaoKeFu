@@ -39,6 +39,8 @@ public interface JobMapper {
 
 	List<CompanyAll> findResumeJob(CompanyAll job);
 
+	//PaginationBean<Job> jObList(PaginationBean<Job> pb);
+
 
 
 

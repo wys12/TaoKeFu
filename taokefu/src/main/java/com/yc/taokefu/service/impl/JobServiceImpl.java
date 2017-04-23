@@ -103,6 +103,5 @@ public class JobServiceImpl implements JobService{
 	@Override
 	public List<CompanyAll> findResumeJob(CompanyAll job) {
 		return jobMapper.findResumeJob(job);
-	}
-	
+	}	
 }
