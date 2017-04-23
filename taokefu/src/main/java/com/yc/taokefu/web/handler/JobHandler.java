@@ -52,7 +52,7 @@ public class JobHandler {
 		}else{
 			ServletUtil.JOB_LIST = null;
 		}
-		return "redirect:/list.html";
+		return "redirect:/list.html?search_input="+search_input;
 	}
 
 

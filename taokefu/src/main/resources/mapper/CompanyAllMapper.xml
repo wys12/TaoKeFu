@@ -12,8 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on j.c_id =
 		comp.comp_id
 		where j.job_name
-		like
-		'%${job_name}%'
+		like '%${job_name}%' and j.job_state='-0'
 	</select>
 	
 
