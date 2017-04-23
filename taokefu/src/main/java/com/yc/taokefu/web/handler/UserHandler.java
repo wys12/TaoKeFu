@@ -99,18 +99,20 @@ public class UserHandler {
 	@ResponseBody //响应Json数据
 	public Integer insertUsResume(UserAll user){
 		user.setTkf_id(ServletUtil.tkf_ids);
-		String naString = user.getHj_nature();
-		if(naString.equals("全职")){
-			user.setHj_nature("-0");
-		}else if(naString.equals("兼职")){
-			user.setHj_nature("-1");
-		}else{
-			user.setHj_nature("-2");
+		if(user.getUsr_name()==null){
+			String naString = user.getHj_nature();
+			if(naString.equals("全职")){
+				user.setHj_nature("-0");
+			}else if(naString.equals("兼职")){
+				user.setHj_nature("-1");
+			}else{
+				user.setHj_nature("-2");
+			}
+			String[] salary =user.getHj_min_salary().split("-");
+			LogManager.getLogger().debug(salary+"=="+user);
+			user.setHj_min_salary(salary[0]);
+			user.setHj_max_salary(salary[1]);
 		}
-		String[] salary =user.getHj_min_salary().split("-");
-		LogManager.getLogger().debug(salary+"=="+user);
-		user.setHj_min_salary(salary[0]);
-		user.setHj_max_salary(salary[1]);
 		List<UserAll> list = userService.findUsResume(user);
 		if( list!= null && list.size()!=0){
 			LogManager.getLogger().debug("修改");

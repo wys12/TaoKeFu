@@ -384,7 +384,7 @@ public class CompanyAll {
 	}
 	@Override
 	public String toString() {
-		return "CompanyAll [comp_id=" + comp_id + ", comp_name=" + comp_name + ", comp_fullname=" + comp_fullname
+		return "CompanyAll \n[comp_id=" + comp_id + ", comp_name=" + comp_name + ", comp_fullname=" + comp_fullname
 				+ ", comp_logo=" + comp_logo + ", comp_phone=" + comp_phone + ", comp_email=" + comp_email
 				+ ", comp_link=" + comp_link + ", comp_city=" + comp_city + ", comp_territory=" + comp_territory
 				+ ", comp_state=" + comp_state + ", comp_scale=" + comp_scale + ", comp_introduce=" + comp_introduce

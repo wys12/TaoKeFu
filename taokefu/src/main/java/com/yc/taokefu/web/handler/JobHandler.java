@@ -48,7 +48,7 @@ public class JobHandler {
 		if(searchTypes.intern() == "0"){
 			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
 		}else if(searchTypes.intern() == "1"){
-			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(search_input,0,0);
+			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(companyAll);
 		}else{
 			ServletUtil.JOB_LIST = null;
 		}
@@ -70,7 +70,7 @@ public class JobHandler {
 			//LogManager.getLogger().debug("lists ===>  "+ServletUtil.JOB_LIST);
 			return ServletUtil.JOB_LIST;
 		}else if(ServletUtil.type.equals(1)){
-			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(companyAll.getJob_name(),0,0);
+			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(companyAll);
 			return ServletUtil.JOB_LIST;
 		}else{
 			return null;
@@ -142,7 +142,7 @@ public class JobHandler {
 	@ResponseBody
 	public int insertCompanyJob(CompanyAll comJob) {
 		comJob.setC_id(ServletUtil.c_ids);
-		comJob.setJob_ftime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		comJob.setJob_ftime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		LogManager.getLogger().debug(comJob);
 		return jobService.insertCompanyJob(comJob);
 	}

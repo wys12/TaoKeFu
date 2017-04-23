@@ -1,5 +1,11 @@
-
-findEmail();
+function loadInfo(number){
+	if(number!=null && number!=""){
+			findEmail();
+	}else{
+		location.href = "login.html";
+	}
+	
+}
 function findEmail(){	
 	$.ajax({
 		type:"POST",

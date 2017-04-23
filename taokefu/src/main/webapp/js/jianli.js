@@ -1,4 +1,5 @@
 var s="";
+var canvas=0;
 function loadInfo(number){
 	if(number!=null && number!=""){
 		$("#expectEditId").attr("class","expectEdit");
@@ -38,6 +39,7 @@ function cssId(){
 function tkfUser(number){
 	$.post("tkfuser/findTkfUser",{us_id:number.l_id},function(data){
 		if(data!=0){
+			canvas+=1;
 			listTkfUser=data;
 		}
 	},"json");
@@ -45,7 +47,9 @@ function tkfUser(number){
 function UsResume(params){
 	$.post("tkfuser/findUsResume",params,function(data){
 		if(data!=0){
+			canvas+=1;
 			listUsResume=data;
+			$("#renames").text(data[0].usr_name);
 			$(".descriptionShow").html(data[0].des_content);
 			$(".expectShow").html(data[0].hj_city+','+data[0].hj_name+',月薪'+data[0].hj_min_salary+'-'+data[0].hj_max_salary+','+(data[0].hj_nature=='-0'?'全职':(data[0].hj_nature=='-1'?'兼职':'实习')));
 			$("#select_expectCity").val(data[0].hj_city);
@@ -54,13 +58,18 @@ function UsResume(params){
 			$("#hjPosition").val(data[0].hj_name);
 			$("#select_expectSalary").val(data[0].hj_min_salary+'-'+data[0].hj_max_salary);
 			$("#expectSalary").val(data[0].hj_min_salary+'-'+data[0].hj_max_salary);
-			$("#des_contentId").text(data[0].des_content);
+			if(data[0].des_content!=null){
+				canvas+=1;
+				$("#des_contentId").text(data[0].des_content);
+			}
+			
 		}
 	},"json");
 }
 function experience(params){
 	$.post("tkfuser/findExperience",params,function(data){
 		if(data!=0){
+			canvas+=1;
 			listExperience=data;
 			$(".experienceShow").html('<ul class="wlist clearfix"><li class="clear"><span class="c9">'+data[0].exp_start_year+'-'+data[0].exp_end_year+'</span><div><img width="56" height="56" alt="'+data[0].exp_company_name+'" src="style/images/logo_default.png"><h3>'+data[0].exp_job_name+'</h3><h4>'+data[0].exp_company_name+'</h4></div></li></ul>');
 			//工作经历 
@@ -86,6 +95,7 @@ function educationa(params){
 		listEducationa=data;
 		setTimeout(function showInfos(){
 			if(data!=0){
+				canvas+=1;
 				//教育背景 学历信息
 				$("#edu_shool_nameId").val(data[0].edu_shool_name);
 				$("#edu_educationaId").val(data[0].edu_educationa);
@@ -97,12 +107,12 @@ function educationa(params){
 				$("#edu_end_yearIds").val(data[0].edu_end_year);
 			}
 			if(listExperience[0]!=null && data[0]!=null){
-				$(".basicShow span").html(listTkfUser[0].us_name+' | '+listTkfUser[0].us_sex+' | 经验: '+listTkfUser[0].us_work_year+' | '
-						+listExperience[0].exp_city+'<br> '+listExperience[0].exp_job_name+'·'+listExperience[0].exp_company_name+' | '
+				$(".basicShow span").html(listTkfUser[0].us_name+' | '+listTkfUser[0].us_sex+' | 经验: '+listTkfUser[0].us_work_year+
+						'<br> '+listExperience[0].exp_job_name+'·'+listExperience[0].exp_company_name+' | '
 						+listTkfUser[0].us_educationa+' · '+data[0].edu_shool_name+'<br> '+listTkfUser[0].us_phone+' | '+listTkfUser[0].us_email+'<br>');
 			}else if(listExperience[0]!=null){
-				$(".basicShow span").html(listTkfUser[0].us_name+' | '+listTkfUser[0].us_sex+' | 经验: '+listTkfUser[0].us_work_year+' | '
-						+listExperience[0].exp_city+'<br> '+listExperience[0].exp_job_name+'·'+listExperience[0].exp_company_name+' | '
+				$(".basicShow span").html(listTkfUser[0].us_name+' | '+listTkfUser[0].us_sex+' | 经验: '+listTkfUser[0].us_work_year
+						+'<br> '+listExperience[0].exp_job_name+'·'+listExperience[0].exp_company_name+' | '
 						+listTkfUser[0].us_educationa+' · '+'<br> '+listTkfUser[0].us_phone+' | '+listTkfUser[0].us_email+'<br>');
 			}else if(data[0]!=null){
 				$(".basicShow span").html(listTkfUser[0].us_name+' | '+listTkfUser[0].us_sex+' | 经验: '+listTkfUser[0].us_work_year+' | '
@@ -112,6 +122,9 @@ function educationa(params){
 						+listTkfUser[0].us_educationa+'<br> '+listTkfUser[0].us_phone+' | '+listTkfUser[0].us_email+'<br>');
 			}
 				$(".basicShow img").attr("src",(listTkfUser[0].us_picpath==null?'style/images/default_headpic.png':listTkfUser[0].us_picpath));
+				var cNuber=canvas*100/5;
+				$("#canvasNumbser").text(cNuber);
+				//$(".scoreVal").html('<span >'+cNuber+'</span>分');
 		}, 80);
 		//基本信息
 	},"json");
@@ -142,9 +155,22 @@ $(".c_edit").click(function(){
 			$("#us_sexId li:eq(0)").attr("class","current");
 		}else if(listTkfUser[0].us_sex=="女"){
 			$("#us_sexId li").removeClass("current");
-			$("#us_sexId li:eq(1)").css("class","current");
+			$("#us_sexId li:eq(1)").attr("class","current");
 		}
 	}
+});
+$("#rename").click(function(){
+	var rena = $("#renames").text();
+	$("#resumeNameId").val(rena);
+});
+$("#resumeNameIds").click(function(){
+	var usr_name = $("#resumeNameId").val();
+	$.post("tkfuser/insertUsResume",{usr_name:usr_name},function(data){
+		$("#resumeNameForm").attr("class","fl dn");
+		$("#nameShowFl").attr("class","nameShow fl");
+		//{tkf_id:number.l_id};
+		UsResume({tkf_id:s.l_id});
+	},"json");
 });
 // 用户信息添加
 $("#userInfo").click(function(){
@@ -152,7 +178,6 @@ $("#userInfo").click(function(){
 });
 // 期望工作添加
 function hbId(){
-	alert("期望工作");
 	formURL('tkfuser/insertUsResume',"#expectForm");
 };
 // 工作经历添加
@@ -163,17 +188,15 @@ function expId(){
 	var exp_job_name =$("#exp_job_nameId").val() ;
 	var exParams = {exp_start_year:exp_start_year,exp_end_year:exp_end_year,exp_company_name:exp_company_name,exp_job_name:exp_job_name};
 	$.post("tkfuser/insertExperience",exParams,function(data){
-		alert(data);
+		alert("修改成功...");
 	},"json");
 };
 // 学历信息
 function eduId(){
-	alert("学历信息");
 	formURL('tkfuser/insertEducationa',".educationalForm");
 };
 //描述信息
 function desId(){
-	alert("描述信息");
 	formURL('tkfuser/modifiUsResume',".descriptionForm");
 }
 function formURL(urlParams,dataParams){
@@ -188,12 +211,12 @@ function formURL(urlParams,dataParams){
 		},
 		success:function(data){
 			if(urlParams=='tkfuser/modifiTkfUser'){
-				alert(data);
+				alert("修改成功...");
 				$("#basicEdit").attr("class","basicEdit dn");
 				$("#basicShow").attr("class","basicShow");
 				$("#user_c_edit").attr("class","c_edit");
 			}else if(urlParams=='tkfuser/insertEducationa'){
-				alert(data);
+				alert("修改成功...");
 			}
 		}
 	})

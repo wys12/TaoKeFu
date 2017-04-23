@@ -25,9 +25,12 @@ public class Encrypt {
 		String sha_2 = sha("abc");*/
 		//System.out.println(sha_1 + "\n" + sha_2);
 		//6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2
-		System.out.println("md5AndSha "+Encrypt.md5AndSha("a"));
-		System.out.println("md5 "+Encrypt.md5("a"));
-		System.out.println("sha "+Encrypt.sha("a"));
+		//adcd7048512e64b48da55b027577886ee5a36350
+		//adcd7048512e64b48da55b027577886ee5a36350
+		//3be0ff98032936bc7f9df51c5685ee5f2dd6ccee
+		System.out.println("md5AndSha "+Encrypt.md5AndSha("123"));
+		System.out.println("md5 "+Encrypt.md5("aaa"));
+		System.out.println("sha "+Encrypt.sha("aaa"));
 		
 
 	}

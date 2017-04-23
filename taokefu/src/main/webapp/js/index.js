@@ -46,16 +46,15 @@ function findJc_name(jc_type,x){
 		async:false,
 		success:function(data){
 			for(var s=0;s<data.length;s++){
-				str1+='<a href="list.html" onclick="typeSearch('+data[s].jc_name+')">'+data[s].jc_name+'</a>';
+				str1+='<a href="javascript:void(0)" onclick="typeSearchs(\''+data[s].jc_name+'\')">'+data[s].jc_name+'</a>';
 			}
 			$("#type"+x).html(str1);
 		}
 	});
 
 }
-function typeSearch(data){
-	//alert(data);
-	$.post("job/index",{search_input:data},"json");
+function typeSearchs(params){
+		
 }
 $("#search_button").click(function(){
 	var searchType = $('#searchType li').val(); //查询类型 0 1

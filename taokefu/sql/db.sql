@@ -12,7 +12,16 @@ create table admin(
   ad_pwd varchar2(50) not null,
   ad_email varchar2(30)
 );
-select * from LOGIN
+123221@qq.com
+ 1121 1232211@qq.com        3be0ff98032936bc7f9df51c5685ee5f2dd6ccee 0
+ 1081 3333@qq.com           adcd7048512e64b48da55b027577886ee5a36350 1
+ 1002 123@qq.com            adcd7048512e64b48da55b027577886ee5a36350 0
+ 1122 11223344@qq.com       adcd7048512e64b48da55b027577886ee5a36350 0
+ 	  						adcd7048512e64b48da55b027577886ee5a36350
+
+select * from login where l_pwd='adcd7048512e64b48da55b027577886ee5a36350' and l_email='112233444@qq.com' 
+
+select * from tkfuser usResume    LOGIN hj_city
 select * from user_tables
 --login	登录
 create table login(
@@ -74,7 +83,15 @@ create table company(
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1')),--公司认证状态
   tag_name varchar2(150)
 );
-
+select *
+		from job j
+		join company comp
+		on j.c_id =
+		comp.comp_id
+		where j.job_name
+		like
+		'%QQ客服%'
+		select * from job_class
 insert into usResume(usr_id,tkf_id) values(usResume_sql.nextval,)
 --drop table usResume
  --resume	用户简历表(详情)
