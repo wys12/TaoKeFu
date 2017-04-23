@@ -66,7 +66,7 @@ function typeSearch(data){
 		
 		}
 	});
-}
+
 $("#search_button").click(function(){
 	var searchType = $('#searchType li').val(); //查询类型 0 1
 	$("#searchTypes").val(searchType);

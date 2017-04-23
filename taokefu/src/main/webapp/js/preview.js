@@ -3,21 +3,26 @@ var listUsResume =[];
 var listExperience =[];
 var params="";
 function loadInfo(number){
-	if(number!=null && number!=""){
-		var t = getUrlParam('tkf_id');
-		if(t==null){
-			//alert("number"+JSON.stringify(number));
-			shouInfo(number);
-		}else if(t!=null){
-			shouInfos(t);
+	if(number!=null && number!="" &&number != undefined){
+		if(number.l_type==0){
+			var t = getUrlParam('tkf_id');
+			if(t==null){
+				shouInfo(number);
+			}else if(t!=null){
+				shouInfos(t);
+			}
+		}else{
+			alert("请登录个人用户!!!");
+			location.href = "myhome.html";
 		}
+		
 	}else{
+		alert("请登后查看!!!");
 		location.href = "login.html";
 	}
 }
 
 $("#toudi").click(function(){
-	//alert("ss=="+s);
 	$.ajax({
 		cache:true,
 		type:"POST",

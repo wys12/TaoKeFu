@@ -23,10 +23,8 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	 * @return
 	 */
 	@Override
-	public List<CompanyAll> findCompenyName(String string, Integer currPage, Integer pageSize) {
-		CompanyAll companyAll = new CompanyAll();
-		companyAll.setJob_name(string);
-		return companyAllMapper.findCompanyAllMapper(companyAll, currPage, pageSize);
+	public List<CompanyAll> findCompenyName(CompanyAll companyAll) {
+		return companyAllMapper.findCompanyAllMapper(companyAll);
 	}
 	/**
 	 * wys

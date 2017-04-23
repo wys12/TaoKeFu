@@ -64,20 +64,20 @@
 			<div class="clearfix">
 				<div class="content_l">
 					<div class="fl" id="resume_name">
-						<div class="nameShow fl">
-							<h1 title="jason的简历">jason的简历</h1>
-							<span class="rename">重命名</span> | <a target="_blank"
-								href="h/resume/preview.html">预览</a>
+						<div id="nameShowFl" class="nameShow fl">
+							<h1 id="renames" title="简历名称"></h1>
+							<span id="rename" class="rename">重命名</span> | <a target="_blank"
+								href="preview.html">预览</a>
 						</div>
 						<form class="fl dn" id="resumeNameForm">
-							<input type="text" value="jason的简历" name="resumeName"
-								class="nameEdit c9"> <input type="submit" value="保存">
-							| <a target="_blank" href="h/resume/preview.html">预览</a>
+							<input type="text" placeholder="简历名称" id="resumeNameId" name="resumeName"
+								class="nameEdit c9"> <a id="resumeNameIds" type="button" href="javascript:void(0)">保存</a>
+							| <a target="_blank" href="preview.html">预览</a>
 						</form>
 					</div>
 					<!--end #resume_name-->
 					<div class="fr c5" id="lastChangedTime">
-						最后一次更新：<span>2017-03-30 15:14 </span>
+					
 					</div>
 					<!--end #lastChangedTime-->
 					<div id="resumeScore">
@@ -85,7 +85,11 @@
 							<canvas height="120" width="120" id="doughnutChartCanvas"
 								style="width: 120px; height: 120px;"></canvas>
 							<div style="" class="scoreVal">
+<<<<<<< HEAD
 								<span>60</span>分
+=======
+								<span id="canvasNumbser">5</span>分
+>>>>>>> branch 'master' of ssh://git@github.01.com/wys12/TaoKeFu
 							</div>
 						</div>
 
@@ -1038,7 +1042,7 @@
 				<input type="hidden" id="resumeId" value="268472">
 			</div>
 			<!--end .content_l-->
-			<div class="content_r">
+			<div class="content_r dn">
 				<div class="mycenterR" id="myInfo">
 					<h2>我的信息</h2>
 					<a target="_blank" href="collections.html">我收藏的职位</a> <br> <a
@@ -1247,7 +1251,7 @@
 	<!-- end #container -->
 	</div>
 	<!-- end #body -->
-	<div id="footer">
+	<div id="footer" style="padding-top: 20px;">
 		<div class="wrapper">
 			<a href="about.html" target="_blank" rel="nofollow">联系我们</a> <a
 				href="h/af/zhaopin.html" target="_blank">互联网公司导航</a> <a

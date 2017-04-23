@@ -9,8 +9,8 @@ import com.yc.taokefu.entity.CompanyAll;
 public interface CompanyAllMapper {
 	
 
-
-	List<CompanyAll> findCompanyAllMapper(CompanyAll companyAll,@Param("currPage") Integer currPage,@Param("pageSize") Integer pageSize);
+	List<CompanyAll> findCompanyAllMapper(CompanyAll companyAll);
+	//List<CompanyAll> findCompanyAllMapper(CompanyAll companyAll,@Param("currPage") Integer currPage,@Param("pageSize") Integer pageSize);
 
 	List<CompanyAll> findJobAllMapper(CompanyAll companyAll);
 
@@ -43,4 +43,5 @@ public interface CompanyAllMapper {
 	Integer modifiJob_class(CompanyAll company);
 
 	List<CompanyAll> findResumeCompany(CompanyAll companyAll);
+
 }

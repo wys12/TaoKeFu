@@ -58,9 +58,9 @@ function showCreate(){
 }
 function showBox_Job(){
 	var str="";
-	str='<dl><dt>产品</dt><dd><ul class="reset job_main"><li><span>产品经理</span><ul class="reset job_sub dn"><li>产品经理</li></ul></li>'
-		+'<li><span>产品设计师</span><ul class="reset job_sub dn" style="margin-left: -160px;"><li>网页产品设计师</li><li>无线产品设计师</li>'
-		+'</ul></li><li><span>高端产品职位</span><ul class="reset job_sub dn" style="margin-left: -310px;"><li>产品部经理</li><li>产品总监</li></ul></li></ul></dd></dl>';
+	str='<dl><dd><ul class="reset job_main"><li><span>网络客服</span><ul class="reset job_sub dn"><li>淘宝客服</li><li>微信客服</li></ul></li>'
+		+'<li><span>客服中心</span><ul class="reset job_sub dn" style="margin-left: -160px;"><li>客服经理</li><li>客服总监</li>'
+		+'</ul></li><li><span>客服主管</span><ul class="reset job_sub dn" style="margin-left: -310px;"><li>客服专员</li></ul></li></ul></dd></dl>';
 	$("#box_job").html(str);
 }
 function getUrlParam(name) {
@@ -76,7 +76,7 @@ $("#formSubmit").click(function(){
 		data:$('#jobForm').serialize(),
 		async:false,
 		success:function(data){
-			alert(data);
+			location.href='positions.html';
 		}
 	})
 });
