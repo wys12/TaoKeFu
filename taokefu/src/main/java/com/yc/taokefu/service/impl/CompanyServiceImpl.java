@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.taokefu.entity.Company;
+import com.yc.taokefu.entity.CompanyTeam;
 import com.yc.taokefu.entity.PaginationBean;
-import com.yc.taokefu.entity.User;
+import com.yc.taokefu.entity.Product;
 import com.yc.taokefu.mapper.CompanyMapper;
 import com.yc.taokefu.service.CompanyService;
 @Service("companyService")
@@ -50,6 +51,30 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public List<Company> BackCompanysearch(Company company) {
 		return companyMapper.BackCompanysearch(company);
+	}
+	@Override
+	public List<Product> BackCompanyDatail(Product product) {
+		return companyMapper.BackCompanyDatail(product);
+	}
+	@Override
+	public boolean BackCompanyEditCor(Product product) {
+		return companyMapper.BackCompanyEditCor(product)>0;
+	}
+	@Override
+	public List<CompanyTeam> BackcompanyTeam(CompanyTeam companyTeam) {
+		return companyMapper.BackcompanyTeam(companyTeam);
+	}
+	@Override
+	public boolean BackCompanyEditCt(CompanyTeam companyTeam) {
+		return companyMapper.BackCompanyEditCt(companyTeam)>0;
+	}
+	@Override
+	public boolean BackCompanyEditCtAdd(CompanyTeam companyTeam) {
+		return companyMapper.BackCompanyEditCtAdd(companyTeam)>0;
+	}
+	@Override
+	public boolean BackCompanyEditCorAdd(Product product) {
+		return companyMapper.BackCompanyEditCorAdd(product)>0;
 	}
 
 }

@@ -11,26 +11,9 @@
 				onclick="openAdd()" plain="true">添加</a> <a href="#"
 				class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()"
 				plain="true">修改</a> <a href="#" class="easyui-linkbutton"
-				iconCls="icon-remove" onclick="remove()" plain="true">删除</a> <a
-				href="#" class="easyui-linkbutton" iconCls="icon-cancel"
-				onclick="cancel()" plain="true">取消</a> <a href="#"
-				class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()"
-				plain="true">刷新</a> <a href="#" class="easyui-linkbutton"
-				iconCls="icon-print" onclick="openAdd()" plain="true">打印</a> <a
-				href="#" class="easyui-linkbutton" iconCls="icon-help"
-				onclick="openEdit()" plain="true">帮助</a> <a href="#"
-				class="easyui-linkbutton" iconCls="icon-undo" onclick="remove()"
-				plain="true">撤销</a> <a href="#" class="easyui-linkbutton"
-				iconCls="icon-redo" onclick="cancel()" plain="true">重做</a> <a
-				href="#" class="easyui-linkbutton" iconCls="icon-sum"
-				onclick="reload()" plain="true">总计</a> <a href="#"
-				class="easyui-linkbutton" iconCls="icon-back" onclick="reload()"
-				plain="true">返回</a> <a href="#" class="easyui-linkbutton"
-				iconCls="icon-tip" onclick="reload()" plain="true">提示</a> <a
-				href="#" class="easyui-linkbutton" iconCls="icon-save"
-				onclick="reload()" plain="true">保存</a> <a href="#"
-				class="easyui-linkbutton" iconCls="icon-cut" onclick="reload()"
-				plain="true">剪切</a>
+				iconCls="icon-remove" onclick="remove()" plain="true">删除</a> 
+				<a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()"
+				plain="true">刷新</a> 
 		</div>
 		<div class="wu-toolbar-search">
 			<label>关键词：</label>&nbsp;&nbsp;
@@ -242,9 +225,7 @@
 	</form>
 </div>
 
-<div id="company-dialog-3" class="easyui-dialog"
-	data-options="closed:true,iconCls:'icon-save'"
-	style="width: 500px; padding: 10px;">
+<div id="company-dialog-3" class="easyui-dialog" data-options="closed:true,iconCls:'icon-save'" style="width: 500px; padding: 10px;">
 	<form id="company-form-3" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
@@ -255,7 +236,7 @@
 			<tr>
 				<td width="50" align="right">公司ID:</td>
 				<td><input type="text" name="c_id" id="cor_cid-edit"
-					class="wu-text" /></td>
+					class="wu-text" readonly="readonly"/></td>
 			</tr>
 			<tr>
 				<td width="80" align="right">公司产品:</td>
@@ -269,8 +250,7 @@
 			</tr>
 			<tr>
 				<td align="right">产品图片:</td>
-				<td><img src="style/images/product_default.png" id="pic-edit"
-					width="100" height="100" align="center">
+				<td><img src="style/images/product_default.png" id="pic-pro-edit" width="100" height="100" align="center">
 					 <input type="file" name="pro_picdata" id="ppicPath-edit" onchange="chgPic_detail(this)" /></td>
 			</tr>
 			<tr>
@@ -295,7 +275,7 @@
 			<tr>
 				<td width="50" align="right">公司ID:</td>
 				<td><input type="text" name="c_id" id="ct_c_id-edit"
-					class="wu-text" /></td>
+					class="wu-text" readonly="readonly"/></td>
 			</tr>
 			<tr>
 				<td width="80" align="right">团队名称:</td>
@@ -304,9 +284,9 @@
 			</tr>
 			<tr>
 				<td align="right">团队图片:</td>
-				<td><img src="style/images/leader_default.png" id="pic-edit"
+				<td><img src="style/images/leader_default.png" id="ct-pic-edit"
 					width="100" height="100" align="center">
-					 <input type="file" name="ct_picdata" id="ct_picPath-edit" onchange="chgPic_detail(this)" /></td>
+					 <input type="file" name="ct_picdata" id="ct_picPath-edit" onchange="chgPic_team(this)" /></td>
 			</tr>
 			<tr>
 				<td align="right">团队职位:</td>

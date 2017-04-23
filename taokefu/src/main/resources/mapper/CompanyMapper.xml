@@ -98,4 +98,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from company 
 		<if test="comp_search !=null and comp_search !='-0'">where ${find_comp}='${comp_search}'</if>
 	</select>
+	
+	<!-- 后台公司详情管理 -->
+	<select id="BackCompanyDatail" parameterType="Product" resultType="Product">
+		select * from coResume where c_id = #{c_id}
+	</select>
+	
+	<!-- 后台公司详情修改 -->
+	<update id="BackCompanyEditCor" parameterType="Product">
+		update coResume
+		<set>
+			<if test="pro_name != null">
+				pro_name = #{pro_name},
+			</if>
+			<if test="pro_link != null">
+				pro_link = #{pro_link},
+			</if>
+			<if test="pro_picPath != null">
+				pro_picPath = #{pro_picPath},
+			</if>
+			<if test="pro_pdesc != null">
+				pro_pdesc = #{pro_pdesc}
+			</if>
+		</set>
+		where c_id = #{c_id}
+	</update>
+	
+	<!-- 后台公司详情添加 -->
+	<insert id="BackCompanyEditCorAdd" parameterType="Product">
+		insert into coResume
+		(cor_id,c_id,pro_name,pro_link,pro_picPath,pro_pdesc)
+		values(comResume_sql.nextval,#{c_id},#{pro_name},#{pro_link},#{pro_picPath},#{pro_pdesc})
+	</insert>
+	
+	<!-- 后台公司团队管理 -->
+	<select id="BackcompanyTeam" parameterType="CompanyTeam" resultType="CompanyTeam">
+		select * from company_team where c_id = #{c_id}
+	</select>
+	
+	<!-- 后台团队管理修改 -->
+	<update id="BackCompanyEditCt" parameterType="CompanyTeam">
+		update company_team
+		<set>
+			<if test="ct_name != null">
+				ct_name = #{ct_name},
+			</if>
+			<if test="ct_picPath != null">
+				ct_picPath = #{ct_picPath},
+			</if>
+			<if test="ct_job != null">
+				ct_job = #{ct_job},
+			</if>
+			<if test="ct_tdesc != null">
+				ct_tdesc = #{ct_tdesc}
+			</if>
+		</set>
+		where c_id = #{c_id}
+	</update>
+	<!-- 后台团队管理添加 -->
+	<insert id="BackCompanyEditCtAdd" parameterType="CompanyTeam">
+		insert into company_team
+		(ct_id,c_id,ct_name,ct_picPath,ct_job,ct_tdesc)
+		values(company_team_sql.nextval,#{c_id},#{ct_name},#{ct_picPath},#{ct_job},#{ct_tdesc})
+	</insert>
 </mapper>

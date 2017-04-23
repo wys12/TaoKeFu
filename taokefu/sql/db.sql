@@ -169,7 +169,7 @@ insert into coResume values(comResume_sql.nextval,'1053','百度糯米','www.nuo
 我们提供的解决方案是：每天把最超值的团购消费带到您身边！
 百度糯米，致力于通过团购的方式向消费者推荐高折扣的本地精品生活服务。');
 --resume	公司简历表(详情)
- select * from coResume
+ select * from coResume where cor_id = 1002
  drop table coResume
 create table coResume(
 	cor_id number primary key,
@@ -179,9 +179,6 @@ create table coResume(
 	pro_link varchar2(50),	--产品链接
 	pro_picPath varchar2(30),	--图片路径
 	pro_pdesc varchar2(100), --产品描述
-	pro_link varchar2(30),	--产品链接
-	pro_picPath varchar2(300),	--图片路径
-	pro_pdesc varchar2(500) --产品描述
  --deepness 公司深度
 -- 	de_name varchar2(30),	--公司深度名称
 -- 	dee_link varchar2(30)	--公司深度链接
@@ -196,10 +193,6 @@ create table company_team(
 	ct_picPath varchar2(50),	--图片路径
 	ct_job varchar2(30),	--团队职位
 	ct_tdesc varchar2(150)	--团队描述
-	ct_name varchar2(20),  --团队名称
-	ct_picPath varchar2(300),	--图片路径
-	ct_job varchar2(20),	--团队职位
-	ct_tdesc varchar2(300)	--团队描述
 );
 insert into experience values(experience_job_sql.nextval,1002,'阿里云','项目总监','5年','北京','2011.1','2016.1');
 select * from educationa experience  usResume 

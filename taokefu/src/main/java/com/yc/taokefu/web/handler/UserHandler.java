@@ -307,6 +307,7 @@ public class UserHandler {
 		LogManager.getLogger().debug("图片......us_picpath:"+us_picdata);
 		ServletUtil.uploadFile(us_picdata);
 		user.setUs_picpath(ServletUtil.picPath);
+		ServletUtil.picPath="";
 		LogManager.getLogger().debug("添加"+user);
 		return userService.BackUserAdd(user);
 	}
@@ -317,6 +318,7 @@ public class UserHandler {
 		LogManager.getLogger().debug("图片......us_picpath:"+us_picdata);
 		ServletUtil.uploadFile(us_picdata);
 		user.setUs_picpath(ServletUtil.picPath);
+		ServletUtil.picPath="";
 		LogManager.getLogger().debug("修改"+user);
 		return userService.BackUserEdit(user);
 	}

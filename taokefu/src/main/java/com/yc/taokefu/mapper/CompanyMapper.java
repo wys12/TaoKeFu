@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.yc.taokefu.entity.Company;
+import com.yc.taokefu.entity.CompanyTeam;
 import com.yc.taokefu.entity.PaginationBean;
+import com.yc.taokefu.entity.Product;
 
 public interface CompanyMapper {
 	
@@ -21,6 +23,18 @@ public interface CompanyMapper {
 	int BackCompanyDelete(String id);
 
 	List<Company> BackCompanysearch(Company company);
+
+	List<Product> BackCompanyDatail(Product product);
+
+	int BackCompanyEditCor(Product product);
+
+	List<CompanyTeam> BackcompanyTeam(CompanyTeam companyTeam);
+
+	int BackCompanyEditCt(CompanyTeam companyTeam);
+
+	int BackCompanyEditCtAdd(CompanyTeam companyTeam);
+
+	int BackCompanyEditCorAdd(Product product);
 
 	//Company findCompany(Company company);
 

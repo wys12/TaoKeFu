@@ -18,8 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yc.taokefu.entity.Company;
 import com.yc.taokefu.entity.CompanyAll;
+import com.yc.taokefu.entity.CompanyTeam;
+import com.yc.taokefu.entity.JobClass;
 import com.yc.taokefu.entity.Login;
 import com.yc.taokefu.entity.PaginationBean;
+import com.yc.taokefu.entity.Product;
 import com.yc.taokefu.entity.User;
 import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.CompanyService;
@@ -307,49 +310,113 @@ public Integer modifiInvest(CompanyAll company){
 		ServletUtil.picPath="";
 		LogManager.getLogger().debug("添加"+company);
 		return companyService.BackCompanyAdd(company);
-		
+
 	}
 	//后台修改公司
-		@RequestMapping(value="edit",method=RequestMethod.POST)
-		@ResponseBody
-		public boolean doEdit(@RequestParam("comp_picdata")MultipartFile comp_picdata,Company company){
-			LogManager.getLogger().debug("图片......us_picpath:"+comp_picdata);
-			ServletUtil.uploadFile(comp_picdata);
-			company.setComp_logo(ServletUtil.picPath);
-			LogManager.getLogger().debug("修改"+company);
-			return companyService.BackCompanyEdit(company);
-		}
-		
-		//后台删除公司
-		@RequestMapping("deleteById")
-		@ResponseBody
-		public String doDelete(HttpServletRequest request){
-			String ids = request.getParameter("ids");
-			String[] id = ids.split(",");
-				for (int i = 0; i < id.length;i++) {
-					LogManager.getLogger().debug("删除用户"+id[i]);
-					companyService.BackCompanyDelete(id[i]);
-				}
-			return "true";
-		}
+	@RequestMapping(value="edit",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean doEdit(@RequestParam("comp_picdata")MultipartFile comp_picdata,Company company){
+		LogManager.getLogger().debug("图片......us_picpath:"+comp_picdata);
+		ServletUtil.uploadFile(comp_picdata);
+		company.setComp_logo(ServletUtil.picPath);
+		ServletUtil.picPath="";
+		LogManager.getLogger().debug("修改"+company);
+		return companyService.BackCompanyEdit(company);
+	}
 
-		/**
-		 * 多条件查询
-		 */
-		@RequestMapping("search")
+	//后台删除公司
+	@RequestMapping("deleteById")
+	@ResponseBody
+	public String doDelete(HttpServletRequest request){
+		String ids = request.getParameter("ids");
+		String[] id = ids.split(",");
+		for (int i = 0; i < id.length;i++) {
+			LogManager.getLogger().debug("删除用户"+id[i]);
+			companyService.BackCompanyDelete(id[i]);
+		}
+		return "true";
+	}
+
+	/**
+	 * 多条件查询
+	 */
+	@RequestMapping("search")
+	@ResponseBody
+	public List<Company> doSearch(Company company){
+		try {
+			company.setComp_search(new String(company.getComp_search().getBytes("ISO-8859-1"),"UTF-8"));
+			LogManager.getLogger().debug("多条件查询:"+"查找条件"+company.getFind_comp()+"检索词"+company.getComp_search());
+			LogManager.getLogger().debug(company);	
+			List<Company> list = new ArrayList<Company>();
+			list= companyService.BackCompanysearch(company);
+			LogManager.getLogger().debug("list ========  >"+list);
+			return list;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	//后台list公司详情
+	@RequestMapping(value="companyDatail",method=RequestMethod.POST)
+	@ResponseBody
+	public List<Product> findCompanyDatail(Product product) {
+		LogManager.getLogger().debug(product);	
+		List<Product> list = new ArrayList<Product>();
+		list= companyService.BackCompanyDatail(product);
+		LogManager.getLogger().debug("list ========  >"+list);
+		return list;
+	}
+	
+	//后台修改公司详情
+	@RequestMapping(value="editCor",method=RequestMethod.POST)
+	@ResponseBody
+	public boolean doEditCor(@RequestParam("pro_picdata")MultipartFile pro_picdata,Product product){
+		if(product.getCor_id()== null){
+			LogManager.getLogger().debug("图片......us_picpath:"+ pro_picdata);
+			ServletUtil.uploadFile(pro_picdata);
+			product.setPro_picPath(ServletUtil.picPath);
+			ServletUtil.picPath="";
+			LogManager.getLogger().debug("添加"+product);
+			return companyService.BackCompanyEditCorAdd(product);
+		}else{
+			LogManager.getLogger().debug("图片......us_picpath:"+ pro_picdata);
+			ServletUtil.uploadFile(pro_picdata);
+			product.setPro_picPath(ServletUtil.picPath);
+			ServletUtil.picPath="";
+			LogManager.getLogger().debug("修改"+product);
+			return companyService.BackCompanyEditCor(product);
+		}
+	}
+	
+	//后台list公司团队
+		@RequestMapping(value="companyTeam",method=RequestMethod.POST)
 		@ResponseBody
-		public List<Company> doSearch(Company company){
-			try {
-				company.setComp_search(new String(company.getComp_search().getBytes("ISO-8859-1"),"UTF-8"));
-				LogManager.getLogger().debug("多条件查询:"+"查找条件"+company.getFind_comp()+"检索词"+company.getComp_search());
-				LogManager.getLogger().debug(company);	
-				List<Company> list = new ArrayList<Company>();
-				list= companyService.BackCompanysearch(company);
-				LogManager.getLogger().debug("list ========  >"+list);
-				return list;
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
+		public List<CompanyTeam> findcompanyTeam(CompanyTeam companyTeam) {
+			LogManager.getLogger().debug(companyTeam);	
+			List<CompanyTeam> list = new ArrayList<CompanyTeam>();
+			list= companyService.BackcompanyTeam(companyTeam);
+			LogManager.getLogger().debug("list ========  >"+list);
+			return list;
+		}
+		//后台修改公司团队
+		@RequestMapping(value="editCt",method=RequestMethod.POST)
+		@ResponseBody
+		public boolean doEditCt(@RequestParam("ct_picdata")MultipartFile ct_picdata,CompanyTeam companyTeam){
+			if(companyTeam.getCt_id() == null){
+				LogManager.getLogger().debug("图片......us_picpath:"+ ct_picdata);
+				ServletUtil.uploadFile(ct_picdata);
+				companyTeam.setCt_picPath(ServletUtil.picPath);
+				ServletUtil.picPath="";
+				LogManager.getLogger().debug("添加"+companyTeam);
+				return companyService.BackCompanyEditCtAdd(companyTeam);
+			}else{
+				LogManager.getLogger().debug("图片......us_picpath:"+ ct_picdata);
+				ServletUtil.uploadFile(ct_picdata);
+				companyTeam.setCt_picPath(ServletUtil.picPath);
+				ServletUtil.picPath="";
+				LogManager.getLogger().debug("修改"+companyTeam);
+				return companyService.BackCompanyEditCt(companyTeam);
 			}
-			return null;
+			
 		}
 }
