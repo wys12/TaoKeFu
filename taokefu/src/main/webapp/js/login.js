@@ -1,4 +1,6 @@
+var boole="0";
 function login(){
+	boole="0";
 	//$("#loginForm").submit();//表单提交	
 	var email = $('#email').val();
 	var password = $('#password').val();
@@ -19,3 +21,14 @@ function login(){
 		}
 	});
 }
+$("#ssss").click(function(){
+	if(boole=="0"){
+		boole="1";
+		$(".pwds").attr("type","text");
+	}else if(boole=="1"){
+		boole="0";
+		$(".pwds").attr("type","password");
+	}
+});
+
+	
