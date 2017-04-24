@@ -27,12 +27,12 @@ function show(job_state){
 		//console.info(JSON.stringify(data));
 		for(var i=0;i<data.length;i++){
 			str+='<li ><h3><a target="_blank" title="随便写" href="create.html?positionId='+data[i].job_id+'">'+data[i].job_name+'</a> '
-				+'<span>待定</span></h3> <span class="receivedResumeNo"><a href="unHandleResumes.html?positionId=149594">应聘简历（'+data.length+'）</a></span> '
+				+'<span>待定</span></h3> <span class="receivedResumeNo"><a href="unHandleResumes.html?positionId=149594"></a></span> '
 				+'<div>'+data[i].job_nature+' / '+data[i].job_min_salary+'k-'+data[i].job_max_salary+'k / 1-3年 / '+data[i].job_education+'</div><div class="c9">发布时间：'+data[i].job_ftime+'</div> '
 				+'<div class="links"><a class="job_refresh" href="javascript:void(0)">刷新<span>每个职位7天内只能刷新一次</span></a> '
 				+'<a target="_blank" class="job_edit" href="create.html?positionId='+data[i].job_id+'">编辑</a> '
 				+'<a class="job_offline" onclick="jobOffLine('+data[i].job_id+')" href="javascript:void(0)">下线</a> <a class="job_del" href="javascript:void(0)" onclick="jobDel('+data[i].job_id+')">删除</a></div></li>';
-		}
+		}//应聘简历（'+data.length+'）
 		$("#positionNumber").html(data.length);
 		$("#showJob").html(str);
 	},"json");
