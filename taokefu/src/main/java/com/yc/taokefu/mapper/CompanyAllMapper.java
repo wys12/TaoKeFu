@@ -44,4 +44,6 @@ public interface CompanyAllMapper {
 
 	List<CompanyAll> findResumeCompany(CompanyAll companyAll);
 
+	List<CompanyAll> findRange(CompanyAll companyAll);
+
 }

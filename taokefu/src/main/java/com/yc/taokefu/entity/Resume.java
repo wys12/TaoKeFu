@@ -47,6 +47,20 @@ public class Resume {
 	private String edu_educationa ;//学历
 	private String edu_start_year ;// 开始年份
 	private String edu_end_year  ;//毕业年份
+	private String res_modifiTime;
+	private String res_insertTime;
+	public String getRes_insertTime() {
+		return res_insertTime;
+	}
+	public void setRes_insertTime(String res_insertTime) {
+		this.res_insertTime = res_insertTime;
+	}
+	public String getRes_modifiTime() {
+		return res_modifiTime;
+	}
+	public void setRes_modifiTime(String res_modifiTime) {
+		this.res_modifiTime = res_modifiTime;
+	}
 	public String getEdu_shool_name() {
 		return edu_shool_name;
 	}
@@ -251,8 +265,8 @@ public class Resume {
 				+ ", exp_job_name=" + exp_job_name + ", exp_start_year=" + exp_start_year + ", exp_end_year="
 				+ exp_end_year + ", exp_work=" + exp_work + ", exp_city=" + exp_city + ", edu_shool_name="
 				+ edu_shool_name + ", edu_major=" + edu_major + ", edu_educationa=" + edu_educationa
-				+ ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + "]";
+				+ ", edu_start_year=" + edu_start_year + ", edu_end_year=" + edu_end_year + ", res_modifiTime="
+				+ res_modifiTime + ", res_insertTime=" + res_insertTime + "]";
 	}
-	
 
 }

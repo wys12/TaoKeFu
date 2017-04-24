@@ -12,12 +12,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on j.c_id =
 		comp.comp_id
 		where j.job_name
-		like
-		'%${job_name}%'
+		like '%${job_name}%' and j.job_state='-0'
 	</select>
-	
+	<select id="findRange" parameterType="CompanyAll" resultType="CompanyAll">
+		select *
+		from job j
+		join company comp
+		on j.c_id =
+		comp.comp_id
+		where j.job_name
+		like '%${job_name}%' and j.job_state='-0' 
+		<if test="job_nature != null">and job_nature='${job_nature}'</if>
+		<if test="job_education != null">and job_education='${job_education}'</if>
+		<if test="job_experience != null">and job_experience='${job_experience}'</if>
+		<if test="job_max_salary != null">and (job_min_salary between ${job_min_salary} and ${job_max_salary} or job_max_salary between ${job_min_salary}  and ${job_max_salary})</if>
+	</select>
 
-	<select id="findResumeCompany" parameterType="CompanyAll" resultType="CompanyAll">
+	<select id="findResumeCompany" parameterType="CompanyAll"
+		resultType="CompanyAll">
 		select * from company where comp_id=${comp_id}
 	</select>
 

@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.taokefu.mapper.ResumeMapper">
 	<insert id="insertResume">
-		insert into resume(res_id,c_id,job_id,usr_id,usr_state)
-		values(resume_sql.nextval,${c_id},${tak_id},${tkf_id},'-0')
+		insert into resume(res_id,c_id,job_id,usr_id,usr_state,res_insertTime,us_email)
+		values(resume_sql.nextval,${c_id},${tak_id},${tkf_id},'-0','${exp_city}','${us_email}')
 	</insert>
 	<update id="modifiResumes" parameterType="UserAll">
 		update resume
@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where c_id=${c_id}
 	</update>
 	<update id="modifiResumeState" parameterType="Resume">
-		update resume set usr_state='${usr_state}' where job_id=${job_id}
+		update resume set usr_state='${usr_state}',res_modifiTime='${res_modifiTime}' where job_id=${job_id}
 	</update>
 	<delete id="deleteResumeState" parameterType="Resume">
 		delete resume where job_id=${job_id}

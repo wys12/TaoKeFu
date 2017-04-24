@@ -12,6 +12,7 @@ function loadInfo(number){
 var listTkfUser =[];var listUsResume =[];var listExperience =[];var listSucceed =[];
 var listEducationa =[];var listCollect =[];var listTake =[];
 function shouInfo(number){
+	canvas=0;
 	var params={tkf_id:number.l_id};
 
 	tkfUser(number);
@@ -40,6 +41,7 @@ function tkfUser(number){
 	$.post("tkfuser/findTkfUser",{us_id:number.l_id},function(data){
 		if(data!=0){
 			canvas+=1;
+			//alert("基础背景 "+canvas);
 			listTkfUser=data;
 		}
 	},"json");
@@ -47,19 +49,24 @@ function tkfUser(number){
 function UsResume(params){
 	$.post("tkfuser/findUsResume",params,function(data){
 		if(data!=0){
-			canvas+=1;
 			listUsResume=data;
 			$("#renames").text(data[0].usr_name);
 			$(".descriptionShow").html(data[0].des_content);
 			$(".expectShow").html(data[0].hj_city+','+data[0].hj_name+',月薪'+data[0].hj_min_salary+'-'+data[0].hj_max_salary+','+(data[0].hj_nature=='-0'?'全职':(data[0].hj_nature=='-1'?'兼职':'实习')));
-			$("#select_expectCity").val(data[0].hj_city);
-			//期望工作和自我描述
-			$("#expectCity").val(data[0].hj_city);
-			$("#hjPosition").val(data[0].hj_name);
-			$("#select_expectSalary").val(data[0].hj_min_salary+'-'+data[0].hj_max_salary);
-			$("#expectSalary").val(data[0].hj_min_salary+'-'+data[0].hj_max_salary);
+			//期望工作
+			if(data[0].hj_min_salary!=null){
+				canvas+=1;
+				//alert("期望工作"+canvas);
+				$("#select_expectCity").val(data[0].hj_city);
+				$("#expectCity").val(data[0].hj_city);
+				$("#hjPosition").val(data[0].hj_name);
+				$("#select_expectSalary").val(data[0].hj_min_salary+'-'+data[0].hj_max_salary);
+				$("#expectSalary").val(data[0].hj_min_salary+'-'+data[0].hj_max_salary);
+			}
+			//自我描述
 			if(data[0].des_content!=null){
 				canvas+=1;
+				//alert("自我描述"+canvas);
 				$("#des_contentId").text(data[0].des_content);
 			}
 			
@@ -70,6 +77,7 @@ function experience(params){
 	$.post("tkfuser/findExperience",params,function(data){
 		if(data!=0){
 			canvas+=1;
+			//alert("工作经历 "+canvas);
 			listExperience=data;
 			$(".experienceShow").html('<ul class="wlist clearfix"><li class="clear"><span class="c9">'+data[0].exp_start_year+'-'+data[0].exp_end_year+'</span><div><img width="56" height="56" alt="'+data[0].exp_company_name+'" src="style/images/logo_default.png"><h3>'+data[0].exp_job_name+'</h3><h4>'+data[0].exp_company_name+'</h4></div></li></ul>');
 			//工作经历 
@@ -96,6 +104,7 @@ function educationa(params){
 		setTimeout(function showInfos(){
 			if(data!=0){
 				canvas+=1;
+				//alert("教育背景 "+canvas);
 				//教育背景 学历信息
 				$("#edu_shool_nameId").val(data[0].edu_shool_name);
 				$("#edu_educationaId").val(data[0].edu_educationa);
@@ -124,12 +133,13 @@ function educationa(params){
 				$(".basicShow img").attr("src",(listTkfUser[0].us_picpath==null?'style/images/default_headpic.png':listTkfUser[0].us_picpath));
 				var cNuber=canvas*100/5;
 				$("#canvasNumbser").text(cNuber);
+				$("#fz").val(cNuber);
+				scoreChange($("#fz").val());
 				//$(".scoreVal").html('<span >'+cNuber+'</span>分');
 		}, 80);
 		//基本信息
 	},"json");
 }
-
 
 $("#education").click(function(){
 	var schoolName=$('.schoolName').val();
@@ -218,6 +228,29 @@ function formURL(urlParams,dataParams){
 			}else if(urlParams=='tkfuser/insertEducationa'){
 				alert("修改成功...");
 			}
+			shouInfo(s);
 		}
 	})
+}
+function scoreChange(a) {
+    function e() {
+        var b = document.getElementById("doughnutChartCanvas").getContext("2d");
+        new Chart(b).Doughnut(c, d),
+        $("#resumeScore .scoreVal span").text(a).parent().fadeIn(200),
+        100 == a ? $("#resumeScore .which span").html('<a href="' + ctx + '/jobs/list_所有职位">马上去投递</a>') : $("#resumeScore .which span").html("<a>马上去完善</a>")
+    }
+    var b = 360 * parseInt(a) / 100
+      , c = [{
+        value: b,
+        color: "#009a6d"
+    }, {
+        value: 360 - b,
+        color: "#ffffff"
+    }]
+      , d = {
+        percentageInnerCutout: 80,
+        segmentShowStroke: !1,
+        animationEasing: "easeOutQuart"
+    };
+    setTimeout(e, 300)
 }

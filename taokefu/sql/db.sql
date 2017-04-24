@@ -12,6 +12,7 @@ create table admin(
   ad_pwd varchar2(50) not null,
   ad_email varchar2(30)
 );
+select * from resume where c_id=1001 and usr_state='-0' 
 123221@qq.com
  1121 1232211@qq.com        3be0ff98032936bc7f9df51c5685ee5f2dd6ccee 0
  1081 3333@qq.com           adcd7048512e64b48da55b027577886ee5a36350 1
@@ -159,8 +160,11 @@ insert into resume values (resume_sql.nextval,'1042','1061','1001','呵呵','张
 		 edu_start_year varchar2(30),-- 开始年份
 		 edu_end_year varchar2(30) ,--毕业年份
 	
-		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
-	);
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5')),--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
+		 res_modifiTime varchar2(50),
+		 res_insertTime varchar2(50)
+		 );
+	alter table resume add (res_insertTime varchar2(50));
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
  select * from company
@@ -186,6 +190,11 @@ create table coResume(
 
 drop table company_team
 --company_team 公司管理团队
+select * from job j
+		join company comp
+		on j.c_id =
+		comp.comp_id where j.job_name=''
+
 create table company_team(
 	ct_id number primary key,
 	c_id number constraint fk_ct_id references company(comp_id),
@@ -263,7 +272,11 @@ insert into job
 values(job_sql.nextval,'1053','年终奖金翻倍','微信客服','客服联系','全职','4k','6k','2017-04-07','研究生','职位诱惑就是年底双薪','微信客服工作的职责','微信客服任职的要求',
 '微信客服其他的要求','0','-0');
 --职位表
-select * from job
+select * from job j join company comp on j.c_id = comp.comp_id where j.job_name like '%微信%' and j.job_state='-0' and (job_min_salary between 5 and 10 or job_max_salary between 5 and 10) 
+select * from job j join company comp on j.c_id = comp.comp_id where j.job_name like '%微信%' and j.job_state='-0' and (job_min_salary between 5 and 10 or job_max_salary between 5 and 10) 
+select * from job j join company comp on j.c_id = comp.comp_id where j.job_name like '%%' and j.job_state='-0' and job_experience='1-3年' 
+select * from job  where job_min_salary between 5 and 10 or job_max_salary  between '5k' and '15k'
+update job set job_min_salary='10k', job_max_salary='13k' where job_id=1081
 create table job(
   job_id number primary key,
   c_id number not null,

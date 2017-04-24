@@ -2,6 +2,8 @@ package com.yc.taokefu.web.handler;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -46,12 +48,13 @@ public class ResumeHandler {
 		LogManager.getLogger().debug("user  ===  "+user);
 		List<Resume> list = resumeService.findResumes(user);
 		LogManager.getLogger().debug("list  ===  "+list);
+		user.setUs_email(userService.findUser(user).get(0).getUs_email());
+		user.setExp_city(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		if(list.size()==0){
 			UserAll user1=userService.findUser(user).get(0);
 			UserAll usResume=userService.findUsResume(user).get(0);
 			UserAll educationa=userService.findEducationa(user).get(0);
 			UserAll experience=userService.findExperience(user).get(0);
-			LogManager.getLogger().debug("user == >  "+user);
 			user1.setTkf_id(ServletUtil.login_session(session).getL_id());
 			user1.setC_id(ServletUtil.c_id);
 			usResume.setTkf_id(ServletUtil.login_session(session).getL_id());
@@ -89,6 +92,7 @@ public class ResumeHandler {
 	@ResponseBody
 	public int modifiResumeState(Resume resume){
 		LogManager.getLogger().debug(resume);
+		resume.setRes_modifiTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		return resumeService.modifiResumeState(resume);
 	}
 	/**
