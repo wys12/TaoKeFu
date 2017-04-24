@@ -160,8 +160,11 @@ insert into resume values (resume_sql.nextval,'1042','1061','1001','呵呵','张
 		 edu_start_year varchar2(30),-- 开始年份
 		 edu_end_year varchar2(30) ,--毕业年份
 	
-		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5'))--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
-	);
+		 usr_state varchar2(30) check(usr_state in('-0','-1','-2','-3','-4','-5')),--简历状态（投递成功(简历未查看)/简历查看/通知面试/面试成功/不合适）
+		 res_modifiTime varchar2(50),
+		 res_insertTime varchar2(50)
+		 );
+	alter table resume add (res_insertTime varchar2(50));
 insert into coResume values(comResume_sql.nextval,'1001','百度团队','团队图片','CEO','这是一个测试描述','百度搜索','www.baidu.com','产品图片','强大的搜索引擎','公司深度','深度链接');
  --resume	公司简历表(详情)
  select * from company

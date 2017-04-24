@@ -46,6 +46,7 @@ public class JobHandler {
 	public String findJob(String searchTypes,String search_input,CompanyAll companyAll,PaginationBean<CompanyAll> paginationBean) {
 		ServletUtil.type=Integer.valueOf(searchTypes);
 		companyAll.setJob_name(search_input);
+		LogManager.getLogger().debug("=="+companyAll);
 		if(searchTypes.intern() == "0"){
 			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
 		}else if(searchTypes.intern() == "1"){

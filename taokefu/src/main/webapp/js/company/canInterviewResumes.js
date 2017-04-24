@@ -13,7 +13,7 @@ function showResume(usr_state){
 		for(var i=0;i<data.length;i++){
 			str+=('<li " class="onlineResume"><label > <input name="BoxCheck" value="'+data[i].job_id+'" type="checkbox"> <i></i></label><div class="resumeShow">'
 					+'<a title="预览在线简历" target="_blank" class="resumeImg" href="resumeView.html?deliverId=1686182"> <img src="style/images/default_headpic.png"></a>'
-					+'<div class="resumeIntro"><h3 class="unread"><a target="_blank" title="预览jason的简历" href="preview.html?tkf_id='+data[i].usr_id+'"> '+data[i].usr_name+'</a> <em></em><a target="_blank" href="javascript:void(0)" id="'+data[i].job_id+'"></a></h3><span class="fr">投递时间：2017-04-16 16:08</span>'
+					+'<div class="resumeIntro"><h3 class="unread"><a target="_blank" title="预览jason的简历" href="preview.html?tkf_id='+data[i].usr_id+'"> '+data[i].usr_name+'</a> <em></em><a target="_blank" href="javascript:void(0)" id="'+data[i].job_id+'"></a></h3><span class="fr">投递时间：'+data[i].res_insertTime+'</span>'
 					+'<div>'+data[i].us_name+' / '+data[i].us_sex+' / '+data[i].us_educationa+' / '+data[i].us_work_year+' / '+data[i].hj_city+' <br> '+data[i].exp_job_name+' · '+data[i].exp_company_name+' | '+data[i].edu_educationa+'· '+data[i].edu_shool_name+'</div>'
 					+'<div class="links"><a data-deliverid="1686182" data-name="jason" data-positionid="149594" data-email="888888888@qq.com" class="resume_notice" onclick="companyResumeState(-2,'+data[i].job_id+')" href="javascript:void(0)">通知面试</a> '
 					+'<a data-deliverid="1686182" class="resume_refuse" onclick="companyResumeState(-4,'+data[i].job_id+')" href="javascript:void(0)">不合适</a> '
