@@ -37,6 +37,7 @@ public interface CompanyAllService {
 	List<CompanyAll> findResumeCompany(CompanyAll companyAll);
 	List<CompanyAll> findRange(CompanyAll companyAll);
 	List<CompanyAll> findJobCompany(CompanyAll companyAll);
+	void modifiAttestation(CompanyAll companyAll);
 
 
 }

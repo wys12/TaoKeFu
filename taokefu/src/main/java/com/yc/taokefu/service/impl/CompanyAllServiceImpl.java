@@ -155,5 +155,11 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	public List<CompanyAll> findRange(CompanyAll companyAll) {
 		return companyAllMapper.findRange(companyAll);
 	}
+
+	@Override
+	public void modifiAttestation(CompanyAll companyAll) {
+		companyAllMapper.modifiAttestation(companyAll);
+		
+	}
 	
 }

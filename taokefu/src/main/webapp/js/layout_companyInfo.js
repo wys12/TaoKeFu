@@ -341,6 +341,8 @@ function load(urlStr){
 			      				return "未审核"
 			      		}if(value == "-2"){
 			      			return "审核未通过"
+			      		}if(value == "-3"){
+			      			return "申请审核"
 			      		}
 	        	  }
 	          },

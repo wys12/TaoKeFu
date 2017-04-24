@@ -85,6 +85,26 @@ create table company(
   comp_attestation varchar2(10) check(comp_attestation in('-0','-1')),--公司认证状态
   tag_name varchar2(150)
 );
+alter table company drop constraint SYS_C0010417
+ SYS_C0010568                   C               COMP_ATTESTATION
+
+select a.constraint_name,a.constraint_type,b.column_name 
+from user_constraints a,user_cons_columns b
+where a.table_name=b.table_name;
+
+
+SELECT  company, comp_attestation
+
+FROM company 
+
+WHERE table_name = 'table_name' and owner = 'owner_name'; 
+
+
+select * from company
+alter table company
+drop constraint comp_attestation
+update company set comp_attestation='-1' where comp_id=1001
+alter table company modify ( comp_attestation varchar2(10) check(comp_attestation in('-0','-1','-2','-3')))
 select *
 		from job j
 		join company comp

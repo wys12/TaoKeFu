@@ -43,7 +43,12 @@ public class CompanyHandler {
 		this.comp_id=comp_id;
 		LogManager.getLogger().debug("公司id === " +comp_id);
 	}
-
+	
+	@RequestMapping(value="comp_attestation",method=RequestMethod.POST)
+	public void modifiAttestation(CompanyAll companyAll){
+		//comp_attestation
+		companyAllService.modifiAttestation(companyAll);
+	}
 	/**
 	 * wys
 	 * 公司

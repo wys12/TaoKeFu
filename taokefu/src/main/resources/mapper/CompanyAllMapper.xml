@@ -14,6 +14,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where j.job_name
 		like '%${job_name}%' and j.job_state='-0'
 	</select>
+	<update id="modifiAttestation" parameterType="CompanyAll">
+		update company set comp_attestation='-3' where comp_email='${comp_email}'
+	</update>
 	<select id="findJobCompany" resultType="com.yc.taokefu.entity.CompanyAll"
 		parameterType="CompanyAll">
 		select *

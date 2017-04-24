@@ -1,6 +1,7 @@
-loadInfo();
 var str='';
-function loadInfo(){
+var tt='';
+function loadInfo(number){
+	tt=number;
 	comp_namesForm();
 	comp_namesTag();
 	comp_citysForm();
@@ -39,6 +40,20 @@ function comp_citysForm(){
 		$("#c_tags_show table tbody tr:eq(1) td:eq(1)").text(data[0].comp_territory);
 		$("#c_tags_show table tbody tr:eq(2) td:eq(1)").text(data[0].comp_scale);
 		$("#c_tags_show table tbody tr:eq(3) td:eq(1)").html('<a rel="nofollow"  target="_blank" href="https://'+data[0].comp_link+'">'+data[0].comp_link+'</a>');
+		if(data[0].comp_attestation=='-3'){
+			$("#sq").text("审核中");
+			$("#vsdn").text("");
+		}
+		if(data[0].comp_attestation=='-2'){
+			$("#sq").text("审核未通过");
+			$("#vsdn").text("");
+			
+		}
+		if(data[0].comp_attestation=='-1'){
+			$("#sq").text("已认证");
+			$("#vsdn").attr("class","valid");
+			$("#vsdn").text("");
+		}
 	},"json");
 }
 /**
@@ -187,6 +202,12 @@ $("#saveComp_state").click(function(){
 			alert("YES");
 		}
 	});
+});
+$("#sq").click(function(){
+	alert("ss"+tt.l_email);
+	$("company/modifiAttestation",{comp_email:l_email},function(){
+		
+	},"json")
 });
 /**
  * 公司创始团队 保存
