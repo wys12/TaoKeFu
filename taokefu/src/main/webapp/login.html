@@ -37,10 +37,14 @@
 		 <div class="login_box">
         	<form id="loginForm" action="index.html" method="post">
 				<input type="text" id="email" name="email" value="" tabindex="1" placeholder="请输入登录邮箱地址" />
-			  	<input type="password" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+			  	<input type="password" class="pwds" id="password" name="password" tabindex="2" placeholder="请输入密码" />
+			  	<span id="ssss">密码查看</span>
 				<span class="error" style="display:none;" id="beError"></span>
 			    <label class="fl" for="remember"><input type="checkbox" id="remember" value="" checked="checked" name="autoLogin" /> 记住我</label>
-			    <a href="reset.html" class="fr" target="_blank">忘记密码？</a>
+			    <a href="reset.html"  class="fr" target="_blank">忘记密码？</a>
+			   
+			    <label></label>
+			    <!-- <input type="checkbox" class="fr" name="checkbox1" onclick="ShowHidePW()" value="checkbox">跑步  -->
 			    
 				<input type="submit" onclick="login()" id="submitLogin" value="登 &nbsp; &nbsp; 录" />
 
