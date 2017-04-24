@@ -161,4 +161,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(ct_id,c_id,ct_name,ct_picPath,ct_job,ct_tdesc)
 		values(company_team_sql.nextval,#{c_id},#{ct_name},#{ct_picPath},#{ct_job},#{ct_tdesc})
 	</insert>
+	
+	<!-- 后台公司团队管理 -->
+	<select id="findAllCompany" parameterType="CompanyAll" resultMap="CompanyAllMap">
+		select * from company c
+		inner join job j
+		on c.comp_id=j.c_id
+	</select>
+	
+	<resultMap type="CompanyAll" id="CompanyAllMap">
+		<id property="comp_id" column="comp_id"/>
+		<result property="comp_name" column="comp_name"/>
+		<result property="comp_logo" column="comp_logo"/>
+		<result property="comp_link" column="comp_link"/>
+		<result property="comp_city" column="comp_city"/>
+		<result property="comp_territory" column="comp_territory"/>
+		<result property="comp_state" column="comp_state"/>
+		
+		<collection property="jobs" ofType="Job">  
+			<id property="job_id" column="job_id"/>
+			<result property="job_tags" column="job_tags"/>
+			<result property="job_name" column="job_name"/>
+		</collection>
+	</resultMap>
 </mapper>

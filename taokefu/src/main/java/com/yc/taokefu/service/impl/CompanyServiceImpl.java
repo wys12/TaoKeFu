@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.taokefu.entity.Company;
+import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.CompanyTeam;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Product;
@@ -75,6 +76,11 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public boolean BackCompanyEditCorAdd(Product product) {
 		return companyMapper.BackCompanyEditCorAdd(product)>0;
+	}
+	@Override
+	public List<CompanyAll> findAllCompany(CompanyAll company) {
+		// TODO Auto-generated method stub
+		return companyMapper.findAllCompany(company);
 	}
 
 }

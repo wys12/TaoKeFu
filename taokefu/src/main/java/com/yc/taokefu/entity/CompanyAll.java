@@ -1,5 +1,7 @@
 package com.yc.taokefu.entity;
 
+import java.util.List;
+
 public class CompanyAll {
 	//公司
 	private Integer comp_id;
@@ -63,6 +65,16 @@ public class CompanyAll {
 	
 	private String jc_id;
 	private String jc_name;
+	
+	private List<Job> jobs;
+	
+
+	public List<Job> getJobs() {
+		return jobs;
+	}
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
+	}
 	public String getJob_city() {
 		return job_city;
 	}
