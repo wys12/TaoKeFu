@@ -419,4 +419,12 @@ public Integer modifiInvest(CompanyAll company){
 			}
 			
 		}
+		
+		@RequestMapping("findAllCompany")
+		@ResponseBody //响应Json数据
+		public List<CompanyAll> findAllCompany(CompanyAll company){
+			List<CompanyAll> list = new ArrayList<CompanyAll>();
+			list= companyService.findAllCompany(company);
+			return list;
+		}
 }

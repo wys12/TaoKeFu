@@ -3,6 +3,7 @@ package com.yc.taokefu.service;
 import java.util.List;
 
 import com.yc.taokefu.entity.Company;
+import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.CompanyTeam;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Product;
@@ -32,6 +33,8 @@ public interface CompanyService {
 	boolean BackCompanyEditCtAdd(CompanyTeam companyTeam);
 
 	boolean BackCompanyEditCorAdd(Product product);
+
+	List<CompanyAll> findAllCompany(CompanyAll company);
 
 	//sCompany findCompany(Company company);
 
