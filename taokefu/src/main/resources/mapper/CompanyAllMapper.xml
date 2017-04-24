@@ -14,6 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where j.job_name
 		like '%${job_name}%' and j.job_state='-0'
 	</select>
+	<select id="findJobCompany" resultType="com.yc.taokefu.entity.CompanyAll"
+		parameterType="CompanyAll">
+		select *
+		from job j
+		join company comp
+		on j.c_id =
+		comp.comp_id
+		where j.job_id
+		like '%${job_id}%' and j.job_state='-0'
+	</select>
 	<select id="findRange" parameterType="CompanyAll" resultType="CompanyAll">
 		select *
 		from job j

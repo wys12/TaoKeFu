@@ -30,4 +30,6 @@ public interface ResumeMapper {
 
 	List<Resume> findUserResume(Resume resume);
 	PaginationBean<Resume> listJob(PaginationBean<Resume> pb);
+
+	List<Resume> findSendResumeEmail(Resume resume);
 }

@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yc.taokefu.entity.CompanyAll;
 import com.yc.taokefu.entity.JobClass;
 import com.yc.taokefu.entity.PaginationBean;
 import com.yc.taokefu.entity.Resume;
 import com.yc.taokefu.entity.UserAll;
+import com.yc.taokefu.service.AdminService;
+import com.yc.taokefu.service.CompanyAllService;
 import com.yc.taokefu.service.ResumeService;
 import com.yc.taokefu.service.UserService;
 import com.yc.taokefu.util.ServletUtil;
@@ -31,6 +34,10 @@ public class ResumeHandler {
 	private  ResumeService resumeService;
 	@Autowired
 	private  UserService userService;
+	@Autowired
+	private  AdminService adminService;
+	@Autowired
+	private  CompanyAllService companyAllService;
 
 	/**
 	 * wys
@@ -90,8 +97,14 @@ public class ResumeHandler {
 	 */
 	@RequestMapping(value="modifiResumeState",method=RequestMethod.POST)
 	@ResponseBody
-	public int modifiResumeState(Resume resume){
-		LogManager.getLogger().debug(resume);
+	public int modifiResumeState(Resume resume,CompanyAll companyAll){
+		LogManager.getLogger().debug("resume"+resume);
+		if(resume.getUsr_state().equals("-2")){
+			companyAll.setJob_id(resume.getJob_id());;
+			LogManager.getLogger().debug("company==="+companyAll);
+			LogManager.getLogger().debug("company==="+companyAllService.findJobCompany(companyAll));
+			adminService.sendEmail(resumeService.findSendResumeEmail(resume).get(0), companyAllService.findJobCompany(companyAll).get(0));
+		}
 		resume.setRes_modifiTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		return resumeService.modifiResumeState(resume);
 	}

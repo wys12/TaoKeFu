@@ -12,6 +12,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.yc.taokefu.entity.Admin;
+import com.yc.taokefu.entity.CompanyAll;
+import com.yc.taokefu.entity.Resume;
 import com.yc.taokefu.mapper.AdminMapper;
 import com.yc.taokefu.service.AdminService;
 import com.yc.taokefu.util.ServletUtil;
@@ -70,4 +72,23 @@ public class AdminServiceImpl  implements AdminService {
 	public Integer modifiAdminPwd(Admin admin) {
 		return adminMapper.modifiAdminPwd(admin);
 	}
+	
+	@Override
+	public Integer sendEmail(Resume resume,CompanyAll companyAll) {
+		//发送邮件
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+			helper.setFrom(ResourceBundle.getBundle("data").getString("mail.smtp.from"));
+			helper.setTo(resume.getUs_email());
+			helper.setSubject("简历面试通知");
+			helper.setText(resume.getUsr_name()+"你好，恭喜你获得 "+companyAll.getComp_name()+"公司面试"+companyAll.getJob_name()+"机会！");
+			mailSender.send(message);
+			return 1;
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

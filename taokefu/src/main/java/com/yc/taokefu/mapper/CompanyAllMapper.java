@@ -11,7 +11,7 @@ public interface CompanyAllMapper {
 
 	List<CompanyAll> findCompanyAllMapper(CompanyAll companyAll);
 	//List<CompanyAll> findCompanyAllMapper(CompanyAll companyAll,@Param("currPage") Integer currPage,@Param("pageSize") Integer pageSize);
-
+	List<CompanyAll> findJobCompany(CompanyAll companyAll);
 	List<CompanyAll> findJobAllMapper(CompanyAll companyAll);
 
 	

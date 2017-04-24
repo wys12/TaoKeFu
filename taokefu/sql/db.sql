@@ -65,8 +65,9 @@ select * from company where comp_id=1081
 update company set  tag_name='五险一金' where comp_id=1081
 alter table company modify (comp_logo varchar2(200))
 alter table company add (tag_name varchar2(150))
-insert into company values(company_sql.nextval,'百度','北京百度网讯科技有限公司'，'http://www.baidu.com/img/bd_logo1.png','互联网','上市','(+86 10) 5992 8888','comnect@baidu.com','www.baidu.com','北京','5000-10000','百度一下,你就知道了','百度,全球最大的中文搜索引擎、最大的中文网站。1999年底,身在美国硅谷的李彦宏看到了中国互联网及中文搜 索引擎服务的巨大发展潜力,抱着技术改变世界的梦想,他毅然辞掉硅谷的高薪工作,携搜索引擎专利技术,于 2000年1月1日在中关村创建了百度公司。','','股票期权,绩效奖金,五险一金');
+insert into company values(company_sql.nextval,'腾讯','深圳腾讯网讯科技有限公司'，'http://b.hiphotos.baidu.com/baike/w%3D268%3Bg%3D0/sign=b70574b2b01c8701d6b6b5e01f44f912/e1fe9925bc315c60addea1b98eb1cb1349547719.jpg','互联网','上市','(+86 10) 5992 8888','comnect@qq.com','www.qq.com','深圳','5000-10000','百度一下,你就知道了','百度,全球最大的中文搜索引擎、最大的中文网站。1999年底,身在美国硅谷的李彦宏看到了中国互联网及中文搜 索引擎服务的巨大发展潜力,抱着技术改变世界的梦想,他毅然辞掉硅谷的高薪工作,携搜索引擎专利技术,于 2000年1月1日在中关村创建了百度公司。','','股票期权,绩效奖金,五险一金');
 --company 公司 
+select * from company
 create table company(
   comp_id number primary key,
   comp_name varchar2(30),	--公司简称
@@ -264,9 +265,9 @@ create table take(
 select * from job j join company comp on j.c_id = comp.comp_id join coResume cor on cor.c_id = comp.comp_id where j.job_id=1001 
 insert into tag values(tag_sql.nextval,'1001','五险一金');
 select * from tkfuser
-select * from usResume
+select * from job where job_id=1123 usResume
 insert into job 
-values(job_sql.nextval,'1001','五险一金','qq客服','客服联系','全职','3k','5k','2017-04-05','本科','职位诱惑是休息时间多','qq客服工作的职责','qq客服任职的要求',
+values(job_sql.nextval,'1022','五险一金','qq客服','客服联系','全职','3','5','2017-04-15','本科','职位诱惑是休息时间多','qq客服工作的职责','qq客服任职的要求',
 'qq客服其他的要求','0','-1');
 insert into job 
 values(job_sql.nextval,'1053','年终奖金翻倍','微信客服','客服联系','全职','4k','6k','2017-04-07','研究生','职位诱惑就是年底双薪','微信客服工作的职责','微信客服任职的要求',

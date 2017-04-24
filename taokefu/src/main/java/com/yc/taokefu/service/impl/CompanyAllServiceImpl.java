@@ -26,6 +26,17 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	public List<CompanyAll> findCompenyName(CompanyAll companyAll) {
 		return companyAllMapper.findCompanyAllMapper(companyAll);
 	}
+	
+	/**
+	 * wys
+	 * @param string
+	 * @return
+	 */
+	@Override
+	public List<CompanyAll> findJobCompany(CompanyAll companyAll) {
+		return companyAllMapper.findJobCompany(companyAll);
+	}
+	
 	/**
 	 * wys
 	 * @param string

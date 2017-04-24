@@ -32,4 +32,6 @@ public interface ResumeService {
 
 	List<Resume> findUserResume(Resume resume);
 	PaginationBean<Resume> listPartUsers(String page, String rows);
+
+	List<Resume> findSendResumeEmail(Resume resume);
 }

@@ -103,4 +103,10 @@ public class ResumeServiceImpl implements ResumeService {
 		return resumeMapper.listJob(pb);
 	}
 
+
+	@Override
+	public List<Resume> findSendResumeEmail(Resume resume) {
+		return resumeMapper.findSendResumeEmail(resume);
+	}
+
 }
