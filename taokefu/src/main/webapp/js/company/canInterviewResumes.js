@@ -66,7 +66,10 @@ $("#resume_3").click(function(){
 	companyResumeClass(3);
 });
 $("#resume_4").click(function(){
-	alert("自动过滤简历");
+	$("#resumeRefuseAll").text("标记为删除");
+	$("#resumeRefuseAll").removeClass("examineRes","passRes","inappropriateRes");
+	$("#resumeRefuseAll").attr("class","deleteRes");
+	showResume("-3");
 	companyResumeClass(4);
 });
 
@@ -100,7 +103,7 @@ function companyResumeState(usr_state,job_id){
 		case "inappropriateRes":showResume("-1");break;
 		case "passRes":showResume("-2");break;
 		case "deleteRes":showResume("-4");break;
-		default: alert("sss");break;}
+		default: alert("面试通过！！！");break;}
 		//alert("修改成功！！！"+getClass);
 	},"json");
 }

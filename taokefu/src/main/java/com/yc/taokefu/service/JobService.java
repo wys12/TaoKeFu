@@ -51,4 +51,5 @@ public interface JobService {
 
 
 	List<CompanyAll> findResumeJob(CompanyAll job);
+
 }

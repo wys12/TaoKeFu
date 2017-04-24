@@ -12,6 +12,7 @@ create table admin(
   ad_pwd varchar2(50) not null,
   ad_email varchar2(30)
 );
+select * from resume where c_id=1001 and usr_state='-0' 
 123221@qq.com
  1121 1232211@qq.com        3be0ff98032936bc7f9df51c5685ee5f2dd6ccee 0
  1081 3333@qq.com           adcd7048512e64b48da55b027577886ee5a36350 1
@@ -186,6 +187,11 @@ create table coResume(
 
 drop table company_team
 --company_team 公司管理团队
+select * from job j
+		join company comp
+		on j.c_id =
+		comp.comp_id where j.job_name=''
+
 create table company_team(
 	ct_id number primary key,
 	c_id number constraint fk_ct_id references company(comp_id),

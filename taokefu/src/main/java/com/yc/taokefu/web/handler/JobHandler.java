@@ -81,7 +81,7 @@ public class JobHandler {
 	public List<CompanyAll> find(CompanyAll companyAll) {
 		if(ServletUtil.type.equals(0)){
 			ServletUtil.JOB_LIST = companyAllServics.findJobName(companyAll);
-			//LogManager.getLogger().debug("lists ===>  "+ServletUtil.JOB_LIST);
+			LogManager.getLogger().debug("lists ===>  "+ServletUtil.JOB_LIST);
 			return ServletUtil.JOB_LIST;
 		}else if(ServletUtil.type.equals(1)){
 			ServletUtil.JOB_LIST = companyAllServics.findCompenyName(companyAll);
@@ -142,7 +142,6 @@ public class JobHandler {
 	@ResponseBody
 	public List<CompanyAll> findCompanyJob(CompanyAll comJob) {
 		comJob.setC_id(ServletUtil.c_ids);
-		System.out.println("===="+comJob);
 		return jobService.findCompanyJob(comJob);
 	}
 	/**
@@ -286,36 +285,6 @@ public class JobHandler {
 		return jobService.jobAdd(job);
 	}
 
-	/*
-	 * 首页左边客服类型加载
-	 * 
-	 */
-
-	@RequestMapping(value="findJc_type",method=RequestMethod.POST)
-	@ResponseBody
-	public List<JobClass> findClassType(JobClass jobClass) {
-		LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSTYPE_LIST);
-		if(ServletUtil.JOBCLASSTYPE_LIST.size() != 0 && ServletUtil.JOBCLASSTYPE_LIST == null){
-			LogManager.getLogger().debug("返回界面职位类型信息   ==> "+ServletUtil.JOBCLASSTYPE_LIST);
-			return ServletUtil.JOBCLASSTYPE_LIST;
-		}else{
-			ServletUtil.JOBCLASSTYPE_LIST = jobClassService.jobClassTypeFind(jobClass);
-			return ServletUtil.JOBCLASSTYPE_LIST;
-		}
-	}
-	/*
-	 * 首页左边客服类型名称加载
-	 * 
-	 */
-
-	@RequestMapping(value="findJc_name",method=RequestMethod.POST)
-	@ResponseBody
-	public List<JobClass> findClassName(JobClass jobClass) {
-		ServletUtil.JOBCLASSNAME_LIST = jobClassService.jobClassNameFind(jobClass);
-		LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSNAME_LIST);
-		return ServletUtil.JOBCLASSNAME_LIST;
-	}
-
 	//查询职位类型
 	@RequestMapping("jcList")
 	@ResponseBody //响应Json数据
@@ -370,6 +339,43 @@ public class JobHandler {
 		}
 		return null;
 	}
+	/*
+	 * 首页左边客服类型加载
+	 * 
+	 */
+
+	@RequestMapping(value="findJc_type",method=RequestMethod.POST)
+	@ResponseBody
+	public List<JobClass> findClassType(JobClass jobClass) {
+		LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSTYPE_LIST);
+		if(ServletUtil.JOBCLASSTYPE_LIST.size() != 0 && ServletUtil.JOBCLASSTYPE_LIST == null){
+			LogManager.getLogger().debug("返回界面职位类型信息   ==> "+ServletUtil.JOBCLASSTYPE_LIST);
+			return ServletUtil.JOBCLASSTYPE_LIST;
+		}else{
+			ServletUtil.JOBCLASSTYPE_LIST = jobClassService.jobClassTypeFind(jobClass);
+			return ServletUtil.JOBCLASSTYPE_LIST;
+		}
+	}
+	/*
+	 * 首页左边客服类型名称加载
+	 * 
+	 */
+
+	@RequestMapping(value="findJc_name",method=RequestMethod.POST)
+	@ResponseBody
+	public List<JobClass> findClassName(JobClass jobClass) {
+		ServletUtil.JOBCLASSNAME_LIST = jobClassService.jobClassNameFind(jobClass);
+		LogManager.getLogger().debug("index ===>  "+ServletUtil.JOBCLASSNAME_LIST);
+		return ServletUtil.JOBCLASSNAME_LIST;
+	}
+	
+	//首页职位list
+		@RequestMapping("jObList")
+		@ResponseBody //响应Json数据
+		public PaginationBean<Job> jObList(String rows,String page){
+			LogManager.getLogger().debug("职位List  --> rows==>"+rows +",page==>"+page);
+			return jobService.listPartUsers(page,rows);
+		}
 }
 
 
