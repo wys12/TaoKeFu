@@ -140,5 +140,9 @@ public class CompanyAllServiceImpl implements CompanyAllService{
 	public List<CompanyAll> findResumeCompany(CompanyAll companyAll) {
 		return companyAllMapper.findResumeCompany(companyAll);
 	}
+	@Override
+	public List<CompanyAll> findRange(CompanyAll companyAll) {
+		return companyAllMapper.findRange(companyAll);
+	}
 	
 }

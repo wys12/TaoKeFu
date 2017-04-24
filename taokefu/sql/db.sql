@@ -263,7 +263,11 @@ insert into job
 values(job_sql.nextval,'1001','年终奖金翻倍','微信客服','客服联系','全职','4k','6k','2017-04-07','研究生','职位诱惑就是年底双薪','微信客服工作的职责','微信客服任职的要求',
 '微信客服其他的要求','0','-0');
 --职位表
-select * from job
+select * from job j join company comp on j.c_id = comp.comp_id where j.job_name like '%微信%' and j.job_state='-0' and (job_min_salary between 5 and 10 or job_max_salary between 5 and 10) 
+select * from job j join company comp on j.c_id = comp.comp_id where j.job_name like '%微信%' and j.job_state='-0' and (job_min_salary between 5 and 10 or job_max_salary between 5 and 10) 
+select * from job j join company comp on j.c_id = comp.comp_id where j.job_name like '%%' and j.job_state='-0' and job_experience='1-3年' 
+select * from job  where job_min_salary between 5 and 10 or job_max_salary  between '5k' and '15k'
+update job set job_min_salary='10k', job_max_salary='13k' where job_id=1081
 create table job(
   job_id number primary key,
   c_id number not null,

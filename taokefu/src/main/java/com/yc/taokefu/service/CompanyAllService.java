@@ -35,6 +35,7 @@ public interface CompanyAllService {
 	Integer modifiJob(CompanyAll company);
 	Integer modifiJob_class(CompanyAll company);
 	List<CompanyAll> findResumeCompany(CompanyAll companyAll);
+	List<CompanyAll> findRange(CompanyAll companyAll);
 
 
 }

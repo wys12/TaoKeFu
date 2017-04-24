@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,10 +53,23 @@ public class JobHandler {
 		}else{
 			ServletUtil.JOB_LIST = null;
 		}
-		return "redirect:/list.html?search_input="+search_input;
+		String red="redirect:/list.html?search_input="+search_input;
+		System.out.println("red==="+red);
+		return red;
 	}
 
-
+	@RequestMapping(value="findRange",method=RequestMethod.POST)
+	@ResponseBody
+	public List<CompanyAll> findRange(CompanyAll companyAll) {
+		if(companyAll.getJob_min_salary()!=null && companyAll.getJob_min_salary()!=""){
+			String []salary =companyAll.getJob_min_salary().split("-");
+			companyAll.setJob_max_salary(salary[1].substring(0, salary[1].indexOf("k")));
+			companyAll.setJob_min_salary(salary[0].substring(0, salary[0].indexOf("k")));
+		}
+		LogManager.getLogger().debug(companyAll);
+		//ServletUtil.JOB_LIST = companyAllServics.findRange(companyAll);
+		return companyAllServics.findRange(companyAll);
+	}
 	/**
 	 * list查询信息   wys
 	 * @param <T>
@@ -160,7 +174,7 @@ public class JobHandler {
 		LogManager.getLogger().debug(job);
 		return jobService.modifiJobState(job);
 	}
-	
+
 	/**
 	 * wys
 	 * 对以添加的职位进行查询
@@ -184,8 +198,8 @@ public class JobHandler {
 	public List<CompanyAll> findResumeJob(CompanyAll job) {
 		return jobService.findResumeJob(job);
 	}
-	
-	
+
+
 	/**
 	 * wys
 	 * 对以添加的职位进行修改
@@ -336,7 +350,7 @@ public class JobHandler {
 		}
 		return "true";
 	}
-	
+
 	/**
 	 * 后台职业类型查询
 	 */
